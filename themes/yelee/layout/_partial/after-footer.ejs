@@ -1,0 +1,18 @@
+<% if (theme.github_widget){ %>
+    <%- js('js/GithubRepoWidget') %>
+<% } %>
+<%- js('//7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min') %>
+<!--<%- js('js/main') %>-->
+<script src="//dn-menci.qbox.me/js/main.js" type="text/javascript"></script>
+<%- partial('_partial/background') %>
+<%- partial('google-analytics') %>
+<% if (theme.mathjax){ %>
+    <%- partial('mathjax') %>
+<% } %>
+<%- partial('scrolling-button') %>
+<%- partial('_partial/hide-labels') %>
+<% if (theme.jquery_ui){ %>
+    <script src="//cdn.bootcss.com/jqueryui/1.10.4/jquery-ui.min.js"></script>
+<% } %>
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>

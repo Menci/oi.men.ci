@@ -1,0 +1,361 @@
+#container{
+    //position:relative;
+    min-height:100%;
+    #mobile-nav{
+        display: none;
+        .overlay{
+            height: 110px;
+            position: absolute;
+            width: 100%;
+            background: #4d4d4d;
+            &.fixed{
+                position: fixed;
+                height: 42px;
+                z-index: 99;
+            }
+        }
+        #header{
+            padding: 10px 0 0 0;
+            .profilepic{
+                display: block;
+                position: relative;
+                z-index: 100;
+            }
+            .header-menu{
+                height: auto;
+                margin: 10px;
+                ul{
+                    text-align: center;
+                    cursor: default;
+                }
+                li{
+                    display: inline-block;
+                    margin: 3px;
+                }
+            }
+        }
+    }
+    .left-col {
+        background: left-col-color;
+        width: left-col-width;
+        position:fixed;
+        opacity:1;
+        transition:all .2s ease-in;
+        height:100%;
+
+        .overlay{
+            width: 100%;
+            height: 180px;
+            background-color: black;
+            position: absolute;
+            opacity: 0.7;
+        }
+        .intrude-less {
+            width: 76%;
+            text-align: center;
+            margin: 112px auto 0;
+        }
+        li:hover {
+            background: none;
+            font-weight: bold;
+        };
+    }
+    .mid-col {
+        position:absolute;
+        right:0;
+        min-height:100%;
+        background: mid-col-color;
+        left: left-col-width;
+        width: auto;
+    }
+
+    @media screen and (max-width:1040px) {
+        
+    }@media screen and (max-width:800px) {
+        @import "_partial/mobile"
+    }
+}
+.header-author{
+    text-align: center;
+    margin: 13px 0;
+    font-family: Roboto, "Roboto", serif;
+    font-size: 30px;
+    transition: 0.3s;
+}
+#header{
+    width:100%;
+    a {
+        color: #696969;
+        &:hover {
+            color: #B0A0AA;
+        }
+    }
+    .profilepic{
+        text-align: center;
+        display: block;
+        border: 5px solid #fff;
+        border-radius: 50%;
+        width: 128px;
+        height: 128px;
+        margin: 0 auto;
+        position: relative;
+        overflow: hidden;
+        background: #88acdb;
+        -webkit-transition: all 0.2s ease-in;
+        //display: -webkit-box;
+        -webkit-box-orient: horizontal;
+        -webkit-box-pack: center;
+        -webkit-box-align: center;
+        text-align: center;
+        img{
+            width: 20%;
+            height: 20%;
+            border-radius: 50%;
+            opacity: 0;
+            -webkit-transition: all 0.2s ease-in;
+            &.show{
+                width: 100%;
+                height: 100%;
+                opacity: 1;
+            }
+        }
+        &:hover {
+            background: white;
+            border: 5px solid #88acdb;
+            box-shadow: 0 0 1.5em #88acdb;
+            animation: profilepic .15s linear infinite alternate;
+            -webkit-animation: profilepic .15s linear infinite alternate; 
+        }
+        @keyframes profilepic {
+            0% {
+                right: 4px;
+                top: 1x;
+            }
+            100% {
+                right: 0px;
+                top: -1px;
+            }
+        }
+    }
+    .header-subtitle{
+        text-align: center;
+        color:#999;
+        font-size: 14px;
+        line-height: 25px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+    }
+    .header-menu{
+        menu-line-height = 28px
+        font-weight: 550;
+        line-height: menu-line-height;
+        font-family: inherit;
+        cursor: pointer;
+        text-transform: uppercase;
+        float: none;
+        min-height: menu-line-height * 3px;
+        max-height: menu-line-height * 5px;
+        overflow: auto;
+        text-align: center;
+        display: -webkit-box;
+        -webkit-box-orient: horizontal;
+        -webkit-box-pack: center;
+        -webkit-box-align: center;
+        li{
+            cursor: default;
+            a{
+                font-size: 14px;
+                min-width: left-col-width;
+            }
+        }
+    }
+    .switch-area{
+        position: relative;
+        width: 100%;
+        overflow: hidden;
+        min-height: 500px;
+        font-size: 14px;
+        .switch-wrap{
+            transition: transform .3s ease-in;
+            position: relative;
+        }
+    }
+    .turn-left{
+        transform: translate(-100%, 0 );
+    }
+    .header-nav{
+        width: 100%;
+        position: absolute;
+        transition: transform .3s ease-in;
+    }
+    .switch-part{
+        width: 100%;
+        position: absolute;
+    }
+    .switch-part1{
+        left: 0;
+    }
+    .switch-part2{
+        left: 100%;
+        top: 20px;
+        overlay-x: hidden;
+        overflow-y: auto;
+        max-height: 200px;
+    }
+    .switch-part3{
+        left: 200%;
+        line-height: 30px;
+        .switch-friends-link{
+            margin-right: 9px;
+            border-radius: 3px;
+            padding: 5px;
+            &:hover{
+                background: #88acdb;
+                color: #fff;
+            }
+        }
+    }
+    .switch-part4{
+        left: 300%;
+        text-align: left;
+        line-height: 30px;
+    }
+}
+
+@require "customise/social-icon"
+
+.duoshuo {
+    padding: 0 40px;
+}
+
+#disqus_thread {
+    padding: 0 40px;
+}
+
+.search {
+    width: 68%;
+    height: 18px;
+    margin-top: 1px;
+    padding: 0;
+    font-family: inherit;
+    border: 2px solid transparent;
+    border-bottom: 2px solid lightgray;
+    border-radius: 2px;
+    opacity: .2;
+    background: none;
+    &:hover {
+        border: 2px solid lightgray;
+        opacity: 1;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    };
+}
+
+#scroll{
+    right: 0;
+}
+
+.scroll {
+    z-index: 999;
+    position: fixed;
+    top: 61.8%;
+    text-align: center;
+    line-height: 42px;
+    a {
+        display: block;
+        width: 29px;
+        height: 42px;
+        font-size: 28px;
+        background: rgba(215, 216, 215, .4);
+        .fa {
+            color: rgba(255, 255, 255, .8);
+        }
+        &:hover {
+            background: rgba(147, 181, 224, .3) !important; 
+            .fa {
+                color: white;
+            }
+        }
+    }
+    a:not(:last-child) {
+        border-bottom: 1px solid white;
+    }
+}
+
+.hide-labels {
+    position: fixed;
+    left: left-col-width + 78px;
+    top: 30px;
+    padding: 1px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    outline: none;
+    font-family: inherit;
+    font-size: .9em;
+    font-weight: bold;
+    color: #666;
+    background: none;
+    opacity: .32;
+    -webkit-appearance: none;
+    &:hover {
+        color: #88acdb;
+        opacity: 1; 
+    }
+}
+
+#post-nav-button {
+    left: left-col-width;
+    top: 61.8%;
+    a {
+        border-bottom-color: transparent;
+        background: none;
+        cursor: pointer;
+        .fa-times {
+            display: none;
+        }
+    }
+}
+
+.post-list {
+    display: none;
+    text-align: left;
+    font-size: .9em;
+    line-height: 1.3em;
+    list-style: decimal;
+    li {
+        margin: .4em 0 .1em .7em;
+        a {
+            color: gray;
+            &:hover {
+                color: ;
+                text-decoration: none;
+            }
+        }
+        &:hover {
+            background: ;
+            a {
+                color: #88acdb;
+            }
+        };
+   }
+}
+
+if hexo-config("github_widget")
+    .article-entry .github-widget h3::after
+        content none
+
+if hexo-config("jquery_ui")
+    .ui-tooltip
+        padding 6px
+        max-width 30em
+        box-shadow 0 0 .8em rgba(0, 0, 0, .6)
+        color white
+        font-family font-sans, font-chs
+        font-size .9em
+        background rgba(0, 0, 0, .65)
+
+    body .ui-tooltip
+        border 1px solid white

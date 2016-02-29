@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>「NOI2002」银河英雄传说 - 并查集 | Menci</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="&amp;#x6709; 30000 &amp;#x4E2A;&amp;#x5143;&amp;#x7D20;&amp;#xFF0C;&amp;#x521D;&amp;#x59CB;&amp;#x65F6;&amp;#x6BCF;&amp;#x4E2A;&amp;#x5143;&amp;#x7D20;&amp;#x4EE5;&amp;#x5355;&amp;#x72EC;&amp;#x7684;&amp;#x961F;&amp;#x5217;&amp;#x5F62;&amp;#x5F0F;&amp;#x5B58;&amp;#x5728;&amp;#xFF0C;&amp;#x652F;&amp;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="「NOI2002」银河英雄传说 - 并查集">
+<meta property="og:url" content="https://blog.menci.moe/noi2002-galaxy/index.html">
+<meta property="og:site_name" content="Menci">
+<meta property="og:description" content="&amp;#x6709; 30000 &amp;#x4E2A;&amp;#x5143;&amp;#x7D20;&amp;#xFF0C;&amp;#x521D;&amp;#x59CB;&amp;#x65F6;&amp;#x6BCF;&amp;#x4E2A;&amp;#x5143;&amp;#x7D20;&amp;#x4EE5;&amp;#x5355;&amp;#x72EC;&amp;#x7684;&amp;#x961F;&amp;#x5217;&amp;#x5F62;&amp;#x5F0F;&amp;#x5B58;&amp;#x5728;&amp;#xFF0C;&amp;#x652F;&amp;">
+<meta property="og:updated_time" content="2016-01-19T13:08:24.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="「NOI2002」银河英雄传说 - 并查集">
+<meta name="twitter:description" content="&amp;#x6709; 30000 &amp;#x4E2A;&amp;#x5143;&amp;#x7D20;&amp;#xFF0C;&amp;#x521D;&amp;#x59CB;&amp;#x65F6;&amp;#x6BCF;&amp;#x4E2A;&amp;#x5143;&amp;#x7D20;&amp;#x4EE5;&amp;#x5355;&amp;#x72EC;&amp;#x7684;&amp;#x961F;&amp;#x5217;&amp;#x5F62;&amp;#x5F0F;&amp;#x5B58;&amp;#x5728;&amp;#xFF0C;&amp;#x652F;&amp;">
+  
+    <link rel="alternative" href="/atom.xml" title="Menci" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="//dn-menci.qbox.me//img/favicon.png">
+  
+  
+  
+  <!--<link rel="stylesheet" href="/css/style.css" type="text/css">-->
+  <link rel="stylesheet" href="//dn-menci.qbox.me/css/style.css" type="text/css">
+  <link rel="stylesheet" href="//dn-menci.qbox.me/font-awesome/css/font-awesome.min.css">
+  <link rel="apple-touch-icon" href="//dn-menci.qbox.me/apple-touch-icon.png">
+  
+  
+      <link rel="stylesheet" href="//dn-menci.qbox.me/fancybox/jquery.fancybox.css">
+  
+  <script>
+      var yiliaConfig = {
+          fancybox: true,
+          animate: false,
+          isHome: false,
+          isPost: true,
+          isArchive: false,
+          isTag: false,
+          isCategory: false,
+          open_in_new: false
+      }
+  </script>
+  
+</head>
+
+<body style="background: url(//dn-menci.qbox.me/background/bg-1.jpg) 0% 0% / cover fixed;">
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay" style="opacity: 0.3; background-color: rgb(204, 102, 102);"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            
+            <img src="//dn-menci.qbox.me//img/avatar.png" class="js-avatar" style="width: 100%;height: 100%;opacity: 1;">
+            
+        </a>
+
+        <hgroup>
+          <h1 class="header-author"><a href="/">Menci</a></h1>
+        </hgroup>
+
+        
+        <p class="header-subtitle">眉眼如初，岁月如故</p>
+        
+                
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">主页</a></li>
+                        
+                            <li><a href="/about-me/">关于</a></li>
+                        
+                            <li><a href="/friends/">伙伴</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <li id="Email"><a class="Email" target="_blank" href="mailto:HuangHaoRui301@Gmail.com" title="Email"></a></li>
+                            
+                                <li id="GitHub"><a class="GitHub" target="_blank" href="https://github.com/Menci" title="GitHub"></a></li>
+                            
+                                <li id="Twitter"><a class="Twitter" target="_blank" href="https://twitter.com/HuangHaoRui" title="Twitter"></a></li>
+                            
+                                <li id="QQ"><a class="QQ" target="_blank" href="http://wpa.qq.com/msgrd?V=3&Uin=421899973" title="QQ"></a></li>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <a href="/tag/bzoj/" style="font-size: 17.14px;">BZOJ</a> <a href="/tag/c/" style="font-size: 10.71px;">C++</a> <a href="/tag/cdq/" style="font-size: 10px;">CDQ</a> <a href="/tag/cogs/" style="font-size: 17.86px;">COGS</a> <a href="/tag/ctsc/" style="font-size: 10.71px;">CTSC</a> <a href="/tag/codevs/" style="font-size: 20px;">CodeVS</a> <a href="/tag/dp/" style="font-size: 17.14px;">DP</a> <a href="/tag/dinic/" style="font-size: 15.71px;">Dinic</a> <a href="/tag/edmonds-karp/" style="font-size: 13.57px;">Edmonds-Karp</a> <a href="/tag/gdb/" style="font-size: 10px;">GDB</a> <a href="/tag/github/" style="font-size: 10px;">GitHub</a> <a href="/tag/hnoi/" style="font-size: 10px;">HNOI</a> <a href="/tag/jsoi/" style="font-size: 10px;">JSOI</a> <a href="/tag/kmp/" style="font-size: 10px;">KMP</a> <a href="/tag/kruskal/" style="font-size: 10px;">Kruskal</a> <a href="/tag/lct/" style="font-size: 10px;">LCT</a> <a href="/tag/latex/" style="font-size: 10px;">LaTex</a> <a href="/tag/markdown/" style="font-size: 10px;">Markdown</a> <a href="/tag/noi/" style="font-size: 12.14px;">NOI</a> <a href="/tag/noip/" style="font-size: 12.86px;">NOIP</a> <a href="/tag/poj/" style="font-size: 10px;">POJ</a> <a href="/tag/prim/" style="font-size: 10px;">Prim</a> <a href="/tag/sdoi/" style="font-size: 10px;">SDOI</a> <a href="/tag/stl/" style="font-size: 10.71px;">STL</a> <a href="/tag/splay/" style="font-size: 14.29px;">Splay</a> <a href="/tag/tyvj/" style="font-size: 13.57px;">Tyvj</a> <a href="/tag/vijos/" style="font-size: 10.71px;">Vijos</a> <a href="/tag/exgcd/" style="font-size: 10.71px;">exgcd</a> <a href="/tag/map/" style="font-size: 10.71px;">map</a> <a href="/tag/set/" style="font-size: 10px;">set</a> <a href="/tag/二分图匹配/" style="font-size: 11.43px;">二分图匹配</a> <a href="/tag/二分图染色/" style="font-size: 10px;">二分图染色</a> <a href="/tag/二分答案/" style="font-size: 11.43px;">二分答案</a> <a href="/tag/位运算/" style="font-size: 10px;">位运算</a> <a href="/tag/倍增/" style="font-size: 10px;">倍增</a> <a href="/tag/划分dp/" style="font-size: 12.14px;">划分DP</a> <a href="/tag/区间dp/" style="font-size: 10px;">区间DP</a> <a href="/tag/单调队列/" style="font-size: 11.43px;">单调队列</a> <a href="/tag/哈希/" style="font-size: 10px;">哈希</a> <a href="/tag/图论/" style="font-size: 19.29px;">图论</a> <a href="/tag/字符串/" style="font-size: 10.71px;">字符串</a> <a href="/tag/学习笔记/" style="font-size: 15px;">学习笔记</a> <a href="/tag/实数二分/" style="font-size: 10px;">实数二分</a> <a href="/tag/差分约束系统/" style="font-size: 10px;">差分约束系统</a> <a href="/tag/并查集/" style="font-size: 11.43px;">并查集</a> <a href="/tag/搜索/" style="font-size: 10px;">搜索</a> <a href="/tag/数据结构/" style="font-size: 15.71px;">数据结构</a> <a href="/tag/数论/" style="font-size: 11.43px;">数论</a> <a href="/tag/最大权闭合图/" style="font-size: 10px;">最大权闭合图</a> <a href="/tag/最大独立集/" style="font-size: 10.71px;">最大独立集</a> <a href="/tag/最小生成树/" style="font-size: 10px;">最小生成树</a> <a href="/tag/最短路/" style="font-size: 10px;">最短路</a> <a href="/tag/枚举答案/" style="font-size: 10px;">枚举答案</a> <a href="/tag/树形dp/" style="font-size: 10.71px;">树形DP</a> <a href="/tag/树状数组/" style="font-size: 10px;">树状数组</a> <a href="/tag/树链剖分/" style="font-size: 10.71px;">树链剖分</a> <a href="/tag/洛谷/" style="font-size: 11.43px;">洛谷</a> <a href="/tag/离散化/" style="font-size: 10px;">离散化</a> <a href="/tag/线性dp/" style="font-size: 11.43px;">线性DP</a> <a href="/tag/线段树/" style="font-size: 10px;">线段树</a> <a href="/tag/网络流/" style="font-size: 18.57px;">网络流</a> <a href="/tag/网络流24题/" style="font-size: 17.86px;">网络流24题</a> <a href="/tag/背包dp/" style="font-size: 11.43px;">背包DP</a> <a href="/tag/记忆化搜索/" style="font-size: 10px;">记忆化搜索</a> <a href="/tag/调试/" style="font-size: 10px;">调试</a> <a href="/tag/贪心/" style="font-size: 10.71px;">贪心</a> <a href="/tag/费用流/" style="font-size: 13.57px;">费用流</a> <a href="/tag/逆元/" style="font-size: 10px;">逆元</a> <a href="/tag/高级数据结构/" style="font-size: 16.43px;">高级数据结构</a>
+                    </div>
+                </section>
+                
+                
+                
+
+                
+            </div>
+        </div>
+    </header>                
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">Menci</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                
+                    <img src="//dn-menci.qbox.me//img/avatar.png" class="js-avatar" style="width: 100%; height: 100%; opacity: 1;">
+                
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">Menci</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">眉眼如初，岁月如故</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">主页</a></li>
+                
+                    <li><a href="/about-me/">关于</a></li>
+                
+                    <li><a href="/friends/">伙伴</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <li id="Email"><a class="Email" target="_blank" href="mailto:HuangHaoRui301@Gmail.com" title="Email"></a></li>
+                            
+                                <li id="GitHub"><a class="GitHub" target="_blank" href="https://github.com/Menci" title="GitHub"></a></li>
+                            
+                                <li id="Twitter"><a class="Twitter" target="_blank" href="https://twitter.com/HuangHaoRui" title="Twitter"></a></li>
+                            
+                                <li id="QQ"><a class="QQ" target="_blank" href="http://wpa.qq.com/msgrd?V=3&Uin=421899973" title="QQ"></a></li>
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+</nav>
+
+      <div class="body-wrap"><article id="post-noi2002-galaxy" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/noi2002-galaxy/" class="article-date">
+      <time datetime="2015-11-22T17:14:53.000Z" itemprop="datePublished">2015-11-23</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      「NOI2002」银河英雄传说 - 并查集
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/oi/">OI</a>
+    </div>
+
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/codevs/">CodeVS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/noi/">NOI</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/并查集/">并查集</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p>&#x6709; 30000 &#x4E2A;&#x5143;&#x7D20;&#xFF0C;&#x521D;&#x59CB;&#x65F6;&#x6BCF;&#x4E2A;&#x5143;&#x7D20;&#x4EE5;&#x5355;&#x72EC;&#x7684;&#x961F;&#x5217;&#x5F62;&#x5F0F;&#x5B58;&#x5728;&#xFF0C;&#x652F;&#x6301;&#x4E00;&#x4E0B;&#x4E24;&#x79CD;&#x64CD;&#x4F5C;&#xFF1A;</p>
+<p>1.&#x52A8;&#x6001;&#x5408;&#x5E76;&#x4E24;&#x6761;&#x961F;&#x5217;&#xFF0C;&#x5C06; <code>x</code> &#x5143;&#x7D20;&#x6240;&#x5728;&#x961F;&#x5217;&#x9996;&#x5408;&#x5E76;&#x5728; <code>y</code> &#x5143;&#x7D20;&#x6240;&#x5728;&#x961F;&#x5217;&#x5C3E;&#xFF1B;<br>
+2.&#x67E5;&#x8BE2; <code>x</code> &#x4E0E; <code>y</code> &#x662F;&#x5426;&#x5728;&#x540C;&#x4E00;&#x6761;&#x961F;&#x5217;&#x4E2D;&#xFF0C;&#x82E5;&#x662F;&#xFF0C;&#x67E5;&#x8BE2; <code>x</code> &#x4E0E; <code>y</code> &#x95F4;&#x9694;&#x5143;&#x7D20;&#x6570;&#x91CF;&#x3002;</p>
+<p>&#x5171; 500,000 &#x6B21;&#x64CD;&#x4F5C;&#x3002;</p>
+<a id="more"></a>
+<h3 id="&#x9898;&#x76EE;&#x94FE;&#x63A5;">&#x9898;&#x76EE;&#x94FE;&#x63A5;</h3>
+<p><a href="http://codevs.cn/problem/1540/" target="_blank" rel="external">CodeVS 1540</a></p>
+<h3 id="&#x89E3;&#x9898;&#x601D;&#x8DEF;">&#x89E3;&#x9898;&#x601D;&#x8DEF;</h3>
+<p>&#x7531;&#x300C;&#x67E5;&#x8BE2;&#x300D;&#x64CD;&#x4F5C;&#xFF0C;&#x8003;&#x8651;&#x5230;&#x4F7F;&#x7528;&#x5E76;&#x67E5;&#x96C6;&#x3002;&#x7528;&#x5E76;&#x67E5;&#x96C6;&#x7EF4;&#x62A4;&#x4E24;&#x4E2A;&#x5143;&#x7D20;&#x662F;&#x5426;&#x5728;&#x540C;&#x4E00;&#x961F;&#x5217;&#x4E2D;&#xFF0C;&#x53EF;&#x4EE5;&#x5BF9;&#x67E5;&#x8BE2;&#x662F;&#x5426;&#x5728;&#x540C;&#x4E00;&#x961F;&#x5217;&#x4E2D;&#x4F5C;&#x51FA;&#x56DE;&#x7B54;&#x3002;<br>
+&#x8003;&#x8651;&#x5C06;&#x5E76;&#x67E5;&#x96C6;&#x6269;&#x5C55;&#xFF0C;&#x7EF4;&#x62A4;&#x6BCF;&#x4E00;&#x4E2A;&#x5143;&#x7D20;<strong>&#x6240;&#x5728;&#x961F;&#x5217;</strong>&#x7684;&#x961F;&#x9996;&#x548C;&#x961F;&#x5C3E;&#x3002;</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">unsigned</span> <span class="keyword">int</span> <span class="title">find_head</span><span class="params">(<span class="keyword">unsigned</span> <span class="keyword">int</span> x)</span> </span>{</span><br><span class="line">	<span class="keyword">return</span> head[x] == x ? x : find_head(head[x]);</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">unsigned</span> <span class="keyword">int</span> <span class="title">find_tail</span><span class="params">(<span class="keyword">unsigned</span> <span class="keyword">int</span> x)</span> </span>{</span><br><span class="line">	<span class="keyword">return</span> tail[x] == x ? x : find_tail(tail[x]);</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">merge</span><span class="params">(<span class="keyword">unsigned</span> <span class="keyword">int</span> x, <span class="keyword">unsigned</span> <span class="keyword">int</span> y)</span> </span>{</span><br><span class="line">	<span class="keyword">unsigned</span> <span class="keyword">int</span> head_x = find_head(x);</span><br><span class="line">	<span class="keyword">unsigned</span> <span class="keyword">int</span> tail_y = find_tail(y);</span><br><span class="line">	head[head_x] = tail_y;</span><br><span class="line">	tail[tail_y] = head_x;</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<p>&#x7136;&#x540E;&#x5C31;&#x662F;&#x67E5;&#x8BE2;&#x95F4;&#x9694;&#x6570;&#x91CF;&#xFF0C;&#x8FD9;&#x91CC;&#x91C7;&#x7528;&#x524D;&#x7F00;&#x548C;&#x7684;&#x65B9;&#x5F0F;&#x3002; <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">unsigned</span> <span class="keyword">int</span> <span class="title">sum</span><span class="params">(<span class="keyword">unsigned</span> <span class="keyword">int</span> x, <span class="keyword">unsigned</span> <span class="keyword">int</span> y)</span> </span>{</span><br><span class="line">	<span class="keyword">return</span> <span class="built_in">std</span>::max(pre(x), pre(y)) - <span class="built_in">std</span>::min(pre(x), pre(y)) - <span class="number">1</span>;</span><br><span class="line">}</span><br></pre></td></tr></table></figure></p>
+<p><code>pre(x)</code> &#x7684;&#x8BA1;&#x7B97;&#x65B9;&#x6CD5;&#xFF0C;&#x6839;&#x636E;&#x5408;&#x5E76;&#x65F6;&#x5BF9; <code>head</code> &#x6570;&#x7EC4;&#x8FDB;&#x884C;&#x7684;&#x4FEE;&#x6539;&#xFF0C;&#x53EF;&#x5F97; <code>find_head(x)</code> &#x7684;&#x8FED;&#x4EE3;&#x6B21;&#x6570;&#x5373;&#x4E3A; <code>x</code> &#x5230; <code>x</code> &#x6240;&#x5728;&#x961F;&#x961F;&#x9996;&#x7684;&#x5143;&#x7D20;&#x6570;&#x91CF;&#x3002; <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">unsigned</span> <span class="keyword">int</span> <span class="title">pre</span><span class="params">(<span class="keyword">unsigned</span> <span class="keyword">int</span> x)</span> </span>{</span><br><span class="line">	<span class="keyword">register</span> <span class="keyword">unsigned</span> <span class="keyword">int</span> result = <span class="number">0</span>;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">while</span> (head[x] != x) {</span><br><span class="line">		result++;</span><br><span class="line">		x = head[x];</span><br><span class="line">	}</span><br><span class="line">	<span class="keyword">return</span> result;</span><br><span class="line">}</span><br></pre></td></tr></table></figure></p>
+<p>&#x4F7F;&#x7528;&#x8FD9;&#x79CD;&#x65B9;&#x5F0F;&#x7EF4;&#x62A4;&#x5E76;&#x67E5;&#x96C6;&#xFF0C;&#x4E0D;&#x80FD;&#x5BF9;&#x5E76;&#x67E5;&#x96C6;&#x4F7F;&#x7528;&#x8DEF;&#x5F84;&#x538B;&#x7F29;&#x7684;&#x4F18;&#x5316;&#xFF0C;&#x6545;&#x6574;&#x4E2A;&#x7B97;&#x6CD5;&#x65F6;&#x95F4;&#x590D;&#x6742;&#x5EA6;&#x4E3A; $O(nm)$&#x3002;<br>
+&#x6240;&#x4EE5; &#x2026;&#x2026; Boom&#xFF01;</p>
+<p>&#x89E3;&#x51B3;&#x65B9;&#x6CD5;&#xFF1A;&#x5728;&#x8FDB;&#x884C;&#x8DEF;&#x5F84;&#x538B;&#x7F29;&#x7684;&#x540C;&#x65F6;&#xFF0C;&#x7EF4;&#x62A4;&#x6BCF;&#x4E00;&#x4E2A; <code>x</code> &#x5230; <code>head[x]</code> &#x7684;&#x300C;&#x8DDD;&#x79BB;&#x300D; <code>prefix[x]</code>&#x3002;<br>
+&#x5728; <code>find(x)</code> &#x6216;&#x8005; <code>pre(x)</code> &#x6BCF;&#x4E00;&#x6B21;&#x8FED;&#x4EE3;&#x65F6;&#xFF0C;&#x8FDB;&#x884C;&#x8DEF;&#x5F84;&#x538B;&#x7F29;&#xFF0C;&#x5E76;&#x628A; <code>prefix[x]</code> &#x52A0;&#x4E0A; <code>pre(head[x])</code>&#xFF0C;&#x5373;<strong>&#x961F;&#x5217;&#x4E2D;&#x5728; <code>x</code> &#x5143;&#x7D20;&#x4E4B;&#x524D;&#x7684;&#x5143;&#x7D20;&#x7684;&#x300C;&#x524D;&#x7F00;&#x548C;&#x300D;</strong>&#x3002;</p>
+<p>&#x6CE8;&#x610F;&#xFF1A;<br>
+1.<strong>&#x5F53;&#x8FED;&#x4EE3;&#x5230;&#x6839;&#x8282;&#x70B9;&#x4E0B;&#x65F6;&#xFF0C;&#x4E0D;&#x80FD;&#x5BF9; <code>prefix[x]</code> &#x505A;&#x4FEE;&#x6539;&#x3002;</strong><br>
+2.&#x961F;&#x9996;&#x5143;&#x7D20;&#xFF0C;&#x5373;<strong>&#x6EE1;&#x8DB3; <code>head[x] == x</code> &#x7684;&#x5143;&#x7D20;</strong>&#x7684;&#x524D;&#x7F00;&#x548C;&#x5E94;&#x603B;&#x662F;0&#x3002;</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">unsigned</span> <span class="keyword">int</span> <span class="title">find_head</span><span class="params">(<span class="keyword">unsigned</span> <span class="keyword">int</span> x)</span> </span>{</span><br><span class="line">	<span class="keyword">if</span> (head[x] == x) {</span><br><span class="line">		<span class="keyword">return</span> x;</span><br><span class="line">	} <span class="keyword">else</span> {</span><br><span class="line">		<span class="keyword">if</span> (head[head[x]] != head[x]) {</span><br><span class="line">			prefix[x] += pre(head[x]); <span class="comment">// &#x5904;&#x7406; prefix[] &#x6570;&#x7EC4;</span></span><br><span class="line">		}</span><br><span class="line"></span><br><span class="line">		head[x] = find_head(head[x]); <span class="comment">// &#x8DEF;&#x5F84;&#x538B;&#x7F29;</span></span><br><span class="line">	}</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> head[x];</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">unsigned</span> <span class="keyword">int</span> <span class="title">pre</span><span class="params">(<span class="keyword">unsigned</span> <span class="keyword">int</span> x)</span> </span>{</span><br><span class="line">	<span class="keyword">if</span> (head[x] == x) {</span><br><span class="line">		<span class="keyword">return</span> prefix[x] = <span class="number">0</span>;</span><br><span class="line">	} <span class="keyword">else</span> {</span><br><span class="line">		<span class="keyword">if</span> (head[head[x]] != head[x]) {</span><br><span class="line">			prefix[x] += pre(head[x]); <span class="comment">// &#x5904;&#x7406; prefix[] &#x6570;&#x7EC4;</span></span><br><span class="line">		}</span><br><span class="line">		head[x] = find_head(head[x]); <span class="comment">// &#x8DEF;&#x5F84;&#x538B;&#x7F29;</span></span><br><span class="line">	}</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> prefix[x];</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<h3 id="ac-&#x4EE3;&#x7801;">AC &#x4EE3;&#x7801;</h3>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;algorithm&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">unsigned</span> <span class="keyword">int</span> MAXN = <span class="number">30000</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">unsigned</span> <span class="keyword">int</span> MAXM = <span class="number">500000</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">unsigned</span> <span class="keyword">int</span> m;</span><br><span class="line"></span><br><span class="line"><span class="keyword">struct</span> unionfind {</span><br><span class="line">	<span class="keyword">unsigned</span> <span class="keyword">int</span> head[MAXN], tail[MAXN], prefix[MAXN];</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">init</span><span class="params">(<span class="keyword">unsigned</span> <span class="keyword">int</span> n)</span> </span>{</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">unsigned</span> <span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) {</span><br><span class="line">			head[i] = i;</span><br><span class="line">			tail[i] = i;</span><br><span class="line">		}</span><br><span class="line">	}</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">unsigned</span> <span class="keyword">int</span> <span class="title">find_head</span><span class="params">(<span class="keyword">unsigned</span> <span class="keyword">int</span> x)</span> </span>{</span><br><span class="line">		<span class="keyword">if</span> (head[x] == x) {</span><br><span class="line">			<span class="keyword">return</span> x;</span><br><span class="line">		} <span class="keyword">else</span> {</span><br><span class="line">			<span class="keyword">if</span> (head[head[x]] != head[x]) {</span><br><span class="line">				prefix[x] += pre(head[x]);</span><br><span class="line">			}</span><br><span class="line">			head[x] = find_head(head[x]);</span><br><span class="line">		}</span><br><span class="line"></span><br><span class="line">		<span class="keyword">return</span> head[x];</span><br><span class="line">	}</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">unsigned</span> <span class="keyword">int</span> <span class="title">find_tail</span><span class="params">(<span class="keyword">unsigned</span> <span class="keyword">int</span> x)</span> </span>{</span><br><span class="line">		<span class="keyword">return</span> tail[x] == x ? x : tail[x] = find_tail(tail[x]);</span><br><span class="line">	}</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">unsigned</span> <span class="keyword">int</span> <span class="title">pre</span><span class="params">(<span class="keyword">unsigned</span> <span class="keyword">int</span> x)</span> </span>{</span><br><span class="line">		<span class="keyword">if</span> (head[x] == x) {</span><br><span class="line">			<span class="keyword">return</span> prefix[x] = <span class="number">0</span>;</span><br><span class="line">		} <span class="keyword">else</span> {</span><br><span class="line">			<span class="keyword">if</span> (head[head[x]] != head[x]) {</span><br><span class="line">				prefix[x] += pre(head[x]);</span><br><span class="line">			}</span><br><span class="line">			head[x] = find_head(head[x]);</span><br><span class="line">		}</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">return</span> prefix[x];</span><br><span class="line">	}</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">unsigned</span> <span class="keyword">int</span> <span class="title">sum</span><span class="params">(<span class="keyword">unsigned</span> <span class="keyword">int</span> x, <span class="keyword">unsigned</span> <span class="keyword">int</span> y)</span> </span>{</span><br><span class="line">		<span class="keyword">return</span> <span class="built_in">std</span>::max(pre(x), pre(y)) - <span class="built_in">std</span>::min(pre(x), pre(y)) - <span class="number">1</span>;</span><br><span class="line">	}</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">merge</span><span class="params">(<span class="keyword">unsigned</span> <span class="keyword">int</span> x, <span class="keyword">unsigned</span> <span class="keyword">int</span> y)</span> </span>{</span><br><span class="line">		<span class="keyword">unsigned</span> <span class="keyword">int</span> head_x = find_head(x);</span><br><span class="line">		<span class="keyword">unsigned</span> <span class="keyword">int</span> tail_y = find_tail(y);</span><br><span class="line">		head[head_x] = tail_y;</span><br><span class="line">		tail[tail_y] = head_x;</span><br><span class="line">		prefix[head_x] = <span class="number">1</span>;</span><br><span class="line">	}</span><br><span class="line">} uf;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">bool</span> <span class="title">isempty</span><span class="params">(<span class="keyword">char</span> ch)</span> </span>{</span><br><span class="line">	<span class="keyword">return</span> ch != <span class="string">&apos;-&apos;</span> &amp;&amp; (ch &lt; <span class="string">&apos;0&apos;</span> || ch &gt; <span class="string">&apos;9&apos;</span>);</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">read</span><span class="params">(T &amp;x)</span> </span>{</span><br><span class="line">	x = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">register</span> <span class="keyword">char</span> ch;</span><br><span class="line">	<span class="keyword">while</span> (isempty(ch = getchar()));</span><br><span class="line"></span><br><span class="line">	<span class="keyword">register</span> <span class="keyword">bool</span> flag = <span class="literal">false</span>;</span><br><span class="line">	<span class="keyword">if</span> (ch == <span class="string">&apos;-&apos;</span>) {</span><br><span class="line">		flag = <span class="literal">true</span>;</span><br><span class="line">		ch = getchar();</span><br><span class="line">	}</span><br><span class="line"></span><br><span class="line">	<span class="keyword">do</span> {</span><br><span class="line">		x = x * <span class="number">10</span> + (ch - <span class="string">&apos;0&apos;</span>);</span><br><span class="line">	} <span class="keyword">while</span> (!isempty(ch = getchar()));</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> (flag) {</span><br><span class="line">		x = -x;</span><br><span class="line">	}</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">bool</span> <span class="title">iscommand</span><span class="params">(<span class="keyword">char</span> ch)</span> </span>{</span><br><span class="line">	<span class="keyword">return</span> ch == <span class="string">&apos;C&apos;</span> || ch == <span class="string">&apos;M&apos;</span>;</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>{</span><br><span class="line">	read(m);</span><br><span class="line"></span><br><span class="line">	uf.init(MAXN);</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">unsigned</span> <span class="keyword">int</span> i = <span class="number">0</span>; i &lt; m; i++) {</span><br><span class="line">		<span class="keyword">register</span> <span class="keyword">char</span> command;</span><br><span class="line">		<span class="keyword">register</span> <span class="keyword">unsigned</span> <span class="keyword">int</span> x, y;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">while</span> (!iscommand(command = getchar()));</span><br><span class="line">		read(x), read(y);</span><br><span class="line">		x--, y--;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">if</span> (command == <span class="string">&apos;M&apos;</span>) {</span><br><span class="line">			uf.merge(x, y);</span><br><span class="line">		} <span class="keyword">else</span> {</span><br><span class="line">			<span class="keyword">if</span> (uf.find_head(x) == uf.find_head(y)) {</span><br><span class="line">				<span class="built_in">printf</span>(<span class="string">&quot;%u\n&quot;</span>, uf.sum(x, y));</span><br><span class="line">			} <span class="keyword">else</span> {</span><br><span class="line">				<span class="built_in">puts</span>(<span class="string">&quot;-1&quot;</span>);</span><br><span class="line">			}</span><br><span class="line">		}</span><br><span class="line">	}</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<h3 id="&#x5410;&#x69FD;">&#x5410;&#x69FD;</h3>
+<p>&#x8FD9;&#x662F;&#x5F53;&#x5E74; NOI2002 &#x7684;&#x4E00;&#x9053;&#x6C34;&#xFF08;&#x5927;&#x96FE;&#xFF09;&#x9898;&#x3002;<br>
+&#x521A;&#x5F00;&#x59CB;&#x5B66;&#x5E76;&#x67E5;&#x96C6;&#x7684;&#x65F6;&#x5019;&#x5C1D;&#x8BD5;&#x505A;&#x8FC7;&#x8FD9;&#x9898;&#xFF0C;&#x7136;&#x540E; &#x2026;&#x2026; &#x7136;&#x540E;&#x5C31;&#x6CA1;&#x6709;&#x7136;&#x540E;&#x4E86;&#x3002;<br>
+&#x4ECA;&#x5929;&#x7A81;&#x7136;&#x60F3;&#x8D77;&#x8FD9;&#x9898;&#xFF0C;&#x5C31;&#x7528;&#x4E86;&#x4E00;&#x4E2A;&#x5C0F;&#x65F6;&#x628A;&#x5B83; A &#x6389;&#x4E86;&#x3002;</p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+
+
+    <nav id="article-nav">
+        
+            <div id="article-nav-newer" class="article-nav-title">
+                <a href="/codevs-3269/">
+                    「CodeVS 3269」混合背包 - 背包DP
+                </a>
+            </div>
+        
+        
+    </nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#题目链接"><span class="toc-number">1.</span> <span class="toc-text">题目链接</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#解题思路"><span class="toc-number">2.</span> <span class="toc-text">解题思路</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ac-代码"><span class="toc-number">3.</span> <span class="toc-text">AC 代码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#吐槽"><span class="toc-number">4.</span> <span class="toc-text">吐槽</span></a></li></ol>
+</div>
+<style>
+    .left-col .switch-btn {
+        display: none;
+    }
+    .left-col .switch-area {
+        display: none;
+    }
+</style>
+
+<input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+<script src="//7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js" type="text/javascript"></script>
+<script>
+    var valueHide = "隐藏目录";
+    var valueShow = "显示目录";
+
+    if ($(".left-col").is(":hidden")) {
+        $("#tocButton").attr("value", valueShow);
+    }
+
+    $("#tocButton").click(function() {
+        if ($("#toc").is(":hidden")) {
+            $("#tocButton").attr("value", valueHide);
+            $("#toc").slideDown(320);
+            $(".switch-btn, .switch-area").fadeOut(300);
+        }
+        else {
+            $("#tocButton").attr("value", valueShow);
+            $("#toc").slideUp(350);
+            $(".switch-btn, .switch-area").fadeIn(500);
+        }
+    })
+
+    if ($(".toc").length < 1) {
+        $("#toc, #tocButton").hide();
+        $(".switch-btn, .switch-area").show();
+    }
+</script>
+
+
+
+
+
+
+
+    
+        <section id="comments">
+  <div id="disqus_thread"></div>
+    <script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = 'menci'; // required: replace example with your forum shortname
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</section>
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/codevs-3269/" title="上一篇: 「CodeVS 3269」混合背包 - 背包DP">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/sdoi2015-war/">「SDOI2015」星际战争 - 网络流</a></li><li class="post-list-item"><a class="post-list-link" href="/cogs-741/">「COGS 741」负载平衡 - 费用流</a></li><li class="post-list-item"><a class="post-list-link" href="/cogs-740/">「COGS 740」分配问题 - 二分图最大权匹配</a></li><li class="post-list-item"><a class="post-list-link" href="/ctsc1999-home/">「CTSC1999」星际转移 - 网络流</a></li><li class="post-list-item"><a class="post-list-link" href="/cogs-742/">「COGS 742」深海机器人 - 费用流</a></li><li class="post-list-item"><a class="post-list-link" href="/cogs-739/">「COGS 739」运输问题 - 费用流</a></li><li class="post-list-item"><a class="post-list-link" href="/jsoi2008-maxnumber/">「JSOI2008」最大数 - Splay</a></li><li class="post-list-item"><a class="post-list-link" href="/edmonds-karp-notes/">Edmonds-Karp 费用流学习笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/noip2010-prison/">「NOIP2010」关押罪犯 - 二分图染色</a></li><li class="post-list-item"><a class="post-list-link" href="/cogs-746/">「COGS 746」骑士共存 - 二分图最大独立集</a></li><li class="post-list-item"><a class="post-list-link" href="/cogs-738/">「COGS 738」数字梯形 - 费用流</a></li><li class="post-list-item"><a class="post-list-link" href="/cogs-734/">「COGS 734」方格取数 - 二分图最大独立集</a></li><li class="post-list-item"><a class="post-list-link" href="/cogs-439/">「COGS 439」软件补丁 - 记忆化搜索 + 位运算</a></li><li class="post-list-item"><a class="post-list-link" href="/cogs-727/">「COGS 727」太空飞行计划 - 最大权闭合图</a></li><li class="post-list-item"><a class="post-list-link" href="/cogs-731/">「COGS 731」最长递增子序列 - 线性DP + 网络流</a></li><li class="post-list-item"><a class="post-list-link" href="/cogs-729/">「COGS 729」圆桌聚餐 - 网络流</a></li><li class="post-list-item"><a class="post-list-link" href="/cogs-396/">「COGS 396」魔术球问题 - 贪心</a></li><li class="post-list-item"><a class="post-list-link" href="/cogs-728/">「COGS 728」最小路径覆盖问题 - 二分图匹配</a></li><li class="post-list-item"><a class="post-list-link" href="/cogs-14/">「COGS 14」搭配飞行员 - 二分图匹配</a></li><li class="post-list-item"><a class="post-list-link" href="/bzoj-2683/">「BZOJ 2683」简单题 - CDQ</a></li><li class="post-list-item"><a class="post-list-link" href="/codevs-1563/">「CodeVS 1563」奶牛的交通 - 网络流</a></li><li class="post-list-item"><a class="post-list-link" href="/gnu-debugger/">GDB 入门教程</a></li><li class="post-list-item"><a class="post-list-link" href="/dinic-notes/">Dinic 学习笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/markdown-latex-helper/">自动将 LaTex 代码转义为 Markdown 格式的小程序</a></li><li class="post-list-item"><a class="post-list-link" href="/bzoj-1756/">「BZOJ 1756」小白逛公园 - 线段树</a></li><li class="post-list-item"><a class="post-list-link" href="/noi2004-cashier/">「NOI2004」郁闷的出纳员 - Splay</a></li><li class="post-list-item"><a class="post-list-link" href="/bzoj-1477/">「BZOJ 1477」青蛙的约会 - 扩展欧几里得</a></li><li class="post-list-item"><a class="post-list-link" href="/noi2015-manager/">「NOI2015」软件包管理器 - 树链剖分</a></li><li class="post-list-item"><a class="post-list-link" href="/noi2015-prog/">「NOI2015」程序自动分析 - 离散化 + 并查集</a></li><li class="post-list-item"><a class="post-list-link" href="/number-theory-notes-1/">数论学习笔记（一）</a></li><li class="post-list-item"><a class="post-list-link" href="/noip2012-mod/">「NOIP2012」同余方程 - 扩展欧几里得</a></li><li class="post-list-item"><a class="post-list-link" href="/link-cut-tree-notes/">Link-Cut Tree 学习笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/splay-notes-3/">Splay 学习笔记（三）</a></li><li class="post-list-item"><a class="post-list-link" href="/bzoj-1251/">「BZOJ 1251」序列终结者 - Splay</a></li><li class="post-list-item"><a class="post-list-link" href="/noip2006-budget/">「NOIP2006」金明的预算方案 - 背包DP + 树形DP</a></li><li class="post-list-item"><a class="post-list-link" href="/bzoj-2442/">「BZOJ 2442」修剪草坪 - 线性DP + 单调队列</a></li><li class="post-list-item"><a class="post-list-link" href="/codevs-3269-monotone-queue/">「CodeVS 3269」混合背包 - 背包DP + 单调队列</a></li><li class="post-list-item"><a class="post-list-link" href="/monotone-queue-notes/">单调队列学习笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/codevs-1345/">「CodeVS 1345」饥饿的奶牛 - 线性DP</a></li><li class="post-list-item"><a class="post-list-link" href="/noip2003-game/">「NOIP2003」数字游戏 - 划分DP</a></li><li class="post-list-item"><a class="post-list-link" href="/noip2006-energy/">「NOIP2006」能量项链 - 区间DP</a></li><li class="post-list-item"><a class="post-list-link" href="/tyvj-3317/">「Tyvj 3317」火车票 - 划分DP</a></li><li class="post-list-item"><a class="post-list-link" href="/codevs-2598/">「CodeVS 2598」编辑距离问题 - 线性DP</a></li><li class="post-list-item"><a class="post-list-link" href="/noip2000-cheng-ji-zui-da/">「NOIP2000」乘积最大 - 划分DP</a></li><li class="post-list-item"><a class="post-list-link" href="/ctsc1997-xuan-ke/">「CTSC1997」选课 - 树形DP</a></li><li class="post-list-item"><a class="post-list-link" href="/codevs-3168-3162/">「CodeVS 3168 / 3162」抄书问题 - 划分DP / 二分答案</a></li><li class="post-list-item"><a class="post-list-link" href="/minimum-spanning-tree-notes/">最小生成树 && 次小生成树</a></li><li class="post-list-item"><a class="post-list-link" href="/system-of-difference-constraints-notes/">差分约束系统学习笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/kmp-notes/">KMP 学习笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/cut-tree-notes/">树链剖分学习笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/stl-in-oi/">STL 在 OI 中的应用</a></li><li class="post-list-item"><a class="post-list-link" href="/splay-notes-2/">Splay 学习笔记（二）</a></li><li class="post-list-item"><a class="post-list-link" href="/splay-notes-1/">Splay 学习笔记（一）</a></li><li class="post-list-item"><a class="post-list-link" href="/hnoi2004-chong-wu-shou-yang-suo/">「HNOI2004」宠物收养所 - set</a></li><li class="post-list-item"><a class="post-list-link" href="/codevs-3269/">「CodeVS 3269」混合背包 - 背包DP</a></li><li class="post-list-item"><a class="post-list-link" href="/noi2002-galaxy/">「NOI2002」银河英雄传说 - 并查集</a></li></ul>
+    <script src="//7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+    <script>
+        $(".post-list").addClass("toc-article");
+        $(".post-list-item a").attr("target","_blank");
+        $("#post-nav-button > a:nth-child(2)").click(function() {
+            $(".fa-bars, .fa-times").toggle();
+            $(".post-list").toggle(300);
+            if ($(".toc").length > 0) {
+                $("#toc, #tocButton").toggle(200, function() {
+                    if ($(".switch-area").is(":visible")) {
+                        $("#toc, .switch-btn, .switch-area").toggle();
+                        $("#tocButton").attr("value", valueHide);
+                        }
+                    })
+            }
+            else {
+                $(".switch-btn, .switch-area").fadeToggle(300);
+            }
+        })
+    </script>
+
+
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                &copy; 2016 Menci
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的静态博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减双栏 Hexo 博客主题">Yelee</a> by MOxFIVE
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" >本站到访数: 
+                            <span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>, </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit">本页阅读量: 
+                            <span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+
+    </div>
+    
+<script src="//7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js" type="text/javascript"></script>
+<!--<script src="/js/main.js" type="text/javascript"></script>-->
+<script src="//dn-menci.qbox.me/js/main.js" type="text/javascript"></script>
+
+    <script>
+        $(document).ready(function() {
+            var iPad = window.navigator.userAgent.indexOf('iPad');
+            if (iPad > -1 || $(".left-col").css("display") === "none") {
+                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
+                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
+                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
+            }
+            else {
+                var backgroundnum = 1;
+                var backgroundimg = "url(//dn-menci.qbox.me/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+                //$("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+            }
+        })
+    </script>
+
+
+
+
+
+    <script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+</div>
+
+<script>
+    $(document).ready(function() {
+        if ($("#comments").length < 1) {
+            $("#scroll > a:nth-child(2)").hide();
+        };
+    })
+</script>
+
+
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>「CodeVS 3269」混合背包 - 背包DP | Menci</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="&amp;#x80CC;&amp;#x5305;&amp;#x4F53;&amp;#x79EF;&amp;#x4E3A; V&amp;#xFF08;&amp;lt;= 200,000&amp;#xFF09;&amp;#xFF0C;&amp;#x7ED9;&amp;#x51FA; N&amp;#xFF08;&amp;lt;= 200&amp;#xFF09;&amp;#x4E2A;&amp;#x7269;&amp;#x54C1;&amp;#xFF0C;&amp;#x6BCF;&amp;#x4E2A;&amp;#x7269;&amp;#x54C1;&amp;#x5360;&amp;#x752">
+<meta property="og:type" content="article">
+<meta property="og:title" content="「CodeVS 3269」混合背包 - 背包DP">
+<meta property="og:url" content="https://blog.menci.moe/codevs-3269/index.html">
+<meta property="og:site_name" content="Menci">
+<meta property="og:description" content="&amp;#x80CC;&amp;#x5305;&amp;#x4F53;&amp;#x79EF;&amp;#x4E3A; V&amp;#xFF08;&amp;lt;= 200,000&amp;#xFF09;&amp;#xFF0C;&amp;#x7ED9;&amp;#x51FA; N&amp;#xFF08;&amp;lt;= 200&amp;#xFF09;&amp;#x4E2A;&amp;#x7269;&amp;#x54C1;&amp;#xFF0C;&amp;#x6BCF;&amp;#x4E2A;&amp;#x7269;&amp;#x54C1;&amp;#x5360;&amp;#x752">
+<meta property="og:updated_time" content="2016-01-19T13:08:13.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="「CodeVS 3269」混合背包 - 背包DP">
+<meta name="twitter:description" content="&amp;#x80CC;&amp;#x5305;&amp;#x4F53;&amp;#x79EF;&amp;#x4E3A; V&amp;#xFF08;&amp;lt;= 200,000&amp;#xFF09;&amp;#xFF0C;&amp;#x7ED9;&amp;#x51FA; N&amp;#xFF08;&amp;lt;= 200&amp;#xFF09;&amp;#x4E2A;&amp;#x7269;&amp;#x54C1;&amp;#xFF0C;&amp;#x6BCF;&amp;#x4E2A;&amp;#x7269;&amp;#x54C1;&amp;#x5360;&amp;#x752">
+  
+    <link rel="alternative" href="/atom.xml" title="Menci" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="//dn-menci.qbox.me//img/favicon.png">
+  
+  
+  
+  <!--<link rel="stylesheet" href="/css/style.css" type="text/css">-->
+  <link rel="stylesheet" href="//dn-menci.qbox.me/css/style.css" type="text/css">
+  <link rel="stylesheet" href="//dn-menci.qbox.me/font-awesome/css/font-awesome.min.css">
+  <link rel="apple-touch-icon" href="//dn-menci.qbox.me/apple-touch-icon.png">
+  
+  
+      <link rel="stylesheet" href="//dn-menci.qbox.me/fancybox/jquery.fancybox.css">
+  
+  <script>
+      var yiliaConfig = {
+          fancybox: true,
+          animate: false,
+          isHome: false,
+          isPost: true,
+          isArchive: false,
+          isTag: false,
+          isCategory: false,
+          open_in_new: false
+      }
+  </script>
+  
+</head>
+
+<body style="background: url(//dn-menci.qbox.me/background/bg-1.jpg) 0% 0% / cover fixed;">
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay" style="opacity: 0.3; background-color: rgb(204, 102, 102);"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            
+            <img src="//dn-menci.qbox.me//img/avatar.png" class="js-avatar" style="width: 100%;height: 100%;opacity: 1;">
+            
+        </a>
+
+        <hgroup>
+          <h1 class="header-author"><a href="/">Menci</a></h1>
+        </hgroup>
+
+        
+        <p class="header-subtitle">眉眼如初，岁月如故</p>
+        
+                
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">主页</a></li>
+                        
+                            <li><a href="/about-me/">关于</a></li>
+                        
+                            <li><a href="/friends/">伙伴</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <li id="Email"><a class="Email" target="_blank" href="mailto:HuangHaoRui301@Gmail.com" title="Email"></a></li>
+                            
+                                <li id="GitHub"><a class="GitHub" target="_blank" href="https://github.com/Menci" title="GitHub"></a></li>
+                            
+                                <li id="Twitter"><a class="Twitter" target="_blank" href="https://twitter.com/HuangHaoRui" title="Twitter"></a></li>
+                            
+                                <li id="QQ"><a class="QQ" target="_blank" href="http://wpa.qq.com/msgrd?V=3&Uin=421899973" title="QQ"></a></li>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <a href="/tag/bzoj/" style="font-size: 17.14px;">BZOJ</a> <a href="/tag/c/" style="font-size: 10.71px;">C++</a> <a href="/tag/cdq/" style="font-size: 10px;">CDQ</a> <a href="/tag/cogs/" style="font-size: 17.86px;">COGS</a> <a href="/tag/ctsc/" style="font-size: 10.71px;">CTSC</a> <a href="/tag/codevs/" style="font-size: 20px;">CodeVS</a> <a href="/tag/dp/" style="font-size: 17.14px;">DP</a> <a href="/tag/dinic/" style="font-size: 15.71px;">Dinic</a> <a href="/tag/edmonds-karp/" style="font-size: 13.57px;">Edmonds-Karp</a> <a href="/tag/gdb/" style="font-size: 10px;">GDB</a> <a href="/tag/github/" style="font-size: 10px;">GitHub</a> <a href="/tag/hnoi/" style="font-size: 10px;">HNOI</a> <a href="/tag/jsoi/" style="font-size: 10px;">JSOI</a> <a href="/tag/kmp/" style="font-size: 10px;">KMP</a> <a href="/tag/kruskal/" style="font-size: 10px;">Kruskal</a> <a href="/tag/lct/" style="font-size: 10px;">LCT</a> <a href="/tag/latex/" style="font-size: 10px;">LaTex</a> <a href="/tag/markdown/" style="font-size: 10px;">Markdown</a> <a href="/tag/noi/" style="font-size: 12.14px;">NOI</a> <a href="/tag/noip/" style="font-size: 12.86px;">NOIP</a> <a href="/tag/poj/" style="font-size: 10px;">POJ</a> <a href="/tag/prim/" style="font-size: 10px;">Prim</a> <a href="/tag/sdoi/" style="font-size: 10px;">SDOI</a> <a href="/tag/stl/" style="font-size: 10.71px;">STL</a> <a href="/tag/splay/" style="font-size: 14.29px;">Splay</a> <a href="/tag/tyvj/" style="font-size: 13.57px;">Tyvj</a> <a href="/tag/vijos/" style="font-size: 10.71px;">Vijos</a> <a href="/tag/exgcd/" style="font-size: 10.71px;">exgcd</a> <a href="/tag/map/" style="font-size: 10.71px;">map</a> <a href="/tag/set/" style="font-size: 10px;">set</a> <a href="/tag/二分图匹配/" style="font-size: 11.43px;">二分图匹配</a> <a href="/tag/二分图染色/" style="font-size: 10px;">二分图染色</a> <a href="/tag/二分答案/" style="font-size: 11.43px;">二分答案</a> <a href="/tag/位运算/" style="font-size: 10px;">位运算</a> <a href="/tag/倍增/" style="font-size: 10px;">倍增</a> <a href="/tag/划分dp/" style="font-size: 12.14px;">划分DP</a> <a href="/tag/区间dp/" style="font-size: 10px;">区间DP</a> <a href="/tag/单调队列/" style="font-size: 11.43px;">单调队列</a> <a href="/tag/哈希/" style="font-size: 10px;">哈希</a> <a href="/tag/图论/" style="font-size: 19.29px;">图论</a> <a href="/tag/字符串/" style="font-size: 10.71px;">字符串</a> <a href="/tag/学习笔记/" style="font-size: 15px;">学习笔记</a> <a href="/tag/实数二分/" style="font-size: 10px;">实数二分</a> <a href="/tag/差分约束系统/" style="font-size: 10px;">差分约束系统</a> <a href="/tag/并查集/" style="font-size: 11.43px;">并查集</a> <a href="/tag/搜索/" style="font-size: 10px;">搜索</a> <a href="/tag/数据结构/" style="font-size: 15.71px;">数据结构</a> <a href="/tag/数论/" style="font-size: 11.43px;">数论</a> <a href="/tag/最大权闭合图/" style="font-size: 10px;">最大权闭合图</a> <a href="/tag/最大独立集/" style="font-size: 10.71px;">最大独立集</a> <a href="/tag/最小生成树/" style="font-size: 10px;">最小生成树</a> <a href="/tag/最短路/" style="font-size: 10px;">最短路</a> <a href="/tag/枚举答案/" style="font-size: 10px;">枚举答案</a> <a href="/tag/树形dp/" style="font-size: 10.71px;">树形DP</a> <a href="/tag/树状数组/" style="font-size: 10px;">树状数组</a> <a href="/tag/树链剖分/" style="font-size: 10.71px;">树链剖分</a> <a href="/tag/洛谷/" style="font-size: 11.43px;">洛谷</a> <a href="/tag/离散化/" style="font-size: 10px;">离散化</a> <a href="/tag/线性dp/" style="font-size: 11.43px;">线性DP</a> <a href="/tag/线段树/" style="font-size: 10px;">线段树</a> <a href="/tag/网络流/" style="font-size: 18.57px;">网络流</a> <a href="/tag/网络流24题/" style="font-size: 17.86px;">网络流24题</a> <a href="/tag/背包dp/" style="font-size: 11.43px;">背包DP</a> <a href="/tag/记忆化搜索/" style="font-size: 10px;">记忆化搜索</a> <a href="/tag/调试/" style="font-size: 10px;">调试</a> <a href="/tag/贪心/" style="font-size: 10.71px;">贪心</a> <a href="/tag/费用流/" style="font-size: 13.57px;">费用流</a> <a href="/tag/逆元/" style="font-size: 10px;">逆元</a> <a href="/tag/高级数据结构/" style="font-size: 16.43px;">高级数据结构</a>
+                    </div>
+                </section>
+                
+                
+                
+
+                
+            </div>
+        </div>
+    </header>                
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">Menci</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                
+                    <img src="//dn-menci.qbox.me//img/avatar.png" class="js-avatar" style="width: 100%; height: 100%; opacity: 1;">
+                
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">Menci</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">眉眼如初，岁月如故</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">主页</a></li>
+                
+                    <li><a href="/about-me/">关于</a></li>
+                
+                    <li><a href="/friends/">伙伴</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <li id="Email"><a class="Email" target="_blank" href="mailto:HuangHaoRui301@Gmail.com" title="Email"></a></li>
+                            
+                                <li id="GitHub"><a class="GitHub" target="_blank" href="https://github.com/Menci" title="GitHub"></a></li>
+                            
+                                <li id="Twitter"><a class="Twitter" target="_blank" href="https://twitter.com/HuangHaoRui" title="Twitter"></a></li>
+                            
+                                <li id="QQ"><a class="QQ" target="_blank" href="http://wpa.qq.com/msgrd?V=3&Uin=421899973" title="QQ"></a></li>
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+</nav>
+
+      <div class="body-wrap"><article id="post-codevs-3269" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/codevs-3269/" class="article-date">
+      <time datetime="2015-11-22T21:00:15.000Z" itemprop="datePublished">2015-11-23</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      「CodeVS 3269」混合背包 - 背包DP
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/oi/">OI</a>
+    </div>
+
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/codevs/">CodeVS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/dp/">DP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/背包dp/">背包DP</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p>&#x80CC;&#x5305;&#x4F53;&#x79EF;&#x4E3A; <code>V</code>&#xFF08;&lt;= 200,000&#xFF09;&#xFF0C;&#x7ED9;&#x51FA; <code>N</code>&#xFF08;&lt;= 200&#xFF09;&#x4E2A;&#x7269;&#x54C1;&#xFF0C;&#x6BCF;&#x4E2A;&#x7269;&#x54C1;&#x5360;&#x7528;&#x4F53;&#x79EF;&#x4E3A; <code>Vi</code>&#xFF0C;&#x4EF7;&#x503C;&#x4E3A; <code>Wi</code>&#xFF0C;&#x6BCF;&#x4E2A;&#x7269;&#x54C1;&#x8981;&#x4E48;&#x81F3;&#x591A;&#x53D6; <code>1</code> &#x4EF6;&#xFF0C;&#x8981;&#x4E48;&#x81F3;&#x591A;&#x53D6; <code>Mi</code>&#xFF08;&gt; 1&#xFF09;&#x4EF6;&#xFF0C;&#x8981;&#x4E48;&#x6570;&#x91CF;&#x65E0;&#x9650;&#xFF0C;&#x6C42;&#x88C5;&#x5165;&#x80CC;&#x5305;&#x5185;&#x7269;&#x54C1;&#x603B;&#x4EF7;&#x503C;&#x7684;&#x6700;&#x5927;&#x503C;&#x3002;</p>
+<a id="more"></a>
+<h3 id="&#x9898;&#x76EE;&#x94FE;&#x63A5;">&#x9898;&#x76EE;&#x94FE;&#x63A5;</h3>
+<p><a href="htp://codevs.cn/problem/3269/" target="_blank" rel="external">CodeVS 3269</a></p>
+<h3 id="&#x89E3;&#x9898;&#x601D;&#x8DEF;">&#x89E3;&#x9898;&#x601D;&#x8DEF;</h3>
+<p>&#x6DF7;&#x5408;&#x4E09;&#x79CD;&#x80CC;&#x5305;&#x95EE;&#x9898;&#xFF0C;&#x5F88;&#x7ECF;&#x5178;&#x7684;&#x4E00;&#x4E2A;&#x95EE;&#x9898;&#x3002;<br>
+&#x9996;&#x5148;&#x5206;&#x5F00;&#x8003;&#x8651;&#x8FD9;&#x4E09;&#x79CD;&#x80CC;&#x5305;&#x95EE;&#x9898;&#x7684;&#x89E3;&#x6CD5;&#x3002;<br>
+&#x4F7F;&#x7528;&#x52A8;&#x6001;&#x89C4;&#x5212;&#xFF0C;&#x7528; <code>f[v]</code> &#x8868;&#x793A;&#x628A;&#x6240;&#x6709;&#x7269;&#x54C1;&#x6309;&#x8981;&#x6C42;&#x88C5;&#x5165;&#x4E00;&#x4E2A;&#x4F53;&#x79EF;&#x4E3A; <code>v</code> &#xFF08;<code>v</code> &lt;= <code>V</code>&#xFF09;&#x7684;&#x80CC;&#x5305;&#x65F6;&#xFF0C;&#x88C5;&#x5165;&#x80CC;&#x5305;&#x5185;&#x7269;&#x54C1;&#x603B;&#x4EF7;&#x503C;&#x7684;&#x6700;&#x5927;&#x503C;&#x3002;<br>
+&#x9996;&#x5148;&#xFF0C;&#x5BF9;&#x4E8E; 01 &#x80CC;&#x5305;&#xFF0C;&#x663E;&#x800C;&#x6613;&#x89C1;&#x5176;&#x65B9;&#x7A0B;&#x4E3A;&#xFF1A;</p>
+<p>$$f[v] = max(f[v], f[v - Vi] + Wi)$$</p>
+<p>&#x5B9E;&#x73B0;&#x4EE3;&#x7801;&#xFF08;<code>t[i].v</code> &#x548C; <code>t[i].w</code> &#x5206;&#x522B;&#x4EE3;&#x8868; <code>Vi</code> &#x548C; <code>Wi</code>&#xFF09;</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">unsigned</span> <span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) {</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> v = V; v &gt;= <span class="number">0</span>; v--) {</span><br><span class="line">		<span class="keyword">if</span> (v &gt;= t[i].v) {</span><br><span class="line">			f[v] = <span class="built_in">std</span>::max(f[v], f[v - t[i].v] + t[i].w);</span><br><span class="line">		}</span><br><span class="line">	}</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<p>&#x7279;&#x522B;&#x6CE8;&#x610F;&#x7B2C;&#x4E8C;&#x5C42;&#x5FAA;&#x73AF;&#x679A;&#x4E3E; <code>v</code> &#x65F6;&#x7684;&#x987A;&#x5E8F;&#xFF0C;<code>v</code> &#x5FC5;&#x987B;&#x4ECE; <code>V</code> &#x5230; <code>0</code> &#x5FAA;&#x73AF;&#xFF0C;&#x56E0;&#x4E3A;&#x5F53;&#x524D; <code>f[v]</code> &#x8981;&#x6839;&#x636E;&#x4E00;&#x4E2A;&#x5F53; <code>v</code> &#x66F4;&#x5C0F;&#x65F6;&#x7684; <code>f[v]</code> &#x63A8;&#x51FA;&#xFF08;&#x4E3A;&#x4E86;&#x817E;&#x51FA;&#x5927;&#x5C0F;&#x4E3A; <code>Vi</code> &#x7684;&#x7A7A;&#x95F4;&#x9632;&#x7B2C; <code>i</code> &#x4EF6;&#x7269;&#x54C1;&#xFF09;&#xFF0C;&#x4FDD;&#x8BC1;&#x5728;&#x8BA1;&#x7B97; <code>f[v]</code> &#x65F6;&#xFF0C;<code>f[v - Vi]</code> &#x4E00;&#x5B9A;&#x662F;<strong>&#x6CA1;&#x6709;&#x5C1D;&#x8BD5;&#x8FC7;</strong>&#x653E;&#x7F6E;&#x7B2C; <code>i</code> &#x4EF6;&#x7269;&#x54C1;&#x65F6;&#x7684;&#x72B6;&#x6001;&#x3002;</p>
+<p>&#x5BF9;&#x4E8E;&#x5B8C;&#x5168;&#x80CC;&#x5305;&#xFF0C;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x5C06;&#x5176;&#x6BCF;&#x4EF6;&#x62C6;&#x5206;&#x6210; <code>V</code> / <code>Vi</code> &#x4EF6; <code>01</code> &#x80CC;&#x5305;&#x7269;&#x54C1;&#xFF0C;&#x5BF9;&#x6BCF;&#x4EF6;&#x7269;&#x54C1;&#x8FDB;&#x884C;&#x4E00;&#x6B21; 01 &#x80CC;&#x5305;&#x5904;&#x7406;&#x3002;&#x4F46;&#x663E;&#x7136;&#x8FD9;&#x6837;&#x505A;&#x6548;&#x7387;&#x4F1A;&#x5F88;&#x4F4E;&#x3002;<br>
+&#x8003;&#x8651;&#x5230;&#x5B8C;&#x5168;&#x80CC;&#x5305;&#x4E0E; 01 &#x80CC;&#x5305;&#x7684;&#x4E0D;&#x540C;&#x70B9;&#xFF0C;&#x4EC5;&#x5728;&#x4E8E; 01 &#x80CC;&#x5305;&#x6BCF;&#x79CD;&#x7269;&#x54C1;<strong>&#x53EA;&#x80FD;&#x653E;&#x7F6E;&#x4E00;&#x6B21;</strong>&#xFF0C;&#x800C;&#x5B8C;&#x5168;&#x80CC;&#x5305;&#x53EF;&#x4EE5;&#x653E;&#x7F6E;<strong>&#x4EFB;&#x610F;&#x6B21;</strong>&#xFF0C;&#x5C06;&#x5176;&#x4F53;&#x73B0;&#x5728;&#x52A8;&#x6001;&#x89C4;&#x5212;&#x7684;&#x72B6;&#x6001;&#x8F6C;&#x79FB;&#x4E0A;&#xFF0C;&#x5373;&#x5B8C;&#x5168;&#x80CC;&#x5305;&#x95EE;&#x9898;&#xFF0C;&#x9700;&#x8981;&#x4FDD;&#x8BC1;&#x5728;&#x8BA1;&#x7B97; <code>f[v]</code> &#x65F6;&#xFF0C;<code>f[v - Vi]</code> &#x4E00;&#x5B9A;&#x662F;<strong>&#x5DF2;&#x7ECF;&#x5C1D;&#x8BD5;&#x8FC7;</strong>&#x653E;&#x7F6E;&#x7B2C; <code>i</code> &#x4EF6;&#x7269;&#x54C1;&#x65F6;&#x7684;&#x72B6;&#x6001;&#x3002;&#x800C;&#x53EA;&#x9700;&#x5C06;&#x7B2C;&#x4E8C;&#x5C42;&#x5FAA;&#x73AF; <code>v</code> &#x7684;&#x904D;&#x5386;&#x987A;&#x5E8F;&#x6539;&#x4E3A;&#x4ECE; <code>0</code> &#x5230; <code>V</code> &#x5373;&#x53EF;&#x3002;<br>
+&#x5B9E;&#x73B0;&#x4EE3;&#x7801;&#x4E3A;&#xFF08;<code>t[i].v</code> &#x548C; <code>t[i].w</code> &#x5206;&#x522B;&#x4EE3;&#x8868; <code>Vi</code> &#x548C; <code>Wi</code>&#xFF09;&#xFF1A;</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">unsigned</span> <span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) {</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">unsigned</span> <span class="keyword">int</span> v = <span class="number">0</span>; v &lt;= V; v++) {</span><br><span class="line">		<span class="keyword">if</span> (v &gt;= t[i].v) {</span><br><span class="line">			f[v] = <span class="built_in">std</span>::max(f[v], f[v - t[i].v] + t[i].w);</span><br><span class="line">		}</span><br><span class="line">	}</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<p>&#x8FD9;&#x4E24;&#x6BB5;&#x4EE3;&#x7801;&#x7684;&#x5DEE;&#x5F02;&#x6BD4;&#x8F83;&#x96BE;&#x7406;&#x89E3;&#xFF0C;&#x8FD9;&#x91CC;&#x4E3E;&#x4E2A;&#x4F8B;&#x5B50;&#xFF1A;&#x80CC;&#x5305;&#x5BB9;&#x91CF; <code>V = 10</code>&#xFF0C;&#x4EC5;&#x6709;&#x4E00;&#x4EF6;&#x7269;&#x54C1;&#x4F53;&#x79EF; <code>Vi = 3</code>&#xFF0C;&#x4EF7;&#x503C; <code>Wi = 5</code>&#xFF0C;&#x73B0;&#x5C06;&#x8FD9;&#x4EF6;&#x7269;&#x54C1;&#x5C1D;&#x8BD5;&#x653E;&#x5165;&#x80CC;&#x5305;&#x3002;</p>
+<p>&#x5982;&#x679C;&#x8FD9;&#x4EF6;&#x7269;&#x54C1;&#x662F; <code>01</code> &#x80CC;&#x5305;&#xFF1A;<br>
+&#x5F53; <code>v = 10</code> &#x65F6;&#xFF0C;<strong><code>f[v - Vi] = f[7] = 0</code></strong>&#xFF0C;<code>f[v]</code> &#x88AB;&#x66F4;&#x65B0;&#x4E3A; <code>5</code>&#x3002;<br>
+&#x5F53; <code>v = 9</code> &#x65F6;&#xFF0C;<code>f[v - Vi] = f[6] = 0</code>&#xFF0C;<code>f[v]</code> &#x88AB;&#x66F4;&#x65B0;&#x4E3A; <code>5</code>&#x3002;<br>
+&#x5F53; <code>v = 8</code> &#x65F6;&#xFF0C;<code>f[v - Vi] = f[5] = 0</code>&#xFF0C;<code>f[v]</code> &#x88AB;&#x66F4;&#x65B0;&#x4E3A; <code>5</code>&#x3002;<br>
+<strong>&#x5F53; <code>v = 7</code> &#x65F6;&#xFF0C;<code>f[v - Vi] = f[4] = 0</code>&#xFF0C;<code>f[v]</code> &#x88AB;&#x66F4;&#x65B0;&#x4E3A; <code>5</code>&#x3002;</strong><br>
+&#x2026;&#x2026;<br>
+&#x5F53; <code>v = 4</code> &#x65F6;&#xFF0C;<code>f[v - Vi] = f[1] = 0</code>&#xFF0C;<code>f[v]</code> &#x88AB;&#x66F4;&#x65B0;&#x4E3A; <code>5</code>&#x3002;<br>
+&#x5F53; <code>v = 3</code> &#x65F6;&#xFF0C;<code>f[v - Vi] = f[0] = 0</code>&#xFF0C;<code>f[v]</code> &#x88AB;&#x66F4;&#x65B0;&#x4E3A; <code>5</code>&#x3002;</p>
+<p>&#x5982;&#x679C;&#x8FD9;&#x4EF6;&#x7269;&#x54C1;&#x662F;&#x5B8C;&#x5168;&#x80CC;&#x5305;&#xFF1A;<br>
+&#x5F53; <code>v = 3</code> &#x65F6;&#xFF0C;<strong><code>f[v - Vi] = f[0] = 0</code></strong>&#xFF0C;<code>f[v]</code> &#x88AB;&#x66F4;&#x65B0;&#x4E3A; <code>5</code>&#x3002;<br>
+&#x5F53; <code>v = 4</code> &#x65F6;&#xFF0C;<code>f[v - Vi] = f[1] = 0</code>&#xFF0C;<code>f[v]</code> &#x88AB;&#x66F4;&#x65B0;&#x4E3A; <code>5</code>&#x3002;<br>
+&#x2026;&#x2026;<br>
+<strong>&#x5F53; <code>v = 6</code> &#x65F6;&#xFF0C;<code>f[v - Vi] = f[3] = 5</code>&#xFF0C;<code>f[v]</code> &#x88AB;&#x66F4;&#x65B0;&#x4E3A; <code>10</code>&#x3002;</strong><br>
+&#x2026;&#x2026;<br>
+<strong>&#x5F53; <code>v = 9</code> &#x65F6;&#xFF0C;<code>f[v - Vi] = f[6] = 10</code>&#xFF0C;<code>f[v]</code> &#x88AB;&#x66F4;&#x65B0;&#x4E3A; <code>15</code>&#x3002;</strong><br>
+&#x5F53; <code>v = 10</code> &#x65F6;&#xFF0C;<code>f[v - Vi] = f[7] = 10</code>&#xFF0C;<code>f[v]</code> &#x88AB;&#x66F4;&#x65B0;&#x4E3A; <code>15</code>&#x3002;</p>
+<p>&#x4EE5;&#x4E0A;&#x4F8B;&#x5B50;&#x53EF;&#x4EE5;&#x4F53;&#x73B0;&#x51FA; 01 &#x80CC;&#x5305;&#x4E0E;&#x5B8C;&#x5168;&#x80CC;&#x5305;&#x89E3;&#x6CD5;&#x4E0A;&#x7684;&#x533A;&#x522B;&#x4E0E;&#x95EE;&#x9898;&#x5B9E;&#x8D28;&#x7684;&#x8054;&#x7CFB;&#x3002;</p>
+<p>&#x56DE;&#x5230;&#x539F;&#x6765;&#x7684;&#x8BDD;&#x9898;&#x4E0A;&#x6765;&#xFF0C;&#x6211;&#x4EEC;&#x5DF2;&#x7ECF;&#x89E3;&#x51B3;&#x4E86;&#x524D;&#x4E24;&#x7C7B;&#x95EE;&#x9898;&#x2014;&#x2014;01 &#x80CC;&#x5305;&#x548C;&#x5B8C;&#x5168;&#x80CC;&#x5305;&#xFF0C;&#x73B0;&#x5728;&#x6765;&#x770B;&#x591A;&#x91CD;&#x80CC;&#x5305;&#x3002;<br>
+&#x8FD8;&#x662F;&#x8003;&#x8651;&#x62C6;&#x5206;&#xFF0C;&#x628A;&#x4E00;&#x4EF6;&#x53EF;&#x4EE5;&#x88C5; <code>Mi</code> &#x6B21;&#x7684;&#x591A;&#x91CD;&#x80CC;&#x5305;&#x7269;&#x54C1;&#x62C6;&#x5206;&#x6210; <code>Mi</code> &#x4EF6; 01 &#x80CC;&#x5305;&#x7269;&#x54C1;&#xFF0C;&#x5206;&#x522B;&#x5BF9;&#x5176;&#x8FDB;&#x884C; 01 &#x80CC;&#x5305;&#x5904;&#x7406;&#x3002;&#x8FD9;&#x79CD;&#x65B9;&#x6CD5;&#x5F88;&#x597D;&#x7406;&#x89E3;&#xFF0C;&#x4F46;&#x65F6;&#x95F4;&#x590D;&#x6742;&#x5EA6;&#x8FBE;&#x5230;&#x4E86;$O(V*{\Sigma}Mi)$&#xFF0C;&#x8003;&#x8651;&#x5C06;&#x5176;&#x4F18;&#x5316;&#x3002;<br>
+&#x6211;&#x4EEC;&#x91C7;&#x7528;&#x7C7B;&#x4F3C;&#x4E8C;&#x8FDB;&#x5236;&#x7684;&#x601D;&#x60F3;&#xFF0C;&#x5C06;&#x6BCF;&#x4E2A;&#x591A;&#x91CD;&#x80CC;&#x5305;&#x7269;&#x54C1;&#x62C6;&#x5206;&#x4E3A; <code>t</code> &#x4E2A;&#x4E0D;&#x540C;&#x7684; 01 &#x80CC;&#x5305;&#x7269;&#x54C1;&#xFF0C;&#x6BCF;&#x4E00;&#x4E2A;&#x62C6;&#x5206;&#x540E;&#x7684;&#x7269;&#x54C1;&#x90FD;&#x6709;&#x4E00;&#x4E2A;&#x7CFB;&#x6570; <code>k</code>&#xFF0C;&#x8BE5;&#x7269;&#x54C1;&#x7684;&#x4F53;&#x79EF;&#x548C;&#x4EF7;&#x503C;&#x5206;&#x522B;&#x7B49;&#x4E8E;<strong>&#x539F;&#x7269;&#x54C1;&#x7684;&#x4F53;&#x79EF;&#x548C;&#x4EF7;&#x503C;&#x4E58;&#x4EE5;&#x8FD9;&#x4E2A;&#x7CFB;&#x6570;</strong>&#xFF0C;&#x5E76;&#x4E14;&#x4F7F;&#x6240;&#x6709;&#x62C6;&#x5206;&#x540E;&#x7684;&#x7269;&#x54C1;&#x7684;&#x7CFB;&#x6570;&#x4E4B;&#x548C;${\Sigma}k = Mi$&#xFF0C;&#x5373;&#x539F;&#x7269;&#x54C1;&#x6700;&#x591A;&#x88AB;&#x653E;&#x7F6E;&#x7684;&#x6B21;&#x6570;&#x3002;&#x5E76;&#x4E14;&#x8981;&#x4F7F;&#x6BCF;&#x4E2A;&#x7CFB;&#x6570; <code>k</code> &#x5206;&#x522B;&#x4E3A; $1$,<span class="math inline">\(2\$\,\$4\)</span>,&#x2026;,$2 ^ {t - 1}$,$Wi - 2 ^ {t - 1}$&#x3002;<br>
+&#x4E3E;&#x4E2A;&#x4F8B;&#x5B50;&#xFF0C;&#x5F53; `Mi = 17` &#x65F6;&#xFF0C;&#x5C06;&#x5176;&#x62C6;&#x6210; `5` &#x4EF6;&#x7269;&#x54C1;&#xFF0C;&#x7CFB;&#x6570; `k` &#x5206;&#x522B;&#x4E3A; `1`,`2`,`4`,`8`,`2`&#x3002;<br>
+&#x4F7F;&#x7528;&#x4E8C;&#x8FDB;&#x5236;&#x601D;&#x60F3;&#x4F18;&#x5316;&#x8FC7;&#x7684;&#x7B97;&#x6CD5;&#xFF0C;&#x590D;&#x6742;&#x5EA6;&#x964D;&#x4E3A;&#x4E86;$O(V * {}{}Wi)$&#x3002;<br>
+&#x5B9E;&#x73B0;&#x4EE3;&#x7801;&#x4E3A;&#xFF08;`t[i].v` &#x548C; `t[i].w` &#x5206;&#x522B;&#x4EE3;&#x8868; `Vi` &#x548C; `Wi`&#xFF09;&#xFF1A;<br>
+&lt; !--&#xFFFC;2--&gt;</p>
+<p>&#x4E09;&#x79CD;&#x80CC;&#x5305;&#x95EE;&#x9898;&#x7684;&#x601D;&#x8DEF;&#x660E;&#x786E;&#x540E;&#xFF0C;&#x5C31;&#x53EF;&#x4EE5;&#x8003;&#x8651;&#x6DF7;&#x5408;&#x80CC;&#x5305;&#x95EE;&#x9898;&#x4E86;&#xFF0C;&#x5177;&#x4F53;&#x5B9E;&#x73B0;&#x65B9;&#x6CD5;&#x662F;&#x5BF9;&#x4E8E;&#x6BCF;&#x4E00;&#x79CD;&#x7269;&#x54C1;&#xFF0C;&#x5224;&#x65AD;&#x7269;&#x54C1;&#x7C7B;&#x578B;&#xFF0C;&#x5206;&#x522B;&#x8FDB;&#x884C;&#x5904;&#x7406;&#x3002;<br>
+### AC &#x4EE3;&#x7801; &lt; !--&#xFFFC;3--&gt;</p>
+<p>### &#x5410;&#x69FD; &#x8FD9;&#x6BB5;&#x65F6;&#x95F4;&#x5728;&#x5B66;&#x4E60; dp&#xFF0C;&#x542C; liujz &#x5B66;&#x957F;&#x8BB2;&#x5B8C;&#x540E;&#x81EA;&#x5DF1;&#x62B1;&#x7740;&#x4E66;&#x5543;&#x4E86;&#x597D;&#x4E45; &#x2026;&#x2026;<br>
+&#x7B97;&#x662F;&#x6709;&#x4E9B;&#x7406;&#x89E3;&#x4E86;&#x5427; &gt;_&lt; $</p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+
+
+    <nav id="article-nav">
+        
+            <div id="article-nav-newer" class="article-nav-title">
+                <a href="/hnoi2004-chong-wu-shou-yang-suo/">
+                    「HNOI2004」宠物收养所 - set
+                </a>
+            </div>
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/noi2002-galaxy/">
+                    「NOI2002」银河英雄传说 - 并查集
+                </a>
+            </div>
+        
+    </nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#题目链接"><span class="toc-number">1.</span> <span class="toc-text">题目链接</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#解题思路"><span class="toc-number">2.</span> <span class="toc-text">解题思路</span></a></li></ol>
+</div>
+<style>
+    .left-col .switch-btn {
+        display: none;
+    }
+    .left-col .switch-area {
+        display: none;
+    }
+</style>
+
+<input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+<script src="//7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js" type="text/javascript"></script>
+<script>
+    var valueHide = "隐藏目录";
+    var valueShow = "显示目录";
+
+    if ($(".left-col").is(":hidden")) {
+        $("#tocButton").attr("value", valueShow);
+    }
+
+    $("#tocButton").click(function() {
+        if ($("#toc").is(":hidden")) {
+            $("#tocButton").attr("value", valueHide);
+            $("#toc").slideDown(320);
+            $(".switch-btn, .switch-area").fadeOut(300);
+        }
+        else {
+            $("#tocButton").attr("value", valueShow);
+            $("#toc").slideUp(350);
+            $(".switch-btn, .switch-area").fadeIn(500);
+        }
+    })
+
+    if ($(".toc").length < 1) {
+        $("#toc, #tocButton").hide();
+        $(".switch-btn, .switch-area").show();
+    }
+</script>
+
+
+
+
+
+
+
+    
+        <section id="comments">
+  <div id="disqus_thread"></div>
+    <script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = 'menci'; // required: replace example with your forum shortname
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</section>
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/hnoi2004-chong-wu-shou-yang-suo/" title="上一篇: 「HNOI2004」宠物收养所 - set">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/noi2002-galaxy/" title="下一篇: 「NOI2002」银河英雄传说 - 并查集">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/sdoi2015-war/">「SDOI2015」星际战争 - 网络流</a></li><li class="post-list-item"><a class="post-list-link" href="/cogs-741/">「COGS 741」负载平衡 - 费用流</a></li><li class="post-list-item"><a class="post-list-link" href="/cogs-740/">「COGS 740」分配问题 - 二分图最大权匹配</a></li><li class="post-list-item"><a class="post-list-link" href="/ctsc1999-home/">「CTSC1999」星际转移 - 网络流</a></li><li class="post-list-item"><a class="post-list-link" href="/cogs-742/">「COGS 742」深海机器人 - 费用流</a></li><li class="post-list-item"><a class="post-list-link" href="/cogs-739/">「COGS 739」运输问题 - 费用流</a></li><li class="post-list-item"><a class="post-list-link" href="/jsoi2008-maxnumber/">「JSOI2008」最大数 - Splay</a></li><li class="post-list-item"><a class="post-list-link" href="/edmonds-karp-notes/">Edmonds-Karp 费用流学习笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/noip2010-prison/">「NOIP2010」关押罪犯 - 二分图染色</a></li><li class="post-list-item"><a class="post-list-link" href="/cogs-746/">「COGS 746」骑士共存 - 二分图最大独立集</a></li><li class="post-list-item"><a class="post-list-link" href="/cogs-738/">「COGS 738」数字梯形 - 费用流</a></li><li class="post-list-item"><a class="post-list-link" href="/cogs-734/">「COGS 734」方格取数 - 二分图最大独立集</a></li><li class="post-list-item"><a class="post-list-link" href="/cogs-439/">「COGS 439」软件补丁 - 记忆化搜索 + 位运算</a></li><li class="post-list-item"><a class="post-list-link" href="/cogs-727/">「COGS 727」太空飞行计划 - 最大权闭合图</a></li><li class="post-list-item"><a class="post-list-link" href="/cogs-731/">「COGS 731」最长递增子序列 - 线性DP + 网络流</a></li><li class="post-list-item"><a class="post-list-link" href="/cogs-729/">「COGS 729」圆桌聚餐 - 网络流</a></li><li class="post-list-item"><a class="post-list-link" href="/cogs-396/">「COGS 396」魔术球问题 - 贪心</a></li><li class="post-list-item"><a class="post-list-link" href="/cogs-728/">「COGS 728」最小路径覆盖问题 - 二分图匹配</a></li><li class="post-list-item"><a class="post-list-link" href="/cogs-14/">「COGS 14」搭配飞行员 - 二分图匹配</a></li><li class="post-list-item"><a class="post-list-link" href="/bzoj-2683/">「BZOJ 2683」简单题 - CDQ</a></li><li class="post-list-item"><a class="post-list-link" href="/codevs-1563/">「CodeVS 1563」奶牛的交通 - 网络流</a></li><li class="post-list-item"><a class="post-list-link" href="/gnu-debugger/">GDB 入门教程</a></li><li class="post-list-item"><a class="post-list-link" href="/dinic-notes/">Dinic 学习笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/markdown-latex-helper/">自动将 LaTex 代码转义为 Markdown 格式的小程序</a></li><li class="post-list-item"><a class="post-list-link" href="/bzoj-1756/">「BZOJ 1756」小白逛公园 - 线段树</a></li><li class="post-list-item"><a class="post-list-link" href="/noi2004-cashier/">「NOI2004」郁闷的出纳员 - Splay</a></li><li class="post-list-item"><a class="post-list-link" href="/bzoj-1477/">「BZOJ 1477」青蛙的约会 - 扩展欧几里得</a></li><li class="post-list-item"><a class="post-list-link" href="/noi2015-manager/">「NOI2015」软件包管理器 - 树链剖分</a></li><li class="post-list-item"><a class="post-list-link" href="/noi2015-prog/">「NOI2015」程序自动分析 - 离散化 + 并查集</a></li><li class="post-list-item"><a class="post-list-link" href="/number-theory-notes-1/">数论学习笔记（一）</a></li><li class="post-list-item"><a class="post-list-link" href="/noip2012-mod/">「NOIP2012」同余方程 - 扩展欧几里得</a></li><li class="post-list-item"><a class="post-list-link" href="/link-cut-tree-notes/">Link-Cut Tree 学习笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/splay-notes-3/">Splay 学习笔记（三）</a></li><li class="post-list-item"><a class="post-list-link" href="/bzoj-1251/">「BZOJ 1251」序列终结者 - Splay</a></li><li class="post-list-item"><a class="post-list-link" href="/noip2006-budget/">「NOIP2006」金明的预算方案 - 背包DP + 树形DP</a></li><li class="post-list-item"><a class="post-list-link" href="/bzoj-2442/">「BZOJ 2442」修剪草坪 - 线性DP + 单调队列</a></li><li class="post-list-item"><a class="post-list-link" href="/codevs-3269-monotone-queue/">「CodeVS 3269」混合背包 - 背包DP + 单调队列</a></li><li class="post-list-item"><a class="post-list-link" href="/monotone-queue-notes/">单调队列学习笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/codevs-1345/">「CodeVS 1345」饥饿的奶牛 - 线性DP</a></li><li class="post-list-item"><a class="post-list-link" href="/noip2003-game/">「NOIP2003」数字游戏 - 划分DP</a></li><li class="post-list-item"><a class="post-list-link" href="/noip2006-energy/">「NOIP2006」能量项链 - 区间DP</a></li><li class="post-list-item"><a class="post-list-link" href="/tyvj-3317/">「Tyvj 3317」火车票 - 划分DP</a></li><li class="post-list-item"><a class="post-list-link" href="/codevs-2598/">「CodeVS 2598」编辑距离问题 - 线性DP</a></li><li class="post-list-item"><a class="post-list-link" href="/noip2000-cheng-ji-zui-da/">「NOIP2000」乘积最大 - 划分DP</a></li><li class="post-list-item"><a class="post-list-link" href="/ctsc1997-xuan-ke/">「CTSC1997」选课 - 树形DP</a></li><li class="post-list-item"><a class="post-list-link" href="/codevs-3168-3162/">「CodeVS 3168 / 3162」抄书问题 - 划分DP / 二分答案</a></li><li class="post-list-item"><a class="post-list-link" href="/minimum-spanning-tree-notes/">最小生成树 && 次小生成树</a></li><li class="post-list-item"><a class="post-list-link" href="/system-of-difference-constraints-notes/">差分约束系统学习笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/kmp-notes/">KMP 学习笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/cut-tree-notes/">树链剖分学习笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/stl-in-oi/">STL 在 OI 中的应用</a></li><li class="post-list-item"><a class="post-list-link" href="/splay-notes-2/">Splay 学习笔记（二）</a></li><li class="post-list-item"><a class="post-list-link" href="/splay-notes-1/">Splay 学习笔记（一）</a></li><li class="post-list-item"><a class="post-list-link" href="/hnoi2004-chong-wu-shou-yang-suo/">「HNOI2004」宠物收养所 - set</a></li><li class="post-list-item"><a class="post-list-link" href="/codevs-3269/">「CodeVS 3269」混合背包 - 背包DP</a></li><li class="post-list-item"><a class="post-list-link" href="/noi2002-galaxy/">「NOI2002」银河英雄传说 - 并查集</a></li></ul>
+    <script src="//7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+    <script>
+        $(".post-list").addClass("toc-article");
+        $(".post-list-item a").attr("target","_blank");
+        $("#post-nav-button > a:nth-child(2)").click(function() {
+            $(".fa-bars, .fa-times").toggle();
+            $(".post-list").toggle(300);
+            if ($(".toc").length > 0) {
+                $("#toc, #tocButton").toggle(200, function() {
+                    if ($(".switch-area").is(":visible")) {
+                        $("#toc, .switch-btn, .switch-area").toggle();
+                        $("#tocButton").attr("value", valueHide);
+                        }
+                    })
+            }
+            else {
+                $(".switch-btn, .switch-area").fadeToggle(300);
+            }
+        })
+    </script>
+
+
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                &copy; 2016 Menci
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的静态博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减双栏 Hexo 博客主题">Yelee</a> by MOxFIVE
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" >本站到访数: 
+                            <span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>, </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit">本页阅读量: 
+                            <span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+
+    </div>
+    
+<script src="//7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js" type="text/javascript"></script>
+<!--<script src="/js/main.js" type="text/javascript"></script>-->
+<script src="//dn-menci.qbox.me/js/main.js" type="text/javascript"></script>
+
+    <script>
+        $(document).ready(function() {
+            var iPad = window.navigator.userAgent.indexOf('iPad');
+            if (iPad > -1 || $(".left-col").css("display") === "none") {
+                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
+                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
+                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
+            }
+            else {
+                var backgroundnum = 1;
+                var backgroundimg = "url(//dn-menci.qbox.me/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+                //$("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+            }
+        })
+    </script>
+
+
+
+
+
+    <script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+</div>
+
+<script>
+    $(document).ready(function() {
+        if ($("#comments").length < 1) {
+            $("#scroll > a:nth-child(2)").hide();
+        };
+    })
+</script>
+
+
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+  </div>
+</body>
+</html>

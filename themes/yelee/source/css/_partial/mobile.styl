@@ -1,0 +1,346 @@
+.left-col {
+    display: none;
+}
+.mid-col {
+    left: 0;
+}
+#header{
+    .header-nav{
+        position: relative;
+    }
+}
+.header-author{
+    &.fixed{
+        position: fixed;
+        top: -8px;
+        width: 100%;
+        color: #ddd;
+        a {
+          color: white;
+        }
+    }
+}
+.overlay{
+    .slider-trigger{
+        position: absolute;
+        z-index: 101;
+        bottom: 0;
+        left: 0;
+        width: 42px;
+        height: 42px;
+        &:hover{
+            background: #444;
+        }
+        &:before{
+            color: #ddd;
+            content: "\f00b";
+            font: 16px FontAwesome;
+            width: 16px;
+            height: 16px;
+            margin-left: 9px;
+            margin-top: 14px;
+            display: block;
+        }
+    }
+}
+.article-header{
+    border-left: none;
+    padding: 0;
+    border-bottom: 1px dotted #ddd;
+    h1{
+        margin-bottom: 10px;
+    }
+}
+#header .header-subtitle{
+    padding: 0 3em;
+    font-size: 1em;
+}
+
+.article-info-index.article-info{
+  padding-top: 10px;
+  margin: 0;
+  border-top: 1px solid #ddd;
+}
+.article-info-post.article-info{
+    margin: 0;
+    padding-top: 10px;
+    border: none;
+}
+
+.article-more-link{
+    a{
+        float:right;
+    }
+}
+#viewer-box .viewer-box-l{
+    font-size: 14px;
+}
+.article{
+/*    padding: 10px;*/
+    margin: 10px;
+    font-size: 14px;
+    .article-entry{
+        padding-left: 0;
+        padding-right: 0;
+        padding-top: 10px;
+    }
+    .article-title{
+        font-size: 18px;
+        /*max-width: 185px;*/
+        padding-right: 5em;
+        display: block;
+        margin: 0;
+    }
+    .article-meta{
+        width: auto;
+        .article-date {
+            margin: 0;
+            time {
+                padding-right: .5em;
+            }
+        }
+        .article-tag-list{
+            margin-top: 7px;
+            position: absolute;
+            right: 10px;
+            top: 0;
+            &:before{
+                float: left;
+                margin-top: 1px;
+                left: 0;
+            }
+            .article-tag-list-item{
+                float: left;
+                padding-left: 0;
+                width: auto;
+                max-width: 83px;
+            }
+        }
+        .article-category{
+            margin-top: 7px;
+            position: absolute;
+            right: 10px;
+            top: -30px;
+            &:before{
+                float: left;
+                margin-top: 1px;
+                left: 15px;
+            }
+            .article-category-link{
+                max-width: 83px;
+                width: auto;
+                padding-left:10px;
+            }
+        }
+    }
+}
+
+.article-inner {
+  padding: 12px;
+}
+
+.archive-article-inner .article-meta {
+    top: 0;
+    margin-top: .5em;
+}
+
+.archives {
+    .archive-article {
+    padding: 0;
+    }
+    .archive-article-date {
+        margin-right: 0;
+    }
+    .article-info {
+    display: none;
+    }
+}
+
+.archive-article-inner .article-meta .archive-article-date
+
+.share{
+    padding: 3px 10px;
+}
+.duoshuo {
+    padding: 0 13px;
+}
+#disqus_thread {
+    padding: 0 13px;
+}
+
+#mobile-nav{
+    display: block;
+}
+
+#page-nav .extend{
+    opacity: 1;
+}
+
+#page-nav {
+    margin-top: 1em;
+    .page-number {
+        margin-bottom: 1.5em;
+    }
+}
+
+.instagram .open-ins{
+    left: 2px;
+    top: -30px;
+    color: #aaa;
+}
+.info-on-right{
+    float: initial;
+}
+.archives-wrap{
+    margin: 10px 10px 0px;
+    padding: 10px;
+    padding-right: 0;
+    .archive-year-wrap{
+        position: relative;
+        padding: 0 0 0 0;
+        a{
+            padding: 0 0 0 0;
+        }
+    }
+    h1 {
+        font-size: 1.2em;
+        margin-bottom: .3em;
+    }
+}
+.archives{
+    .archive-article{
+        padding: 10px 0;
+        margin-left: 0;
+    }
+}
+
+#footer {
+    .footer-left{
+        float: initial;
+        margin-bottom: .5em;
+    }
+    .footer-right{
+        float: initial;
+        margin-bottom: 1em;
+    }
+    .visit {
+        margin: 0;
+    }
+}
+
+.article-category::before{
+    display: none;
+}
+.article-tag::before {
+     display: none;
+}
+.article-meta time:before {
+    display: none;
+}
+.visit {
+    margin-top: 1em;
+}
+
+#tocButton {
+    z-index: 100;
+    position: fixed;
+    left: .5em;
+    top: auto; /*In order to cover style in article.styl*/
+    bottom: 10px;
+    padding: .2em .4em;
+    border-radius: 6px;
+    border-style : outset;
+    background: rgba(255, 255, 255, .7);
+    font-size: 1em;
+    font-weight: bold;
+    color: gray;
+    &:hover {
+        color: #88acdb;
+        font-size: 1em;
+    }
+}
+
+.toc-article {
+    display: none;
+    z-index: 99
+    left: 0;
+    top: 38%;
+    bottom: 1em;
+    height: auto;
+    max-height: 58%;
+    width: none;
+    width: auto;
+    min-width: 7em;
+    max-width: 61.8%;
+    overflow: auto;
+    margin-left: 0;
+    padding: 10px;
+    padding-left: 0;
+    border-radius: 2.8%;
+    background: none;
+    font-size: 1em;
+    line-height: 1.25em;
+    .toc-title {
+        display: none;
+    }
+    .toc {
+        padding: 0.5em;
+    }
+    ol {
+        margin: 0;
+        padding: 0.5em;
+        border-radius: 5px;
+        background: rgba(255, 255, 255, .75);
+        ol {
+            padding: 0.1em 0;
+            padding-left: 1.2em;
+        }
+    }
+    a {
+        color: #767676;
+    }
+}
+
+.copyright {
+    width: 90%;
+    padding: .5em 1.3em;
+}
+
+.scroll {
+    right: 1.2em;
+    li {
+        font-size: 1.7em;
+    }
+}
+
+.hide-labels {
+    z-index: 100;
+    position: fixed;
+    left: .5em;
+    top: auto; 
+    bottom: 10px;
+    padding: .2em .4em;
+    border-radius: 6px;
+    border-style : outset;
+    opacity: .9;
+    background: rgba(255, 255, 255, .8);
+    font-weight: bold;
+    color: gray;
+}
+
+#post-nav-button {
+    display: none;
+}
+
+.post-list {
+    visibility: hidden;
+}
+
+/*多说 UA*/
+.ua {
+    display: none !important;
+}
+
+if hexo-config("github_widget")
+    .github-text
+        display none

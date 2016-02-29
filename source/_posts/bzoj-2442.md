@@ -1,0 +1,150 @@
+title: 「BZOJ 2442」修剪草坪 - 线性DP + 单调队列
+categories: OI
+tags: 
+  - BZOJ
+  - CodeVS
+  - DP
+  - 单调队列
+  - 线性DP
+permalink: bzoj-2442
+id: 24
+updated: '2016-01-19 21:03:11'
+date: 2016-01-16 22:32:47
+---
+
+FJ 有 `N`（$1 ≤ N ≤ 100,000$）只排成一排的奶牛，编号为 `1` 到 `N`。每只奶牛的效率是不同的，奶牛 `i` 的效率为$E_i$（$0 ≤ E_i ≤ 1,000,000,000$）。
+
+靠近的奶牛们很熟悉，因此，如果 FJ 安排超过 `K` 只连续的奶牛，那么，这些奶牛就会罢工去开派对。因此，现在 FJ 需要你的帮助，计算 FJ 可以得到的最大效率，并且该方案中没有连续的超过 `K` 只奶牛。
+
+<!-- more -->
+
+### 题目链接
+[CodeVS 4654](http://codevs.cn/problem/4654/)  
+[BZOJ 2442](http://www.lydsy.com/JudgeOnline/problem.php?id=2442)
+
+### 解题思路
+一个 $O(n^2)$ 的解法是采用线性 DP，用 $a[i]$ 表示第 `i` 头奶牛的效率，$f[i]$ 表示选择前 `i` 只奶牛中部分或全部可获得的最大效率，对于每次状态转移，枚举 `j`（$i-k ≤ j < i$），计算不选择第 `j` 头奶牛时的最大效率。
+
+$$ f[i]=\max(\max\{f[j-1]+{\sum_{x=j+1}^{i}}a[x],j{\in}[i-k,i)\},f[i-1]) $$
+
+边界条件为：
+
+$$ f[1]=a[1] $$
+
+用前缀和数组来维护效率和，每次转移要耗费 $O(n)$ 的时间。
+
+实现代码：（注意边界判断和数组访问的 `-1`）
+
+```c++
+f[0] = a[0];
+for (int i = 2; i <= n; i++) {
+	for (int j = std::max(i - k, 0); j < i; j++) {
+		if (j == 0) f[i - 1] = std::max(f[i - 1], prefixSum[i - 1] - 0);
+		else f[i - 1] = std::max(f[i - 1], (j == 1 ? 0 : f[j - 1 - 1]) + prefixSum[i - 1] - prefixSum[j + 1 - 1 - 1]);
+		f[i - 1] = std::max(f[i - 1], f[i - 1 - 1]);
+	}
+}
+```
+
+现在让我们来尝试优化这个 DP，首先，设
+
+$$ sum[i]={\sum_{x=1}^{i}}a[x] $$
+
+忽略 $f[i-1]$，把转移方程中的前缀和项展开
+
+$$ f[i] = \max\{f[j-1]+sum[i]-sum[j-1],j{\in}[i-k,i)\} $$
+
+令
+
+$$ g(x) = f[x-1]-sum[x-1] $$
+
+则转移方程的前半部分化为
+
+$$ f[i] = \max\{g(j),j{\in}[i-k,i)\}+sum[i] $$
+
+用一个长度为 `k + 1` 的单调队列来维护 $g(j)$，然后就可以优化到 $O(1)$ 的计算出每个状态。
+
+最终，新的转移方程为
+
+$$ f[i] = \max(\max\{f[j-1]-sum(j-1),j{\in}[i-k,i)\}+sum[i],f[i-1]) $$
+
+两个坑：
+
+1. $E_i$加起来妥妥的爆 `int`，快上 `long long` 保平安；
+2. 边界条件！边界条件！边界条件！
+
+~~（才不是坑呢是我太弱了啦）~~
+
+### AC代码
+```c++
+#include <cstdio>
+#include <algorithm>
+#include <deque>
+
+const int MAXN = 100000;
+
+template <typename T>
+struct MonotoneQueue {
+	std::deque<T> q, m;
+
+	void push(const T &x) {
+		q.push_back(x);
+		while (!m.empty() && m.back() < x) m.pop_back();
+		m.push_back(x);
+	}
+
+	void pop() {
+		T x = q.front();
+		q.pop_front();
+		if (x == m.front()) m.pop_front();
+	}
+
+	size_t size() {
+		return q.size();
+	}
+
+	T top() {
+		return m.front();
+	}
+};
+
+int n, k, a[MAXN];
+long long prefixSum[MAXN], f[MAXN + 1];
+
+inline void makePrefixSum() {
+	prefixSum[0] = a[0];
+	for (int i = 0; i < n; i++) {
+		prefixSum[i] = prefixSum[i - 1] + a[i];
+	}
+}
+
+inline long long sum(int i, int j) {
+	if (i > j) return 0;
+	return i == 1 ? prefixSum[j - 1] : prefixSum[j - 1] - prefixSum[i - 1 - 1];
+}
+
+int main() {
+	scanf("%d %d", &n, &k);
+
+	for (int i = 0; i < n; i++) {
+		scanf("%d", &a[i]);
+	}
+
+	makePrefixSum();
+
+	MonotoneQueue<long long> q;
+	q.push(0);
+	for (int i = 1; i <= n; i++) {
+		if (q.size() == k + 1) q.pop();
+
+		q.push((i == 1 ? 0 : f[i - 1 - 1]) - prefixSum[i + 1 - 1 - 1]);
+
+		f[i - 1] = q.top() + prefixSum[i - 1];
+		if (i != 1) f[i - 1] = std::max(f[i - 1], f[i - 1 - 1]);
+	}
+
+	printf("%lld\n", f[n - 1]);
+
+	return 0;
+}
+```
