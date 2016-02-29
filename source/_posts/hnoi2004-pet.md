@@ -6,7 +6,7 @@ tags:
   - HNOI
   - set
   - STL
-permalink: hnoi2004-chong-wu-shou-yang-suo
+permalink: hnoi2004-pet
 id: 5
 updated: '2016-01-19 21:08:01'
 date: 2015-12-16 05:14:20

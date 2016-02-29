@@ -5,7 +5,7 @@ tags:
   - CTSC
   - DP
   - 树形DP
-permalink: ctsc1997-xuan-ke
+permalink: ctsc1997-course
 id: 15
 updated: '2016-01-19 21:05:52'
 date: 2016-01-07 05:12:01
