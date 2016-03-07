@@ -201,6 +201,9 @@ a {
     width: 100%;
   }
 }
+.article-entry table td {
+  white-space: pre !important;
+}
 #container {
   min-height: 100%;
 }
