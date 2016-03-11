@@ -7,7 +7,9 @@ date: 2016-01-18 21:08:05
 
 [Angelic47](http://www.angelic47.com/)
 
-[ZMOIYNLP](blog.csdn.net/zmoiynlp/)
+[ZMOIYNLP](http://blog.csdn.net/zmoiynlp/)
+
+[Hellc5261](http://5261.github.io/)
 
 [凌风仙鸡的 Blog&Diary](http://chickger.pw/)
 
@@ -15,7 +17,11 @@ date: 2016-01-18 21:08:05
 
 [Ofsxb](http://www.cnblogs.com/ofsxb/)
 
-[Creation **Au**gust](http://blog.csdn.net/creationaugust)
+[Creation <span style="color: #FFA200; "><b>Au</b></span>gust](http://blog.csdn.net/creationaugust)
+
+[FireStorm](http://blog.csdn.net/farestorm)
+
+[Loi_DQS](http://blog.csdn.net/loi_dqs)
 
 [danihao123](http://danihao123.is-programmer.com/)
 
@@ -29,7 +35,7 @@ date: 2016-01-18 21:08:05
 
 [MedalPluS](http://medalplus.com/)
 
-[yts1999](http://yts1999.gitcafe.io/)
+[yts1999](http://yts1999.coding.io/)
 
 [zean](http://blog.zean.xyz/)
 
