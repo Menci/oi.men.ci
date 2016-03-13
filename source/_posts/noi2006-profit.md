@@ -25,7 +25,8 @@ date: 2016-03-10 19:33:42
 裸的最大权闭合子图，用最小割。
 
 ### AC代码
-```c++
+<!-- c++ -->
+```
 #include <cstdio>
 #include <climits>
 #include <algorithm>

@@ -18,7 +18,8 @@ date: 2016-01-19 21:48:24
 
 $$ \gcd(a,b)=\cases{ a & b = 0 \\ \gcd(b,a \ {\rm mod} \ b) & b ≠ 0 } $$
 
-```c++
+<!-- c++ -->
+```
 int gcd(int a, int b) {
 	return !b ? a : gcd(b, a % b);
 }
@@ -30,7 +31,8 @@ $$ {\rm lcm}(a,b)=\frac{a*b}{\gcd(a,b)} $$
 
 写程序时先除后乘防炸。
 
-```c++
+<!-- c++ -->
+```
 int lcm(int a, int b) {
 	return a / gcd(a, b) * b;
 }
@@ -84,7 +86,8 @@ $$
 
 由上述式子可观察到，每次辗转交换了 `x` 和 `y`，并将 `y` 减去了原 `x` 与辗转相除所得商的乘积。
 
-```c++
+<!-- c++ -->
+```
 void exgcd(int a, int b, int g, int &x, int &y) {
 	if (b == 0) {
 		x = 1, y = 0;
@@ -99,7 +102,8 @@ void exgcd(int a, int b, int g, int &x, int &y) {
 ### Eratosthenes 筛法
 在筛选之前，先认为每个数都是素数。枚举所有数，如果这个数是素数，那么筛掉这个数的所有倍数，标记它们为“不是素数”。
 
-```c++
+<!-- c++ -->
+```
 bool isNotPrime[MAXN + 1];
 std::vector<int> primes;
 
@@ -118,7 +122,8 @@ inline void getPrimes(int n) {
 1. 第二层循环可以从 $i^2$ 开始，因为对于每个小于 $i$ 的数 $i'$，$i*i'$ 都已经在第 $i'$ 次循环筛掉了。
 2. 枚举 $[2,\sqrt{n}]$ 的素数即可，因为对于每个合数 $p>\sqrt{n}$，则必有素数 $k$ 满足 $p=k*k'$ 且 $k< \sqrt{n}$，所以 $p$ 会在第 $k$ 次循环被筛掉。
 
-```c++
+<!-- c++ -->
+```
 bool isNotPrime[MAXN + 1];
 std::vector<int> primes;
 
@@ -151,7 +156,8 @@ $$ \phi(n)=n*\prod_{i=1}^{k} (1 - \frac{1}{p_i}) $$
 
 对于给定的 $n$，用类似筛法的思想枚举素数，每次找到一个素数后把它的倍数全部筛掉。
 
-```c++
+<!-- c++ -->
+```
 int phi() {
 	int m = floor(sqrt(n + 0.5)), ans = n;
 	for (int i = 2; i <= m; i++) {

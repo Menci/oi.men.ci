@@ -1,5 +1,5 @@
 title: About Me
-permalink: about-me
+permalink: about-me/
 id: 4
 updated: '2016-01-18 19:03:49'
 date: 2015-11-23 05:36:32

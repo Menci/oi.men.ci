@@ -24,7 +24,8 @@ Link-Cut Tree 是一种用来维护动态森林连通性的数据结构，适用
 
 `value` 用于维护点权，`sum` 和 `max` 是根据题目要求维护的链上的区间信息。`reversed` 表示以该节点为根的 Splay 有没有被翻转。
 
-```c++
+<!-- c++ -->
+```
 struct Node {
 	Node *child[2], *parent, *pathParent;
 	T value, sum, max;
@@ -50,7 +51,8 @@ Link-Cut Tree 支持以下几种基本操作：
 
 不要忘了各种标记的下放和值的维护。
 
-```c++
+<!-- c++ -->
+```
 void expose() {
 	splay();
 	pushDown();
@@ -70,7 +72,8 @@ void expose() {
 3. 对该节点的 `Path Parent` 执行 `Expose` 操作，将其原有的路径断开；
 4. 将该节点连接到其 `Path Parent` 的右孩子上，并将 `Path Parent` 置为空。
 
-```c++
+<!-- c++ -->
+```
 bool splice() {
 	splay();
 	if (!pathParent) return false;
@@ -88,7 +91,8 @@ bool splice() {
 #### `Access` 操作
 有了 `Expose` 和 `Splice`，`Access` 就简单多了，`Expose` 后执行 `Splice` 直到失败即可。
 
-```c++
+<!-- c++ -->
+```
 void access() {
 	expose();
 	while (splice());
@@ -98,7 +102,8 @@ void access() {
 ### `Evert` 操作
 首先执行 `Access`，将该节点与根节点之间用一条完整的路径连接，然后翻转这条路径即可。
 
-```c++
+<!-- c++ -->
+```
 void evert() {
 	access();
 	splay();
@@ -109,7 +114,8 @@ void evert() {
 ### `Link` 操作
 将节点 `v` 置为其所在树的根，然后将其 `Path Parent` 置为节点 `u` 即可。
 
-```c++
+<!-- c++ -->
+```
 void link(int u, int v) {
 	nodes[v - 1]->evert();
 	nodes[v - 1]->pathParent = nodes[u - 1];
@@ -124,7 +130,8 @@ void link(int u, int v) {
 3. 对 `v` 执行 `Splay` 操作，将 `v` 置于**其所在 Splay 的根节点**；
 4. 将 `v` 与其左子树分离，即将路径断开。
 
-```c++
+<!-- c++ -->
+```
 void cut(int u, int v) {
 	nodes[u - 1]->evert();
 	nodes[v - 1]->access();
@@ -143,7 +150,8 @@ void cut(int u, int v) {
 
 如果要查询任意两点间的点权最大值，只需要先对其中一个节点执行 `Evert` 操作，将其置为树根，就可以转化为上述情况进行处理。
 
-```c++
+<!-- c++ -->
+```
 const T &Node::queryMax() {
 	access();
 	splay();
@@ -158,7 +166,8 @@ const T &queryMax(int u, int v) {
 
 要修改某个点的点权值，只需要对该节点执行 `Splay` 操作，将其置为其所在 Splay 的根节点，然后直接修改即可，这样可以避免修改时标记的向上传递。
 
-```c++
+<!-- c++ -->
+```
 void update(int u, const T &value) {
 	nodes[u - 1]->splay();
 	nodes[u - 1]->value = value;
@@ -169,7 +178,8 @@ void update(int u, const T &value) {
 ### `MakeTree` 操作
 直接新建节点就可以。
 
-```c++
+<!-- c++ -->
+```
 void makeTree(int u, const T &value) {
 	nodes[u - 1] = new Node(value);
 }
@@ -179,7 +189,8 @@ void makeTree(int u, const T &value) {
 1. 进行 `Splay` 和 `Rotate` 时，要注意标记的传递；
 2. `Rotate` 时，需要将自己的 `Path Parent` 与父节点的 `Path Parent` 互换，以保证 `Path Parent` 成员的有效值总在一棵 Splay 的根节点上。
 
-```c++
+<!-- c++ -->
+```
 void pushDown() {
 	if (reversed) {
 		std::swap(child[L], child[R]);
@@ -232,7 +243,8 @@ void splay() {
 ```
 
 ### 完整代码（树的统计）
-```c++
+<!-- c++ -->
+```
 #include <cstdio>
 #include <climits>
 #include <algorithm>

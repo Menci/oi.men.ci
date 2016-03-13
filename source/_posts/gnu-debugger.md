@@ -118,7 +118,8 @@ Breakpoint 1 at 0x4004fa: file test.cpp, line 9.
 Breakpoint 1 at 0x4004fa: file test.cpp, line 9.
 ```
 `break` 命令也可以在断点位置后跟一个条件，仅当该条件为真时程序中断。
-```c++
+<!-- c++ -->
+```
 #include <cstdio>
 
 int main() {
@@ -141,7 +142,8 @@ Pascal 在设置条件断点时会有所不同，如这里的 `==` 需要改为 
 注意，这里“中断的程序”指的是**通过断点中断**的程序，而不是**运行时错误**而中断的，如果我们强制让一个运行时错误的程序继续运行 …… 你猜它会怎样 ……
 
 使用 `step`（简写为 `s`）命令使中断的程序执行一行，如果该行有函数调用，程序将跟踪进入函数，在函数体的第一行中断。
-```c++
+<!-- c++ -->
+```
 int foo() {
 	return 2333;
 }
@@ -218,7 +220,8 @@ Breakpoint 1, main () at test.pas:7
 使用 `print`（简写为 `p`）命令输出一个表达式的值，这里的表达式可以只是一个变量，也可以是包含了多个函数调用的复杂表达式。
 
 来看这个经典的 A + B 问题：
-```c++
+<!-- c++ -->
+```
 #include <cstdio>
 
 int main() {
@@ -243,7 +246,8 @@ $1 = 233
 $2 = 2333
 ```
 使用 `display`（简写为 `disp`）命令持续监视某个表达式的值。
-```c++
+<!-- c++ -->
+```
 #include <cstdio>
 
 int doSomething(int x) {
@@ -295,7 +299,8 @@ i = 2
 在函数调用时，系统栈会储存函数的调用信息，使用 `backtrace`（简写为 `bt`）命令查看调用栈。
 
 为了方便演示，我们写一个使系统栈溢出的函数来演示。
-```c++
+<!-- c++ -->
+```
 int fac(int x) {
 	if (x == 0) return 1;
 	else return x * fac(x - 1);
@@ -326,7 +331,8 @@ Program received signal SIGSEGV, Segmentation fault.
 `bt` 命令可以看到函数的调用信息，同时调用参数、调用位置（行号）也会被显示。
 
 使用 `frame` 命令切换正在调试的函数上下文。
-```c++
+<!-- c++ -->
+```
 int a(int x) {
 	return x - 4;
 }

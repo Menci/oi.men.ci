@@ -25,21 +25,24 @@ STL 的所有内容都包含在 `std` 命名空间内。为什么命名空间不
 
 如果我们要调用 STL 中的 `sort` 函数（下文会有提到），要这样写：
 
-```c++
+<!-- c++ -->
+```
 std::sort(a, a + n);
 ```
 
 我们也可以将 `std::sort` 这个函数“导入”到全局中，就可以直接 `sort(a, a + n)` 这样调用了。  
 使用 `using` 关键字来“导入”命名空间中的函数或类。
 
-```c++
+<!-- c++ -->
+```
 using std::sort;
 ```
 
 也可以将整个命名空间导入全局，这样就可以直接访问命名空间中的所有内容，但更容易产生名称冲突（比如你可能会声明一个叫做 `max` 的变量，但它会覆盖 STL 中的 `max` 函数）。  
 使用 `using namespace` 来“导入”整个命名空间。
 
-```c++
+<!-- c++ -->
+```
 using namespace std;
 ```
 
@@ -59,7 +62,8 @@ STL 中提供一系列与排序有关的函数，其中最常用到的是 `sort`
 
 `sort` 函数默认是升序排序，如果需要降序，可以通过自定义“比较函数”来实现。
 
-```c++
+<!-- c++ -->
+```
 bool compare(int a, int b) {
     return a > b;
 }
@@ -69,7 +73,8 @@ std::sort(a, a + n, &compare);
 
 下面的代码演示了读入 n（n <= 100000）个数，并**降序**排序后输出。
 
-```c++
+<!-- c++ -->
+```
 #include <cstdio>
 #include <algorithm>
 
@@ -103,7 +108,8 @@ int main() {
 
 也可以通过**重载运算符**或者定义**比较函数**的方法对结构体进行排序：
 
-```c++
+<!-- c++ -->
+```
 struct student_t {
     unsigned int id;
     long double score;
@@ -129,20 +135,23 @@ std::sort(students, students + n, &compare);
 
 使用 `unique` 函数来去除数组中的重复元素，其调用格式与 `sort` 类似，注意调用 `unique` 前必须保证数组是有序的（升序降序都可以）。
 
-```c++
+<!-- c++ -->
+```
 std::sort(a, a + n);
 std::unique(a, a + n);
 ```
 
 `unique` 函数返回去重后的数组的最后一个元素之后，一般通过用返回值减去首地址的方法获得不重复的元素数量：
 
-```c++
+<!-- c++ -->
+```
 int count = std::unique(a, a + n) - a;
 ```
 
 下面的代码演示了读入 n（n <= 100000）个数，并升序排序并去重后输出。
 
-```c++
+<!-- c++ -->
+```
 #include <cstdio>
 #include <algorithm>
  
@@ -173,7 +182,8 @@ int main() {
 
 使用 `max` 和 `min` 来取得两个数中较大或较小的。
 
-```c++
+<!-- c++ -->
+```
 int a = -1, b = 890;
 x = std::max(a, b); // 结果为 890
 y = std::min(a, b); // 结果为 -1
@@ -191,7 +201,8 @@ STL 中常用的用于查找的函数有三个：`lower_bound`、`upper_bound`�
 
 三个函数的时间复杂度均为$O({\log}n)$。
 
-```c++
+<!-- c++ -->
+```
 int a[8] = { -9, 5, -1, 2, 7, 1, -2, 2 }, n = 8;
 
 std::sort(a, a + n);
@@ -217,7 +228,8 @@ bool flag = std::binary_search(a, a + n, 3);
 ##### 交换
 使用 `swap` 函数交换两个变量的值。
 
-```c++
+<!-- c++ -->
+```
 int a = -1, b = 1;
 std::swap(a, b);
 
@@ -227,7 +239,8 @@ std::swap(a, b);
 ### 迭代器
 迭代器是用于访问 STL 容器中元素的一种数据类型，一般迭代器的声明如下：
 
-```c++
+<!-- c++ -->
+```
 std::CONTAINER<T>::iterator p;
 ```
 
@@ -237,7 +250,8 @@ std::CONTAINER<T>::iterator p;
 
 在使用 STL 提供的算法时，可以用迭代器表示一个区间，如：
 
-```c++
+<!-- c++ -->
+```
 std::sort(v.begin(), v.end());
 ```
 
@@ -249,7 +263,8 @@ std::sort(v.begin(), v.end());
 
 一般的，使用迭代器遍历容器类似于下述代码：
 
-```c++
+<!-- c++ -->
+```
 for (std::CONTAINER<T>::iterator p = C.begin(); p != C.end(); p++) {
     std::cout << *p << std::endl;
 }
@@ -262,13 +277,15 @@ STL 在头文件 `<vector>` 提供了一个**可变长**的数组 `vector`，它
 
 以下代码声明了一个 `vector`，它的每个元素类型为 `int`，初始元素数量为 0。
 
-```c++
+<!-- c++ -->
+```
 std::vector<int> v;
 ```
 
 以下代码声明了一个 `vector`，它的每个元素类型为 `int`，初始元素数量为 n。
 
-```c++
+<!-- c++ -->
+```
 std::vector<int> v(n);
 ```
 
@@ -276,7 +293,8 @@ std::vector<int> v(n);
 
 以下代码对 v 中的所有元素以升序排序：
 
-```c++
+<!-- c++ -->
+```
 std::sort(v.begin(), v.end());
 ```
 
@@ -288,7 +306,8 @@ std::sort(v.begin(), v.end());
 
 使用 `erase()` 删除某个位置的元素，时间复杂度为$O(n)$。
 
-```c++
+<!-- c++ -->
+```
 std::vector<int> v;
 // v.size() = 0
 
@@ -320,7 +339,8 @@ STL 在头文件 `<set>` 中提供了一个**有序集合** `set`，其中的元
 
 以下代码声明了一个 `int` 类型的集合。
 
-```c++
+<!-- c++ -->
+```
 std::set<int> s;
 ```
 
@@ -332,7 +352,8 @@ std::set<int> s;
 
 遍历 `set` 只能使用**迭代器**。`set` 的迭代器为 `set<T>::iterator`，其中 `T` 为元素类型。
 
-```c++
+<!-- c++ -->
+```
 std::set<int> s;
 
 s.insert(23333);
@@ -371,7 +392,8 @@ STL 在头文件 `<string>` 中将一些与字符串有关的操作封装在了 
 
 使用 `c_str()` 获得 `string` 对应的 `const char *` 类型数据，可用于向 C 库函数传递。
 
-```c++
+<!-- c++ -->
+```
 std::string s = "Menci";
 
 int pos = s.find("23333");
@@ -399,7 +421,8 @@ STL 在头文件 `<queue>` 中提供了先入先出（FIFO）队列 `queue`。
 
 使用 `empty()` 判断队列是否为空。
 
-```c++
+<!-- c++ -->
+```
 std::queue<int> q;
 
 bool flag = q.empty();
@@ -426,7 +449,8 @@ STL 在头文件 `<stack>` 提供了后入先出（LIFO）栈 `stack`。
 
 使用 `empty()` 判断栈是否为空。
 
-```c++
+<!-- c++ -->
+```
 std::stack<int> s;
 
 bool flag = s.empty();
@@ -453,7 +477,8 @@ STL 在头文件 `<queue>` 中提供优先队列 `priority_queue`，在任意时
 
 使用 `empty()` 判断优先队列是否为空。
 
-```c++
+<!-- c++ -->
+```
 std::priority_queue<int> q;
 
 bool flag = q.empty();
@@ -472,7 +497,8 @@ while (!q.empty()) {
 
 `priority_queue` 默认提供队列中的**最大值**，也可以以以下声明方式让 `priority_queue` 提供**最小值**。
 
-```c++
+<!-- c++ -->
+```
 std::priority_queue<T, std::vector<T>, std::greater<T> > q;
 ```
 

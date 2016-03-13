@@ -21,7 +21,8 @@ date: 2015-12-23 05:44:41
 
 这里，我们使用 Splay 实现数列的区间反转，反转一段区间，就对应了二叉树中的反转其**中序遍历**，我们可以使用递归交换左右子树的方法来实现，类比线段树的区间操作，在这里也可以应用线段树中的 `lazy-tag` 思想，给区间打标记。
 
-```c++
+<!-- c++ -->
+```
 struct node_t {
 	node_t *lchild, *rchild, *parent, **root;
 	T value;
@@ -36,7 +37,8 @@ struct node_t {
 ### 数列de构建
 我们通常使用一个数列（数组）来初始化 Splay，这里使用递归构造每个区间的方式实现。具体我们编写两个 `build()`，分别针对**整棵树**和**一个区间**。
 
-```c++
+<!-- c++ -->
+```
 void build(const T *a, uint n) {
 	root = build(a, 1, n, NULL);
 
@@ -83,7 +85,8 @@ node_t *build(const T *a, uint l, uint r, node_t *parent) {
 ### 标记de下放
 我们对区间操作的维护采用了类似线段树中 `lazy-tag` 的思想。同样，在 Splay 中，我们也需要在必要时对标记进行下放。
 
-```c++
+<!-- c++ -->
+```
 node_t *pushdown() {
 	if (reversed) {
 		std::swap(lchild, rchild);
@@ -107,7 +110,8 @@ node_t *pushdown() {
 ### 单点de选择
 当我们需要查询数列中某个点的信息时，我们需要对单点进行 `select()` 操作，这恰好对应了原 Splay 中选择第 `k` 大的操作。
 
-```c++
+<!-- c++ -->
+```
 node_t *select(uint k) {
 	k++;
 	node_t *node = root;
@@ -137,7 +141,8 @@ node_t *select(uint k) {
 
 代码实现要注意**闭区间**到**开区间**的转化，同时，这里也体现出了两个虚拟节点带来的便利。
 
-```c++
+<!-- c++ -->
+```
 node_t *select(uint l, uint r) {
 	node_t *lbound = select(l - 1);
 	node_t *rbound = select(r + 1);
@@ -154,7 +159,8 @@ node_t *select(uint l, uint r) {
 
 以区间反转为例：
 
-```c++
+<!-- c++ -->
+```
 void reverse(uint l, uint r) {
 	node_t *range = select(l, r);
 	range->reversed ^= 1;
@@ -249,7 +255,8 @@ node_t *splay(node_t **target = NULL) {
 
 ### 完整代码（Tyvj / BZOJ 文艺平衡树）
 
-```c++
+<!-- c++ -->
+```
 #include <cstdio>
 #include <algorithm>
 

@@ -31,7 +31,8 @@ date: 2016-02-05 21:06:41
 于是就完成了喜闻乐见的建模，求出 `s'` 到 `t` （想一想为什么不是 `s` 到 `t'`？）的最大流就是答案啦！
 
 ###AC代码
-```c++
+<!-- c++ -->
+```
 #include <cstdio>
 #include <climits>
 #include <algorithm>

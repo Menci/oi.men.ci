@@ -58,7 +58,8 @@ $$ {\rm low}(v) = {\rm dfn}(v) $$
 
 因为图不一定是弱连通图，所以要以每个点为起点进行一次上述算法。
 
-```c++
+<!-- c++ -->
+```
 struct Node {
 	Edge *firstEdge, *currentEdge, *inEdge;
 	Connected *connected;

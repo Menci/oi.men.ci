@@ -1,5 +1,5 @@
 title: Friends
-permalink: friends
+permalink: friends/
 date: 2016-01-18 21:08:05
 ---
 
@@ -40,6 +40,8 @@ date: 2016-01-18 21:08:05
 [zean](http://blog.zean.xyz/)
 
 [Erii](http://erii.moe)
+
+[Rapiz](http://www.cnblogs.com/rapiz/)
 
 # 其它
 

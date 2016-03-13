@@ -31,7 +31,8 @@ $$ f[i]=\max\{f[j],r(j)< l(i)\}+length(i) $$
 注意最终答案是 $ max\{f[i],i{\in}[1,n]\} $，而不一定是 $f[n]$，因为不选最后一条线段可能比选最后一条线段更优。
 
 ### AC代码
-```c++
+<!-- c++ -->
+```
 #include <cstdio>
 #include <algorithm>
 

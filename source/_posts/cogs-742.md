@@ -26,7 +26,8 @@ date: 2016-02-23 21:44:06
 计算坐标是个大坑。
 
 ### AC代码
-```c++
+<!-- c++ -->
+```
 #include <cstdio>
 #include <climits>
 #include <cassert>

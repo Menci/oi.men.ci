@@ -25,7 +25,8 @@ date: 2016-01-19 21:20:19
 扩展欧几里得裸题，注意求最小正整数解，求出来 `x` 要模一次 `b`，然后加上 `b` 再模一次。
 
 ### AC代码
-```c++
+<!-- c++ -->
+```
 #include <cstdio>
 
 void exgcd(int a, int b, int g, int &x, int &y) {

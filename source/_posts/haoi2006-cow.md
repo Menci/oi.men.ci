@@ -21,7 +21,8 @@ date: 2016-03-04 21:28:17
 求出强联通分量，缩点，然后判断是不是只有一个出度为零的点，如果是输出它的大小。
 
 ### AC代码
-```c++
+<!-- c++ -->
+```
 #include <cstdio>
 #include <algorithm>
 #include <stack>

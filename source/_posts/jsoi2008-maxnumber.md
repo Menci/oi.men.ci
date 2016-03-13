@@ -38,7 +38,8 @@ Splay 裸题不用说了吧 ……
 敲个 Splay 练练代码能力，结果折腾了俩小时，这段时间代码能力急剧下降啊！qwq
 
 ### AC代码
-```c++
+<!-- c++ -->
+```
 #include <cstdio>
 #include <algorithm>
 

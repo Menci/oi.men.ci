@@ -30,7 +30,8 @@ date: 2016-03-06 19:49:35
 一点小技巧，插入的时候可以照着选择区间的方法选出一段空白区间，然后 `build` 出一棵子树给接上去，可以少一个 $ \log $。
 
 ### AC代码
-```c++
+<!-- c++ -->
+```
 #include <cstdio>
 #include <vector>
 #include <algorithm>

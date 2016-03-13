@@ -124,7 +124,8 @@ next  | 0 | 0 | 0 | 0 | 1 | 2 | 0 | 1
 ### 完整代码（CodeVS 1204）
 因为 C++ 中数组从 `0` 开始，所以有些地方与上文中的表示不同。
 
-```c++
+<!-- c++ -->
+```
 #include <climits>
 #include <cstring>
 #include <iostream>
