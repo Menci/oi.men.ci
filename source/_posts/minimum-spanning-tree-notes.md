@@ -32,8 +32,7 @@ date: 2016-01-02 06:08:50
 
 据说适用于稀疏图。
 
-<!-- c++ -->
-```
+```c++
 struct UndirectedEdge {
 	int u, v, w;
 

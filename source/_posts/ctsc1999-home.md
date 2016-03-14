@@ -33,8 +33,7 @@ date: 2016-02-24 21:41:36
 数据范围有坑！数据范围有坑！数据范围有坑！`n` 和 `m` 的最大值颠倒了！
 
 ### AC代码
-<!-- c++ -->
-```
+```c++
 #include <cstdio>
 #include <climits>
 #include <algorithm>

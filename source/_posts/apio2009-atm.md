@@ -27,8 +27,7 @@ date: 2016-03-10 19:57:45
 Tarjan 求强联通分量，一个强联通分量中的点肯定可以同时被抢走。缩点后图转化为 DAG，求出 DAG 上的最长路即为答案。
 
 ### AC代码
-<!-- c++ -->
-```
+```c++
 #include <cstdio>
 #include <algorithm>
 #include <stack>

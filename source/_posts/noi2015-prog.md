@@ -29,8 +29,7 @@ date: 2016-01-21 21:32:49
 
 ### AC代码
 #### 手写哈希表
-<!-- c++ -->
-```
+```c++
 #include <cstdio>
 #include <cstring>
 #include <new>
@@ -159,8 +158,7 @@ int main() {
 ```
 
 #### STL
-<!-- c++ -->
-```
+```c++
 #include <cstdio>
 #include <cstring>
 #include <tr1/unordered_map>

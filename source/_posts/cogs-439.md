@@ -25,15 +25,13 @@ date: 2016-02-15 10:13:28
 
 状态转移：每个补丁存储两个值 `effectAddition`、`effectSubtract`，前者表示应用该补丁后新增加的 BUG，后者表示减少的 BUG，则状态转移为：
 
-<!-- c++ -->
-```
+```c++
 newStatus = ~(~(status | effectAddition) | effectSubtract)
 ```
 
 一个难点在于怎样判断补丁的应用条件，「某些 BUG 存在或不存在都可以」是难以用位运算来体现的（或者说我不会），所以我们可以把这种情况转化为「某些 BUG 必须存在」，然后在判断条件时先将当前状态加上那些「可有可无」的 BUG，然后继续判断。
 
-<!-- c++ -->
-```
+```c++
   	((status | conditionAny) & conditionTrue)
 		== (conditionTrue | conditionAny)
 &&	(~status & conditionFalse)
@@ -43,8 +41,7 @@ newStatus = ~(~(status | effectAddition) | effectSubtract)
 话说其实这道题暴力表示状态，一位一位地判断、转移也可以过的，而且照样是 COGS 上提交记录第一 ……
 
 ### AC代码
-<!-- c++ -->
-```
+```c++
 #include <cstdio>
 #include <algorithm>
 #include <tr1/unordered_map>

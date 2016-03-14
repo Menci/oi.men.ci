@@ -32,8 +32,7 @@ date: 2016-02-06 22:52:12
 输出方案嘛，只要枚举起点然后沿着匹配边向下搜就好咯 ……
 
 ### AC代码
-<!-- c++ -->
-```
+```c++
 #include <cstdio>
 #include <climits>
 #include <algorithm>

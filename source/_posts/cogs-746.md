@@ -30,8 +30,7 @@ date: 2016-02-19 11:43:42
 > ——摘自《「COGS 734」方格取数 - 二分图最大独立集》
 
 ### AC代码
-<!-- c++ -->
-```
+```c++
 #include <cstdio>
 #include <climits>
 #include <algorithm>

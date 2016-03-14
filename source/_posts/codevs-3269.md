@@ -27,8 +27,7 @@ $$f[v] = max(f[v], f[v - Vi] + Wi)$$
 
 实现代码（`t[i].v` 和 `t[i].w` 分别代表 `Vi` 和 `Wi`）
 
-<!-- c++ -->
-```
+```c++
 for (unsigned int i = 0; i < n; i++) {
 	for (int v = V; v >= 0; v--) {
 		if (v >= t[i].v) {
@@ -43,8 +42,7 @@ for (unsigned int i = 0; i < n; i++) {
 考虑到完全背包与 01 背包的不同点，仅在于 01 背包每种物品**只能放置一次**，而完全背包可以放置**任意次**，将其体现在动态规划的状态转移上，即完全背包问题，需要保证在计算 `f[v]` 时，`f[v - Vi]` 一定是**已经尝试过**放置第 `i` 件物品时的状态。而只需将第二层循环 `v` 的遍历顺序改为从 `0` 到 `V` 即可。  
 实现代码为（`t[i].v` 和 `t[i].w` 分别代表 `Vi` 和 `Wi`）：
 
-<!-- c++ -->
-```
+```c++
 for (unsigned int i = 0; i < n; i++) {
 	for (unsigned int v = 0; v <= V; v++) {
 		if (v >= t[i].v) {
@@ -81,8 +79,7 @@ for (unsigned int i = 0; i < n; i++) {
 举个例子，当 `Mi = 17` 时，将其拆成 `5` 件物品，系数 `k` 分别为 `1`,`2`,`4`,`8`,`2`。  
 使用二进制思想优化过的算法，复杂度降为了$O(V * {\Sigma}{\log}Wi)$。  
 实现代码为（`t[i].v` 和 `t[i].w` 分别代表 `Vi` 和 `Wi`）：  
-<!-- c++ -->
-```
+```c++
 for (unsigned int i = 0; i < n; i++) {
 	unsigned int logx = log2(t[i].m), x = 0;
 	for (unsigned int j = 0; j <= logx; j++) {
@@ -105,8 +102,7 @@ for (unsigned int i = 0; i < n; i++) {
 ```
 三种背包问题的思路明确后，就可以考虑混合背包问题了，具体实现方法是对于每一种物品，判断物品类型，分别进行处理。  
 ### AC 代码
-<!-- c++ -->
-```
+```c++
 #include <cstdio>
 #include <algorithm>
 

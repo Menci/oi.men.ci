@@ -30,8 +30,7 @@ W 教授正在为国家航天中心计划一系列的太空飞行。可供选择
 得到不选择的正权点之后，用 `std::set_difference` 求出与所有正权点的差集就是选择的正权点。
 
 ### AC代码
-<!-- c++ -->
-```
+```c++
 #include <cstdio>
 #include <climits>
 #include <iostream>

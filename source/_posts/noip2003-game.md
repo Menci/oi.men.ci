@@ -36,8 +36,7 @@ $$ f[i][1] = ({\sum_{x=1}^i{a[x]}}) \ {\rm mod} \ 10 $$
 求和可以用前缀和来维护，但是注意**枚举每个断点都必须重新初始化前缀和**。
 
 ### AC代码
-<!-- c++ -->
-```
+```c++
 #include <cstdio>
 #include <climits>
 #include <cstring>

@@ -31,8 +31,7 @@ date: 2016-01-24 23:09:03
 第四次敲 Splay，在从临沂经西安到成都的飞机上用了一个小时。
 
 ### AC 代码
-<!-- c++ -->
-```
+```c++
 #include <cstdio>
 #include <climits>
 

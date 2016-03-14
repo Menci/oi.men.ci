@@ -39,8 +39,7 @@ $$f[i][j]=\cases{0 & i=j \\ a[i]*a[j]*a[j+1] & j=i+1}$$
 调试可费了大功夫，详见**注释掉的代码**。
 
 ### AC代码
-<!-- c++ -->
-```
+```c++
 #include <cstdio>
 #include <cstring>
 #include <algorithm>

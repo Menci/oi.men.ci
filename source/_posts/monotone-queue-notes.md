@@ -34,8 +34,7 @@ date: 2016-01-15 05:44:45
 
 ### 实现
 因为同时要从队列的两端添加、删除，所以要使用 `deque` 实现，而不是 `queue`。
-<!-- c++ -->
-```
+```c++
 template <typename T>
 struct MonotoneQueue {
 	std::deque<T> q, m;

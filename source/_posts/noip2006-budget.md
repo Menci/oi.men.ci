@@ -42,8 +42,7 @@ $$ f[v] = \max(f[v],f[v-c[i]]+w[i]) $$
 PS：有个“坑”就是题目中的背包容量太大太大了，是妥妥的要 TLE 的（只能过前五个），但是因为背包容量和每件物品的体积都是 `10` 的倍数，所以读入数据后直接除以 `10` 就好。
 
 ### AC代码
-<!-- c++ -->
-```
+```c++
 #include <cstdio>
 #include <cstring>
 #include <algorithm>

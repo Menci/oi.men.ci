@@ -29,8 +29,7 @@ date: 2016-03-04 21:32:23
 注意开 `long long`。
 
 ### AC代码
-<!-- c++ -->
-```
+```c++
 #include <cstdio>
 #include <algorithm>
 #include <stack>
