@@ -6,9 +6,8 @@ tags:
   - 费用流
   - Edmonds-Karp
   - 学习笔记
+  - 算法模板  
 permalink: edmonds-karp-notes
-id: 55
-updated: '2016-02-19 17:24:00'
 date: 2016-02-19 17:04:38
 ---
 
@@ -33,7 +32,7 @@ Edmonds-Karp 的反向边的费用是原边的费用相反数。
 Edmonds-Karp 基于一个事实：如果当前费用是在当前流量下的最小费用，那么以最小费用增广之后的费用也为增广后的流量下的最小费用。不断增广找到的就是最小费用最大流。
 
 ### 代码实现
-```c++
+```cpp
 struct Node {
 	Edge *firstEdge, *inEdge;
 	int flow, dist;

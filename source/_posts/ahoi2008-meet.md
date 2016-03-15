@@ -23,7 +23,7 @@ date: 2016-03-07 20:36:46
 进一步得到规律，要找的点就是除了相等的一对 LCA 以外的另一个 LCA …… 别问我怎么证明，我不会 qwq
 
 ### AC代码
-```c++
+```cpp
 #include <cstdio>
 #include <climits>
 #include <cassert>
@@ -182,7 +182,7 @@ int main() {
 ```
 
 ### 数据生成器
-```c++
+```cpp
 #include <cstdio>
 #include <cstdlib>
 #include <ctime>

@@ -22,7 +22,7 @@ Splay Tree（伸展树）是一种自平衡二叉排序树，可以在均摊$O({
 ### 基本结构
 根据定义，Splay 是一棵二叉树，它的左子树和右子树分别是一棵 Splay，并且存储的值满足左子树 < 根 < 右子树，以下为每个 Splay 节点的定义。
 
-```c++
+```cpp
 struct node_t {
 	T value;
 	node_t *lchild, *rchild, *parent, **root;
@@ -33,7 +33,7 @@ struct node_t {
 
 ### 准备
 为了方便各种复杂的操作，我们先为节点类 `node_t` 编写几个短小的方法，代码如下：
-```c++
+```cpp
 node_t(const T &value, node_t *parent, node_t **root) : value(value), parent(parent), lchild(NULL), rchild(NULL), size(1), root(root) {}
 
 ~node_t() {
@@ -94,7 +94,7 @@ uint rsize() {
 ![splay](splay-notes-1/splay.png)
 
 代码：
-```c++
+```cpp
 void rotate() {
 	node_t *old = parent;
 	uint x = relation();
@@ -131,7 +131,7 @@ Splay 规定，每访问一个节点后，都要强制将该节点旋转到根�
 3. 如果不满足以上条件，则将自身连续旋转两次。
 
 代码（省略旋转目标的旋转到根）：
-```c++
+```cpp
 node_t *splay(node_t **target = NULL) {
 	if (!target) {
 		target = root;
@@ -159,7 +159,7 @@ node_t *splay(node_t **target = NULL) {
 插入完成后，需要将新节点 `Splay` 到根的位置。
 
 代码：
-```c++
+```cpp
 node_t *insert(const T &value) {
 	node_t **target = &root, *parent = NULL;
 
@@ -180,7 +180,7 @@ node_t *insert(const T &value) {
 ```
 
 为了下文**删除**操作的方便，我们在每棵 Splay 构造时为其插入两个节点，分别表示无穷大和无穷小，树中其他节点的值都应该在这两个节点的值构成的**开区间**内。
-```c++
+```cpp
 splay_t() : root(NULL) {
 	insert(MIN);
 	insert(MAX);
@@ -194,7 +194,7 @@ splay_t() : root(NULL) {
 查找过程结束后，需要将找到的节点 `Splay` 到根。
 
 代码：
-```c++
+```cpp
 node_t *find(const T &value) {
 	node_t *node = root;
 	while (node && value != node->value) {
@@ -221,7 +221,7 @@ node_t *find(const T &value) {
 一个有效数值的排名从 `1` 开始，因为表示“无穷小”的节点的排名为 `0`。
 
 代码：
-```c++
+```cpp
 uint rank(const T &value) {
 	return find(value)->lsize();
 }
@@ -239,7 +239,7 @@ uint rank(const T &value) {
 选择过程结束后，将得到的节点 `Splay` 到根。
 
 代码：
-```c++
+```cpp
 const T &select(uint k) {
 	k++;
 	node_t *node = root;
@@ -268,7 +268,7 @@ const T &select(uint k) {
 求出节点的前趋或后继后，将得到的节点 `Splay` 到根。
 
 代码：
-```c++
+```cpp
 node_t *pred() {
 	node_t *pred = this;
 
@@ -309,7 +309,7 @@ node_t *succ() {
 2. 欲求前趋的值不在此二叉排序树中，我们将该值作为一个新节点插入此二叉排序树，用情况 1 的方法求得其前趋，然后将插入的节点删除即可（删除的方法见下文）。
 
 代码：
-```c++
+```cpp
 const T &pred(const T &value) {
 	node_t *node = find(value);
 
@@ -348,7 +348,7 @@ Splay 的区间删除实现并不难，但方法非常的巧妙（下文中提�
 4. 分别重新计算右端点的后继、左端点的前趋的 `size`。
 
 代码：
-```c++
+```cpp
 void erase(const T &value) {
 	node_t *node = find(value);
 	erase(node);
@@ -378,7 +378,7 @@ void erase(node_t *l, node_t *r = NULL) {
 ```
 
 ### 完整代码（Tyvj / BZOJ / CodeVS 普通平衡树）
-```c++
+```cpp
 #include <cstdio>
 #include <climits>
 

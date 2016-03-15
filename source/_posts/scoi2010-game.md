@@ -30,7 +30,7 @@ date: 2016-03-07 09:43:18
 算法思想与『二分图匹配』中的匈牙利算法比较相似。
 
 ### AC代码
-```c++
+```cpp
 #include <cstdio>
 #include <vector>
 

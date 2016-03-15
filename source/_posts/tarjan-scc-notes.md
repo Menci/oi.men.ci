@@ -5,6 +5,7 @@ tags:
   - 图论
   - 强联通分量
   - Tarjan
+  - 算法模板
 permalink: tarjan-scc-notes
 date: 2016-03-03 21:12:23
 ---
@@ -58,7 +59,7 @@ $$ {\rm low}(v) = {\rm dfn}(v) $$
 
 因为图不一定是弱连通图，所以要以每个点为起点进行一次上述算法。
 
-```c++
+```cpp
 struct Node {
 	Edge *firstEdge, *currentEdge, *inEdge;
 	Connected *connected;

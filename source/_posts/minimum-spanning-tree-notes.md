@@ -9,9 +9,8 @@ tags:
   - 学习笔记
   - 并查集
   - 最小生成树
+  - 算法模板  
 permalink: minimum-spanning-tree-notes
-id: 13
-updated: '2016-02-22 00:55:03'
 date: 2016-01-02 06:08:50
 ---
 
@@ -32,7 +31,7 @@ date: 2016-01-02 06:08:50
 
 据说适用于稀疏图。
 
-```c++
+```cpp
 struct UndirectedEdge {
 	int u, v, w;
 

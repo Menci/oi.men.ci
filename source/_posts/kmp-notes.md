@@ -5,9 +5,8 @@ tags:
   - KMP
   - 字符串
   - 学习笔记
+  - 算法模板  
 permalink: kmp-notes
-id: 10
-updated: '2016-01-19 21:06:52'
 date: 2015-12-30 04:19:36
 ---
 
@@ -124,7 +123,7 @@ next  | 0 | 0 | 0 | 0 | 1 | 2 | 0 | 1
 ### 完整代码（CodeVS 1204）
 因为 C++ 中数组从 `0` 开始，所以有些地方与上文中的表示不同。
 
-```c++
+```cpp
 #include <climits>
 #include <cstring>
 #include <iostream>

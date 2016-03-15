@@ -5,9 +5,8 @@ tags:
   - 高级数据结构
   - 学习笔记
   - 数据结构
+  - 算法模板
 permalink: splay-notes-3
-id: 28
-updated: '2016-01-19 21:02:27'
 date: 2016-01-19 20:02:00
 ---
 
@@ -19,7 +18,7 @@ date: 2016-01-19 20:02:00
 两个孩子用一个数组来存，0 表示左孩子，1 表示右孩子，不需要再编写函数来获得某个孩子的引用了。
 
 引入 `count` 成员，表示这个值共出现了几次，不再重复插入相同的值，效率可以得到提高，特别是求前趋后继，实现起来也会变得更加简单。
-```c++
+```cpp
 enum Relation {
 	L = 0, R = 1
 };
@@ -34,7 +33,7 @@ struct Node {
 ### Splay 操作
 把之前的“旋转到某位置”改为“旋转直到某节点成为自己的父节点”，不需要二级指针了，也不需要判断如果参数为 `NULL` 那么转到根了。
 
-```c++
+```cpp
 void splay(Node *targetParent = NULL) {
 	while (parent != targetParent) {
 		if (parent->parent == targetParent) rotate();
@@ -47,7 +46,7 @@ void splay(Node *targetParent = NULL) {
 ### 节点的前趋 / 后继
 直接 `Splay` 后求即可，不需要多次迭代了。
 
-```c++
+```cpp
 Node *pred() {
 	splay();
 	Node *v = child[L];
@@ -66,7 +65,7 @@ Node *succ() {
 ### 选择
 选择第 `k` 小的元素时，需要把循环的条件改为**`k` 是否在 `[rank + 1, rank + count]`**的范围内，迭代到右子树时也要做相应的改动。
 
-```c++
+```cpp
 Node *select(int k) {
 	k++;
 	Node *v = root;
@@ -84,7 +83,7 @@ Node *select(int k) {
 ```
 
 ### 完整代码（普通平衡树）
-```c++
+```cpp
 #include <cstdio>
 #include <climits>
 

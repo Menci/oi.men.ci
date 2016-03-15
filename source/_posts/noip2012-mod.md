@@ -5,11 +5,9 @@ tags:
   - CodeVS
   - Tyvj
   - 数论
-  - exgcd
-  - 逆元
+  - EXGCD
+  - 乘法逆元
 permalink: noip2012-mod
-id: 31
-updated: '2016-01-19 21:22:41'
 date: 2016-01-19 21:20:19
 ---
 
@@ -25,7 +23,7 @@ date: 2016-01-19 21:20:19
 扩展欧几里得裸题，注意求最小正整数解，求出来 `x` 要模一次 `b`，然后加上 `b` 再模一次。
 
 ### AC代码
-```c++
+```cpp
 #include <cstdio>
 
 void exgcd(int a, int b, int g, int &x, int &y) {

@@ -6,9 +6,8 @@ tags:
   - 数据结构
   - 树链剖分
   - 高级数据结构
+  - 算法模板  
 permalink: cut-tree-notes
-id: 9
-updated: '2016-01-19 21:07:07'
 date: 2015-12-27 22:48:11
 ---
 
@@ -30,7 +29,7 @@ date: 2015-12-27 22:48:11
 具体剖的话，这里采用**轻重边路径剖分**的方式，剖最大子树，这样可以保证整棵树上的轻边和链的数量都不超过 $O({\log}n)$。
 
 ### 定义
-```c++
+```cpp
 struct Tree {
 	struct Path *path;
 	Tree *parent, *children, *maxSizeChild, *next;
@@ -58,7 +57,7 @@ struct Path {
 ### 剖分
 剖分的过程主要由两次搜索组成，首先，我们来一遍 `DFS`，求出每个节点的 `maxSizeChild` 和 `maxDepth`。
 
-```c++
+```cpp
 stack<Tree *> s;
 
 s.push(root);
@@ -90,7 +89,7 @@ while (!s.empty()) {
 
 对于每个节点，如果它是根或它不是父节点的 `maxDepthChild`，则我们创建一条从该节点开始的链，否则该节点所在链即为父节点所在链。
 
-```c++
+```cpp
 queue<Tree *> q;
 
 q.push(root);
@@ -114,7 +113,7 @@ while (!q.empty()) {
 
 最后，在线段树上更新每个点的权值：
 
-```c++
+```cpp
 for (uint i = 0; i < n; i++) {
 	treeNodes[i].path->segmentTree->update(treeNodes[i].pos, treeNodes[i].w);
 }
@@ -123,7 +122,7 @@ for (uint i = 0; i < n; i++) {
 ### 修改
 修改某个点的权值，只需要在该节点所在链上的线段树中更新即可。
 
-```c++
+```cpp
 inline void update(uint x, uint w) {
 	treeNodes[x].path->segmentTree->update(treeNodes[x].pos, w);
 }
@@ -135,7 +134,7 @@ inline void update(uint x, uint w) {
 1. 如果 `u` 与 `v` 不同一条链上，则使二者中**所在链链顶节点**深度最小的一个跳到**所在链链顶节点**的父节点位置，继续回到 1；
 2. 如果 `u` 与 `v` 在同一条链上，则直接从线段树中查询。
 
-```c++
+```cpp
 inline int querySum(uint u, uint v) {
 	int result = 0;
 	Tree *a = &treeNodes[u], *b = &treeNodes[v];
@@ -160,7 +159,7 @@ inline int querySum(uint u, uint v) {
 ### 附：无根树转有根树
 为了剖分时更容易一些，我们可以把读入的无根树转化成有根树，这样搜索的时候方便点，当然常数也会大一些 ……
 
-```c++
+```cpp
 inline void convert() {
 	queue<Node *> q;
 	root = &treeNodes[0];
@@ -186,7 +185,7 @@ inline void convert() {
 ### 附：线段树
 我们使用线段树来维护每一条链，这里只用到了单点修改，也可以换成树状数组或者 zkw 线段树。
 
-```c++
+```cpp
 struct SegmentTree {
 	struct Node {
 		struct Node *lchild, *rchild;
@@ -293,7 +292,7 @@ struct SegmentTree {
 };
 ```
 ### 完整代码
-```c++
+```cpp
 #include <cstdio>
 #include <climits>
 #include <queue>

@@ -5,9 +5,8 @@ tags:
   - 学习笔记
   - 数据结构
   - 高级数据结构
+  - 算法模板  
 permalink: monotone-queue-notes
-id: 22
-updated: '2016-01-19 21:03:47'
 date: 2016-01-15 05:44:45
 ---
 
@@ -34,7 +33,7 @@ date: 2016-01-15 05:44:45
 
 ### 实现
 因为同时要从队列的两端添加、删除，所以要使用 `deque` 实现，而不是 `queue`。
-```c++
+```cpp
 template <typename T>
 struct MonotoneQueue {
 	std::deque<T> q, m;

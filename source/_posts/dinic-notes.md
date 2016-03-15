@@ -5,9 +5,8 @@ tags:
   - 图论
   - 网络流
   - Dinic
+  - 算法模板  
 permalink: dinic-notes
-id: 40
-updated: '2016-02-19 17:22:35'
 date: 2016-02-03 18:57:59
 ---
 
@@ -48,7 +47,7 @@ Dinic 有一个常见的优化——当前弧优化。
 该优化基于一个显而易见的事实，每次建立层次图后，如果在某一次增广前，某个点有一条边增广过了，则这条边在当前的层次图中不会再用到了，即下一次 DFS 这个点的时候直接可以从这条边的下一条边开始。
 
 ### 代码实现
-```c++
+```cpp
 struct Node {
 	struct Edge *firstEdge, *currentEdge;
 	int level;

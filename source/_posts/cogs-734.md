@@ -32,7 +32,7 @@ date: 2016-02-15 17:02:01
 建立二分图模型的时候注意细节。
 
 ### AC代码
-```c++
+```cpp
 #include <cstdio>
 #include <climits>
 #include <algorithm>

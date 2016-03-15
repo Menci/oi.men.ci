@@ -26,7 +26,7 @@ date: 2015-11-23 01:14:53
 由「查询」操作，考虑到使用并查集。用并查集维护两个元素是否在同一队列中，可以对查询是否在同一队列中作出回答。  
 考虑将并查集扩展，维护每一个元素**所在队列**的队首和队尾。
 
-```c++
+```cpp
 unsigned int find_head(unsigned int x) {
 	return head[x] == x ? x : find_head(head[x]);
 }
@@ -43,13 +43,13 @@ void merge(unsigned int x, unsigned int y) {
 }
 ```
 然后就是查询间隔数量，这里采用前缀和的方式。
-```c++
+```cpp
 unsigned int sum(unsigned int x, unsigned int y) {
 	return std::max(pre(x), pre(y)) - std::min(pre(x), pre(y)) - 1;
 }
 ```
 `pre(x)` 的计算方法，根据合并时对 `head` 数组进行的修改，可得 `find_head(x)` 的迭代次数即为 `x` 到 `x` 所在队队首的元素数量。
-```c++
+```cpp
 unsigned int pre(unsigned int x) {
 	register unsigned int result = 0;
 	
@@ -70,7 +70,7 @@ unsigned int pre(unsigned int x) {
  1.**当迭代到根节点下时，不能对 `prefix[x]` 做修改。**  
  2.队首元素，即**满足 `head[x] == x` 的元素**的前缀和应总是0。  
 
-```c++
+```cpp
 unsigned int find_head(unsigned int x) {
 	if (head[x] == x) {
 		return x;
@@ -99,7 +99,7 @@ unsigned int pre(unsigned int x) {
 }
 ```
 ### AC 代码
-```c++
+```cpp
 #include <cstdio>
 #include <algorithm>
 

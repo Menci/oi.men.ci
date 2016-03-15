@@ -33,7 +33,7 @@ S 城现有两座监狱，一共关押着 `N` 名罪犯，编号分别为 `1 ~ N
 有神犇说可以用并查集，然而我太弱不会 …… qwq
 
 ### AC代码
-```c++
+```cpp
 #include <cstdio>
 #include <algorithm>
 #include <queue>
