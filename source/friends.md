@@ -3,47 +3,171 @@ permalink: friends/
 date: 2016-01-18 21:08:05
 ---
 
-# 本校 OIer
+<style>
+#oier {
+	line-height: 1em;
+}
 
-[Angelic47](http://www.angelic47.com/)
+#oier tr:nth-child(2n) {
+	background: none !important;
+}
 
-[ZMOIYNLP](http://blog.csdn.net/zmoiynlp/)
+#oier tr:nth-child(2n) td:not([rowspan]) {
+	background: rgba(158,188,226,0.12);	
+}
 
-[Hellc](http://5261.github.io/)
+#oier td {
+	text-align: center;
+	vertical-align: middle;
+}
 
-[凌风仙鸡的 Blog&Diary](http://chickger.pw/)
+#oier a, #oier span {
+	display: block;
+}
 
-# 外校 OIer
+#oier tr:hover {
+	background: inherit;
+}
 
-[Ofsxb](http://www.cnblogs.com/ofsxb/)
+#oier tbody tr:not(:nth-child(2n)):hover td:not([rowspan]) {
+	background: #efefef;
+}
+</style>
 
-[Creation <span style="color: #FFA200; "><b>Au</b></span>gust](http://blog.csdn.net/creationaugust)
+<table width="100%" id="oier">
+<thead>
+<tr class="header">
+<th><span>From</span></th>
+<th><span>Link</span></th>
+<th><span>School</span></th>
+</tr>
+</thead>
 
-[FireStorm](http://blog.csdn.net/farestorm)
+<tbody>
+<tr>
+<td rowspan="7"><span>QQ群「SDOI 2016」</span></td>
+<td>[Ofsxb](http://www.cnblogs.com/ofsxb/)</td>
+<td><span>齐河一中</span></td>
+</tr>
 
-[Loi_DQS](http://blog.csdn.net/loi_dqs)
+<tr>
+<td>[Creation <span style="color: #FFA200; display: inline; "><b>Au</b></span>gust](http://blog.csdn.net/creationaugust)</td>
+<td><span>胜利十中</span></td>
+</tr>
 
-[danihao123](http://danihao123.is-programmer.com/)
+<tr>
+<td>[yts1999](http://yts1999.coding.io/)</td>
+<td><span>青岛二中</span></td>
+</tr>
 
-[ws_fqk](http://blog.csdn.net/phenix_2015)
+<tr>
+<td>[Travis](http://travisbraps.top/)</td>
+<td><span>烟台一中</span></td>
+</tr>
 
-[Travis](http://travisbraps.top/)
+<tr>
+<td>[Erii](http://erii.moe)</td>
+<td><span>烟台一中</span></td>
+</tr>
 
-[FeLJ](http://www.felj.top/)
+<tr>
+<td>[ws_fqk](http://blog.csdn.net/phenix_2015)</td>
+<td><span>昌邑一中</span></td>
+</tr>
 
-[Dashgua](http://dashgua.coding.io/)
+<tr>
+<td>[ws_yzy](http://blog.csdn.net/ws_yzy)</td>
+<td><span>昌邑一中</span></td>
+</tr>
 
-[MedalPluS](http://medalplus.com/)
+<tr>
+<td rowspan="2"><span>QQ群「CodeVS交流群」</span></td>
+<td>[Dashgua](http://dashgua.coding.io/)</td>
+<td><span>-</span></td>
+</tr>
 
-[yts1999](http://yts1999.coding.io/)
+<tr>
+<td>[MedalPluS](http://medalplus.com/)</td>
+<td><span>-</span></td>
+</tr>
 
-[zean](http://blog.zean.xyz/)
+<tr>
+<td rowspan="3"><span>QQ群「在路上，同梦行」</span></td>
+<td>[FireStorm](http://blog.csdn.net/farestorm)</td>
+<td><span>莱芜一中</span></td>
+</tr>
 
-[Erii](http://erii.moe)
+<tr>
+<td>[Loi_DQS](http://blog.csdn.net/loi_dqs)</td>
+<td><span>莱芜一中</span></td>
+</tr>
 
-[Rapiz](http://www.cnblogs.com/rapiz/)
+<tr>
+<td>[danihao123](http://danihao123.is-programmer.com/)</td>
+<td><span>烟台二中</span></td>
+</tr>
 
-[lkMiles](http://lkmiles.lofter.com/)
+<tr>
+<td rowspan="1"><span>QQ群「COGS交流群」</span></td>
+<td>[Rapiz](http://www.cnblogs.com/rapiz/)</td>
+<td><span>-</span></td>
+</tr>
+
+<tr>
+<td rowspan="3"><span>2016安徽师大附中集训</span></td>
+<td>[Fancy](http://fancypei.github.io/)</td>
+<td><span>郑州外国语学校</span></td>
+</tr>
+
+<tr>
+<td>[CXCXCXC](http://www.cnblogs.com/CXCXCXC)</td>
+<td><span>郑州外国语学校</span></td>
+</tr>
+
+<tr>
+<td>[sui](http://1115825064.github.io/)</td>
+<td><span>郑州外国语学校</span></td>
+</tr>
+
+<tr>
+<td rowspan="3"><span>其它</span></td>
+<td>[zean](http://blog.zean.xyz/)</td>
+<td><span>烟台二中</span></td>
+</tr>
+
+<tr>
+<td>[lkMiles](http://lkmiles.lofter.com/)</td>
+<td><span>成都七中</span></td>
+</tr>
+
+<tr>
+<td>[FeLJ](http://www.felj.top/)</td>
+<td><span>-</span></td>
+</tr>
+
+<tr>
+<td rowspan="4"><span>本校</span></td>
+<td>[Angelic47](http://www.angelic47.com/)</td>
+<td><span>临沂一中</span></td>
+</tr>
+
+<tr>
+<td>[ZMOIYNLP](http://blog.csdn.net/zmoiynlp/)</td>
+<td><span>临沂一中</span></td>
+</tr>
+
+<tr>
+<td>[Hellc](http://5261.github.io/)</td>
+<td><span>临沂一中</span></td>
+</tr>
+
+<tr>
+<td>[凌风仙鸡](http://chickger.pw/)</td>
+<td><span>临沂一中</span></td>
+</tr>
+</tbody>
+
+</table>
 
 # 其它
 

@@ -1,7 +1,8 @@
 title: Link-Cut Tree 学习笔记
 categories: OI
 tags: 
-  - LCT
+  - Link-Cut Tree
+  - 动态树
   - Splay
   - 数据结构
   - 高级数据结构
