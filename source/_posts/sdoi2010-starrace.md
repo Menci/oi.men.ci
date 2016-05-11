@@ -15,11 +15,11 @@ permalink: sdoi2010-starrace
 
 <!-- more -->
 
-### 题目链接
+### 链接
 [BZOJ 1927](http://www.lydsy.com/JudgeOnline/problem.php?id=1927)  
 [CodeVS 2313](http://codevs.cn/problem/2313/)
 
-### 解题思路
+### 题解
 求完成比赛的最少时间，很容易想到最短路，然而不确定起点终点而且恰好访问一次都不太适合最短路 …… 考虑网络流建模吧。
 
 刚开始想到的一个**错误**的解法：
@@ -48,7 +48,7 @@ permalink: sdoi2010-starrace
 
 处理『瞬间移动』的思路是，不考虑是从哪个星球移动过来，向哪里走 —— 因为从每个点向哪里走是由选择的边决定的（甚至可能瞬移到的点就是终点），只需要考虑，瞬移经过的点不需要再在其他路径上被经过，所以直接从源点连到某个点的出点就好啦。
 
-### AC代码
+### 代码
 ```cpp
 #include <cstdio>
 #include <climits>

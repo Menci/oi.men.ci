@@ -14,13 +14,13 @@ date: 2016-03-04 21:28:17
 
 <!-- more -->
 
-### 题目链接
+### 链接
 [BZOJ 1051](http://www.lydsy.com/JudgeOnline/problem.php?id=1051)
 
-### 解题思路
+### 题解
 求出强联通分量，缩点，然后判断是不是只有一个出度为零的点，如果是输出它的大小。
 
-### AC代码
+### 代码
 ```cpp
 #include <cstdio>
 #include <algorithm>

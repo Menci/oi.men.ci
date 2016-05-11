@@ -45,14 +45,14 @@ date: 2016-01-18 21:08:05
 
 <tbody>
 <tr>
-<td rowspan="7"><span>QQ群「SDOI 2016」</span></td>
+<td rowspan="8"><span>QQ群「SDOI 2016」</span></td>
 <td>[Ofsxb](http://www.cnblogs.com/ofsxb/)</td>
 <td><span>齐河一中</span></td>
 </tr>
 
 <tr>
 <td>[Creation <span style="color: #FFA200; display: inline; "><b>Au</b></span>gust](http://blog.csdn.net/creationaugust)</td>
-<td><span>胜利十中</span></td>
+<td><span>胜利一中</span></td>
 </tr>
 
 <tr>
@@ -78,6 +78,11 @@ date: 2016-01-18 21:08:05
 <tr>
 <td>[ws_yzy](http://blog.csdn.net/ws_yzy)</td>
 <td><span>昌邑一中</span></td>
+</tr>
+
+<tr>
+<td>[MagHSK](http://www.maghsk.cn/)</td>
+<td><span>东营一中</span></td>
 </tr>
 
 <tr>
@@ -108,9 +113,14 @@ date: 2016-01-18 21:08:05
 </tr>
 
 <tr>
-<td rowspan="1"><span>QQ群「COGS交流群」</span></td>
+<td rowspan="2"><span>QQ群「COGS交流群」</span></td>
 <td>[Rapiz](http://www.cnblogs.com/rapiz/)</td>
 <td><span>-</span></td>
+</tr>
+
+<tr>
+<td>[changke](http://changke-blog.logdown.com/)</td>
+<td><span>安阳一中</span></td>
 </tr>
 
 <tr>
@@ -130,7 +140,18 @@ date: 2016-01-18 21:08:05
 </tr>
 
 <tr>
-<td rowspan="3"><span>其它</span></td>
+<td rowspan="2"><span>WC2016</span></td>
+<td>[Fuxey](http://blog.csdn.net/fuxey)</td>
+<td><span>武汉二中</span></td>
+</tr>
+
+<tr>
+<td>[Sengxian](http://www.sengxian.com/)</td>
+<td><span>武汉二中</span></td>
+</tr>
+
+<tr>
+<td rowspan="7"><span>其它</span></td>
 <td>[zean](http://blog.zean.xyz/)</td>
 <td><span>烟台二中</span></td>
 </tr>
@@ -146,25 +167,25 @@ date: 2016-01-18 21:08:05
 </tr>
 
 <tr>
-<td rowspan="4"><span>本校</span></td>
-<td>[Angelic47](http://www.angelic47.com/)</td>
-<td><span>临沂一中</span></td>
-</tr>
-
-<tr>
-<td>[ZMOIYNLP](http://blog.csdn.net/zmoiynlp/)</td>
-<td><span>临沂一中</span></td>
-</tr>
-
-<tr>
-<td>[Hellc](http://5261.github.io/)</td>
-<td><span>临沂一中</span></td>
-</tr>
-
-<tr>
 <td>[凌风仙鸡](http://chickger.pw/)</td>
-<td><span>临沂一中</span></td>
+<td><span>-</span></td>
 </tr>
+
+<tr>
+<td>[abclzr](http://www.cnblogs.com/abclzr)</td>
+<td><span>胜利一中</span></td>
+</tr>
+
+<tr>
+<td>[DaD3zZ](http://www.cnblogs.com/DaD3zZ-Beyonder/)</td>
+<td><span>胜利一中</span></td>
+</tr>
+
+<tr>
+<td>[BeiYu](http://www.beiyu-is-too-naive.cc/)</td>
+<td><span>胜利一中</span></td>
+</tr>
+
 </tbody>
 
 </table>

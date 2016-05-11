@@ -17,11 +17,11 @@ date: 2016-01-24 23:09:03
 
 <!-- more -->
 
-### 题目链接
+### 链接
 [BZOJ 1503](http://www.lydsy.com/JudgeOnline/problem.php?id=1503)  
 [CodeVS 1286](http://codevs.cn/problem/1286/)
 
-### 解题思路
+### 题解
 这是道 Splay 入门题，多思考思考还是挺容易的。
 
 唯一的难点貌似在同时修改工资，这时候只要像维护数列那样弄一个标记，然后向下传就好咯。扣工资时直接删掉 $[-{\infty}+1,min-1]$ 范围内的节点就好。

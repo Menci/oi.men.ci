@@ -3,7 +3,7 @@ categories: OI
 tags: 
   - BZOJ
   - SCOI
-  - 安师大附中集训
+  - 安徽集训
   - 二分答案
   - 二分图匹配
   - 网络流
@@ -16,15 +16,15 @@ date: 2016-03-22 17:56:34
 
 <!-- more -->
 
-### 题目链接
+### 链接
 [BZOJ 4443](http://www.lydsy.com/JudgeOnline/problem.php?id=4443)
 
-### 解题思路
+### 题解
 二分第 $ K $ 大的数是多少，然后建二分图，用行匹配列，检验匹配数是不是大于等于 $ N - K + 1 $。
 
 注意，是第 $ K $ 大，不是第 $ K $ 小！
 
-### AC代码
+### 代码
 ```c++
 #include <cstdio>
 #include <climits>

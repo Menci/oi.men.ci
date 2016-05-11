@@ -1,9 +1,9 @@
-title: 「AHOI2008」紧急集合 - LCA
+title: 「AHOI2008」紧急集合 - 最近公共祖先
 categories: OI
 tags: 
   - BZOJ
   - AHOI
-  - LCA
+  - 最近公共祖先
   - 乱搞
   - 倍增
 permalink: ahoi2008-meet
@@ -14,15 +14,15 @@ date: 2016-03-07 20:36:46
 
 <!-- more -->
 
-### 题目链接
+### 链接
 [BZOJ 1787](http://www.lydsy.com/JudgeOnline/problem.php?id=1787)
 
-### 解题思路
+### 题解
 从样例中找出规律，三个点两两之间的 LCA 必有一对相等，写了个数据生成器用大数据验证了一下，确实是成立的。
 
 进一步得到规律，要找的点就是除了相等的一对 LCA 以外的另一个 LCA …… 别问我怎么证明，我不会 qwq
 
-### AC代码
+### 代码
 ```cpp
 #include <cstdio>
 #include <climits>

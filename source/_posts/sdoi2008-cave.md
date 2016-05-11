@@ -16,16 +16,16 @@ permalink: sdoi2008-cave
 
 <!-- more -->
 
-### 题目链接
+### 链接
 [BZOJ 2049](http://www.lydsy.com/JudgeOnline/problem.php?id=2049)  
 [CodeVS 1839](http://codevs.cn/problem/1839/)
 
-### 解题思路
+### 题解
 最简单的 Link-Cut Tree 模板题。
 
 相当于能拆的并查集。
 
-### AC代码
+### 代码
 ```c++
 #include <cstdio>
 #include <algorithm>

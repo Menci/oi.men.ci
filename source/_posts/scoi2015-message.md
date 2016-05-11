@@ -3,7 +3,7 @@ categories: OI
 tags: 
   - BZOJ
   - SCOI
-  - 安师大附中集训
+  - 安徽集训
   - 离线
   - Link-Cut Tree
   - 数据结构
@@ -24,10 +24,10 @@ date: 2016-03-22 18:09:12
 
 <!-- more -->
 
-### 题目链接
+### 链接
 [BZOJ 4448](http://www.lydsy.com/JudgeOnline/problem.php?id=4448)
 
-### 解题思路
+### 题解
 因为整个网络是一棵树，所以可以用一棵 Link-Cut Tree 来维护。
 
 前 30 分，无修改操作，直接求出两点距离。
@@ -36,7 +36,7 @@ date: 2016-03-22 18:09:12
 
 后 40 分，考虑到对于每个查询操作，只有距离它 $ C + 1 $ 天之前的修改操作对它有贡献，所以可以将操作离线，保证每次修改后直接处理查询即可。
 
-### AC代码
+### 代码
 ```c++
 #include <cstdio>
 #include <climits>

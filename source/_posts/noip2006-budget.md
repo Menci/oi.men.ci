@@ -20,13 +20,13 @@ date: 2016-01-17 06:11:03
 
 <!-- more -->
 
-### 题目链接
+### 链接
 [CodeVS 1155](http://codevs.cn/problem/1155/)  
 [Tyvj 1057](http://tyvj.cn/p/1057)  
 [洛谷 1064](http://www.luogu.org/problem/show?pid=1064)  
 [Vijos 1313](https://vijos.org/p/1313?pid=1313)
 
-### 解题思路
+### 题解
 其实题挺水的，直接枚举选哪个附件就好，但学了树形 DP 就要写一写嘛。
 
 首先，我们有一个 01 背包的方程：
@@ -41,7 +41,7 @@ $$ f[v] = \max(f[v],f[v-c[i]]+w[i]) $$
 
 PS：有个“坑”就是题目中的背包容量太大太大了，是妥妥的要 TLE 的（只能过前五个），但是因为背包容量和每件物品的体积都是 `10` 的倍数，所以读入数据后直接除以 `10` 就好。
 
-### AC代码
+### 代码
 ```cpp
 #include <cstdio>
 #include <cstring>

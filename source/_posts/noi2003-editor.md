@@ -21,15 +21,15 @@ date: 2016-03-06 19:49:35
 
 <!-- more -->
 
-### 题目链接
+### 链接
 [BZOJ 1507](http://www.lydsy.com/JudgeOnline/problem.php?id=1507)
 
-### 解题思路
+### 题解
 块状链表太鬼畜辣！还是 Splay 比较好写好调w
 
 一点小技巧，插入的时候可以照着选择区间的方法选出一段空白区间，然后 `build` 出一棵子树给接上去，可以少一个 $ \log $。
 
-### AC代码
+### 代码
 ```cpp
 #include <cstdio>
 #include <vector>

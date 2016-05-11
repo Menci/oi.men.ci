@@ -16,18 +16,18 @@ date: 2016-01-21 21:32:49
 
 <!-- more -->
 
-### 题目链接
+### 链接
 [CodeVS 4600](http://codevs.cn/problem/4600/)  
 [BZOJ 4195](http://www.lydsy.com/JudgeOnline/problem.php?id=4195)
 
-### 解题思路
+### 题解
 首先，`x` 的值很大，我们要把它离散化掉。
 
 然后用一个并查集，要离线做，先把相等的都并掉，然后枚举所有不相等的，如果某一对被并了说明不成立。
 
 一定不要用 `std::map`！！！可以自己写哈希表或者用 `std::tr1::unordered_map`。
 
-### AC代码
+### 代码
 #### 手写哈希表
 ```cpp
 #include <cstdio>

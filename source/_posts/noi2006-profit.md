@@ -1,4 +1,4 @@
-title: 「NOI2006」最大获利 - 最大权闭合子图
+title: 「NOI2006」最大获利 - 最大权闭合图
 categories: OI
 tags: 
   - NOI
@@ -7,7 +7,7 @@ tags:
   - 图论
   - 网络流
   - 最小割
-  - 最大权闭合子图
+  - 最大权闭合图
   - Dinic
 permalink: noi2006-profit
 date: 2016-03-10 19:33:42
@@ -17,14 +17,14 @@ date: 2016-03-10 19:33:42
 
 <!-- more -->
 
-### 题目链接
+### 链接
 [CodeVS 1789](http://codevs.cn/problem/1789/)  
 [BZOJ 1497](http://www.lydsy.com/JudgeOnline/problem.php?id=1497)
 
-### 解题思路
-裸的最大权闭合子图，用最小割。
+### 题解
+裸的最大权闭合图，用最小割。
 
-### AC代码
+### 代码
 ```cpp
 #include <cstdio>
 #include <climits>

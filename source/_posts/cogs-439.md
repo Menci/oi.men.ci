@@ -17,10 +17,10 @@ date: 2016-02-15 10:13:28
 
 <!-- more -->
 
-### 题目链接
+### 链接
 [COGS 439](http://cogs.top/cogs/problem/problem.php?pid=439)
 
-### 解题思路
+### 题解
 记录状态：用一个 `unsigned int` 类型的数记录状态，从右边数第 `i` 个二进制位表示第 `i` 个 BUG 是否存在。用 `std::tr1::unordered_map`（哈希表）存储状态到所有时间的映射，即 `map[status]` 表示从初始状态到状态 `status` 所用的最短时间。
 
 状态转移：每个补丁存储两个值 `effectAddition`、`effectSubtract`，前者表示应用该补丁后新增加的 BUG，后者表示减少的 BUG，则状态转移为：
@@ -40,7 +40,7 @@ newStatus = ~(~(status | effectAddition) | effectSubtract)
 
 话说其实这道题暴力表示状态，一位一位地判断、转移也可以过的，而且照样是 COGS 上提交记录第一 ……
 
-### AC代码
+### 代码
 ```cpp
 #include <cstdio>
 #include <algorithm>

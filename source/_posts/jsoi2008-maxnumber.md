@@ -27,17 +27,17 @@ date: 2016-02-20 10:11:00
 
 <!-- more -->
 
-### 题目链接
+### 链接
 [BZOJ 1012](http://www.lydsy.com/JudgeOnline/problem.php?id=1012)
 
-### 解题思路
+### 题解
 Splay 裸题不用说了吧 ……
 
 话说开一棵大线段树也资磁吧？
 
 敲个 Splay 练练代码能力，结果折腾了俩小时，这段时间代码能力急剧下降啊！qwq
 
-### AC代码
+### 代码
 ```cpp
 #include <cstdio>
 #include <algorithm>
