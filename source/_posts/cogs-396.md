@@ -3,7 +3,7 @@ categories: OI
 tags: 
   - COGS
   - 贪心
-  - 网络流24题
+  - 网络流 24 题
 permalink: cogs-396
 id: 46
 updated: '2016-02-06 23:04:22'

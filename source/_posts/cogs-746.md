@@ -5,7 +5,7 @@ tags:
   - 图论
   - 网络流
   - Dinic
-  - 网络流24题
+  - 网络流 24 题
   - 最大独立集
 permalink: cogs-746
 id: 53

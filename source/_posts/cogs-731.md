@@ -5,7 +5,7 @@ tags:
   - 图论
   - 网络流
   - Dinic
-  - 网络流24题
+  - 网络流 24 题
 permalink: cogs-731
 id: 48
 updated: '2016-02-09 14:40:10'

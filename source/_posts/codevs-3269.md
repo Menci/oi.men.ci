@@ -102,7 +102,7 @@ for (unsigned int i = 0; i < n; i++) {
 ```
 三种背包问题的思路明确后，就可以考虑混合背包问题了，具体实现方法是对于每一种物品，判断物品类型，分别进行处理。  
 
-### AC 代码
+### 代码
 ```cpp
 #include <cstdio>
 #include <algorithm>

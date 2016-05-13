@@ -6,7 +6,7 @@ tags:
   - 网络流
   - 费用流
   - Edmonds-Karp
-  - 网络流24题
+  - 网络流 24 题
 permalink: cogs-739
 id: 57
 updated: '2016-02-23 20:35:48'

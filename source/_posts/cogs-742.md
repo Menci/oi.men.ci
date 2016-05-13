@@ -3,7 +3,7 @@ categories: OI
 tags: 
   - COGS
   - Edmonds-Karp
-  - 网络流24题
+  - 网络流 24 题
   - 图论
   - 网络流
   - 费用流

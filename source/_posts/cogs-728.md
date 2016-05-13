@@ -6,7 +6,7 @@ tags:
   - 网络流
   - Dinic
   - 二分图匹配
-  - 网络流24题
+  - 网络流 24 题
 permalink: cogs-728
 id: 45
 updated: '2016-02-06 22:53:58'

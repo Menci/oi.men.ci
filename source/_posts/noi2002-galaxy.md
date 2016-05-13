@@ -98,7 +98,7 @@ unsigned int pre(unsigned int x) {
 	return prefix[x];
 }
 ```
-### AC 代码
+### 代码
 ```cpp
 #include <cstdio>
 #include <algorithm>

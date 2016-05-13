@@ -4,7 +4,7 @@ tags:
   - COGS
   - 图论
   - 网络流
-  - 网络流24题
+  - 网络流 24 题
   - Dinic
 permalink: cogs-729
 id: 47
