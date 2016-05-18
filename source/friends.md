@@ -37,7 +37,6 @@ date: 2016-01-18 21:08:05
 <table width="100%" id="oier">
 <thead>
 <tr class="header">
-<th><span>From</span></th>
 <th><span>Link</span></th>
 <th><span>School</span></th>
 </tr>
@@ -45,7 +44,6 @@ date: 2016-01-18 21:08:05
 
 <tbody>
 <tr>
-<td rowspan="8"><span>QQ群「SDOI 2016」</span></td>
 <td>[Ofsxb](http://www.cnblogs.com/ofsxb/)</td>
 <td><span>齐河一中</span></td>
 </tr>
@@ -86,9 +84,8 @@ date: 2016-01-18 21:08:05
 </tr>
 
 <tr>
-<td rowspan="2"><span>QQ群「CodeVS交流群」</span></td>
 <td>[Dashgua](http://dashgua.coding.io/)</td>
-<td><span>-</span></td>
+<td><span>雅礼中学</span></td>
 </tr>
 
 <tr>
@@ -97,7 +94,6 @@ date: 2016-01-18 21:08:05
 </tr>
 
 <tr>
-<td rowspan="3"><span>QQ群「在路上，同梦行」</span></td>
 <td>[FireStorm](http://blog.csdn.net/farestorm)</td>
 <td><span>莱芜一中</span></td>
 </tr>
@@ -113,9 +109,8 @@ date: 2016-01-18 21:08:05
 </tr>
 
 <tr>
-<td rowspan="2"><span>QQ群「COGS交流群」</span></td>
 <td>[Rapiz](http://www.cnblogs.com/rapiz/)</td>
-<td><span>-</span></td>
+<td><span>郑州一中</span></td>
 </tr>
 
 <tr>
@@ -124,23 +119,21 @@ date: 2016-01-18 21:08:05
 </tr>
 
 <tr>
-<td rowspan="3"><span>2016安徽师大附中集训</span></td>
 <td>[Fancy](http://fancypei.github.io/)</td>
-<td><span>郑州外国语学校</span></td>
+<td><span>郑州外国语</span></td>
 </tr>
 
 <tr>
 <td>[CXCXCXC](http://www.cnblogs.com/CXCXCXC)</td>
-<td><span>郑州外国语学校</span></td>
+<td><span>郑州外国语</span></td>
 </tr>
 
 <tr>
 <td>[sui](http://1115825064.github.io/)</td>
-<td><span>郑州外国语学校</span></td>
+<td><span>郑州外国语</span></td>
 </tr>
 
 <tr>
-<td rowspan="2"><span>WC2016</span></td>
 <td>[Fuxey](http://blog.csdn.net/fuxey)</td>
 <td><span>武汉二中</span></td>
 </tr>
@@ -151,7 +144,6 @@ date: 2016-01-18 21:08:05
 </tr>
 
 <tr>
-<td rowspan="7"><span>其它</span></td>
 <td>[zean](http://blog.zean.xyz/)</td>
 <td><span>烟台二中</span></td>
 </tr>
@@ -195,3 +187,5 @@ date: 2016-01-18 21:08:05
 [盒子の自留地](http://www.18tilab.com/)
 
 [Arondight](http://arondight.me/)
+
+[Dimpurr](http://im.dimpurr.com/)
