@@ -7,7 +7,7 @@ title: Menci
 subtitle: 眉眼如初，岁月如故
 description:
 author: Menci
-language: zh_CN
+language: zh-cn
 timezone:
 
 # URL
@@ -63,7 +63,7 @@ pagination_dir: page
 # Extensions
 ## Plugins: http://hexo.io/plugins/
 ## Themes: http://hexo.io/themes/
-theme: yelee
+theme: tranquilpeak
 
 # Deployment
 ## Docs: http://hexo.io/docs/deployment.html

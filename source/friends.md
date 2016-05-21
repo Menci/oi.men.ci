@@ -3,38 +3,7 @@ permalink: friends/
 date: 2016-01-18 21:08:05
 ---
 
-<style>
-#oier {
-	line-height: 1em;
-}
-
-#oier tr:nth-child(2n) {
-	background: none !important;
-}
-
-#oier tr:nth-child(2n) td:not([rowspan]) {
-	background: rgba(158,188,226,0.12);	
-}
-
-#oier td {
-	text-align: center;
-	vertical-align: middle;
-}
-
-#oier a, #oier span {
-	display: block;
-}
-
-#oier tr:hover {
-	background: inherit;
-}
-
-#oier tbody tr:not(:nth-child(2n)):hover td:not([rowspan]) {
-	background: #efefef;
-}
-</style>
-
-<table width="100%" id="oier">
+<table width="100%" id="oier" style="text-align: center; ">
 <thead>
 <tr class="header">
 <th><span>Link</span></th>

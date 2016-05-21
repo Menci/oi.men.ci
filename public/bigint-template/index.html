@@ -1,0 +1,537 @@
+
+<!DOCTYPE html>
+<html lang="zh-cn">
+    
+<head>
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="Menci">
+    <title>高精度加、减、乘模板 - Menci</title>
+    <meta name="author" content="Menci">
+    
+    
+        <link rel="icon" href="//dn-menci.qbox.me/assets/images/avatar.png">
+    
+    
+        <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
+    
+    <meta name="description" content="&amp;#x4ECA;&amp;#x5929;&amp;#x65E9;&amp;#x4E0A;&amp;#x5199;&amp;#x4E86;&amp;#x4E00;&amp;#x9053;&amp;#x9AD8;&amp;#x7CBE;&amp;#x5EA6;&amp;#x7684;&amp;#x9898;&amp;#xFF0C;&amp;#x4E00;&amp;#x53E3;&amp;#x6C14;&amp;#x6572;&amp;#x5B8C;&amp;#x4E86;&amp;#x9AD8;&amp;#x7CBE;&amp;#x5EA6;&amp;#x52A0;&amp;#x3001;">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="高精度加、减、乘模板">
+<meta property="og:url" content="https://blog.menci.moe/bigint-template/index.html">
+<meta property="og:site_name" content="Menci">
+<meta property="og:description" content="&amp;#x4ECA;&amp;#x5929;&amp;#x65E9;&amp;#x4E0A;&amp;#x5199;&amp;#x4E86;&amp;#x4E00;&amp;#x9053;&amp;#x9AD8;&amp;#x7CBE;&amp;#x5EA6;&amp;#x7684;&amp;#x9898;&amp;#xFF0C;&amp;#x4E00;&amp;#x53E3;&amp;#x6C14;&amp;#x6572;&amp;#x5B8C;&amp;#x4E86;&amp;#x9AD8;&amp;#x7CBE;&amp;#x5EA6;&amp;#x52A0;&amp;#x3001;">
+<meta property="og:updated_time" content="2016-05-11T09:33:24.420Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="高精度加、减、乘模板">
+<meta name="twitter:description" content="&amp;#x4ECA;&amp;#x5929;&amp;#x65E9;&amp;#x4E0A;&amp;#x5199;&amp;#x4E86;&amp;#x4E00;&amp;#x9053;&amp;#x9AD8;&amp;#x7CBE;&amp;#x5EA6;&amp;#x7684;&amp;#x9898;&amp;#xFF0C;&amp;#x4E00;&amp;#x53E3;&amp;#x6C14;&amp;#x6572;&amp;#x5B8C;&amp;#x4E86;&amp;#x9AD8;&amp;#x7CBE;&amp;#x5EA6;&amp;#x52A0;&amp;#x3001;">
+<meta name="twitter:creator" content="@HuangHaoRui">
+    
+        <meta rel="publisher" content="https://plus.google.com/103195680789397520000"/>
+    
+    
+        
+    
+    
+        <meta property="og:image" content="//dn-menci.qbox.me/assets/images/avatar.png"/>
+    
+    
+    
+    
+    <!--STYLES-->
+    <link rel="stylesheet" href="//dn-menci.qbox.me/assets/css/style-pcycimglbr925yrwj0efxsn118g0acj4bp3qcdehgw1freahg01piplpcrqd.min.css">
+    <!--STYLES END-->
+	<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/KaTeX/0.6.0/katex.min.css">
+	<link href='https://fonts.googleapis.com/css?family=Poiret+One' rel='stylesheet' type='text/css'>
+    
+    <script type="text/javascript">
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-75865916-1']);
+        _gaq.push(['_trackPageview']);
+        (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+    </script>
+
+    
+</head>
+
+    <body>
+        <div id="blog">
+            <!-- Define author's picture -->
+
+
+    
+        
+            
+        
+    
+
+<!--<header id="header" data-behavior="2">-->
+<header id="header" data-behavior="2">
+    <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+    <h1 class="header-title">
+        <a class="header-title-link" href="/ ">Menci</a>
+    </h1>
+    
+        
+            <a  class="header-right-picture "
+                href="/#about">
+        
+        
+            <img class="header-picture" src="//dn-menci.qbox.me/assets/images/avatar.png"/>
+        
+        </a>
+    
+</header>
+
+            <!-- Define author's picture -->
+
+
+
+        
+    
+
+<!--<nav id="sidebar" data-behavior="2">-->
+<nav id="sidebar" data-behavior="2">
+    
+        <div class="sidebar-profile">
+            <a href="/#about">
+                    <img class="sidebar-profile-picture" src="//dn-menci.qbox.me/assets/images/avatar.png"/>
+            </a>
+            <span class="sidebar-profile-name">Menci</span>
+        </div>
+    
+    
+        <ul class="sidebar-buttons">
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link "
+                         href="/ "
+                        
+                    >
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+                    <span class="sidebar-button-desc">首页</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link "
+                         href="/all-tags"
+                        
+                    >
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+                    <span class="sidebar-button-desc">标签</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link "
+                         href="/all-archives"
+                        
+                    >
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+                    <span class="sidebar-button-desc">归档</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link st-search-show-outputs"
+                         href="/#search"
+                        
+                    >
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-search"></i>
+                    <span class="sidebar-button-desc">搜索</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link "
+                         href="/about-me"
+                        
+                    >
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-info"></i>
+                    <span class="sidebar-button-desc">关于</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link "
+                         href="/friends"
+                        
+                    >
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-users"></i>
+                    <span class="sidebar-button-desc">伙伴</span>
+                </a>
+        </li>
+        
+    </ul>
+    
+        <ul class="sidebar-buttons">
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link " href="https://github.com/Menci" target="_blank">
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+                    <span class="sidebar-button-desc">GitHub</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link " href="https://twitter.com/HuangHaoRui" target="_blank">
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-twitter"></i>
+                    <span class="sidebar-button-desc">Twitter</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link " href="http://wpa.qq.com/msgrd?V=3&Uin=421899973" target="_blank">
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-qq"></i>
+                    <span class="sidebar-button-desc">QQ</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link " href="mailto:huanghaorui301@gmail.com" target="_blank">
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-envelope-o"></i>
+                    <span class="sidebar-button-desc">邮箱</span>
+                </a>
+        </li>
+        
+    </ul>
+    
+        <ul class="sidebar-buttons">
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link "
+                         href="/atom.xml"
+                        
+                    >
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-rss"></i>
+                    <span class="sidebar-button-desc">RSS</span>
+                </a>
+        </li>
+        
+    </ul>
+    
+</nav>
+
+            
+            <div id="main" data-behavior="2"
+                 class="
+                        hasCoverMetaIn
+                        ">
+                
+<article class="post" itemscope itemType="http://schema.org/BlogPosting">
+    
+    
+        <div class="post-header main-content-wrap text-left">
+    
+        <h1 class="post-title" itemprop="headline">
+            高精度加、减、乘模板
+        </h1>
+    
+    <div class="post-meta" style="border-bottom: 1px solid #eef2f8;">
+    <time itemprop="datePublished" content="Mon Mar 14 2016 21:34:42 GMT+0800">
+	
+		    3月 14, 2016
+    	
+    </time>
+    
+        <span>发布在 </span>
+        
+    <a class="category-link" href="/categories/oi/">OI</a>
+
+
+    
+	
+		<div class="post-footer-tags" style="margin-top: 10px; margin-left: 10px; display: inline-block; border-bottom: none; ">
+			<!--span class="text-color-light text-small">标签</span><br/-->
+			
+    <a class="tag tag--primary tag--small t-link" href="/tag/算法模板/">算法模板</a> <a class="tag tag--primary tag--small t-link" href="/tag/高精度/">高精度</a>
+
+		</div>
+	
+</div>
+
+</div>
+    
+    <div class="post-content markdown" itemprop="articleBody">
+        <div class="main-content-wrap">
+            <p>&#x4ECA;&#x5929;&#x65E9;&#x4E0A;&#x5199;&#x4E86;&#x4E00;&#x9053;&#x9AD8;&#x7CBE;&#x5EA6;&#x7684;&#x9898;&#xFF0C;&#x4E00;&#x53E3;&#x6C14;&#x6572;&#x5B8C;&#x4E86;&#x9AD8;&#x7CBE;&#x5EA6;&#x52A0;&#x3001;&#x51CF;&#x3001;&#x4E58;&#x3002;&#x73B0;&#x5728;&#x628A;&#x6A21;&#x677F;&#x653E;&#x5728;&#x8FD9;&#x5907;&#x7528;&#x7740; &#x2026;&#x2026; &#x9700;&#x8981;&#x8005;&#x81EA;&#x53D6;&#x3002;</p>
+<a id="more"></a>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;vector&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">struct</span> BigInt {</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">char</span>&gt; v;</span><br><span class="line"></span><br><span class="line">    BigInt() {</span><br><span class="line">        *<span class="keyword">this</span> = <span class="number">0</span>;</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    BigInt(<span class="keyword">int</span> x) {</span><br><span class="line">        *<span class="keyword">this</span> = x;</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    BigInt &amp;<span class="keyword">operator</span>=(<span class="keyword">int</span> x) {</span><br><span class="line">        v.clear();</span><br><span class="line">        <span class="keyword">do</span> v.push_back(x % <span class="number">10</span>); <span class="keyword">while</span> (x /= <span class="number">10</span>);</span><br><span class="line">        <span class="keyword">return</span> *<span class="keyword">this</span>;</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    BigInt &amp;<span class="keyword">operator</span>=(<span class="keyword">const</span> BigInt &amp;x) {</span><br><span class="line">        v.resize(x.v.size());</span><br><span class="line">        <span class="built_in">memcpy</span>(<span class="keyword">const_cast</span>&lt;<span class="keyword">char</span> *&gt;(v.data()), x.v.data(), </span><br><span class="line">x.v.size() * <span class="keyword">sizeof</span>(<span class="keyword">char</span>));</span><br><span class="line">        <span class="keyword">return</span> *<span class="keyword">this</span>;</span><br><span class="line">    }</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line"><span class="built_in">std</span>::ostream &amp;<span class="keyword">operator</span>&lt;&lt;(<span class="built_in">std</span>::ostream &amp;out, <span class="keyword">const</span> BigInt &amp;x) {</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = x.v.size() - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--) out &lt;&lt; (<span class="keyword">char</span>)(x.v[i] </span><br><span class="line">+ <span class="string">&apos;0&apos;</span>);</span><br><span class="line">    <span class="keyword">return</span> out;</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">BigInt <span class="keyword">operator</span>+(<span class="keyword">const</span> BigInt &amp;a, <span class="keyword">const</span> BigInt &amp;b) {</span><br><span class="line">    BigInt result;</span><br><span class="line">    result.v.clear();</span><br><span class="line">    <span class="keyword">bool</span> flag = <span class="literal">false</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; (<span class="keyword">int</span>)<span class="built_in">std</span>::max(a.v.size(), b.v.size()); </span><br><span class="line">i++) {</span><br><span class="line">        <span class="keyword">int</span> tmp = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">if</span> (i &lt; (<span class="keyword">int</span>)a.v.size()) tmp += a.v[i];</span><br><span class="line">        <span class="keyword">if</span> (i &lt; (<span class="keyword">int</span>)b.v.size()) tmp += b.v[i];</span><br><span class="line">        <span class="keyword">if</span> (flag) tmp++, flag = <span class="literal">false</span>;</span><br><span class="line">        <span class="keyword">if</span> (tmp &gt;= <span class="number">10</span>) tmp -= <span class="number">10</span>, flag = <span class="literal">true</span>;</span><br><span class="line">        result.v.push_back(tmp);</span><br><span class="line">    }</span><br><span class="line">    <span class="keyword">if</span> (flag) result.v.push_back(<span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">BigInt &amp;<span class="keyword">operator</span>+=(BigInt &amp;a, <span class="keyword">const</span> BigInt &amp;b) {</span><br><span class="line">    <span class="keyword">return</span> a = a + b;</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">BigInt <span class="keyword">operator</span>-(<span class="keyword">const</span> BigInt &amp;a, <span class="keyword">const</span> BigInt &amp;b) {</span><br><span class="line">    BigInt result;</span><br><span class="line">    result.v.clear();</span><br><span class="line">    <span class="keyword">bool</span> flag = <span class="literal">false</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; (<span class="keyword">int</span>)a.v.size(); i++) {</span><br><span class="line">        <span class="keyword">int</span> tmp = a.v[i];</span><br><span class="line">        <span class="keyword">if</span> (i &lt; (<span class="keyword">int</span>)b.v.size()) tmp -= b.v[i];</span><br><span class="line">        <span class="keyword">if</span> (flag) tmp--, flag = <span class="literal">false</span>;</span><br><span class="line">        <span class="keyword">if</span> (tmp &lt; <span class="number">0</span>) tmp += <span class="number">10</span>, flag = <span class="literal">true</span>;</span><br><span class="line">        result.v.push_back(tmp);</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> size = result.v.size();</span><br><span class="line">    <span class="keyword">while</span> (size &gt; <span class="number">1</span> &amp;&amp; result.v[size - <span class="number">1</span>] == <span class="number">0</span>) size--;</span><br><span class="line">    result.v.resize(size);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">BigInt <span class="keyword">operator</span>*(<span class="keyword">const</span> BigInt &amp;a, <span class="keyword">const</span> BigInt &amp;b) {</span><br><span class="line">    BigInt result;</span><br><span class="line">    result.v.resize(a.v.size() + b.v.size());</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; (<span class="keyword">int</span>)a.v.size(); i++) {</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; (<span class="keyword">int</span>)b.v.size(); j++){</span><br><span class="line">            result.v[i + j] += a.v[i] * b.v[j];</span><br><span class="line">            result.v[i + j + <span class="number">1</span>] += result.v[i + j] / <span class="number">10</span>;</span><br><span class="line">            result.v[i + j] %= <span class="number">10</span>;</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> size = result.v.size();</span><br><span class="line">    <span class="keyword">while</span> (size &gt; <span class="number">1</span> &amp;&amp; result.v[size - <span class="number">1</span>] == <span class="number">0</span>) size--;</span><br><span class="line">    result.v.resize(size);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+
+            
+        </div>
+    </div>
+    <div id="post-footer" class="post-footer main-content-wrap">
+        <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/uva-11361/"  data-tooltip="「UVa 11361」Investigating Div-Sum Property - 数位DP">
+                
+                    <i class="fa fa-angle-left"></i>
+                    <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/uva-1362/" data-tooltip="「UVa 1362」Exploring Pyramids - 区间DP + 计数原理">
+                
+                    <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
+                    <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a class="post-action-btn btn btn--default btn-open-shareoptions"  href="#btn-open-shareoptions">
+                <i class="fa fa-share-alt"></i>
+            </a>
+        </li>
+        <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://blog.menci.moe/bigint-template/">
+                <i class="fa fa-google-plus"></i>
+            </a>
+        </li>
+        <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.menci.moe/bigint-template/">
+                <i class="fa fa-facebook-official"></i>
+            </a>
+        </li>
+        <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://blog.menci.moe/bigint-template/">
+                <i class="fa fa-twitter"></i>
+            </a>
+        </li>
+        
+            <li class="post-action">
+                <a class="post-action-btn btn btn--default" href="#disqus_thread">
+                    <i class="fa fa-comment-o"></i>
+                </a>
+            </li>
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#">
+            
+                <i class="fa fa-list"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+        
+            
+                <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+            
+        
+    </div>
+</article>
+
+
+
+                <footer id="footer" class="main-content-wrap">
+    <span class="copyrights">
+        Copyrights &copy; 2016 Menci. All Rights Reserved.
+    </span>
+</footer>
+</script>
+
+            </div>
+            
+                <div id="bottom-bar" class="post-bottom-bar" data-behavior="2">
+                    <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/uva-11361/"  data-tooltip="「UVa 11361」Investigating Div-Sum Property - 数位DP">
+                
+                    <i class="fa fa-angle-left"></i>
+                    <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/uva-1362/" data-tooltip="「UVa 1362」Exploring Pyramids - 区间DP + 计数原理">
+                
+                    <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
+                    <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a class="post-action-btn btn btn--default btn-open-shareoptions"  href="#btn-open-shareoptions">
+                <i class="fa fa-share-alt"></i>
+            </a>
+        </li>
+        <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://blog.menci.moe/bigint-template/">
+                <i class="fa fa-google-plus"></i>
+            </a>
+        </li>
+        <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.menci.moe/bigint-template/">
+                <i class="fa fa-facebook-official"></i>
+            </a>
+        </li>
+        <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://blog.menci.moe/bigint-template/">
+                <i class="fa fa-twitter"></i>
+            </a>
+        </li>
+        
+            <li class="post-action">
+                <a class="post-action-btn btn btn--default" href="#disqus_thread">
+                    <i class="fa fa-comment-o"></i>
+                </a>
+            </li>
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#">
+            
+                <i class="fa fa-list"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+                </div>
+                <div id="share-options-bar" class="share-options-bar" data-behavior="2">
+    <ul class="share-options">
+        <li class="share-option">
+            <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=https://blog.menci.moe/bigint-template/">
+                <i class="fa fa-google-plus"></i><span class="">分享到 Google+</span>
+            </a>
+        </li>
+        <li class="share-option">
+            <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.menci.moe/bigint-template/">
+                <i class="fa fa-facebook-official"></i><span>分享到 Facebook</span>
+            </a>
+        </li>
+        <li class="share-option">
+            <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https://blog.menci.moe/bigint-template/">
+                <i class="fa fa-twitter"></i><span>分享到 Twitter</span>
+            </a>
+        </li>
+    </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+            
+        </div>
+        
+
+
+    
+        
+    
+
+<div id="about">
+    <div id="about-card">
+        <div id="about-btn-close">
+            <i class="fa fa-remove"></i>
+        </div>
+        
+            <img style="box-shadow: 0 0 15px gray;" id="about-card-picture" src="//dn-menci.qbox.me/assets/images/avatar.png"/>
+        
+            <h4 id="about-card-name">Menci</h4>
+        
+            <h5 id="about-card-bio">眉眼如初，岁月如故</h5>
+        
+        
+            <h5 id="about-card-job">
+                <i class="fa fa-cloud"></i>
+                <br/>
+                One day, <br> I'll reach the next stage <br> to realize all.
+            </h5>
+        
+        
+    </div>
+</div>
+
+        
+<div id="cover" style="background-image:url('//dn-menci.qbox.me/assets/images/cover.jpg');"></div>
+    </body>
+    <!--SCRIPTS-->
+<script src="//dn-menci.qbox.me/assets/js/scrip-0ewjnhvv8ytgl76lkiq8f541cfygs5bpfv33ohlfvpfklrfevqupdsxg46fk.min.js" type="text/javascript"></script>
+<!--SCRIPTS END-->
+
+    
+        <script>
+             var disqus_config = function () {
+				 MenciRemoveIndexDotHtml = function (url) {
+				 	if (url.substr(-10, 10) == 'index.html') return url.substr(0, url.length - 10);
+				 	else return url;
+				 }
+                 this.page.url = MenciRemoveIndexDotHtml('https://blog.menci.moe/bigint-template/');
+                 
+                 this.page.identifier = MenciRemoveIndexDotHtml('bigint-template/');
+                                  
+             };
+            (function() {
+                var d = document, s = d.createElement('script');
+                var disqus_shortname = 'menci';
+                s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+
+                s.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        </script>
+    
+
+
+    <script type="text/javascript">
+        (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+                (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+            e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+        })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+        _st('install','L51x_1_hCboFSsSLLGGK','2.0.0');
+    </script>
+
+
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/KaTeX/0.6.0/katex.min.js"></script>
+<!--script type="text/javascript" src="/assets/js/auto-render.min.js"></script-->
+<script>
+$(function() {
+	// renderKatexMathjaxFallback($('body')[0]);
+	renderMathInElement($('body')[0]);
+});
+</script>
+
+</html>

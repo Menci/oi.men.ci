@@ -1,0 +1,578 @@
+
+<!DOCTYPE html>
+<html lang="zh-cn">
+    
+<head>
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="Menci">
+    <title>树链剖分学习笔记 - Menci</title>
+    <meta name="author" content="Menci">
+    
+    
+        <link rel="icon" href="//dn-menci.qbox.me/assets/images/avatar.png">
+    
+    
+        <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
+    
+    <meta name="description" content="&amp;#x6811;&amp;#x94FE;&amp;#x5256;&amp;#x5206;&amp;#xFF0C;&amp;#x5C31;&amp;#x662F;&amp;#x628A;&amp;#x4E00;&amp;#x68F5;&amp;#x6811;&amp;#x5494;&amp;#x5693;&amp;#x5494;&amp;#x5693;&amp;#x5256;&amp;#x6210;&amp;#x4E00;&amp;#x5806;&amp;#x4E0D;&amp;#x76F8;&amp;#x4EA4;&amp;#x7684;&amp;#x94FE;&amp;#xFF0C;">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="树链剖分学习笔记">
+<meta property="og:url" content="https://blog.menci.moe/cut-tree-notes/index.html">
+<meta property="og:site_name" content="Menci">
+<meta property="og:description" content="&amp;#x6811;&amp;#x94FE;&amp;#x5256;&amp;#x5206;&amp;#xFF0C;&amp;#x5C31;&amp;#x662F;&amp;#x628A;&amp;#x4E00;&amp;#x68F5;&amp;#x6811;&amp;#x5494;&amp;#x5693;&amp;#x5494;&amp;#x5693;&amp;#x5256;&amp;#x6210;&amp;#x4E00;&amp;#x5806;&amp;#x4E0D;&amp;#x76F8;&amp;#x4EA4;&amp;#x7684;&amp;#x94FE;&amp;#xFF0C;">
+<meta property="og:image" content="https://blog.menci.moe//dn-menci.qbox.me/cut-tree-notes/cutTree.png">
+<meta property="og:updated_time" content="2016-05-11T09:33:24.430Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="树链剖分学习笔记">
+<meta name="twitter:description" content="&amp;#x6811;&amp;#x94FE;&amp;#x5256;&amp;#x5206;&amp;#xFF0C;&amp;#x5C31;&amp;#x662F;&amp;#x628A;&amp;#x4E00;&amp;#x68F5;&amp;#x6811;&amp;#x5494;&amp;#x5693;&amp;#x5494;&amp;#x5693;&amp;#x5256;&amp;#x6210;&amp;#x4E00;&amp;#x5806;&amp;#x4E0D;&amp;#x76F8;&amp;#x4EA4;&amp;#x7684;&amp;#x94FE;&amp;#xFF0C;">
+<meta name="twitter:creator" content="@HuangHaoRui">
+    
+        <meta rel="publisher" content="https://plus.google.com/103195680789397520000"/>
+    
+    
+        
+    
+    
+        <meta property="og:image" content="//dn-menci.qbox.me/assets/images/avatar.png"/>
+    
+    
+    
+    
+    <!--STYLES-->
+    <link rel="stylesheet" href="//dn-menci.qbox.me/assets/css/style-pcycimglbr925yrwj0efxsn118g0acj4bp3qcdehgw1freahg01piplpcrqd.min.css">
+    <!--STYLES END-->
+	<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/KaTeX/0.6.0/katex.min.css">
+	<link href='https://fonts.googleapis.com/css?family=Poiret+One' rel='stylesheet' type='text/css'>
+    
+    <script type="text/javascript">
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-75865916-1']);
+        _gaq.push(['_trackPageview']);
+        (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+    </script>
+
+    
+</head>
+
+    <body>
+        <div id="blog">
+            <!-- Define author's picture -->
+
+
+    
+        
+            
+        
+    
+
+<!--<header id="header" data-behavior="2">-->
+<header id="header" data-behavior="2">
+    <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+    <h1 class="header-title">
+        <a class="header-title-link" href="/ ">Menci</a>
+    </h1>
+    
+        
+            <a  class="header-right-picture "
+                href="/#about">
+        
+        
+            <img class="header-picture" src="//dn-menci.qbox.me/assets/images/avatar.png"/>
+        
+        </a>
+    
+</header>
+
+            <!-- Define author's picture -->
+
+
+
+        
+    
+
+<!--<nav id="sidebar" data-behavior="2">-->
+<nav id="sidebar" data-behavior="2">
+    
+        <div class="sidebar-profile">
+            <a href="/#about">
+                    <img class="sidebar-profile-picture" src="//dn-menci.qbox.me/assets/images/avatar.png"/>
+            </a>
+            <span class="sidebar-profile-name">Menci</span>
+        </div>
+    
+    
+        <ul class="sidebar-buttons">
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link "
+                         href="/ "
+                        
+                    >
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+                    <span class="sidebar-button-desc">首页</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link "
+                         href="/all-tags"
+                        
+                    >
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+                    <span class="sidebar-button-desc">标签</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link "
+                         href="/all-archives"
+                        
+                    >
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+                    <span class="sidebar-button-desc">归档</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link st-search-show-outputs"
+                         href="/#search"
+                        
+                    >
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-search"></i>
+                    <span class="sidebar-button-desc">搜索</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link "
+                         href="/about-me"
+                        
+                    >
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-info"></i>
+                    <span class="sidebar-button-desc">关于</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link "
+                         href="/friends"
+                        
+                    >
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-users"></i>
+                    <span class="sidebar-button-desc">伙伴</span>
+                </a>
+        </li>
+        
+    </ul>
+    
+        <ul class="sidebar-buttons">
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link " href="https://github.com/Menci" target="_blank">
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+                    <span class="sidebar-button-desc">GitHub</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link " href="https://twitter.com/HuangHaoRui" target="_blank">
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-twitter"></i>
+                    <span class="sidebar-button-desc">Twitter</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link " href="http://wpa.qq.com/msgrd?V=3&Uin=421899973" target="_blank">
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-qq"></i>
+                    <span class="sidebar-button-desc">QQ</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link " href="mailto:huanghaorui301@gmail.com" target="_blank">
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-envelope-o"></i>
+                    <span class="sidebar-button-desc">邮箱</span>
+                </a>
+        </li>
+        
+    </ul>
+    
+        <ul class="sidebar-buttons">
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link "
+                         href="/atom.xml"
+                        
+                    >
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-rss"></i>
+                    <span class="sidebar-button-desc">RSS</span>
+                </a>
+        </li>
+        
+    </ul>
+    
+</nav>
+
+            
+            <div id="main" data-behavior="2"
+                 class="
+                        hasCoverMetaIn
+                        ">
+                
+<article class="post" itemscope itemType="http://schema.org/BlogPosting">
+    
+    
+        <div class="post-header main-content-wrap text-left">
+    
+        <h1 class="post-title" itemprop="headline">
+            树链剖分学习笔记
+        </h1>
+    
+    <div class="post-meta" style="border-bottom: 1px solid #eef2f8;">
+    <time itemprop="datePublished" content="Sun Dec 27 2015 22:48:11 GMT+0800">
+	
+		    12月 27, 2015
+    	
+    </time>
+    
+        <span>发布在 </span>
+        
+    <a class="category-link" href="/categories/oi/">OI</a>
+
+
+    
+	
+		<div class="post-footer-tags" style="margin-top: 10px; margin-left: 10px; display: inline-block; border-bottom: none; ">
+			<!--span class="text-color-light text-small">标签</span><br/-->
+			
+    <a class="tag tag--primary tag--small t-link" href="/tag/bzoj/">BZOJ</a> <a class="tag tag--primary tag--small t-link" href="/tag/codevs/">CodeVS</a> <a class="tag tag--primary tag--small t-link" href="/tag/数据结构/">数据结构</a> <a class="tag tag--primary tag--small t-link" href="/tag/树链剖分/">树链剖分</a> <a class="tag tag--primary tag--small t-link" href="/tag/算法模板/">算法模板</a> <a class="tag tag--primary tag--small t-link" href="/tag/高级数据结构/">高级数据结构</a>
+
+		</div>
+	
+</div>
+
+</div>
+    
+    <div class="post-content markdown" itemprop="articleBody">
+        <div class="main-content-wrap">
+            <p>&#x6811;&#x94FE;&#x5256;&#x5206;&#xFF0C;&#x5C31;&#x662F;&#x628A;&#x4E00;&#x68F5;&#x6811;&#x5494;&#x5693;&#x5494;&#x5693;&#x5256;&#x6210;&#x4E00;&#x5806;&#x4E0D;&#x76F8;&#x4EA4;&#x7684;&#x94FE;&#xFF0C;&#x7136;&#x540E;&#x5728;&#x94FE;&#x4E0A;&#x7ED3;&#x5408;&#x641E;&#x57FA;&#x6570;&#x636E;&#x7ED3;&#x6784;&#x8FDB;&#x884C;&#x5404;&#x79CD;&#x67E5;&#x8BE2;&#x6216;&#x8005;&#x4FEE;&#x6539;&#x64CD;&#x4F5C;&#x3002;</p>
+<a id="more"></a>
+<h3 id="&#x9898;&#x76EE;&#x6811;&#x7684;&#x7EDF;&#x8BA1;">&#x9898;&#x76EE;&#xFF1A;&#x6811;&#x7684;&#x7EDF;&#x8BA1;</h3>
+<p><a href="http://codevs.cn/problem/2460/" target="_blank" rel="external">CodeVS 2460</a><br>
+<a href="http://www.lydsy.com/JudgeOnline/problem.php?id=1036" target="_blank" rel="external">BZOJ 1036</a></p>
+<p>&#x7ED9;&#x51FA;&#x4E00;&#x68F5;&#x6811;&#xFF0C;&#x6BCF;&#x4E2A;&#x70B9;&#x6709;&#x4E00;&#x4E2A;&#x53EF;&#x4FEE;&#x6539;&#x7684;&#x70B9;&#x6743;&#xFF0C;&#x6BCF;&#x6B21;&#x67E5;&#x8BE2;&#x4E24;&#x70B9;&#x4E4B;&#x95F4;<strong>&#x6240;&#x6709;&#x70B9;</strong>&#x7684;&#x70B9;&#x6743;&#x548C;&#x6216;&#x70B9;&#x6743;&#x6700;&#x5927;&#x503C;&#x3002;</p>
+<h3 id="&#x57FA;&#x672C;&#x601D;&#x60F3;">&#x57FA;&#x672C;&#x601D;&#x60F3;</h3>
+<div class="figure">
+<img src="//dn-menci.qbox.me/cut-tree-notes/cutTree.png" alt="CutTree">
+<p class="caption">CutTree</p>
+</div>
+<p>&#x628A;&#x6574;&#x68F5;&#x6811;&#x5212;&#x5206;&#x6210;&#x8BB8;&#x591A;&#x6761;<strong>&#x94FE;</strong>&#xFF0C;&#x4F7F;&#x6BCF;&#x4E2A;&#x8282;&#x70B9;&#x90FD;&#x5728;&#x552F;&#x4E00;&#x7684;&#x94FE;&#x4E0A;&#xFF0C;&#x5BF9;&#x6BCF;&#x4E00;&#x6761;&#x94FE;&#x7EF4;&#x62A4;&#x4E00;&#x68F5;<strong>&#x7EBF;&#x6BB5;&#x6811;</strong>&#xFF0C;&#x628A;&#x5728;&#x6811;&#x4E0A;&#x7684;&#x64CD;&#x4F5C;&#x8F6C;&#x79FB;&#x5230;&#x7EBF;&#x6BB5;&#x6811;&#x4E0A;&#x3002;</p>
+<p>&#x5177;&#x4F53;&#x5256;&#x7684;&#x8BDD;&#xFF0C;&#x8FD9;&#x91CC;&#x91C7;&#x7528;<strong>&#x8F7B;&#x91CD;&#x8FB9;&#x8DEF;&#x5F84;&#x5256;&#x5206;</strong>&#x7684;&#x65B9;&#x5F0F;&#xFF0C;&#x5256;&#x6700;&#x5927;&#x5B50;&#x6811;&#xFF0C;&#x8FD9;&#x6837;&#x53EF;&#x4EE5;&#x4FDD;&#x8BC1;&#x6574;&#x68F5;&#x6811;&#x4E0A;&#x7684;&#x8F7B;&#x8FB9;&#x548C;&#x94FE;&#x7684;&#x6570;&#x91CF;&#x90FD;&#x4E0D;&#x8D85;&#x8FC7; $O({\log}n)$&#x3002;</p>
+<h3 id="&#x5B9A;&#x4E49;">&#x5B9A;&#x4E49;</h3>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> Tree {</span><br><span class="line">    <span class="keyword">struct</span> Path *path;</span><br><span class="line">    Tree *parent, *children, *maxSizeChild, *next;</span><br><span class="line">    uint size, depth, maxDepth, pos;</span><br><span class="line">    <span class="keyword">int</span> w;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">bool</span> visited;</span><br><span class="line"></span><br><span class="line">    Tree() {}</span><br><span class="line">    Tree(Tree *parent) : parent(parent), depth(!parent ? <span class="number">0</span> : parent-&gt;depth + <span class="number">1</span>), next(!parent ? <span class="literal">NULL</span> : parent-&gt;children), path(<span class="literal">NULL</span>), w(<span class="number">0</span>), children(<span class="literal">NULL</span>), maxSizeChild(<span class="literal">NULL</span>) {}</span><br><span class="line">} treeNodes[MAXN], *root;</span><br><span class="line"></span><br><span class="line"><span class="keyword">struct</span> Path {</span><br><span class="line">    SegmentTree *segmentTree;</span><br><span class="line">    Tree *top;</span><br><span class="line"></span><br><span class="line">    Path(<span class="keyword">struct</span> Tree *top, uint count) : top(top), segmentTree(<span class="keyword">new</span> SegmentTree(<span class="number">0</span>, count - <span class="number">1</span>)) {}</span><br><span class="line">};</span><br></pre></td></tr></table></figure>
+<p>&#x5BF9;&#x4E8E;&#x6BCF;&#x4E2A;&#x8282;&#x70B9;&#xFF0C;<code>depth</code> &#x8868;&#x793A;&#x8FD9;&#x4E2A;&#x8282;&#x70B9;&#x7684;&#x6DF1;&#x5EA6;&#xFF08;&#x5373;&#x5230;&#x6574;&#x68F5;&#x6811;&#x7684;&#x6839;&#x7684;&#x8DDD;&#x79BB;&#xFF09;&#xFF0C;<code>size</code> &#x8868;&#x793A;&#x4EE5;&#x8FD9;&#x4E2A;&#x8282;&#x70B9;&#x4E3A;&#x6839;&#x7684;&#x6811;&#x7684;&#x5927;&#x5C0F;&#xFF08;&#x5373;&#x8282;&#x70B9;&#x603B;&#x6570;&#xFF09;&#xFF0C;<code>maxSizeChild</code> &#x8868;&#x793A;&#x8BE5;&#x8282;&#x70B9;&#x7684;&#x6700;&#x5927;&#x5B50;&#x6811;&#xFF0C;<code>maxDepth</code> &#x8868;&#x793A;&#x81EA;&#x5F53;&#x524D;&#x8282;&#x70B9;&#x5411;&#x4E0B;&#x6CBF;&#x7740; <code>maxSizeChild</code> &#x8D70;&#xFF0C;&#x8D70;&#x5230;&#x7684;&#x6700;&#x5927;&#x6DF1;&#x5EA6;&#xFF0C;&#x5373;&#x94FE;&#x7684;&#x6700;&#x5E95;&#x7AEF;&#x8282;&#x70B9;&#x7684;&#x6DF1;&#x5EA6;&#x3002;</p>
+<p>&#x6BCF;&#x4E2A;&#x8282;&#x70B9;&#x90FD;&#x5728;&#x4E00;&#x6761;&#x94FE;&#x4E0A;&#xFF0C;&#x6211;&#x4EEC;&#x628A;&#x8FD9;&#x4E9B;&#x94FE;&#x53EB;&#x505A;&#x8DEF;&#x5F84;&#xFF08;Path&#xFF09;&#xFF0C;&#x6BCF;&#x6761;&#x8DEF;&#x5F84;&#x7684;&#x6700;&#x9876;&#x7AEF;&#x70B9;&#xFF08;&#x6DF1;&#x5EA6;&#x6700;&#x5C0F;&#x7684;&#xFF09;&#x79F0;&#x4E3A;&#x94FE;&#x9876;&#x8282;&#x70B9; <code>top</code>&#xFF0C;&#x5E76;&#x4E14;&#x4E3A;&#x8DEF;&#x5F84;&#x4E0A;&#x7684;&#x6240;&#x6709;&#x8282;&#x70B9;&#x7EF4;&#x62A4;&#x4E00;&#x68F5;&#x7EBF;&#x6BB5;&#x6811;&#xFF0C;&#x800C;&#x6BCF;&#x4E2A;&#x8282;&#x70B9;&#x7684; <code>pos</code> &#x8868;&#x793A;&#x81EA;&#x5DF1;&#x5728;&#x81EA;&#x5DF1;&#x7684;&#x8DEF;&#x5F84;&#x4E0A;&#x7684;&#x7F16;&#x53F7;&#x3002;</p>
+<h3 id="&#x5256;&#x5206;">&#x5256;&#x5206;</h3>
+<p>&#x5256;&#x5206;&#x7684;&#x8FC7;&#x7A0B;&#x4E3B;&#x8981;&#x7531;&#x4E24;&#x6B21;&#x641C;&#x7D22;&#x7EC4;&#x6210;&#xFF0C;&#x9996;&#x5148;&#xFF0C;&#x6211;&#x4EEC;&#x6765;&#x4E00;&#x904D; <code>DFS</code>&#xFF0C;&#x6C42;&#x51FA;&#x6BCF;&#x4E2A;&#x8282;&#x70B9;&#x7684; <code>maxSizeChild</code> &#x548C; <code>maxDepth</code>&#x3002;</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">stack</span>&lt;Tree *&gt; s;</span><br><span class="line"></span><br><span class="line">s.push(root);</span><br><span class="line"><span class="keyword">while</span> (!s.empty()) {</span><br><span class="line">    Tree *tree = s.top();</span><br><span class="line">    <span class="keyword">if</span> (tree-&gt;visited) {</span><br><span class="line">        tree-&gt;size = <span class="number">1</span>;</span><br><span class="line">        tree-&gt;maxDepth = tree-&gt;depth;</span><br><span class="line">        <span class="keyword">for</span> (Tree *child = tree-&gt;children; child; child = child-&gt;next) {</span><br><span class="line">            tree-&gt;size += child-&gt;size;</span><br><span class="line">            <span class="keyword">if</span> (tree-&gt;maxSizeChild == <span class="literal">NULL</span> || tree-&gt;maxSizeChild-&gt;size &lt; child-&gt;size) {</span><br><span class="line">                tree-&gt;maxSizeChild = child;</span><br><span class="line">                tree-&gt;maxDepth = child-&gt;maxDepth;</span><br><span class="line">            }</span><br><span class="line">        }</span><br><span class="line"></span><br><span class="line">        s.pop();</span><br><span class="line">    } <span class="keyword">else</span> {</span><br><span class="line">        <span class="keyword">for</span> (Tree *child = tree-&gt;children; child; child = child-&gt;next) {</span><br><span class="line">            s.push(child);</span><br><span class="line">        }</span><br><span class="line"></span><br><span class="line">        tree-&gt;visited = <span class="literal">true</span>;</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<p>&#x7136;&#x540E;&#xFF0C;&#x6211;&#x4EEC;&#x7528;&#x7B2C;&#x4E8C;&#x904D;&#x641C;&#x7D22;&#x6765;&#x628A;&#x6BCF;&#x4E00;&#x6761;&#x94FE;&#x8FDE;&#x63A5;&#x8D77;&#x6765;&#xFF0C;<code>DFS</code> &#x548C; <code>BFS</code> &#x90FD;&#x53EF;&#x4EE5;&#xFF0C;&#x56E0;&#x4E3A; <code>BFS</code> &#x597D;&#x5199;&#x5C31;&#x7528; <code>BFS</code> &#x5427; &#x2026;&#x2026;</p>
+<p>&#x5BF9;&#x4E8E;&#x6BCF;&#x4E2A;&#x8282;&#x70B9;&#xFF0C;&#x5982;&#x679C;&#x5B83;&#x662F;&#x6839;&#x6216;&#x5B83;&#x4E0D;&#x662F;&#x7236;&#x8282;&#x70B9;&#x7684; <code>maxDepthChild</code>&#xFF0C;&#x5219;&#x6211;&#x4EEC;&#x521B;&#x5EFA;&#x4E00;&#x6761;&#x4ECE;&#x8BE5;&#x8282;&#x70B9;&#x5F00;&#x59CB;&#x7684;&#x94FE;&#xFF0C;&#x5426;&#x5219;&#x8BE5;&#x8282;&#x70B9;&#x6240;&#x5728;&#x94FE;&#x5373;&#x4E3A;&#x7236;&#x8282;&#x70B9;&#x6240;&#x5728;&#x94FE;&#x3002;</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">queue</span>&lt;Tree *&gt; q;</span><br><span class="line"></span><br><span class="line">q.push(root);</span><br><span class="line"><span class="keyword">while</span> (!q.empty()) {</span><br><span class="line">    Tree *tree = q.front();</span><br><span class="line">    q.pop();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (tree == root || tree != tree-&gt;parent-&gt;maxSizeChild) {</span><br><span class="line">        tree-&gt;path = <span class="keyword">new</span> Path(tree, tree-&gt;maxDepth - tree-&gt;depth + <span class="number">1</span>);</span><br><span class="line">        tree-&gt;pos = <span class="number">0</span>;</span><br><span class="line">    } <span class="keyword">else</span> {</span><br><span class="line">        tree-&gt;path = tree-&gt;parent-&gt;path;</span><br><span class="line">        tree-&gt;pos = tree-&gt;parent-&gt;pos + <span class="number">1</span>;</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (Tree *child = tree-&gt;children; child; child = child-&gt;next) {</span><br><span class="line">        q.push(child);</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<p>&#x6700;&#x540E;&#xFF0C;&#x5728;&#x7EBF;&#x6BB5;&#x6811;&#x4E0A;&#x66F4;&#x65B0;&#x6BCF;&#x4E2A;&#x70B9;&#x7684;&#x6743;&#x503C;&#xFF1A;</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (uint i = <span class="number">0</span>; i &lt; n; i++) {</span><br><span class="line">    treeNodes[i].path-&gt;segmentTree-&gt;update(treeNodes[i].pos, treeNodes[i].w);</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<h3 id="&#x4FEE;&#x6539;">&#x4FEE;&#x6539;</h3>
+<p>&#x4FEE;&#x6539;&#x67D0;&#x4E2A;&#x70B9;&#x7684;&#x6743;&#x503C;&#xFF0C;&#x53EA;&#x9700;&#x8981;&#x5728;&#x8BE5;&#x8282;&#x70B9;&#x6240;&#x5728;&#x94FE;&#x4E0A;&#x7684;&#x7EBF;&#x6BB5;&#x6811;&#x4E2D;&#x66F4;&#x65B0;&#x5373;&#x53EF;&#x3002;</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">update</span><span class="params">(uint x, uint w)</span> </span>{</span><br><span class="line">    treeNodes[x].path-&gt;segmentTree-&gt;update(treeNodes[x].pos, w);</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<h3 id="&#x67E5;&#x8BE2;">&#x67E5;&#x8BE2;</h3>
+<p>&#x67E5;&#x8BE2;&#x4E24;&#x4E2A;&#x70B9; <code>[u, v]</code> &#x4E4B;&#x95F4;&#x7684;&#x70B9;&#x6743;&#x548C;&#xFF08;&#x6216;&#x70B9;&#x6743;&#x6781;&#x503C;&#xFF09;&#x7684;&#x601D;&#x8DEF;&#x5982;&#x4E0B;&#xFF1A;</p>
+<ol style="list-style-type: decimal">
+<li>&#x5982;&#x679C; <code>u</code> &#x4E0E; <code>v</code> &#x4E0D;&#x540C;&#x4E00;&#x6761;&#x94FE;&#x4E0A;&#xFF0C;&#x5219;&#x4F7F;&#x4E8C;&#x8005;&#x4E2D;<strong>&#x6240;&#x5728;&#x94FE;&#x94FE;&#x9876;&#x8282;&#x70B9;</strong>&#x6DF1;&#x5EA6;&#x6700;&#x5C0F;&#x7684;&#x4E00;&#x4E2A;&#x8DF3;&#x5230;<strong>&#x6240;&#x5728;&#x94FE;&#x94FE;&#x9876;&#x8282;&#x70B9;</strong>&#x7684;&#x7236;&#x8282;&#x70B9;&#x4F4D;&#x7F6E;&#xFF0C;&#x7EE7;&#x7EED;&#x56DE;&#x5230; 1&#xFF1B;</li>
+<li>&#x5982;&#x679C; <code>u</code> &#x4E0E; <code>v</code> &#x5728;&#x540C;&#x4E00;&#x6761;&#x94FE;&#x4E0A;&#xFF0C;&#x5219;&#x76F4;&#x63A5;&#x4ECE;&#x7EBF;&#x6BB5;&#x6811;&#x4E2D;&#x67E5;&#x8BE2;&#x3002;</li>
+</ol>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">querySum</span><span class="params">(uint u, uint v)</span> </span>{</span><br><span class="line">    <span class="keyword">int</span> result = <span class="number">0</span>;</span><br><span class="line">    Tree *a = &amp;treeNodes[u], *b = &amp;treeNodes[v];</span><br><span class="line">    <span class="keyword">while</span> (a-&gt;path != b-&gt;path) {</span><br><span class="line">        <span class="keyword">if</span> (a-&gt;path-&gt;top-&gt;depth &lt; b-&gt;path-&gt;top-&gt;depth) {</span><br><span class="line">            swap(a, b);</span><br><span class="line">        }</span><br><span class="line"></span><br><span class="line">        result += a-&gt;path-&gt;segmentTree-&gt;querySum(<span class="number">0</span>, a-&gt;pos);</span><br><span class="line">        a = a-&gt;path-&gt;top-&gt;parent;</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (a-&gt;pos &gt; b-&gt;pos) {</span><br><span class="line">        swap(a, b);</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    result += a-&gt;path-&gt;segmentTree-&gt;querySum(a-&gt;pos, b-&gt;pos);</span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<h3 id="&#x9644;&#x65E0;&#x6839;&#x6811;&#x8F6C;&#x6709;&#x6839;&#x6811;">&#x9644;&#xFF1A;&#x65E0;&#x6839;&#x6811;&#x8F6C;&#x6709;&#x6839;&#x6811;</h3>
+<p>&#x4E3A;&#x4E86;&#x5256;&#x5206;&#x65F6;&#x66F4;&#x5BB9;&#x6613;&#x4E00;&#x4E9B;&#xFF0C;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x628A;&#x8BFB;&#x5165;&#x7684;&#x65E0;&#x6839;&#x6811;&#x8F6C;&#x5316;&#x6210;&#x6709;&#x6839;&#x6811;&#xFF0C;&#x8FD9;&#x6837;&#x641C;&#x7D22;&#x7684;&#x65F6;&#x5019;&#x65B9;&#x4FBF;&#x70B9;&#xFF0C;&#x5F53;&#x7136;&#x5E38;&#x6570;&#x4E5F;&#x4F1A;&#x5927;&#x4E00;&#x4E9B; &#x2026;&#x2026;</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">convert</span><span class="params">()</span> </span>{</span><br><span class="line">    <span class="built_in">queue</span>&lt;Node *&gt; q;</span><br><span class="line">    root = &amp;treeNodes[<span class="number">0</span>];</span><br><span class="line">    <span class="keyword">new</span> (root) Tree(<span class="literal">NULL</span>);</span><br><span class="line"></span><br><span class="line">    q.push(&amp;nodes[<span class="number">0</span>]);</span><br><span class="line">    <span class="keyword">while</span> (!q.empty()) {</span><br><span class="line">        Node *node = q.front();</span><br><span class="line">        q.pop();</span><br><span class="line"></span><br><span class="line">        node-&gt;visited = <span class="literal">true</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (Edge *edge = node-&gt;edges; edge; edge = edge-&gt;next) {</span><br><span class="line">            <span class="keyword">if</span> (!edge-&gt;to-&gt;visited) {</span><br><span class="line">                treeNodes[node-&gt;id].children = <span class="keyword">new</span> (&amp;treeNodes[edge-&gt;to-&gt;id]) Tree(&amp;treeNodes[node-&gt;id]);</span><br><span class="line">                q.push(edge-&gt;to);</span><br><span class="line">            }</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<h3 id="&#x9644;&#x7EBF;&#x6BB5;&#x6811;">&#x9644;&#xFF1A;&#x7EBF;&#x6BB5;&#x6811;</h3>
+<p>&#x6211;&#x4EEC;&#x4F7F;&#x7528;&#x7EBF;&#x6BB5;&#x6811;&#x6765;&#x7EF4;&#x62A4;&#x6BCF;&#x4E00;&#x6761;&#x94FE;&#xFF0C;&#x8FD9;&#x91CC;&#x53EA;&#x7528;&#x5230;&#x4E86;&#x5355;&#x70B9;&#x4FEE;&#x6539;&#xFF0C;&#x4E5F;&#x53EF;&#x4EE5;&#x6362;&#x6210;&#x6811;&#x72B6;&#x6570;&#x7EC4;&#x6216;&#x8005; zkw &#x7EBF;&#x6BB5;&#x6811;&#x3002;</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> SegmentTree {</span><br><span class="line">    <span class="keyword">struct</span> Node {</span><br><span class="line">        <span class="keyword">struct</span> Node *lchild, *rchild;</span><br><span class="line">        uint l, r;</span><br><span class="line">        <span class="keyword">int</span> sum, max;</span><br><span class="line"></span><br><span class="line">        Node(uint l, uint r, Node *lchild, Node *rchild) : l(l), r(r), lchild(lchild), rchild(rchild), sum(<span class="number">0</span>), max(<span class="number">0</span>) {}</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">void</span> <span class="title">update</span><span class="params">(uint x, <span class="keyword">int</span> value)</span> </span>{</span><br><span class="line">            <span class="keyword">if</span> (x &gt; r || x &lt; l) {</span><br><span class="line">                <span class="keyword">return</span>;</span><br><span class="line">            }</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> (x == l &amp;&amp; x == r) {</span><br><span class="line">                sum = max = value;</span><br><span class="line">            } <span class="keyword">else</span> {</span><br><span class="line">                max = INT_MIN, sum = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">                <span class="keyword">if</span> (lchild) {</span><br><span class="line">                    lchild-&gt;update(x, value);</span><br><span class="line">                    max = <span class="built_in">std</span>::max(max, lchild-&gt;max);</span><br><span class="line">                    sum += lchild-&gt;sum;</span><br><span class="line">                }</span><br><span class="line"></span><br><span class="line">                <span class="keyword">if</span> (rchild) {</span><br><span class="line">                    rchild-&gt;update(x, value);</span><br><span class="line">                    max = <span class="built_in">std</span>::max(max, rchild-&gt;max);</span><br><span class="line">                    sum += rchild-&gt;sum;</span><br><span class="line">                }</span><br><span class="line">            }</span><br><span class="line">        }</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">int</span> <span class="title">querySum</span><span class="params">(uint l, uint r)</span> </span>{</span><br><span class="line">            <span class="keyword">if</span> (l &gt; <span class="keyword">this</span>-&gt;r || r &lt; <span class="keyword">this</span>-&gt;l) {</span><br><span class="line">                <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">            }</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> (l &lt;= <span class="keyword">this</span>-&gt;l &amp;&amp; r &gt;= <span class="keyword">this</span>-&gt;r) {</span><br><span class="line">                <span class="keyword">return</span> sum;</span><br><span class="line">            } <span class="keyword">else</span> {</span><br><span class="line">                <span class="keyword">int</span> result = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">                <span class="keyword">if</span> (lchild) {</span><br><span class="line">                    result += lchild-&gt;querySum(l, r);</span><br><span class="line">                }</span><br><span class="line"></span><br><span class="line">                <span class="keyword">if</span> (rchild) {</span><br><span class="line">                    result += rchild-&gt;querySum(l, r);</span><br><span class="line">                }</span><br><span class="line"></span><br><span class="line">                <span class="keyword">return</span> result;</span><br><span class="line">            }</span><br><span class="line">        }</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">int</span> <span class="title">queryMax</span><span class="params">(uint l, uint r)</span> </span>{</span><br><span class="line">            <span class="keyword">if</span> (l &gt; <span class="keyword">this</span>-&gt;r || r &lt; <span class="keyword">this</span>-&gt;l) {</span><br><span class="line">                <span class="keyword">return</span> INT_MIN;</span><br><span class="line">            }</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> (l &lt;= <span class="keyword">this</span>-&gt;l &amp;&amp; r &gt;= <span class="keyword">this</span>-&gt;r) {</span><br><span class="line">                <span class="keyword">return</span> max;</span><br><span class="line">            } <span class="keyword">else</span> {</span><br><span class="line">                <span class="keyword">int</span> result = INT_MIN;</span><br><span class="line"></span><br><span class="line">                <span class="keyword">if</span> (lchild) {</span><br><span class="line">                    result = <span class="built_in">std</span>::max(result, lchild-&gt;queryMax(l, r));</span><br><span class="line">                }</span><br><span class="line"></span><br><span class="line">                <span class="keyword">if</span> (rchild) {</span><br><span class="line">                    result = <span class="built_in">std</span>::max(result, rchild-&gt;queryMax(l, r));</span><br><span class="line">                }</span><br><span class="line"></span><br><span class="line">                <span class="keyword">return</span> result;</span><br><span class="line">            }</span><br><span class="line">        }</span><br><span class="line">    } *root;</span><br><span class="line"></span><br><span class="line">    SegmentTree(uint l, uint r) {</span><br><span class="line">        root = build(l, r);</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="function">Node *<span class="title">build</span><span class="params">(uint l, uint r)</span> </span>{</span><br><span class="line">        <span class="keyword">if</span> (r &lt; l) {</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line">        } <span class="keyword">else</span> <span class="keyword">if</span> (r == l) {</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">new</span> Node(l, r, <span class="literal">NULL</span>, <span class="literal">NULL</span>);</span><br><span class="line">        } <span class="keyword">else</span> {</span><br><span class="line">            uint mid = (l + ((r - l) &gt;&gt; <span class="number">1</span>));</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">new</span> Node(l, r, build(l, mid), build(mid + <span class="number">1</span>, r));</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">update</span><span class="params">(uint x, <span class="keyword">int</span> value)</span> </span>{</span><br><span class="line">        root-&gt;update(x, value);</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">querySum</span><span class="params">(uint l, uint r)</span> </span>{</span><br><span class="line">        <span class="keyword">return</span> root-&gt;querySum(l, r);</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">queryMax</span><span class="params">(uint l, uint r)</span> </span>{</span><br><span class="line">        <span class="keyword">return</span> root-&gt;queryMax(l, r);</span><br><span class="line">    }</span><br><span class="line">};</span><br></pre></td></tr></table></figure>
+<h3 id="&#x5B8C;&#x6574;&#x4EE3;&#x7801;">&#x5B8C;&#x6574;&#x4EE3;&#x7801;</h3>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br><span class="line">257</span><br><span class="line">258</span><br><span class="line">259</span><br><span class="line">260</span><br><span class="line">261</span><br><span class="line">262</span><br><span class="line">263</span><br><span class="line">264</span><br><span class="line">265</span><br><span class="line">266</span><br><span class="line">267</span><br><span class="line">268</span><br><span class="line">269</span><br><span class="line">270</span><br><span class="line">271</span><br><span class="line">272</span><br><span class="line">273</span><br><span class="line">274</span><br><span class="line">275</span><br><span class="line">276</span><br><span class="line">277</span><br><span class="line">278</span><br><span class="line">279</span><br><span class="line">280</span><br><span class="line">281</span><br><span class="line">282</span><br><span class="line">283</span><br><span class="line">284</span><br><span class="line">285</span><br><span class="line">286</span><br><span class="line">287</span><br><span class="line">288</span><br><span class="line">289</span><br><span class="line">290</span><br><span class="line">291</span><br><span class="line">292</span><br><span class="line">293</span><br><span class="line">294</span><br><span class="line">295</span><br><span class="line">296</span><br><span class="line">297</span><br><span class="line">298</span><br><span class="line">299</span><br><span class="line">300</span><br><span class="line">301</span><br><span class="line">302</span><br><span class="line">303</span><br><span class="line">304</span><br><span class="line">305</span><br><span class="line">306</span><br><span class="line">307</span><br><span class="line">308</span><br><span class="line">309</span><br><span class="line">310</span><br><span class="line">311</span><br><span class="line">312</span><br><span class="line">313</span><br><span class="line">314</span><br><span class="line">315</span><br><span class="line">316</span><br><span class="line">317</span><br><span class="line">318</span><br><span class="line">319</span><br><span class="line">320</span><br><span class="line">321</span><br><span class="line">322</span><br><span class="line">323</span><br><span class="line">324</span><br><span class="line">325</span><br><span class="line">326</span><br><span class="line">327</span><br><span class="line">328</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;climits&gt;</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;queue&gt;</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;stack&gt;</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;algorithm&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::<span class="built_in">queue</span>;</span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::<span class="built_in">stack</span>;</span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::swap;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">unsigned</span> <span class="keyword">int</span> uint;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> uint MAXN = <span class="number">30000</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">struct</span> Node {</span><br><span class="line">    <span class="keyword">struct</span> Edge *edges;</span><br><span class="line">    uint id;</span><br><span class="line">    <span class="keyword">bool</span> visited;</span><br><span class="line">} nodes[MAXN];</span><br><span class="line"></span><br><span class="line"><span class="keyword">struct</span> Edge {</span><br><span class="line">    Node *from, *to;</span><br><span class="line">    Edge *next;</span><br><span class="line"></span><br><span class="line">    Edge(Node *from, Node *to, Edge *next) : from(from), to(to), next(next) {}</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line"><span class="keyword">struct</span> SegmentTree {</span><br><span class="line">    <span class="keyword">struct</span> Node {</span><br><span class="line">        <span class="keyword">struct</span> Node *lchild, *rchild;</span><br><span class="line">        uint l, r;</span><br><span class="line">        <span class="keyword">int</span> sum, max;</span><br><span class="line"></span><br><span class="line">        Node(uint l, uint r, Node *lchild, Node *rchild) : l(l), r(r), lchild(lchild), rchild(rchild), sum(<span class="number">0</span>), max(<span class="number">0</span>) {}</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">void</span> <span class="title">update</span><span class="params">(uint x, <span class="keyword">int</span> value)</span> </span>{</span><br><span class="line">            <span class="keyword">if</span> (x &gt; r || x &lt; l) {</span><br><span class="line">                <span class="keyword">return</span>;</span><br><span class="line">            }</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> (x == l &amp;&amp; x == r) {</span><br><span class="line">                sum = max = value;</span><br><span class="line">            } <span class="keyword">else</span> {</span><br><span class="line">                max = INT_MIN, sum = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">                <span class="keyword">if</span> (lchild) {</span><br><span class="line">                    lchild-&gt;update(x, value);</span><br><span class="line">                    max = <span class="built_in">std</span>::max(max, lchild-&gt;max);</span><br><span class="line">                    sum += lchild-&gt;sum;</span><br><span class="line">                }</span><br><span class="line"></span><br><span class="line">                <span class="keyword">if</span> (rchild) {</span><br><span class="line">                    rchild-&gt;update(x, value);</span><br><span class="line">                    max = <span class="built_in">std</span>::max(max, rchild-&gt;max);</span><br><span class="line">                    sum += rchild-&gt;sum;</span><br><span class="line">                }</span><br><span class="line">            }</span><br><span class="line">        }</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">int</span> <span class="title">querySum</span><span class="params">(uint l, uint r)</span> </span>{</span><br><span class="line">            <span class="keyword">if</span> (l &gt; <span class="keyword">this</span>-&gt;r || r &lt; <span class="keyword">this</span>-&gt;l) {</span><br><span class="line">                <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">            }</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> (l &lt;= <span class="keyword">this</span>-&gt;l &amp;&amp; r &gt;= <span class="keyword">this</span>-&gt;r) {</span><br><span class="line">                <span class="keyword">return</span> sum;</span><br><span class="line">            } <span class="keyword">else</span> {</span><br><span class="line">                <span class="keyword">int</span> result = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">                <span class="keyword">if</span> (lchild) {</span><br><span class="line">                    result += lchild-&gt;querySum(l, r);</span><br><span class="line">                }</span><br><span class="line"></span><br><span class="line">                <span class="keyword">if</span> (rchild) {</span><br><span class="line">                    result += rchild-&gt;querySum(l, r);</span><br><span class="line">                }</span><br><span class="line"></span><br><span class="line">                <span class="keyword">return</span> result;</span><br><span class="line">            }</span><br><span class="line">        }</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">int</span> <span class="title">queryMax</span><span class="params">(uint l, uint r)</span> </span>{</span><br><span class="line">            <span class="keyword">if</span> (l &gt; <span class="keyword">this</span>-&gt;r || r &lt; <span class="keyword">this</span>-&gt;l) {</span><br><span class="line">                <span class="keyword">return</span> INT_MIN;</span><br><span class="line">            }</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> (l &lt;= <span class="keyword">this</span>-&gt;l &amp;&amp; r &gt;= <span class="keyword">this</span>-&gt;r) {</span><br><span class="line">                <span class="keyword">return</span> max;</span><br><span class="line">            } <span class="keyword">else</span> {</span><br><span class="line">                <span class="keyword">int</span> result = INT_MIN;</span><br><span class="line"></span><br><span class="line">                <span class="keyword">if</span> (lchild) {</span><br><span class="line">                    result = <span class="built_in">std</span>::max(result, lchild-&gt;queryMax(l, r));</span><br><span class="line">                }</span><br><span class="line"></span><br><span class="line">                <span class="keyword">if</span> (rchild) {</span><br><span class="line">                    result = <span class="built_in">std</span>::max(result, rchild-&gt;queryMax(l, r));</span><br><span class="line">                }</span><br><span class="line"></span><br><span class="line">                <span class="keyword">return</span> result;</span><br><span class="line">            }</span><br><span class="line">        }</span><br><span class="line">    } *root;</span><br><span class="line"></span><br><span class="line">    SegmentTree(uint l, uint r) {</span><br><span class="line">        root = build(l, r);</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="function">Node *<span class="title">build</span><span class="params">(uint l, uint r)</span> </span>{</span><br><span class="line">        <span class="keyword">if</span> (r &lt; l) {</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line">        } <span class="keyword">else</span> <span class="keyword">if</span> (r == l) {</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">new</span> Node(l, r, <span class="literal">NULL</span>, <span class="literal">NULL</span>);</span><br><span class="line">        } <span class="keyword">else</span> {</span><br><span class="line">            uint mid = (l + ((r - l) &gt;&gt; <span class="number">1</span>));</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">new</span> Node(l, r, build(l, mid), build(mid + <span class="number">1</span>, r));</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">update</span><span class="params">(uint x, <span class="keyword">int</span> value)</span> </span>{</span><br><span class="line">        root-&gt;update(x, value);</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">querySum</span><span class="params">(uint l, uint r)</span> </span>{</span><br><span class="line">        <span class="keyword">return</span> root-&gt;querySum(l, r);</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">queryMax</span><span class="params">(uint l, uint r)</span> </span>{</span><br><span class="line">        <span class="keyword">return</span> root-&gt;queryMax(l, r);</span><br><span class="line">    }</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line"><span class="keyword">struct</span> Tree {</span><br><span class="line">    <span class="keyword">struct</span> Path *path;</span><br><span class="line">    Tree *parent, *children, *maxSizeChild, *next;</span><br><span class="line">    uint size, depth, maxDepth, pos;</span><br><span class="line">    <span class="keyword">int</span> w;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">bool</span> visited;</span><br><span class="line"></span><br><span class="line">    Tree() {}</span><br><span class="line">    Tree(Tree *parent) : parent(parent), depth(!parent ? <span class="number">0</span> : parent-&gt;depth + <span class="number">1</span>), next(!parent ? <span class="literal">NULL</span> : parent-&gt;children), path(<span class="literal">NULL</span>), w(<span class="number">0</span>), children(<span class="literal">NULL</span>), maxSizeChild(<span class="literal">NULL</span>) {}</span><br><span class="line">} treeNodes[MAXN], *root;</span><br><span class="line"></span><br><span class="line"><span class="keyword">struct</span> Path {</span><br><span class="line">    SegmentTree *segmentTree;</span><br><span class="line">    Tree *top;</span><br><span class="line"></span><br><span class="line">    Path(<span class="keyword">struct</span> Tree *top, uint count) : top(top), segmentTree(<span class="keyword">new</span> SegmentTree(<span class="number">0</span>, count - <span class="number">1</span>)) {}</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line">uint n, q;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">addEdge</span><span class="params">(uint a, uint b)</span> </span>{</span><br><span class="line">    nodes[a].edges = <span class="keyword">new</span> Edge(&amp;nodes[a], &amp;nodes[b], nodes[a].edges);</span><br><span class="line">    nodes[b].edges = <span class="keyword">new</span> Edge(&amp;nodes[b], &amp;nodes[a], nodes[b].edges);</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">convert</span><span class="params">()</span> </span>{</span><br><span class="line">    <span class="built_in">queue</span>&lt;Node *&gt; q;</span><br><span class="line">    root = &amp;treeNodes[<span class="number">0</span>];</span><br><span class="line">    <span class="keyword">new</span> (root) Tree(<span class="literal">NULL</span>);</span><br><span class="line"></span><br><span class="line">    q.push(&amp;nodes[<span class="number">0</span>]);</span><br><span class="line">    <span class="keyword">while</span> (!q.empty()) {</span><br><span class="line">        Node *node = q.front();</span><br><span class="line">        q.pop();</span><br><span class="line"></span><br><span class="line">        node-&gt;visited = <span class="literal">true</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (Edge *edge = node-&gt;edges; edge; edge = edge-&gt;next) {</span><br><span class="line">            <span class="keyword">if</span> (!edge-&gt;to-&gt;visited) {</span><br><span class="line">                treeNodes[node-&gt;id].children = <span class="keyword">new</span> (&amp;treeNodes[edge-&gt;to-&gt;id]) Tree(&amp;treeNodes[node-&gt;id]);</span><br><span class="line">                q.push(edge-&gt;to);</span><br><span class="line">            }</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">cut</span><span class="params">()</span> </span>{</span><br><span class="line">    <span class="built_in">stack</span>&lt;Tree *&gt; s;</span><br><span class="line"></span><br><span class="line">    s.push(root);</span><br><span class="line">    <span class="keyword">while</span> (!s.empty()) {</span><br><span class="line">        Tree *tree = s.top();</span><br><span class="line">        <span class="keyword">if</span> (tree-&gt;visited) {</span><br><span class="line">            tree-&gt;size = <span class="number">1</span>;</span><br><span class="line">            tree-&gt;maxDepth = tree-&gt;depth;</span><br><span class="line">            <span class="keyword">for</span> (Tree *child = tree-&gt;children; child; child = child-&gt;next) {</span><br><span class="line">                tree-&gt;size += child-&gt;size;</span><br><span class="line">                <span class="keyword">if</span> (tree-&gt;maxSizeChild == <span class="literal">NULL</span> || tree-&gt;maxSizeChild-&gt;size &lt; child-&gt;size) {</span><br><span class="line">                    tree-&gt;maxSizeChild = child;</span><br><span class="line">                    tree-&gt;maxDepth = child-&gt;maxDepth;</span><br><span class="line">                }</span><br><span class="line">            }</span><br><span class="line"></span><br><span class="line">            s.pop();</span><br><span class="line">        } <span class="keyword">else</span> {</span><br><span class="line">            <span class="keyword">for</span> (Tree *child = tree-&gt;children; child; child = child-&gt;next) {</span><br><span class="line">                s.push(child);</span><br><span class="line">            }</span><br><span class="line"></span><br><span class="line">            tree-&gt;visited = <span class="literal">true</span>;</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line"><span class="built_in">queue</span>&lt;Tree *&gt; q;</span><br><span class="line"></span><br><span class="line">q.push(root);</span><br><span class="line"><span class="keyword">while</span> (!q.empty()) {</span><br><span class="line">    Tree *tree = q.front();</span><br><span class="line">    q.pop();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (tree == root || tree != tree-&gt;parent-&gt;maxSizeChild) {</span><br><span class="line">        tree-&gt;path = <span class="keyword">new</span> Path(tree, tree-&gt;maxDepth - tree-&gt;depth + <span class="number">1</span>);</span><br><span class="line">        tree-&gt;pos = <span class="number">0</span>;</span><br><span class="line">    } <span class="keyword">else</span> {</span><br><span class="line">        tree-&gt;path = tree-&gt;parent-&gt;path;</span><br><span class="line">        tree-&gt;pos = tree-&gt;parent-&gt;pos + <span class="number">1</span>;</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (Tree *child = tree-&gt;children; child; child = child-&gt;next) {</span><br><span class="line">        q.push(child);</span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (uint i = <span class="number">0</span>; i &lt; n; i++) {</span><br><span class="line">        treeNodes[i].path-&gt;segmentTree-&gt;update(treeNodes[i].pos, treeNodes[i].w);</span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">update</span><span class="params">(uint x, uint w)</span> </span>{</span><br><span class="line">    treeNodes[x].w = w;</span><br><span class="line">    treeNodes[x].path-&gt;segmentTree-&gt;update(treeNodes[x].pos, w);</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">querySum</span><span class="params">(uint u, uint v)</span> </span>{</span><br><span class="line">    <span class="keyword">int</span> result = <span class="number">0</span>;</span><br><span class="line">    Tree *a = &amp;treeNodes[u], *b = &amp;treeNodes[v];</span><br><span class="line">    <span class="keyword">while</span> (a-&gt;path != b-&gt;path) {</span><br><span class="line">        <span class="keyword">if</span> (a-&gt;path-&gt;top-&gt;depth &lt; b-&gt;path-&gt;top-&gt;depth) {</span><br><span class="line">            swap(a, b);</span><br><span class="line">        }</span><br><span class="line"></span><br><span class="line">        result += a-&gt;path-&gt;segmentTree-&gt;querySum(<span class="number">0</span>, a-&gt;pos);</span><br><span class="line">        a = a-&gt;path-&gt;top-&gt;parent;</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (a-&gt;pos &gt; b-&gt;pos) {</span><br><span class="line">        swap(a, b);</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    result += a-&gt;path-&gt;segmentTree-&gt;querySum(a-&gt;pos, b-&gt;pos);</span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">queryMax</span><span class="params">(uint u, uint v)</span> </span>{</span><br><span class="line">    <span class="keyword">int</span> result = INT_MIN;</span><br><span class="line">    Tree *a = &amp;treeNodes[u], *b = &amp;treeNodes[v];</span><br><span class="line">    <span class="keyword">while</span> (a-&gt;path != b-&gt;path) {</span><br><span class="line">        <span class="keyword">if</span> (a-&gt;path-&gt;top-&gt;depth &lt; b-&gt;path-&gt;top-&gt;depth) {</span><br><span class="line">            swap(a, b);</span><br><span class="line">        }</span><br><span class="line"></span><br><span class="line">        result = <span class="built_in">std</span>::max(result, a-&gt;path-&gt;segmentTree-&gt;queryMax(<span class="number">0</span>, a-&gt;pos));</span><br><span class="line">        a = a-&gt;path-&gt;top-&gt;parent;</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (a-&gt;pos &gt; b-&gt;pos) {</span><br><span class="line">        swap(a, b);</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    result = <span class="built_in">std</span>::max(result, a-&gt;path-&gt;segmentTree-&gt;queryMax(a-&gt;pos, b-&gt;pos));</span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>{</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%u&quot;</span>, &amp;n);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (uint i = <span class="number">0</span>; i &lt; n; i++) {</span><br><span class="line">        nodes[i].id = i;</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (uint i = <span class="number">0</span>; i &lt; n - <span class="number">1</span>; i++) {</span><br><span class="line">        uint a, b;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">&quot;%u %u&quot;</span>, &amp;a, &amp;b);</span><br><span class="line">        a--, b--;</span><br><span class="line"></span><br><span class="line">        addEdge(a, b);</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    convert();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (uint i = <span class="number">0</span>; i &lt; n; i++) {</span><br><span class="line">        uint w;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">&quot;%u&quot;</span>, &amp;w);</span><br><span class="line">        treeNodes[i].w = w;</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    cut();</span><br><span class="line"></span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%u&quot;</span>, &amp;q);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (uint i = <span class="number">0</span>; i &lt; q; i++) {</span><br><span class="line">        <span class="keyword">char</span> command[<span class="number">6</span> + <span class="number">1</span>];</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">&quot;%s&quot;</span>, command);</span><br><span class="line">        <span class="keyword">if</span> (command[<span class="number">1</span>] == <span class="string">&apos;H&apos;</span>) { <span class="comment">// CHANGE</span></span><br><span class="line">            uint x;</span><br><span class="line">            <span class="keyword">int</span> w;</span><br><span class="line">            <span class="built_in">scanf</span>(<span class="string">&quot;%u %d&quot;</span>, &amp;x, &amp;w);</span><br><span class="line">            x--;</span><br><span class="line"></span><br><span class="line">            update(x, w);</span><br><span class="line">        } <span class="keyword">else</span> {</span><br><span class="line">            uint u, v;</span><br><span class="line">            <span class="built_in">scanf</span>(<span class="string">&quot;%u %u&quot;</span>, &amp;u, &amp;v);</span><br><span class="line">            u--, v--;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> (command[<span class="number">1</span>] == <span class="string">&apos;M&apos;</span>) { <span class="comment">// QMAX</span></span><br><span class="line">                <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>, queryMax(u, v));</span><br><span class="line">            } <span class="keyword">else</span> { <span class="comment">// QSUM</span></span><br><span class="line">                <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>, querySum(u, v));</span><br><span class="line">            }</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+
+            
+        </div>
+    </div>
+    <div id="post-footer" class="post-footer main-content-wrap">
+        <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/kmp-notes/"  data-tooltip="KMP 学习笔记">
+                
+                    <i class="fa fa-angle-left"></i>
+                    <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/stl-in-oi/" data-tooltip="STL 在 OI 中的应用">
+                
+                    <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
+                    <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a class="post-action-btn btn btn--default btn-open-shareoptions"  href="#btn-open-shareoptions">
+                <i class="fa fa-share-alt"></i>
+            </a>
+        </li>
+        <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://blog.menci.moe/cut-tree-notes/">
+                <i class="fa fa-google-plus"></i>
+            </a>
+        </li>
+        <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.menci.moe/cut-tree-notes/">
+                <i class="fa fa-facebook-official"></i>
+            </a>
+        </li>
+        <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://blog.menci.moe/cut-tree-notes/">
+                <i class="fa fa-twitter"></i>
+            </a>
+        </li>
+        
+            <li class="post-action">
+                <a class="post-action-btn btn btn--default" href="#disqus_thread">
+                    <i class="fa fa-comment-o"></i>
+                </a>
+            </li>
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#">
+            
+                <i class="fa fa-list"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+        
+            
+                <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+            
+        
+    </div>
+</article>
+
+
+
+                <footer id="footer" class="main-content-wrap">
+    <span class="copyrights">
+        Copyrights &copy; 2016 Menci. All Rights Reserved.
+    </span>
+</footer>
+</script>
+
+            </div>
+            
+                <div id="bottom-bar" class="post-bottom-bar" data-behavior="2">
+                    <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/kmp-notes/"  data-tooltip="KMP 学习笔记">
+                
+                    <i class="fa fa-angle-left"></i>
+                    <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/stl-in-oi/" data-tooltip="STL 在 OI 中的应用">
+                
+                    <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
+                    <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a class="post-action-btn btn btn--default btn-open-shareoptions"  href="#btn-open-shareoptions">
+                <i class="fa fa-share-alt"></i>
+            </a>
+        </li>
+        <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://blog.menci.moe/cut-tree-notes/">
+                <i class="fa fa-google-plus"></i>
+            </a>
+        </li>
+        <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.menci.moe/cut-tree-notes/">
+                <i class="fa fa-facebook-official"></i>
+            </a>
+        </li>
+        <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://blog.menci.moe/cut-tree-notes/">
+                <i class="fa fa-twitter"></i>
+            </a>
+        </li>
+        
+            <li class="post-action">
+                <a class="post-action-btn btn btn--default" href="#disqus_thread">
+                    <i class="fa fa-comment-o"></i>
+                </a>
+            </li>
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#">
+            
+                <i class="fa fa-list"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+                </div>
+                <div id="share-options-bar" class="share-options-bar" data-behavior="2">
+    <ul class="share-options">
+        <li class="share-option">
+            <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=https://blog.menci.moe/cut-tree-notes/">
+                <i class="fa fa-google-plus"></i><span class="">分享到 Google+</span>
+            </a>
+        </li>
+        <li class="share-option">
+            <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.menci.moe/cut-tree-notes/">
+                <i class="fa fa-facebook-official"></i><span>分享到 Facebook</span>
+            </a>
+        </li>
+        <li class="share-option">
+            <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https://blog.menci.moe/cut-tree-notes/">
+                <i class="fa fa-twitter"></i><span>分享到 Twitter</span>
+            </a>
+        </li>
+    </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+            
+        </div>
+        
+
+
+    
+        
+    
+
+<div id="about">
+    <div id="about-card">
+        <div id="about-btn-close">
+            <i class="fa fa-remove"></i>
+        </div>
+        
+            <img style="box-shadow: 0 0 15px gray;" id="about-card-picture" src="//dn-menci.qbox.me/assets/images/avatar.png"/>
+        
+            <h4 id="about-card-name">Menci</h4>
+        
+            <h5 id="about-card-bio">眉眼如初，岁月如故</h5>
+        
+        
+            <h5 id="about-card-job">
+                <i class="fa fa-cloud"></i>
+                <br/>
+                One day, <br> I'll reach the next stage <br> to realize all.
+            </h5>
+        
+        
+    </div>
+</div>
+
+        
+<div id="cover" style="background-image:url('//dn-menci.qbox.me/assets/images/cover.jpg');"></div>
+    </body>
+    <!--SCRIPTS-->
+<script src="//dn-menci.qbox.me/assets/js/scrip-0ewjnhvv8ytgl76lkiq8f541cfygs5bpfv33ohlfvpfklrfevqupdsxg46fk.min.js" type="text/javascript"></script>
+<!--SCRIPTS END-->
+
+    
+        <script>
+             var disqus_config = function () {
+				 MenciRemoveIndexDotHtml = function (url) {
+				 	if (url.substr(-10, 10) == 'index.html') return url.substr(0, url.length - 10);
+				 	else return url;
+				 }
+                 this.page.url = MenciRemoveIndexDotHtml('https://blog.menci.moe/cut-tree-notes/');
+                 
+                 this.page.identifier = MenciRemoveIndexDotHtml('cut-tree-notes/');
+                                  
+             };
+            (function() {
+                var d = document, s = d.createElement('script');
+                var disqus_shortname = 'menci';
+                s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+
+                s.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        </script>
+    
+
+
+    <script type="text/javascript">
+        (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+                (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+            e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+        })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+        _st('install','L51x_1_hCboFSsSLLGGK','2.0.0');
+    </script>
+
+
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/KaTeX/0.6.0/katex.min.js"></script>
+<!--script type="text/javascript" src="/assets/js/auto-render.min.js"></script-->
+<script>
+$(function() {
+	// renderKatexMathjaxFallback($('body')[0]);
+	renderMathInElement($('body')[0]);
+});
+</script>
+
+</html>

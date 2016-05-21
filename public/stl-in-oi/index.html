@@ -1,0 +1,658 @@
+
+<!DOCTYPE html>
+<html lang="zh-cn">
+    
+<head>
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="Menci">
+    <title>STL 在 OI 中的应用 - Menci</title>
+    <meta name="author" content="Menci">
+    
+    
+        <link rel="icon" href="//dn-menci.qbox.me/assets/images/avatar.png">
+    
+    
+        <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
+    
+    <meta name="description" content="&amp;#x5728; OI &amp;#x7ADE;&amp;#x8D5B;&amp;#x4E2D;&amp;#xFF0C;&amp;#x53EF;&amp;#x4EE5;&amp;#x4F7F;&amp;#x7528;&amp;#x7684;&amp;#x8BED;&amp;#x8A00;&amp;#x6709; C++&amp;#x3001;C&amp;#x3001;Pascal&amp;#xFF0C;&amp;#x5176;&amp;#x4E2D; C++ &amp;#x6700;&amp;#x5927;&amp;#x7684;&amp;#x4F18;&amp;#x5">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="STL 在 OI 中的应用">
+<meta property="og:url" content="https://blog.menci.moe/stl-in-oi/index.html">
+<meta property="og:site_name" content="Menci">
+<meta property="og:description" content="&amp;#x5728; OI &amp;#x7ADE;&amp;#x8D5B;&amp;#x4E2D;&amp;#xFF0C;&amp;#x53EF;&amp;#x4EE5;&amp;#x4F7F;&amp;#x7528;&amp;#x7684;&amp;#x8BED;&amp;#x8A00;&amp;#x6709; C++&amp;#x3001;C&amp;#x3001;Pascal&amp;#xFF0C;&amp;#x5176;&amp;#x4E2D; C++ &amp;#x6700;&amp;#x5927;&amp;#x7684;&amp;#x4F18;&amp;#x5">
+<meta property="og:updated_time" content="2016-02-17T02:35:37.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="STL 在 OI 中的应用">
+<meta name="twitter:description" content="&amp;#x5728; OI &amp;#x7ADE;&amp;#x8D5B;&amp;#x4E2D;&amp;#xFF0C;&amp;#x53EF;&amp;#x4EE5;&amp;#x4F7F;&amp;#x7528;&amp;#x7684;&amp;#x8BED;&amp;#x8A00;&amp;#x6709; C++&amp;#x3001;C&amp;#x3001;Pascal&amp;#xFF0C;&amp;#x5176;&amp;#x4E2D; C++ &amp;#x6700;&amp;#x5927;&amp;#x7684;&amp;#x4F18;&amp;#x5">
+<meta name="twitter:creator" content="@HuangHaoRui">
+    
+        <meta rel="publisher" content="https://plus.google.com/103195680789397520000"/>
+    
+    
+        
+    
+    
+        <meta property="og:image" content="//dn-menci.qbox.me/assets/images/avatar.png"/>
+    
+    
+    
+    
+    <!--STYLES-->
+    <link rel="stylesheet" href="//dn-menci.qbox.me/assets/css/style-pcycimglbr925yrwj0efxsn118g0acj4bp3qcdehgw1freahg01piplpcrqd.min.css">
+    <!--STYLES END-->
+	<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/KaTeX/0.6.0/katex.min.css">
+	<link href='https://fonts.googleapis.com/css?family=Poiret+One' rel='stylesheet' type='text/css'>
+    
+    <script type="text/javascript">
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-75865916-1']);
+        _gaq.push(['_trackPageview']);
+        (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+    </script>
+
+    
+</head>
+
+    <body>
+        <div id="blog">
+            <!-- Define author's picture -->
+
+
+    
+        
+            
+        
+    
+
+<!--<header id="header" data-behavior="2">-->
+<header id="header" data-behavior="2">
+    <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+    <h1 class="header-title">
+        <a class="header-title-link" href="/ ">Menci</a>
+    </h1>
+    
+        
+            <a  class="header-right-picture "
+                href="/#about">
+        
+        
+            <img class="header-picture" src="//dn-menci.qbox.me/assets/images/avatar.png"/>
+        
+        </a>
+    
+</header>
+
+            <!-- Define author's picture -->
+
+
+
+        
+    
+
+<!--<nav id="sidebar" data-behavior="2">-->
+<nav id="sidebar" data-behavior="2">
+    
+        <div class="sidebar-profile">
+            <a href="/#about">
+                    <img class="sidebar-profile-picture" src="//dn-menci.qbox.me/assets/images/avatar.png"/>
+            </a>
+            <span class="sidebar-profile-name">Menci</span>
+        </div>
+    
+    
+        <ul class="sidebar-buttons">
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link "
+                         href="/ "
+                        
+                    >
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+                    <span class="sidebar-button-desc">首页</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link "
+                         href="/all-tags"
+                        
+                    >
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+                    <span class="sidebar-button-desc">标签</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link "
+                         href="/all-archives"
+                        
+                    >
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+                    <span class="sidebar-button-desc">归档</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link st-search-show-outputs"
+                         href="/#search"
+                        
+                    >
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-search"></i>
+                    <span class="sidebar-button-desc">搜索</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link "
+                         href="/about-me"
+                        
+                    >
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-info"></i>
+                    <span class="sidebar-button-desc">关于</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link "
+                         href="/friends"
+                        
+                    >
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-users"></i>
+                    <span class="sidebar-button-desc">伙伴</span>
+                </a>
+        </li>
+        
+    </ul>
+    
+        <ul class="sidebar-buttons">
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link " href="https://github.com/Menci" target="_blank">
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+                    <span class="sidebar-button-desc">GitHub</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link " href="https://twitter.com/HuangHaoRui" target="_blank">
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-twitter"></i>
+                    <span class="sidebar-button-desc">Twitter</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link " href="http://wpa.qq.com/msgrd?V=3&Uin=421899973" target="_blank">
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-qq"></i>
+                    <span class="sidebar-button-desc">QQ</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link " href="mailto:huanghaorui301@gmail.com" target="_blank">
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-envelope-o"></i>
+                    <span class="sidebar-button-desc">邮箱</span>
+                </a>
+        </li>
+        
+    </ul>
+    
+        <ul class="sidebar-buttons">
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link "
+                         href="/atom.xml"
+                        
+                    >
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-rss"></i>
+                    <span class="sidebar-button-desc">RSS</span>
+                </a>
+        </li>
+        
+    </ul>
+    
+</nav>
+
+            
+            <div id="main" data-behavior="2"
+                 class="
+                        hasCoverMetaIn
+                        ">
+                
+<article class="post" itemscope itemType="http://schema.org/BlogPosting">
+    
+    
+        <div class="post-header main-content-wrap text-left">
+    
+        <h1 class="post-title" itemprop="headline">
+            STL 在 OI 中的应用
+        </h1>
+    
+    <div class="post-meta" style="border-bottom: 1px solid #eef2f8;">
+    <time itemprop="datePublished" content="Thu Dec 24 2015 05:43:15 GMT+0800">
+	
+		    12月 24, 2015
+    	
+    </time>
+    
+        <span>发布在 </span>
+        
+    <a class="category-link" href="/categories/oi/">OI</a>
+
+
+    
+	
+		<div class="post-footer-tags" style="margin-top: 10px; margin-left: 10px; display: inline-block; border-bottom: none; ">
+			<!--span class="text-color-light text-small">标签</span><br/-->
+			
+    <a class="tag tag--primary tag--small t-link" href="/tag/c/">C++</a> <a class="tag tag--primary tag--small t-link" href="/tag/stl/">STL</a>
+
+		</div>
+	
+</div>
+
+</div>
+    
+    <div class="post-content markdown" itemprop="articleBody">
+        <div class="main-content-wrap">
+            <p>&#x5728; OI &#x7ADE;&#x8D5B;&#x4E2D;&#xFF0C;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x7684;&#x8BED;&#x8A00;&#x6709; C++&#x3001;C&#x3001;Pascal&#xFF0C;&#x5176;&#x4E2D; C++ &#x6700;&#x5927;&#x7684;&#x4F18;&#x52BF;&#x662F;&#xFF0C;&#x5B83;&#x672C;&#x8EAB;&#x63D0;&#x4F9B;&#x4E86;&#x4E00;&#x4E2A;&#x6A21;&#x677F;&#x5E93; &#x2014;&#x2014; Standard Template Library&#xFF08;&#x6807;&#x51C6;&#x6A21;&#x677F;&#x5E93;&#xFF09;&#xFF0C;&#x7B80;&#x79F0; STL&#x3002;STL &#x5305;&#x542B;&#x4E00;&#x7CFB;&#x5217;&#x7B97;&#x6CD5;&#x548C;&#x5BB9;&#x5668;&#x7B49;&#xFF0C;&#x5408;&#x7406;&#x5730;&#x4F7F;&#x7528; STL&#xFF0C;&#x53EF;&#x4EE5;&#x5728;&#x63D0;&#x9AD8;&#x7F16;&#x5199;&#x4EE3;&#x7801;&#x7684;&#x6548;&#x7387;&#x3002;NOI &#x7CFB;&#x5217;&#x6BD4;&#x8D5B;&#x81EA; 2011 &#x5E74;&#x8D77;&#x5141;&#x8BB8; C++ &#x9009;&#x624B;&#x4F7F;&#x7528; STL&#xFF0C;&#x6240;&#x4EE5;&#x6211;&#x4EEC;&#x5E94;&#x8BE5;&#x5229;&#x7528;&#x597D; STL&#xFF0C;&#x53D1;&#x6325; C++ &#x8BED;&#x8A00;&#x7684;&#x4F18;&#x52BF;&#x3002;</p>
+<a id="more"></a>
+<h3 id="&#x5206;&#x7C7B;">&#x5206;&#x7C7B;</h3>
+<blockquote>
+<p>STL &#x53EF;&#x5206;&#x4E3A;&#x5BB9;&#x5668;&#xFF08;containers&#xFF09;&#x3001;&#x8FED;&#x4EE3;&#x5668;&#xFF08;iterators&#xFF09;&#x3001;&#x7A7A;&#x95F4;&#x914D;&#x7F6E;&#x5668;&#xFF08;allocator&#xFF09;&#x3001;&#x914D;&#x63A5;&#x5668;&#xFF08;adapters&#xFF09;&#x3001;&#x7B97;&#x6CD5;&#xFF08;algorithms&#xFF09;&#x3001;&#x4EFF;&#x51FD;&#x6570;&#xFF08;functors&#xFF09;&#x516D;&#x4E2A;&#x90E8;&#x5206;&#x3002;</p>
+</blockquote>
+<p>&#x672C;&#x6587;&#x4E3B;&#x8981;&#x8BB2;&#x89E3;&#x5BB9;&#x5668;&#x3001;&#x8FED;&#x4EE3;&#x5668;&#x3001;&#x7B97;&#x6CD5;&#xFF0C;&#x5176;&#x4ED6;&#x7684;&#x51E0;&#x4E2A;&#x90E8;&#x5206;&#x5728;&#x7ADE;&#x8D5B;&#x4E2D;&#x5F88;&#x5C11;&#x4F7F;&#x7528;&#x5230;&#x3002;</p>
+<h3 id="&#x547D;&#x540D;&#x7A7A;&#x95F4;">&#x547D;&#x540D;&#x7A7A;&#x95F4;</h3>
+<p>&#x547D;&#x540D;&#x7A7A;&#x95F4;&#xFF08;namespace&#xFF09;&#x662F; C++ &#x7684;&#x4E00;&#x4E2A;&#x7279;&#x6027;&#xFF0C;&#x5B83;&#x88AB;&#x7528;&#x4E8E;&#x89E3;&#x51B3;&#x540D;&#x79F0;&#x51B2;&#x7A81;&#xFF0C;&#x6BD4;&#x5982;&#x5047;&#x8BBE; Menci &#x548C; aby890 &#x90FD;&#x5728;&#x81EA;&#x5DF1;&#x7684;&#x5934;&#x6587;&#x4EF6;&#x91CC;&#x7F16;&#x5199;&#x4E86;&#x4E00;&#x4E2A; <code>work()</code> &#x51FD;&#x6570;&#xFF0C;&#x5982;&#x679C;&#x8FD9;&#x4E24;&#x4E2A;&#x51FD;&#x6570;&#x6211;&#x4EEC;&#x90FD;&#x8981;&#x7528;&#xFF0C;&#x5219;&#x540D;&#x79F0;&#x4F1A;&#x4EA7;&#x751F;&#x51B2;&#x7A81;&#xFF0C;&#x4F46;&#x5982;&#x679C;&#x4E24;&#x4EBA;&#x90FD;&#x5C06;&#x81EA;&#x5DF1;&#x7684;&#x51FD;&#x6570;&#x5199;&#x5728;&#x5355;&#x72EC;&#x7684;&#x547D;&#x540D;&#x7A7A;&#x95F4;&#x5185;&#xFF0C;&#x5C31;&#x6210;&#x4E86; <code>Menci::work()</code> &#x548C; <code>aby890::work()</code>&#xFF0C;&#x5C31;&#x4E0D;&#x4F1A;&#x51B2;&#x7A81;&#x4E86;&#x3002;</p>
+<p>STL &#x7684;&#x6240;&#x6709;&#x5185;&#x5BB9;&#x90FD;&#x5305;&#x542B;&#x5728; <code>std</code> &#x547D;&#x540D;&#x7A7A;&#x95F4;&#x5185;&#x3002;&#x4E3A;&#x4EC0;&#x4E48;&#x547D;&#x540D;&#x7A7A;&#x95F4;&#x4E0D;&#x53EB; <code>stl</code>&#xFF1F;&#x6211;&#x4E5F;&#x4E0D;&#x77E5;&#x9053;&#x3002;</p>
+<p>&#x5982;&#x679C;&#x6211;&#x4EEC;&#x8981;&#x8C03;&#x7528; STL &#x4E2D;&#x7684; <code>sort</code> &#x51FD;&#x6570;&#xFF08;&#x4E0B;&#x6587;&#x4F1A;&#x6709;&#x63D0;&#x5230;&#xFF09;&#xFF0C;&#x8981;&#x8FD9;&#x6837;&#x5199;&#xFF1A;</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">std</span>::sort(a, a + n);</span><br></pre></td></tr></table></figure>
+<p>&#x6211;&#x4EEC;&#x4E5F;&#x53EF;&#x4EE5;&#x5C06; <code>std::sort</code> &#x8FD9;&#x4E2A;&#x51FD;&#x6570;&#x201C;&#x5BFC;&#x5165;&#x201D;&#x5230;&#x5168;&#x5C40;&#x4E2D;&#xFF0C;&#x5C31;&#x53EF;&#x4EE5;&#x76F4;&#x63A5; <code>sort(a, a + n)</code> &#x8FD9;&#x6837;&#x8C03;&#x7528;&#x4E86;&#x3002;<br>
+&#x4F7F;&#x7528; <code>using</code> &#x5173;&#x952E;&#x5B57;&#x6765;&#x201C;&#x5BFC;&#x5165;&#x201D;&#x547D;&#x540D;&#x7A7A;&#x95F4;&#x4E2D;&#x7684;&#x51FD;&#x6570;&#x6216;&#x7C7B;&#x3002;</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::sort;</span><br></pre></td></tr></table></figure>
+<p>&#x4E5F;&#x53EF;&#x4EE5;&#x5C06;&#x6574;&#x4E2A;&#x547D;&#x540D;&#x7A7A;&#x95F4;&#x5BFC;&#x5165;&#x5168;&#x5C40;&#xFF0C;&#x8FD9;&#x6837;&#x5C31;&#x53EF;&#x4EE5;&#x76F4;&#x63A5;&#x8BBF;&#x95EE;&#x547D;&#x540D;&#x7A7A;&#x95F4;&#x4E2D;&#x7684;&#x6240;&#x6709;&#x5185;&#x5BB9;&#xFF0C;&#x4F46;&#x66F4;&#x5BB9;&#x6613;&#x4EA7;&#x751F;&#x540D;&#x79F0;&#x51B2;&#x7A81;&#xFF08;&#x6BD4;&#x5982;&#x4F60;&#x53EF;&#x80FD;&#x4F1A;&#x58F0;&#x660E;&#x4E00;&#x4E2A;&#x53EB;&#x505A; <code>max</code> &#x7684;&#x53D8;&#x91CF;&#xFF0C;&#x4F46;&#x5B83;&#x4F1A;&#x8986;&#x76D6; STL &#x4E2D;&#x7684; <code>max</code> &#x51FD;&#x6570;&#xFF09;&#x3002;<br>
+&#x4F7F;&#x7528; <code>using namespace</code> &#x6765;&#x201C;&#x5BFC;&#x5165;&#x201D;&#x6574;&#x4E2A;&#x547D;&#x540D;&#x7A7A;&#x95F4;&#x3002;</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="&#x7B97;&#x6CD5;">&#x7B97;&#x6CD5;</h3>
+<p>STL &#x4E2D;&#x7684;&#x7B97;&#x6CD5;&#x4E3B;&#x8981;&#x5305;&#x542B;&#x5728; <code>&lt;algorithm&gt;</code> &#x5934;&#x6587;&#x4EF6;&#x4E2D;&#xFF0C;&#x8FD9;&#x4E2A;&#x6587;&#x4EF6;&#x540D;&#x8981;&#x8BB0;&#x4F4F;&#xFF0C;&#x6BCF;&#x5929;&#x5FF5;&#x4E00;&#x904D;&#x3002;</p>
+<h5 id="&#x6392;&#x5E8F;">&#x6392;&#x5E8F;</h5>
+<p>STL &#x4E2D;&#x63D0;&#x4F9B;&#x4E00;&#x7CFB;&#x5217;&#x4E0E;&#x6392;&#x5E8F;&#x6709;&#x5173;&#x7684;&#x51FD;&#x6570;&#xFF0C;&#x5176;&#x4E2D;&#x6700;&#x5E38;&#x7528;&#x5230;&#x7684;&#x662F; <code>sort</code> &#x548C; <code>stable_sort</code>&#xFF0C;<code>sort</code> &#x662F;&#x4E0D;&#x7A33;&#x5B9A;&#x7684;&#x6392;&#x5E8F;&#xFF0C;&#x5B83;&#x7684;&#x671F;&#x671B;&#x65F6;&#x95F4;&#x590D;&#x6742;&#x5EA6;&#x4E3A; $O(n {\log} n)$&#xFF0C;<code>stable_sort</code> &#x662F;&#x7A33;&#x5B9A;&#x7684;&#x6392;&#x5E8F;&#xFF0C;&#x5B83;&#x7684;&#x65F6;&#x95F4;&#x590D;&#x6742;&#x5EA6;&#x4E3A; $O(n {\log} n)$&#x3002;</p>
+<p><code>sort</code> &#x4F7F;&#x7528;&#x7C7B;&#x4F3C;&#x4E0E;&#x5FEB;&#x901F;&#x6392;&#x5E8F;&#x7684;&#x7B97;&#x6CD5;&#xFF0C;&#x5728;&#x5927;&#x591A;&#x6570;&#x60C5;&#x51B5;&#x4E0B;&#x80FD;&#x83B7;&#x5F97;&#x6700;&#x9AD8;&#x7684;&#x6548;&#x7387;&#xFF0C;<code>stable_sort</code> &#x4F7F;&#x7528;&#x591A;&#x8DEF;&#x5F52;&#x5E76;&#x6392;&#x5E8F;&#x7B97;&#x6CD5;&#xFF0C;&#x53EF;&#x4EE5;&#x5728;&#x7A33;&#x5B9A;&#x7684;&#x524D;&#x63D0;&#x4E0B;&#x53D6;&#x5F97;&#x8F83;&#x9AD8;&#x7684;&#x6548;&#x7387;&#x3002;&#x4E00;&#x822C;&#x5E38;&#x7528; <code>sort</code>&#x3002;</p>
+<p>&#x7528;&#x6CD5;&#xFF08;&#x4EE5; <code>sort</code> &#x4E3A;&#x4F8B;&#xFF0C;<code>stable_sort</code> &#x76F8;&#x540C;&#xFF09;&#xFF1A;</p>
+<p>&#x5BF9;&#x5DE6;&#x95ED;&#x53F3;&#x5F00;&#x533A;&#x95F4; [l, r) &#x6392;&#x5E8F;&#xFF0C;&#x4F7F;&#x7528; <code>sort(l, r)</code>&#x3002;&#x5176;&#x4E2D; l &#x548C; r &#x662F;&#x6307;&#x5411;&#x5143;&#x7D20;&#x7684;<strong>&#x8FED;&#x4EE3;&#x5668;</strong>&#xFF0C;&#x5728;&#x4E86;&#x89E3;<strong>&#x8FED;&#x4EE3;&#x5668;</strong>&#x4E4B;&#x524D;&#xFF0C;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x5C06;&#x5176;&#x7406;&#x89E3;&#x4E3A;&#x6307;&#x5411;&#x5143;&#x7D20;&#x7684;&#x6307;&#x9488;&#x3002;</p>
+<p>&#x6CE8;&#x610F;&#x8FD9;&#x91CC;&#x7684;&#x533A;&#x95F4;&#x8868;&#x793A;&#x662F;&#x4E00;&#x4E2A;<strong>&#x5DE6;&#x95ED;&#x53F3;&#x5F00;&#x533A;&#x95F4;</strong>&#xFF0C;STL &#x4E2D;&#x7ECF;&#x5E38;&#x4F1A;&#x51FA;&#x73B0;&#x8FD9;&#x79CD;&#x533A;&#x95F4;&#xFF0C;&#x5982;&#x679C;&#x6211;&#x4EEC;&#x8981;&#x5BF9;&#x4E00;&#x4E2A;&#x6570;&#x7EC4; a &#x7684;&#x524D; n &#x4E2A;&#x5143;&#x7D20;&#x8FDB;&#x884C;&#x6392;&#x5E8F;&#xFF0C;&#x5219;&#x5BF9;&#x5E94;&#x533A;&#x95F4;&#x4E3A; [a, a + n)&#xFF0C;&#x56E0;&#x4E3A; a &#x6307;&#x5411;&#x6570;&#x7EC4;&#x7684;&#x7B2C;&#x4E00;&#x4E2A;&#x5143;&#x7D20;&#xFF08;&#x4E0B;&#x6807;&#x4E3A; 0&#xFF09;&#xFF0C;a + n &#x6307;&#x5411;&#x6570;&#x7EC4;&#x7684;&#x7B2C; n &#x4E2A;&#x5143;&#x7D20;<strong>&#x4E4B;&#x540E;</strong>&#x3002;</p>
+<p><code>sort</code> &#x51FD;&#x6570;&#x9ED8;&#x8BA4;&#x662F;&#x5347;&#x5E8F;&#x6392;&#x5E8F;&#xFF0C;&#x5982;&#x679C;&#x9700;&#x8981;&#x964D;&#x5E8F;&#xFF0C;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x81EA;&#x5B9A;&#x4E49;&#x201C;&#x6BD4;&#x8F83;&#x51FD;&#x6570;&#x201D;&#x6765;&#x5B9E;&#x73B0;&#x3002;</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">compare</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span> </span>{</span><br><span class="line">    <span class="keyword">return</span> a &gt; b;</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="built_in">std</span>::sort(a, a + n, &amp;compare);</span><br></pre></td></tr></table></figure>
+<p>&#x4E0B;&#x9762;&#x7684;&#x4EE3;&#x7801;&#x6F14;&#x793A;&#x4E86;&#x8BFB;&#x5165; n&#xFF08;n &lt;= 100000&#xFF09;&#x4E2A;&#x6570;&#xFF0C;&#x5E76;<strong>&#x964D;&#x5E8F;</strong>&#x6392;&#x5E8F;&#x540E;&#x8F93;&#x51FA;&#x3002;</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;algorithm&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAXN = <span class="number">100000</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> n;</span><br><span class="line"><span class="keyword">int</span> a[MAXN];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">compare</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span> </span>{</span><br><span class="line">    <span class="keyword">return</span> a &gt; b;</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>{</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;n);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) {</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;a[i]);</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="built_in">std</span>::sort(a, a + n, &amp;compare);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) {</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>, a[i]);</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<p>&#x964D;&#x5E8F;&#x6392;&#x5E8F;&#x662F;<strong>&#x5927;&#x4E8E;&#x53F7;</strong>&#xFF0C;&#x5347;&#x5E8F;&#x6392;&#x5E8F;&#x662F;<strong>&#x5C0F;&#x4E8E;&#x53F7;</strong>&#xFF08;&#x6CE8;&#x610F;<strong>&#x4E0D;&#x80FD;</strong>&#x52A0;&#x7B49;&#x53F7;&#x53D8;&#x6210;&#x5927;&#x4E8E;&#x7B49;&#x4E8E;&#x3001;&#x5C0F;&#x4E8E;&#x7B49;&#x4E8E;&#xFF09;&#xFF0C;&#x5982;&#x679C;&#x4E0D;&#x6307;&#x5B9A;&#x6BD4;&#x8F83;&#x51FD;&#x6570;&#xFF0C;&#x9ED8;&#x8BA4;&#x4E3A;<strong>&#x5347;&#x5E8F;</strong>&#x3002;</p>
+<p>&#x4E5F;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;<strong>&#x91CD;&#x8F7D;&#x8FD0;&#x7B97;&#x7B26;</strong>&#x6216;&#x8005;&#x5B9A;&#x4E49;<strong>&#x6BD4;&#x8F83;&#x51FD;&#x6570;</strong>&#x7684;&#x65B9;&#x6CD5;&#x5BF9;&#x7ED3;&#x6784;&#x4F53;&#x8FDB;&#x884C;&#x6392;&#x5E8F;&#xFF1A;</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="keyword">student_t</span> {</span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">int</span> id;</span><br><span class="line">    <span class="keyword">long</span> <span class="keyword">double</span> score;</span><br><span class="line"> </span><br><span class="line">    <span class="keyword">bool</span> <span class="keyword">operator</span>&lt;(<span class="keyword">const</span> <span class="keyword">student_t</span> &amp;other) <span class="keyword">const</span> {</span><br><span class="line">        <span class="keyword">return</span> score &lt; other.score;</span><br><span class="line">    }</span><br><span class="line">} students[MAXN];</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">compare</span><span class="params">(<span class="keyword">const</span> student_t &amp;student1, <span class="keyword">const</span> student_t &amp;student2)</span> </span>{</span><br><span class="line">    <span class="keyword">return</span> student1.score &lt; student2.score;</span><br><span class="line">}</span><br><span class="line"> </span><br><span class="line"><span class="built_in">std</span>::sort(students, students + n, &amp;compare);</span><br></pre></td></tr></table></figure>
+<p>&#x5199;&#x5728;&#x7ED3;&#x6784;&#x4F53;&#x4E2D;&#x7684; <code>operator&lt;</code> &#x5373;&#x4E3A;&#x91CD;&#x8F7D;&#x8FD0;&#x7B97;&#x7B26;&#xFF0C;&#x8FD9;&#x8BA9;&#x6211;&#x4EEC;&#x7684;&#x7ED3;&#x6784;&#x4F53;&#x652F;&#x6301;&#x5C0F;&#x4E8E;&#x53F7;&#x7684;&#x6BD4;&#x8F83;&#x64CD;&#x4F5C;&#x3002;<br>
+&#x7ED3;&#x6784;&#x4F53;&#x4E0B;&#x9762;&#x7684; <code>compare</code> &#x662F;&#x6BD4;&#x8F83;&#x51FD;&#x6570;&#xFF0C;<strong>&#x6BD4;&#x8F83;&#x51FD;&#x6570;</strong>&#x548C;<strong>&#x91CD;&#x8F7D;&#x8FD0;&#x7B97;&#x7B26;</strong>&#x53EA;&#x9700;&#x8981;&#x5199;&#x4E00;&#x4E2A;&#x5C31;&#x591F;&#x4E86;&#x3002;</p>
+<p>&#x6CE8;&#x610F;&#x4E24;&#x79CD;&#x5199;&#x6CD5;&#x4E2D;&#x7684; <code>const</code> &#x548C; <code>&amp;</code> &#x90FD;&#x4E0D;&#x80FD;&#x7701;&#x7565;&#x3002;</p>
+<h5 id="&#x53BB;&#x91CD;">&#x53BB;&#x91CD;</h5>
+<p>&#x4F7F;&#x7528; <code>unique</code> &#x51FD;&#x6570;&#x6765;&#x53BB;&#x9664;&#x6570;&#x7EC4;&#x4E2D;&#x7684;&#x91CD;&#x590D;&#x5143;&#x7D20;&#xFF0C;&#x5176;&#x8C03;&#x7528;&#x683C;&#x5F0F;&#x4E0E; <code>sort</code> &#x7C7B;&#x4F3C;&#xFF0C;&#x6CE8;&#x610F;&#x8C03;&#x7528; <code>unique</code> &#x524D;&#x5FC5;&#x987B;&#x4FDD;&#x8BC1;&#x6570;&#x7EC4;&#x662F;&#x6709;&#x5E8F;&#x7684;&#xFF08;&#x5347;&#x5E8F;&#x964D;&#x5E8F;&#x90FD;&#x53EF;&#x4EE5;&#xFF09;&#x3002;</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">std</span>::sort(a, a + n);</span><br><span class="line"><span class="built_in">std</span>::unique(a, a + n);</span><br></pre></td></tr></table></figure>
+<p><code>unique</code> &#x51FD;&#x6570;&#x8FD4;&#x56DE;&#x53BB;&#x91CD;&#x540E;&#x7684;&#x6570;&#x7EC4;&#x7684;&#x6700;&#x540E;&#x4E00;&#x4E2A;&#x5143;&#x7D20;&#x4E4B;&#x540E;&#xFF0C;&#x4E00;&#x822C;&#x901A;&#x8FC7;&#x7528;&#x8FD4;&#x56DE;&#x503C;&#x51CF;&#x53BB;&#x9996;&#x5730;&#x5740;&#x7684;&#x65B9;&#x6CD5;&#x83B7;&#x5F97;&#x4E0D;&#x91CD;&#x590D;&#x7684;&#x5143;&#x7D20;&#x6570;&#x91CF;&#xFF1A;</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> count = <span class="built_in">std</span>::unique(a, a + n) - a;</span><br></pre></td></tr></table></figure>
+<p>&#x4E0B;&#x9762;&#x7684;&#x4EE3;&#x7801;&#x6F14;&#x793A;&#x4E86;&#x8BFB;&#x5165; n&#xFF08;n &lt;= 100000&#xFF09;&#x4E2A;&#x6570;&#xFF0C;&#x5E76;&#x5347;&#x5E8F;&#x6392;&#x5E8F;&#x5E76;&#x53BB;&#x91CD;&#x540E;&#x8F93;&#x51FA;&#x3002;</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;algorithm&gt;</span></span></span><br><span class="line"> </span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAXN = <span class="number">100000</span>;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">int</span> n;</span><br><span class="line"><span class="keyword">int</span> a[MAXN];</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>{</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;n);</span><br><span class="line"> </span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) {</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;a[i]);</span><br><span class="line">    }</span><br><span class="line"> </span><br><span class="line">    <span class="built_in">std</span>::sort(a, a + n);</span><br><span class="line">    <span class="keyword">int</span> count = <span class="built_in">std</span>::unique(a, a + n) - a;</span><br><span class="line"> </span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; count; i++) {</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>, a[i]);</span><br><span class="line">    }</span><br><span class="line"> </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<h5 id="&#x8F83;&#x5927;&#x8F83;&#x5C0F;&#x503C;">&#x8F83;&#x5927;&#x3001;&#x8F83;&#x5C0F;&#x503C;</h5>
+<p>&#x4F7F;&#x7528; <code>max</code> &#x548C; <code>min</code> &#x6765;&#x53D6;&#x5F97;&#x4E24;&#x4E2A;&#x6570;&#x4E2D;&#x8F83;&#x5927;&#x6216;&#x8F83;&#x5C0F;&#x7684;&#x3002;</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> a = -<span class="number">1</span>, b = <span class="number">890</span>;</span><br><span class="line">x = <span class="built_in">std</span>::max(a, b); <span class="comment">// &#x7ED3;&#x679C;&#x4E3A; 890</span></span><br><span class="line">y = <span class="built_in">std</span>::min(a, b); <span class="comment">// &#x7ED3;&#x679C;&#x4E3A; -1</span></span><br></pre></td></tr></table></figure>
+<h5 id="&#x67E5;&#x627E;">&#x67E5;&#x627E;</h5>
+<p>STL &#x4E2D;&#x5E38;&#x7528;&#x7684;&#x7528;&#x4E8E;&#x67E5;&#x627E;&#x7684;&#x51FD;&#x6570;&#x6709;&#x4E09;&#x4E2A;&#xFF1A;<code>lower_bound</code>&#x3001;<code>upper_bound</code>&#x3001;<code>binary_search</code>&#xFF0C;&#x4E00;&#x822C; <code>lower_bound</code> &#x6700;&#x4E3A;&#x5E38;&#x7528;&#x3002;</p>
+<p><code>lower_bound</code> &#x7528;&#x4E8E;&#x5728;&#x4E00;&#x4E2A;&#x5347;&#x5E8F;&#x5E8F;&#x5217;&#x4E2D;&#x67E5;&#x627E;&#x67D0;&#x4E2A;&#x5143;&#x7D20;&#xFF0C;&#x5E76;&#x8FD4;&#x56DE;&#x7B2C;&#x4E00;&#x4E2A;<strong>&#x4E0D;&#x5C0F;&#x4E8E;</strong>&#x8BE5;&#x5143;&#x7D20;&#x7684;&#x5143;&#x7D20;&#x7684;&#x8FED;&#x4EE3;&#x5668;&#xFF0C;&#x5982;&#x679C;&#x627E;&#x4E0D;&#x5230;&#xFF0C;&#x5219;&#x8FD4;&#x56DE;&#x6307;&#x5411;&#x5E8F;&#x5217;&#x4E2D;&#x6700;&#x540E;&#x4E00;&#x4E2A;&#x5143;&#x7D20;<strong>&#x4E4B;&#x540E;</strong>&#x7684;&#x8FED;&#x4EE3;&#x5668;&#x3002;</p>
+<p><code>upper_bound</code> &#x7528;&#x4E8E;&#x5728;&#x4E00;&#x4E2A;&#x5347;&#x5E8F;&#x5E8F;&#x5217;&#x4E2D;&#x67E5;&#x627E;&#x67D0;&#x4E2A;&#x5143;&#x7D20;&#xFF0C;&#x5E76;&#x8FD4;&#x56DE;&#x7B2C;&#x4E00;&#x4E2A;<strong>&#x5927;&#x4E8E;</strong>&#x8BE5;&#x5143;&#x7D20;&#x7684;&#x5143;&#x7D20;&#x7684;&#x8FED;&#x4EE3;&#x5668;&#xFF0C;&#x5982;&#x679C;&#x627E;&#x4E0D;&#x5230;&#xFF0C;&#x5219;&#x8FD4;&#x56DE;&#x6307;&#x5411;&#x5E8F;&#x5217;&#x4E2D;&#x6700;&#x540E;&#x4E00;&#x4E2A;&#x5143;&#x7D20;<strong>&#x4E4B;&#x540E;</strong>&#x7684;&#x8FED;&#x4EE3;&#x5668;&#x3002;</p>
+<p><code>binary_search</code> &#x7528;&#x4E8E;&#x786E;&#x5B9A;&#x67D0;&#x4E2A;&#x5143;&#x7D20;&#x6709;&#x6CA1;&#x6709;&#x5728;&#x4E00;&#x4E2A;&#x5347;&#x5E8F;&#x5E8F;&#x5217;&#x4E2D;&#x51FA;&#x73B0;&#x8FC7;&#xFF0C;&#x8FD4;&#x56DE; <code>true</code> &#x6216; <code>false</code>&#x3002;</p>
+<p>&#x4E09;&#x4E2A;&#x51FD;&#x6570;&#x7684;&#x65F6;&#x95F4;&#x590D;&#x6742;&#x5EA6;&#x5747;&#x4E3A;$O({\log}n)$&#x3002;</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> a[<span class="number">8</span>] = { -<span class="number">9</span>, <span class="number">5</span>, -<span class="number">1</span>, <span class="number">2</span>, <span class="number">7</span>, <span class="number">1</span>, -<span class="number">2</span>, <span class="number">2</span> }, n = <span class="number">8</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">std</span>::sort(a, a + n);</span><br><span class="line"></span><br><span class="line"><span class="comment">// a = { -9, -2, -1, 1, 2, 2, 5, 7 }</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> *p1 = <span class="built_in">std</span>::lower_bound(a, a + n, <span class="number">1</span>);</span><br><span class="line"><span class="comment">// p1 &#x6307;&#x5411; a &#x4E2D;&#x7B2C; 4 &#x4E2A;&#x5143;&#x7D20; a[3] = 1</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> *p2 = <span class="built_in">std</span>::lower_bound(a, a + n, <span class="number">2</span>);</span><br><span class="line"><span class="comment">// p2 &#x6307;&#x5411; a &#x4E2D;&#x7B2C; 5 &#x4E2A;&#x5143;&#x7D20; a[4] = 2</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> *p3 = <span class="built_in">std</span>::upper_bound(a, a + n, <span class="number">2</span>);</span><br><span class="line"><span class="comment">// p3 &#x6307;&#x5411; a &#x4E2D;&#x7B2C; 7 &#x4E2A;&#x5143;&#x7D20; a[6] = 5</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> *p4 = <span class="built_in">std</span>::lower_bound(a, a + n, <span class="number">8</span>);</span><br><span class="line"><span class="comment">// p4 = a + n&#xFF0C;&#x56E0;&#x4E3A;&#x6570;&#x7EC4; a &#x4E2D;&#x6CA1;&#x6709;&#x4E0D;&#x5C0F;&#x4E8E; 8 &#x7684;&#x5143;&#x7D20;&#xFF0C;&#x6B64;&#x65F6;&#x8BBF;&#x95EE; *p4 &#x4F1A;&#x8D8A;&#x754C;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">bool</span> flag = <span class="built_in">std</span>::binary_search(a, a + n, <span class="number">3</span>);</span><br><span class="line"><span class="comment">// flag = false &#x56E0;&#x4E3A;&#x6570;&#x7EC4; a &#x4E2D;&#x6CA1;&#x6709; 3</span></span><br></pre></td></tr></table></figure>
+<h5 id="&#x4EA4;&#x6362;">&#x4EA4;&#x6362;</h5>
+<p>&#x4F7F;&#x7528; <code>swap</code> &#x51FD;&#x6570;&#x4EA4;&#x6362;&#x4E24;&#x4E2A;&#x53D8;&#x91CF;&#x7684;&#x503C;&#x3002;</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> a = -<span class="number">1</span>, b = <span class="number">1</span>;</span><br><span class="line"><span class="built_in">std</span>::swap(a, b);</span><br><span class="line"></span><br><span class="line"><span class="comment">// a = 1, b = -1</span></span><br></pre></td></tr></table></figure>
+<h3 id="&#x8FED;&#x4EE3;&#x5668;">&#x8FED;&#x4EE3;&#x5668;</h3>
+<p>&#x8FED;&#x4EE3;&#x5668;&#x662F;&#x7528;&#x4E8E;&#x8BBF;&#x95EE; STL &#x5BB9;&#x5668;&#x4E2D;&#x5143;&#x7D20;&#x7684;&#x4E00;&#x79CD;&#x6570;&#x636E;&#x7C7B;&#x578B;&#xFF0C;&#x4E00;&#x822C;&#x8FED;&#x4EE3;&#x5668;&#x7684;&#x58F0;&#x660E;&#x5982;&#x4E0B;&#xFF1A;</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">std</span>::CONTAINER&lt;T&gt;::iterator p;</span><br></pre></td></tr></table></figure>
+<p>&#x4E0A;&#x8FF0;&#x4EE3;&#x7801;&#x58F0;&#x660E;&#x4E86;&#x4E00;&#x4E2A;&#x8FED;&#x4EE3;&#x5668; <code>p</code>&#xFF0C;&#x5176;&#x4E2D; <code>CONTAINER</code> &#x662F;&#x5BB9;&#x5668;&#x7C7B;&#x578B;&#xFF0C;&#x53EF;&#x4EE5;&#x662F; <code>vector</code>&#x3001;<code>set</code> &#x7B49;&#xFF0C;<code>T</code> &#x662F;&#x5BB9;&#x5668;&#x4E2D;&#x5143;&#x7D20;&#x7684;&#x7C7B;&#x578B;&#x3002;</p>
+<p>&#x4E00;&#x822C;&#x7684;&#xFF0C;&#x5BB9;&#x5668;&#x7684; <code>begin()</code> &#x65B9;&#x6CD5;&#x8FD4;&#x56DE;<strong>&#x9996;&#x4E2A;&#x5143;&#x7D20;</strong>&#x7684;&#x8FED;&#x4EE3;&#x5668;&#xFF0C; <code>end()</code> &#x65B9;&#x6CD5;&#x8FD4;&#x56DE;<strong>&#x6700;&#x540E;&#x4E00;&#x4E2A;&#x5143;&#x7D20;&#x4E4B;&#x540E;</strong>&#x7684;&#x8FED;&#x4EE3;&#x5668;&#x3002;&#x8FD9;&#x4E24;&#x4E2A;&#x8FED;&#x4EE3;&#x5668;&#x786E;&#x5B9A;&#x4E86;&#x4E00;&#x4E2A;&#x5305;&#x542B;&#x5BB9;&#x5668;&#x5185;&#x6240;&#x6709;&#x5143;&#x7D20;&#x7684;<strong>&#x5DE6;&#x95ED;&#x53F3;&#x5F00;&#x533A;&#x95F4;</strong> <code>[begin(), end())</code>&#x3002;&#x5BF9;&#x4E8E;&#x4EFB;&#x4F55;&#x6307;&#x5411;&#x6709;&#x6548;&#x5143;&#x7D20;&#x7684;&#x8FED;&#x4EE3;&#x5668;&#x90FD;&#x6709;&#x5176;<strong>&#x4E0D;&#x7B49;&#x4E8E;</strong> <code>end()</code>&#xFF0C;<code>end()</code> &#x5E76;&#x4E0D;&#x6307;&#x5411;&#x4EFB;&#x4F55;&#x4E00;&#x4E2A;&#x5143;&#x7D20;&#xFF0C;&#x8BD5;&#x56FE;&#x8BBF;&#x95EE; <code>end()</code> &#x5BF9;&#x5E94;&#x7684;&#x5143;&#x7D20;&#x662F;&#x975E;&#x6CD5;&#x7684;&#x3002;</p>
+<p>&#x5728;&#x4F7F;&#x7528; STL &#x63D0;&#x4F9B;&#x7684;&#x7B97;&#x6CD5;&#x65F6;&#xFF0C;&#x53EF;&#x4EE5;&#x7528;&#x8FED;&#x4EE3;&#x5668;&#x8868;&#x793A;&#x4E00;&#x4E2A;&#x533A;&#x95F4;&#xFF0C;&#x5982;&#xFF1A;</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">std</span>::sort(v.begin(), v.end());</span><br></pre></td></tr></table></figure>
+<p>&#x4E00;&#x4E9B;&#x5BB9;&#x5668;&#x7684;&#x8FED;&#x4EE3;&#x5668;&#x53EF;&#x4EE5;&#x652F;&#x6301;<strong>&#x968F;&#x673A;&#x8BBF;&#x95EE;</strong>&#xFF0C;&#x5982;&#x6307;&#x5411; <code>vector[i]</code> &#x7684;&#x8FED;&#x4EE3;&#x5668;&#x4E3A; <code>vector.begin() + i</code>&#xFF0C;&#x800C;&#x53E6;&#x4E00;&#x4E9B;&#x5BB9;&#x5668;&#x5982; <code>set</code> &#x4E0D;&#x652F;&#x6301;&#x8FD9;&#x79CD;&#x7528;&#x6CD5;&#x3002;</p>
+<p>&#x6240;&#x6709;&#x7684;&#x8FED;&#x4EE3;&#x5668;&#x90FD;&#x652F;&#x6301;&#x4F7F;&#x7528; <code>++</code> &#x548C; <code>--</code> &#x8FD0;&#x7B97;&#x7B26;&#x5C06;&#x8FED;&#x4EE3;&#x5668;&#x52A0;&#x4E00;&#x6216;&#x51CF;&#x4E00;&#x3002;</p>
+<p>&#x8FED;&#x4EE3;&#x5668;&#x7684;&#x7528;&#x6CD5;&#x7C7B;&#x4F3C;&#x4E8E;&#x6307;&#x5411;&#x6570;&#x7EC4;&#x5143;&#x7D20;&#x7684;&#x6307;&#x9488;&#xFF0C;&#x5BF9;&#x4E8E;&#x8FED;&#x4EE3;&#x5668; <code>p</code>&#xFF0C;&#x7528; <code>*p</code> &#x5F97;&#x5230;&#x8FED;&#x4EE3;&#x5668;&#x5BF9;&#x5E94;&#x7684;&#x5143;&#x7D20;&#xFF1B;&#x5982;&#x679C;&#x8BE5;&#x8FED;&#x4EE3;&#x5668;&#x6240;&#x5BF9;&#x5E94;&#x7684;&#x5143;&#x7D20;&#x7C7B;&#x578B;&#x4E3A;&#x7ED3;&#x6784;&#x4F53;&#xFF0C;&#x5219;&#x53EF;&#x4EE5;&#x76F4;&#x63A5;&#x4F7F;&#x7528; <code>-&gt;</code> &#x8BBF;&#x95EE;&#x5176;&#x5BF9;&#x5E94;&#x7ED3;&#x6784;&#x4F53;&#x4E2D;&#x7684;&#x5143;&#x7D20;&#x3002;</p>
+<p>&#x4E00;&#x822C;&#x7684;&#xFF0C;&#x4F7F;&#x7528;&#x8FED;&#x4EE3;&#x5668;&#x904D;&#x5386;&#x5BB9;&#x5668;&#x7C7B;&#x4F3C;&#x4E8E;&#x4E0B;&#x8FF0;&#x4EE3;&#x7801;&#xFF1A;</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="built_in">std</span>::CONTAINER&lt;T&gt;::iterator p = C.begin(); p != C.end(); p++) {</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; *p &lt;&lt; <span class="built_in">std</span>::endl;</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<h3 id="&#x5BB9;&#x5668;">&#x5BB9;&#x5668;</h3>
+<h5 id="&#x6570;&#x7EC4;-vector">&#x6570;&#x7EC4; vector</h5>
+<p>STL &#x5728;&#x5934;&#x6587;&#x4EF6; <code>&lt;vector&gt;</code> &#x63D0;&#x4F9B;&#x4E86;&#x4E00;&#x4E2A;<strong>&#x53EF;&#x53D8;&#x957F;</strong>&#x7684;&#x6570;&#x7EC4; <code>vector</code>&#xFF0C;&#x5B83;&#x652F;&#x6301;&#x52A8;&#x6001;&#x7684;&#x63D2;&#x5165;&#x3001;&#x5220;&#x9664;&#x64CD;&#x4F5C;&#x3002;</p>
+<p>&#x4EE5;&#x4E0B;&#x4EE3;&#x7801;&#x58F0;&#x660E;&#x4E86;&#x4E00;&#x4E2A; <code>vector</code>&#xFF0C;&#x5B83;&#x7684;&#x6BCF;&#x4E2A;&#x5143;&#x7D20;&#x7C7B;&#x578B;&#x4E3A; <code>int</code>&#xFF0C;&#x521D;&#x59CB;&#x5143;&#x7D20;&#x6570;&#x91CF;&#x4E3A; 0&#x3002;</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; v;</span><br></pre></td></tr></table></figure>
+<p>&#x4EE5;&#x4E0B;&#x4EE3;&#x7801;&#x58F0;&#x660E;&#x4E86;&#x4E00;&#x4E2A; <code>vector</code>&#xFF0C;&#x5B83;&#x7684;&#x6BCF;&#x4E2A;&#x5143;&#x7D20;&#x7C7B;&#x578B;&#x4E3A; <code>int</code>&#xFF0C;&#x521D;&#x59CB;&#x5143;&#x7D20;&#x6570;&#x91CF;&#x4E3A; n&#x3002;</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; v(n);</span><br></pre></td></tr></table></figure>
+<p><code>vector</code> &#x63D0;&#x4F9B; <code>begin()</code> &#x548C; <code>end()</code>&#xFF0C;&#x5206;&#x522B;&#x83B7;&#x53D6;&#x6307;&#x5411;<strong>&#x7B2C;&#x4E00;&#x4E2A;&#x5143;&#x7D20;</strong>&#x548C;<strong>&#x6700;&#x540E;&#x4E00;&#x4E2A;&#x5143;&#x7D20;&#x4E4B;&#x540E;</strong>&#x7684;&#x8FED;&#x4EE3;&#x5668;&#x3002;</p>
+<p>&#x4EE5;&#x4E0B;&#x4EE3;&#x7801;&#x5BF9; v &#x4E2D;&#x7684;&#x6240;&#x6709;&#x5143;&#x7D20;&#x4EE5;&#x5347;&#x5E8F;&#x6392;&#x5E8F;&#xFF1A;</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">std</span>::sort(v.begin(), v.end());</span><br></pre></td></tr></table></figure>
+<p>&#x4F7F;&#x7528; <code>size()</code> &#x5F97;&#x5230; <code>vector</code> &#x7684;&#x5143;&#x7D20;&#x6570;&#x91CF;&#xFF0C;&#x4F7F;&#x7528; <code>resize()</code> &#x91CD;&#x65B0;&#x6307;&#x5B9A; <code>vector</code> &#x7684;&#x5143;&#x7D20;&#x6570;&#x91CF;&#x3002;</p>
+<p>&#x5206;&#x522B;&#x4F7F;&#x7528; <code>push_back()</code> &#x548C; <code>pop_back()</code> &#x5728; <code>vector</code> &#x7684;<strong>&#x5C3E;&#x90E8;</strong>&#x52A0;&#x5165;&#x6216;&#x5220;&#x9664;&#x5143;&#x7D20;&#xFF0C;&#x8FD9;&#x4E24;&#x4E2A;&#x8FC7;&#x7A0B;&#x7684;&#x65F6;&#x95F4;&#x590D;&#x6742;&#x5EA6;&#x4E3A;$O(1)$&#x3002;</p>
+<p>&#x4F7F;&#x7528; <code>insert()</code> &#x5728;&#x67D0;&#x4E2A;&#x7279;&#x5B9A;&#x7684;&#x4F4D;&#x7F6E;&#x63D2;&#x5165;&#x4E00;&#x4E2A;&#x5143;&#x7D20;&#xFF0C;&#x65F6;&#x95F4;&#x590D;&#x6742;&#x5EA6;&#x4E3A;$O(n)$&#x3002;</p>
+<p>&#x4F7F;&#x7528; <code>erase()</code> &#x5220;&#x9664;&#x67D0;&#x4E2A;&#x4F4D;&#x7F6E;&#x7684;&#x5143;&#x7D20;&#xFF0C;&#x65F6;&#x95F4;&#x590D;&#x6742;&#x5EA6;&#x4E3A;$O(n)$&#x3002;</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; v;</span><br><span class="line"><span class="comment">// v.size() = 0</span></span><br><span class="line"></span><br><span class="line">v.push_back(<span class="number">23333</span>);</span><br><span class="line"><span class="comment">// v.size() = 1, v = { 23333 }</span></span><br><span class="line"></span><br><span class="line">v.insert(v.begin() + <span class="number">0</span>, <span class="number">890</span>);</span><br><span class="line"><span class="comment">// v.size() = 2, v = { 890, 23333 }</span></span><br><span class="line"></span><br><span class="line">v.insert(v.begin() + <span class="number">1</span>, <span class="number">12345</span>);</span><br><span class="line"><span class="comment">// v.size() = 3, v = { 890, 12345, 23333 }</span></span><br><span class="line"></span><br><span class="line">v.erase(v.begin() + <span class="number">0</span>);</span><br><span class="line"><span class="comment">// v.size() = 2, v = { 12345, 23333 }</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (nt i = <span class="number">0</span>; i &lt; v.size(); i++) {</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>, v[i]);</span><br><span class="line">}</span><br><span class="line"><span class="comment">// &#x4F9D;&#x6B21;&#x8F93;&#x51FA; 12345&#x3001;23333</span></span><br><span class="line"></span><br><span class="line">v.pop_back();</span><br><span class="line"><span class="comment">// v.size() = 1, v = { 12345 }</span></span><br></pre></td></tr></table></figure>
+<p>&#x6CE8;&#x610F;&#xFF0C;&#x5728;&#x52A0;&#x5165;&#x5143;&#x7D20;&#x65F6;&#xFF0C;&#x5982;&#x679C; <code>vector</code> &#x62E5;&#x6709;&#x7684;&#x5185;&#x5B58;&#x7A7A;&#x95F4;&#x4E0D;&#x8DB3;&#x4EE5;&#x5B58;&#x653E;&#x6B32;&#x52A0;&#x5165;&#x7684;&#x5143;&#x7D20;&#xFF0C;&#x5219; <code>vector</code> &#x4F1A;&#x7533;&#x8BF7;&#x4E00;&#x5757;&#x65B0;&#x7684;&#x5185;&#x5B58;&#xFF0C;&#x5E76;&#x5C06;&#x65E7;&#x6570;&#x636E;&#x62F7;&#x8D1D;&#x8FC7;&#x53BB;&#xFF0C;&#x8FD9;&#x4E2A;&#x8FC7;&#x7A0B;&#x901A;&#x5E38;&#x82B1;&#x8D39; $O(n)$ &#x7684;&#x65F6;&#x95F4;&#x3002;</p>
+<h5 id="&#x96C6;&#x5408;-set">&#x96C6;&#x5408; set</h5>
+<p>STL &#x5728;&#x5934;&#x6587;&#x4EF6; <code>&lt;set&gt;</code> &#x4E2D;&#x63D0;&#x4F9B;&#x4E86;&#x4E00;&#x4E2A;<strong>&#x6709;&#x5E8F;&#x96C6;&#x5408;</strong> <code>set</code>&#xFF0C;&#x5176;&#x4E2D;&#x7684;&#x5143;&#x7D20;&#x5168;&#x90E8;&#x662F;<strong>&#x552F;&#x4E00;</strong>&#x7684;&#xFF0C;&#x5E76;&#x4E14;&#x63D2;&#x5165;&#x8FDB;&#x7684;&#x5143;&#x7D20;&#x81EA;&#x52A8;&#x6309;&#x7167;&#x5347;&#x5E8F;&#x6392;&#x5217;&#xFF0C;&#x4F46; <code>set</code> &#x4E0D;&#x652F;&#x6301;&#x901A;&#x8FC7;&#x4E0B;&#x6807;&#x5B9A;&#x4F4D;&#x67D0;&#x4E2A;&#x5143;&#x7D20;&#xFF0C;&#x53EA;&#x80FD;&#x901A;&#x8FC7;<strong>&#x8FED;&#x4EE3;&#x5668;</strong>&#x904D;&#x5386;&#x3002;</p>
+<p>&#x4EE5;&#x4E0B;&#x4EE3;&#x7801;&#x58F0;&#x660E;&#x4E86;&#x4E00;&#x4E2A; <code>int</code> &#x7C7B;&#x578B;&#x7684;&#x96C6;&#x5408;&#x3002;</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">std</span>::<span class="built_in">set</span>&lt;<span class="keyword">int</span>&gt; s;</span><br></pre></td></tr></table></figure>
+<p>&#x4F7F;&#x7528; <code>insert()</code> &#x5728;&#x96C6;&#x5408;&#x4E2D;&#x52A0;&#x5165;&#x4E00;&#x4E2A;&#x5143;&#x7D20;&#xFF0C;&#x5176;&#x65F6;&#x95F4;&#x590D;&#x6742;&#x5EA6;&#x4E3A;$O({\log}n)$&#x3002;</p>
+<p>&#x4F7F;&#x7528; <code>erase()</code> &#x5220;&#x9664;&#x96C6;&#x5408;&#x4E2D;<strong>&#x67D0;&#x4E2A;&#x5143;&#x7D20;</strong>&#x6216;<strong>&#x67D0;&#x4E2A;&#x4F4D;&#x7F6E;&#x7684;&#x5143;&#x7D20;</strong>&#xFF0C;&#x5176;&#x65F6;&#x95F4;&#x590D;&#x6742;&#x5EA6;&#x5747;&#x4E3A;$O({\log}n)$&#x3002;</p>
+<p><code>set</code> &#x81EA;&#x8EAB;&#x63D0;&#x4F9B; <code>lower_bound()</code> &#x7528;&#x4E8E;&#x5B9A;&#x4F4D;&#x5143;&#x7D20;&#xFF0C;&#x5176;&#x4F5C;&#x7528;&#x4E0E;&#x524D;&#x6587;&#x4E2D;&#x7684;&#x540C;&#x540D;&#x51FD;&#x6570;&#x7C7B;&#x4F3C;&#xFF0C;&#x4E5F;&#x53EF;&#x4EE5;&#x4F7F;&#x7528; <code>find()</code> &#x6765;&#x7CBE;&#x786E;&#x67E5;&#x627E;&#x5143;&#x7D20;&#x3002;</p>
+<p>&#x904D;&#x5386; <code>set</code> &#x53EA;&#x80FD;&#x4F7F;&#x7528;<strong>&#x8FED;&#x4EE3;&#x5668;</strong>&#x3002;<code>set</code> &#x7684;&#x8FED;&#x4EE3;&#x5668;&#x4E3A; <code>set&lt;T&gt;::iterator</code>&#xFF0C;&#x5176;&#x4E2D; <code>T</code> &#x4E3A;&#x5143;&#x7D20;&#x7C7B;&#x578B;&#x3002;</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">std</span>::<span class="built_in">set</span>&lt;<span class="keyword">int</span>&gt; s;</span><br><span class="line"></span><br><span class="line">s.insert(<span class="number">23333</span>);</span><br><span class="line">s.insert(<span class="number">23333</span>); <span class="comment">// &#x91CD;&#x590D;&#x63D2;&#x5165;&#x65E0;&#x6548;</span></span><br><span class="line">s.insert(<span class="number">66666</span>);</span><br><span class="line">s.insert(<span class="number">890</span>);</span><br><span class="line">s.insert(-<span class="number">1</span>);</span><br><span class="line"><span class="comment">// s.size() = 4, s = { -1, 890, 23333, 66666 }</span></span><br><span class="line"></span><br><span class="line">s.erase(<span class="number">66666</span>);</span><br><span class="line"><span class="comment">// s.size() = 3, s = { -1, 890, 23333 }</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">std</span>::<span class="built_in">set</span>&lt;<span class="keyword">int</span>&gt;::iterator p1 = s.lower_bound(<span class="number">555</span>);</span><br><span class="line"><span class="comment">// *p1 = 890</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">std</span>::<span class="built_in">set</span>&lt;<span class="keyword">int</span>&gt;::iterator p2 = s.find(<span class="number">555</span>);</span><br><span class="line"><span class="comment">// p2 = s.end()&#xFF0C;&#x56E0;&#x4E3A;&#x672A;&#x627E;&#x5230; 555</span></span><br><span class="line"></span><br><span class="line">s.erase(p1);</span><br><span class="line"><span class="comment">// s.size() = 2, s = { -1, 23333 }</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (<span class="built_in">std</span>::<span class="built_in">set</span>&lt;<span class="keyword">int</span>&gt;::iterator p = s.begin(); p != s.end(); p++) {</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>, *p);</span><br><span class="line">}</span><br><span class="line"><span class="comment">// &#x4F9D;&#x6B21;&#x8F93;&#x51FA; -1&#x3001;23333</span></span><br></pre></td></tr></table></figure>
+<p>&#x4E0A;&#x8FF0;&#x4EE3;&#x7801;&#x4E2D;&#x8FD0;&#x7528;&#x7684;&#x8FED;&#x4EE3;&#x5668;&#x7684;&#x65B9;&#x6CD5;&#x5728; STL &#x5BB9;&#x5668;&#x4E2D;&#x8F83;&#x4E3A;&#x5E38;&#x89C1;&#x3002;</p>
+<h5 id="&#x5B57;&#x7B26;&#x4E32;-string">&#x5B57;&#x7B26;&#x4E32; string</h5>
+<p>STL &#x5728;&#x5934;&#x6587;&#x4EF6; <code>&lt;string&gt;</code> &#x4E2D;&#x5C06;&#x4E00;&#x4E9B;&#x4E0E;&#x5B57;&#x7B26;&#x4E32;&#x6709;&#x5173;&#x7684;&#x64CD;&#x4F5C;&#x5C01;&#x88C5;&#x5728;&#x4E86; <code>string</code> &#x5185;&#x3002;</p>
+<p>&#x4F7F;&#x7528; <code>cin</code> &#x548C; <code>cout</code> &#x6765;&#x8F93;&#x5165;&#x3001;&#x8F93;&#x51FA;&#x5B57;&#x7B26;&#x4E32;&#x3002;</p>
+<p>&#x4F7F;&#x7528; <code>find()</code> &#x67E5;&#x627E;&#x53E6;&#x4E00;&#x4E2A;&#x5B57;&#x7B26;&#x4E32;&#x5728;&#x8BE5;&#x5B57;&#x7B26;&#x4E32;&#x4E2D;&#x7684;&#x51FA;&#x73B0;&#x4F4D;&#x7F6E;&#xFF0C;&#x8FD4;&#x56DE;&#x7ED3;&#x679C;&#x4ECE; 0 &#x5F00;&#x59CB;&#x3002;</p>
+<p>&#x4F7F;&#x7528; <code>c_str()</code> &#x83B7;&#x5F97; <code>string</code> &#x5BF9;&#x5E94;&#x7684; <code>const char *</code> &#x7C7B;&#x578B;&#x6570;&#x636E;&#xFF0C;&#x53EF;&#x7528;&#x4E8E;&#x5411; C &#x5E93;&#x51FD;&#x6570;&#x4F20;&#x9012;&#x3002;</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">std</span>::<span class="built_in">string</span> s = <span class="string">&quot;Menci&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> pos = s.find(<span class="string">&quot;23333&quot;</span>);</span><br><span class="line"><span class="comment">// pos = string::npos&#xFF0C;&#x56E0;&#x4E3A;&#x6CA1;&#x6709;&#x627E;&#x5230; 23333</span></span><br><span class="line"></span><br><span class="line">pos = s.find(<span class="string">&quot;ci&quot;</span>);</span><br><span class="line"><span class="comment">// pos = 3&#xFF0C;&#x56E0;&#x4E3A;&#x51FA;&#x73B0;&#x4F4D;&#x7F6E;&#x4E3A;&#x7B2C; 4 &#x4E2A;&#x5B57;&#x7B26;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">char</span> ch = s[<span class="number">0</span>];</span><br><span class="line"><span class="comment">// ch = &apos;M&apos;</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; s &lt;&lt; <span class="built_in">std</span>::endl;</span><br><span class="line"><span class="built_in">puts</span>(s.c_str());</span><br><span class="line"><span class="comment">// &#x8F93;&#x51FA;&#x4E24;&#x6B21; Menci</span></span><br></pre></td></tr></table></figure>
+<h5 id="&#x961F;&#x5217;-queue">&#x961F;&#x5217; queue</h5>
+<p>STL &#x5728;&#x5934;&#x6587;&#x4EF6; <code>&lt;queue&gt;</code> &#x4E2D;&#x63D0;&#x4F9B;&#x4E86;&#x5148;&#x5165;&#x5148;&#x51FA;&#xFF08;FIFO&#xFF09;&#x961F;&#x5217; <code>queue</code>&#x3002;</p>
+<p>&#x4F7F;&#x7528; <code>push()</code> &#x5411;&#x961F;&#x5217;&#x4E2D;&#x52A0;&#x5165;&#x5143;&#x7D20;&#x3002;</p>
+<p>&#x4F7F;&#x7528; <code>front()</code> &#x83B7;&#x53D6;&#x961F;&#x9996;&#x5143;&#x7D20;&#xFF08;&#x5E76;&#x4E0D;&#x5220;&#x9664;&#xFF09;&#x3002;</p>
+<p>&#x4F7F;&#x7528; <code>pop()</code> &#x5220;&#x9664;&#x961F;&#x9996;&#x5143;&#x7D20;&#x3002;</p>
+<p>&#x4F7F;&#x7528; <code>empty()</code> &#x5224;&#x65AD;&#x961F;&#x5217;&#x662F;&#x5426;&#x4E3A;&#x7A7A;&#x3002;</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">std</span>::<span class="built_in">queue</span>&lt;<span class="keyword">int</span>&gt; q;</span><br><span class="line"></span><br><span class="line"><span class="keyword">bool</span> flag = q.empty();</span><br><span class="line"><span class="comment">// flag = true&#xFF0C;&#x961F;&#x5217;&#x521D;&#x59CB;&#x4E3A;&#x7A7A;</span></span><br><span class="line"></span><br><span class="line">q.push(<span class="number">23333</span>);</span><br><span class="line">q.push(<span class="number">66666</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span> (!q.empty()) {</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>, q.front());</span><br><span class="line">    q.pop();</span><br><span class="line">}</span><br><span class="line"><span class="comment">// &#x4F9D;&#x6B21;&#x8F93;&#x51FA; 23333&#xFF0C;66666</span></span><br></pre></td></tr></table></figure>
+<h5 id="&#x6808;-stack">&#x6808; stack</h5>
+<p>STL &#x5728;&#x5934;&#x6587;&#x4EF6; <code>&lt;stack&gt;</code> &#x63D0;&#x4F9B;&#x4E86;&#x540E;&#x5165;&#x5148;&#x51FA;&#xFF08;LIFO&#xFF09;&#x6808; <code>stack</code>&#x3002;</p>
+<p>&#x4F7F;&#x7528; <code>push()</code> &#x5411;&#x6808;&#x4E2D;&#x52A0;&#x5165;&#x5143;&#x7D20;&#x3002;</p>
+<p>&#x4F7F;&#x7528; <code>top()</code> &#x83B7;&#x53D6;&#x6808;&#x9876;&#x5143;&#x7D20;&#xFF08;&#x5E76;&#x4E0D;&#x5220;&#x9664;&#xFF09;&#x3002;</p>
+<p>&#x4F7F;&#x7528; <code>pop()</code> &#x5220;&#x9664;&#x6808;&#x9876;&#x5143;&#x7D20;&#x3002;</p>
+<p>&#x4F7F;&#x7528; <code>empty()</code> &#x5224;&#x65AD;&#x6808;&#x662F;&#x5426;&#x4E3A;&#x7A7A;&#x3002;</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">std</span>::<span class="built_in">stack</span>&lt;<span class="keyword">int</span>&gt; s;</span><br><span class="line"></span><br><span class="line"><span class="keyword">bool</span> flag = s.empty();</span><br><span class="line"><span class="comment">// flag = true&#xFF0C;&#x6808;&#x521D;&#x59CB;&#x4E3A;&#x7A7A;</span></span><br><span class="line"></span><br><span class="line">s.push(<span class="number">23333</span>);</span><br><span class="line">s.push(<span class="number">66666</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span> (!s.empty()) {</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>, s.top());</span><br><span class="line">    s.pop();</span><br><span class="line">}</span><br><span class="line"><span class="comment">// &#x4F9D;&#x6B21;&#x8F93;&#x51FA; 66666&#xFF0C;23333</span></span><br></pre></td></tr></table></figure>
+<h5 id="&#x4F18;&#x5148;&#x961F;&#x5217;-priority_queue">&#x4F18;&#x5148;&#x961F;&#x5217; priority_queue</h5>
+<p>STL &#x5728;&#x5934;&#x6587;&#x4EF6; <code>&lt;queue&gt;</code> &#x4E2D;&#x63D0;&#x4F9B;&#x4F18;&#x5148;&#x961F;&#x5217; <code>priority_queue</code>&#xFF0C;&#x5728;&#x4EFB;&#x610F;&#x65F6;&#x95F4;&#x90FD;&#x80FD;&#x53D6;&#x51FA;&#x961F;&#x5217;&#x4E2D;&#x7684;<strong>&#x6700;&#x5927;&#x503C;</strong>&#x3002;</p>
+<p>&#x4F7F;&#x7528; <code>push()</code> &#x5411;&#x4F18;&#x5148;&#x961F;&#x5217;&#x4E2D;&#x52A0;&#x5165;&#x5143;&#x7D20;&#xFF0C;&#x5176;&#x65F6;&#x95F4;&#x590D;&#x6742;&#x5EA6;&#x4E3A;$O({\log}n)$&#x3002;</p>
+<p>&#x4F7F;&#x7528; <code>top()</code> &#x83B7;&#x53D6;&#x4F18;&#x5148;&#x961F;&#x5217;&#x4E2D;<strong>&#x6700;&#x5927;</strong>&#x7684;&#x5143;&#x7D20;&#xFF08;&#x5E76;&#x4E0D;&#x5220;&#x9664;&#xFF09;&#xFF0C;&#x5176;&#x65F6;&#x95F4;&#x590D;&#x6742;&#x5EA6;&#x4E3A;$O(1)$&#x3002;</p>
+<p>&#x4F7F;&#x7528; <code>pop()</code> &#x5220;&#x9664;&#x4F18;&#x5148;&#x961F;&#x5217;&#x4E2D;<strong>&#x6700;&#x5927;</strong>&#x5143;&#x7D20;&#xFF0C;&#x5176;&#x65F6;&#x95F4;&#x590D;&#x6742;&#x5EA6;&#x4E3A;$O({\log}n)$&#x3002;</p>
+<p>&#x4F7F;&#x7528; <code>empty()</code> &#x5224;&#x65AD;&#x4F18;&#x5148;&#x961F;&#x5217;&#x662F;&#x5426;&#x4E3A;&#x7A7A;&#x3002;</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">std</span>::priority_queue&lt;<span class="keyword">int</span>&gt; q;</span><br><span class="line"></span><br><span class="line"><span class="keyword">bool</span> flag = q.empty();</span><br><span class="line"><span class="comment">// flag = true&#xFF0C;&#x4F18;&#x5148;&#x961F;&#x5217;&#x521D;&#x59CB;&#x4E3A;&#x7A7A;</span></span><br><span class="line"></span><br><span class="line">q.push(<span class="number">23333</span>);</span><br><span class="line">q.push(-<span class="number">1</span>);</span><br><span class="line">q.push(<span class="number">66666</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span> (!q.empty()) {</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>, q.top());</span><br><span class="line">    q.pop();</span><br><span class="line">}</span><br><span class="line"><span class="comment">// &#x4F9D;&#x6B21;&#x8F93;&#x51FA; 66666&#xFF0C;23333&#xFF0C;-1</span></span><br></pre></td></tr></table></figure>
+<p><code>priority_queue</code> &#x9ED8;&#x8BA4;&#x63D0;&#x4F9B;&#x961F;&#x5217;&#x4E2D;&#x7684;<strong>&#x6700;&#x5927;&#x503C;</strong>&#xFF0C;&#x4E5F;&#x53EF;&#x4EE5;&#x4EE5;&#x4EE5;&#x4E0B;&#x58F0;&#x660E;&#x65B9;&#x5F0F;&#x8BA9; <code>priority_queue</code> &#x63D0;&#x4F9B;<strong>&#x6700;&#x5C0F;&#x503C;</strong>&#x3002;</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">std</span>::priority_queue&lt;T, <span class="built_in">std</span>::<span class="built_in">vector</span>&lt;T&gt;, <span class="built_in">std</span>::greater&lt;T&gt; &gt; q;</span><br></pre></td></tr></table></figure>
+<p>&#x6CE8;&#x610F;&#x628A;&#x4E09;&#x4E2A; <code>T</code> &#x6362;&#x6210;&#x4F18;&#x5148;&#x961F;&#x5217;&#x4E2D;&#x5143;&#x7D20;&#x7684;&#x7C7B;&#x578B;&#xFF08;&#x5982; <code>int</code>&#xFF09;&#xFF1B;<code>std::greater&lt;T&gt;</code> &#x7684;&#x53F3;&#x8FB9;&#x8981;&#x52A0;&#x4E00;&#x4E2A;&#x7A7A;&#x683C;&#xFF0C;&#x5426;&#x5219;&#x4F1A;&#x88AB;&#x7F16;&#x8BD1;&#x5668;&#x8BEF;&#x8BA4;&#x4E3A;&#x662F; <code>&gt;&gt;</code> &#x53F3;&#x79FB;&#x8FD0;&#x7B97;&#x7B26;&#x3002;</p>
+
+            
+        </div>
+    </div>
+    <div id="post-footer" class="post-footer main-content-wrap">
+        <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/cut-tree-notes/"  data-tooltip="树链剖分学习笔记">
+                
+                    <i class="fa fa-angle-left"></i>
+                    <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/splay-notes-2/" data-tooltip="Splay 学习笔记（二）">
+                
+                    <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
+                    <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a class="post-action-btn btn btn--default btn-open-shareoptions"  href="#btn-open-shareoptions">
+                <i class="fa fa-share-alt"></i>
+            </a>
+        </li>
+        <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://blog.menci.moe/stl-in-oi/">
+                <i class="fa fa-google-plus"></i>
+            </a>
+        </li>
+        <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.menci.moe/stl-in-oi/">
+                <i class="fa fa-facebook-official"></i>
+            </a>
+        </li>
+        <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://blog.menci.moe/stl-in-oi/">
+                <i class="fa fa-twitter"></i>
+            </a>
+        </li>
+        
+            <li class="post-action">
+                <a class="post-action-btn btn btn--default" href="#disqus_thread">
+                    <i class="fa fa-comment-o"></i>
+                </a>
+            </li>
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#">
+            
+                <i class="fa fa-list"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+        
+            
+                <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+            
+        
+    </div>
+</article>
+
+
+
+                <footer id="footer" class="main-content-wrap">
+    <span class="copyrights">
+        Copyrights &copy; 2016 Menci. All Rights Reserved.
+    </span>
+</footer>
+</script>
+
+            </div>
+            
+                <div id="bottom-bar" class="post-bottom-bar" data-behavior="2">
+                    <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/cut-tree-notes/"  data-tooltip="树链剖分学习笔记">
+                
+                    <i class="fa fa-angle-left"></i>
+                    <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/splay-notes-2/" data-tooltip="Splay 学习笔记（二）">
+                
+                    <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
+                    <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a class="post-action-btn btn btn--default btn-open-shareoptions"  href="#btn-open-shareoptions">
+                <i class="fa fa-share-alt"></i>
+            </a>
+        </li>
+        <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://blog.menci.moe/stl-in-oi/">
+                <i class="fa fa-google-plus"></i>
+            </a>
+        </li>
+        <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.menci.moe/stl-in-oi/">
+                <i class="fa fa-facebook-official"></i>
+            </a>
+        </li>
+        <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://blog.menci.moe/stl-in-oi/">
+                <i class="fa fa-twitter"></i>
+            </a>
+        </li>
+        
+            <li class="post-action">
+                <a class="post-action-btn btn btn--default" href="#disqus_thread">
+                    <i class="fa fa-comment-o"></i>
+                </a>
+            </li>
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#">
+            
+                <i class="fa fa-list"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+                </div>
+                <div id="share-options-bar" class="share-options-bar" data-behavior="2">
+    <ul class="share-options">
+        <li class="share-option">
+            <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=https://blog.menci.moe/stl-in-oi/">
+                <i class="fa fa-google-plus"></i><span class="">分享到 Google+</span>
+            </a>
+        </li>
+        <li class="share-option">
+            <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.menci.moe/stl-in-oi/">
+                <i class="fa fa-facebook-official"></i><span>分享到 Facebook</span>
+            </a>
+        </li>
+        <li class="share-option">
+            <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https://blog.menci.moe/stl-in-oi/">
+                <i class="fa fa-twitter"></i><span>分享到 Twitter</span>
+            </a>
+        </li>
+    </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+            
+        </div>
+        
+
+
+    
+        
+    
+
+<div id="about">
+    <div id="about-card">
+        <div id="about-btn-close">
+            <i class="fa fa-remove"></i>
+        </div>
+        
+            <img style="box-shadow: 0 0 15px gray;" id="about-card-picture" src="//dn-menci.qbox.me/assets/images/avatar.png"/>
+        
+            <h4 id="about-card-name">Menci</h4>
+        
+            <h5 id="about-card-bio">眉眼如初，岁月如故</h5>
+        
+        
+            <h5 id="about-card-job">
+                <i class="fa fa-cloud"></i>
+                <br/>
+                One day, <br> I'll reach the next stage <br> to realize all.
+            </h5>
+        
+        
+    </div>
+</div>
+
+        
+<div id="cover" style="background-image:url('//dn-menci.qbox.me/assets/images/cover.jpg');"></div>
+    </body>
+    <!--SCRIPTS-->
+<script src="//dn-menci.qbox.me/assets/js/scrip-0ewjnhvv8ytgl76lkiq8f541cfygs5bpfv33ohlfvpfklrfevqupdsxg46fk.min.js" type="text/javascript"></script>
+<!--SCRIPTS END-->
+
+    
+        <script>
+             var disqus_config = function () {
+				 MenciRemoveIndexDotHtml = function (url) {
+				 	if (url.substr(-10, 10) == 'index.html') return url.substr(0, url.length - 10);
+				 	else return url;
+				 }
+                 this.page.url = MenciRemoveIndexDotHtml('https://blog.menci.moe/stl-in-oi/');
+                 
+                 this.page.identifier = MenciRemoveIndexDotHtml('stl-in-oi/');
+                                  
+             };
+            (function() {
+                var d = document, s = d.createElement('script');
+                var disqus_shortname = 'menci';
+                s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+
+                s.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        </script>
+    
+
+
+    <script type="text/javascript">
+        (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+                (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+            e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+        })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+        _st('install','L51x_1_hCboFSsSLLGGK','2.0.0');
+    </script>
+
+
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/KaTeX/0.6.0/katex.min.js"></script>
+<!--script type="text/javascript" src="/assets/js/auto-render.min.js"></script-->
+<script>
+$(function() {
+	// renderKatexMathjaxFallback($('body')[0]);
+	renderMathInElement($('body')[0]);
+});
+</script>
+
+</html>

@@ -1,0 +1,557 @@
+
+<!DOCTYPE html>
+<html lang="zh-cn">
+    
+<head>
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="Menci">
+    <title>「BZOJ 2820」YY的GCD - 莫比乌斯反演 - Menci</title>
+    <meta name="author" content="Menci">
+    
+    
+        <link rel="icon" href="//dn-menci.qbox.me/assets/images/avatar.png">
+    
+    
+        <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
+    
+    <meta name="description" content="&amp;#x6C42; $ 1 \leq x \leq N $&amp;#xFF0C;$ 1 \leq y \leq M $ &amp;#x4E14; $ \gcd(x, y) $ &amp;#x4E3A;&amp;#x8D28;&amp;#x6570;&amp;#x7684; $ (x, y) $ &amp;#x6570;&amp;#x91CF;&amp;#x3002;">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="「BZOJ 2820」YY的GCD - 莫比乌斯反演">
+<meta property="og:url" content="https://blog.menci.moe/bzoj-2820/index.html">
+<meta property="og:site_name" content="Menci">
+<meta property="og:description" content="&amp;#x6C42; $ 1 \leq x \leq N $&amp;#xFF0C;$ 1 \leq y \leq M $ &amp;#x4E14; $ \gcd(x, y) $ &amp;#x4E3A;&amp;#x8D28;&amp;#x6570;&amp;#x7684; $ (x, y) $ &amp;#x6570;&amp;#x91CF;&amp;#x3002;">
+<meta property="og:updated_time" content="2016-05-11T09:33:24.420Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="「BZOJ 2820」YY的GCD - 莫比乌斯反演">
+<meta name="twitter:description" content="&amp;#x6C42; $ 1 \leq x \leq N $&amp;#xFF0C;$ 1 \leq y \leq M $ &amp;#x4E14; $ \gcd(x, y) $ &amp;#x4E3A;&amp;#x8D28;&amp;#x6570;&amp;#x7684; $ (x, y) $ &amp;#x6570;&amp;#x91CF;&amp;#x3002;">
+<meta name="twitter:creator" content="@HuangHaoRui">
+    
+        <meta rel="publisher" content="https://plus.google.com/103195680789397520000"/>
+    
+    
+        
+    
+    
+        <meta property="og:image" content="//dn-menci.qbox.me/assets/images/avatar.png"/>
+    
+    
+    
+    
+    <!--STYLES-->
+    <link rel="stylesheet" href="//dn-menci.qbox.me/assets/css/style-pcycimglbr925yrwj0efxsn118g0acj4bp3qcdehgw1freahg01piplpcrqd.min.css">
+    <!--STYLES END-->
+	<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/KaTeX/0.6.0/katex.min.css">
+	<link href='https://fonts.googleapis.com/css?family=Poiret+One' rel='stylesheet' type='text/css'>
+    
+    <script type="text/javascript">
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-75865916-1']);
+        _gaq.push(['_trackPageview']);
+        (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+    </script>
+
+    
+</head>
+
+    <body>
+        <div id="blog">
+            <!-- Define author's picture -->
+
+
+    
+        
+            
+        
+    
+
+<!--<header id="header" data-behavior="2">-->
+<header id="header" data-behavior="2">
+    <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+    <h1 class="header-title">
+        <a class="header-title-link" href="/ ">Menci</a>
+    </h1>
+    
+        
+            <a  class="header-right-picture "
+                href="/#about">
+        
+        
+            <img class="header-picture" src="//dn-menci.qbox.me/assets/images/avatar.png"/>
+        
+        </a>
+    
+</header>
+
+            <!-- Define author's picture -->
+
+
+
+        
+    
+
+<!--<nav id="sidebar" data-behavior="2">-->
+<nav id="sidebar" data-behavior="2">
+    
+        <div class="sidebar-profile">
+            <a href="/#about">
+                    <img class="sidebar-profile-picture" src="//dn-menci.qbox.me/assets/images/avatar.png"/>
+            </a>
+            <span class="sidebar-profile-name">Menci</span>
+        </div>
+    
+    
+        <ul class="sidebar-buttons">
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link "
+                         href="/ "
+                        
+                    >
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+                    <span class="sidebar-button-desc">首页</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link "
+                         href="/all-tags"
+                        
+                    >
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+                    <span class="sidebar-button-desc">标签</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link "
+                         href="/all-archives"
+                        
+                    >
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+                    <span class="sidebar-button-desc">归档</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link st-search-show-outputs"
+                         href="/#search"
+                        
+                    >
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-search"></i>
+                    <span class="sidebar-button-desc">搜索</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link "
+                         href="/about-me"
+                        
+                    >
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-info"></i>
+                    <span class="sidebar-button-desc">关于</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link "
+                         href="/friends"
+                        
+                    >
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-users"></i>
+                    <span class="sidebar-button-desc">伙伴</span>
+                </a>
+        </li>
+        
+    </ul>
+    
+        <ul class="sidebar-buttons">
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link " href="https://github.com/Menci" target="_blank">
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+                    <span class="sidebar-button-desc">GitHub</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link " href="https://twitter.com/HuangHaoRui" target="_blank">
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-twitter"></i>
+                    <span class="sidebar-button-desc">Twitter</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link " href="http://wpa.qq.com/msgrd?V=3&Uin=421899973" target="_blank">
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-qq"></i>
+                    <span class="sidebar-button-desc">QQ</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link " href="mailto:huanghaorui301@gmail.com" target="_blank">
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-envelope-o"></i>
+                    <span class="sidebar-button-desc">邮箱</span>
+                </a>
+        </li>
+        
+    </ul>
+    
+        <ul class="sidebar-buttons">
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link "
+                         href="/atom.xml"
+                        
+                    >
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-rss"></i>
+                    <span class="sidebar-button-desc">RSS</span>
+                </a>
+        </li>
+        
+    </ul>
+    
+</nav>
+
+            
+            <div id="main" data-behavior="2"
+                 class="
+                        hasCoverMetaIn
+                        ">
+                
+<article class="post" itemscope itemType="http://schema.org/BlogPosting">
+    
+    
+        <div class="post-header main-content-wrap text-left">
+    
+        <h1 class="post-title" itemprop="headline">
+            「BZOJ 2820」YY的GCD - 莫比乌斯反演
+        </h1>
+    
+    <div class="post-meta" style="border-bottom: 1px solid #eef2f8;">
+    <time itemprop="datePublished" content="Thu Apr 07 2016 22:24:12 GMT+0800">
+	
+		    4月 07, 2016
+    	
+    </time>
+    
+        <span>发布在 </span>
+        
+    <a class="category-link" href="/categories/oi/">OI</a>
+
+
+    
+	
+		<div class="post-footer-tags" style="margin-top: 10px; margin-left: 10px; display: inline-block; border-bottom: none; ">
+			<!--span class="text-color-light text-small">标签</span><br/-->
+			
+    <a class="tag tag--primary tag--small t-link" href="/tag/bzoj/">BZOJ</a> <a class="tag tag--primary tag--small t-link" href="/tag/数学/">数学</a> <a class="tag tag--primary tag--small t-link" href="/tag/数论/">数论</a> <a class="tag tag--primary tag--small t-link" href="/tag/线性筛/">线性筛</a> <a class="tag tag--primary tag--small t-link" href="/tag/莫比乌斯反演/">莫比乌斯反演</a>
+
+		</div>
+	
+</div>
+
+</div>
+    
+    <div class="post-content markdown" itemprop="articleBody">
+        <div class="main-content-wrap">
+            <p>&#x6C42; $ 1 \leq x \leq N $&#xFF0C;$ 1 \leq y \leq M $ &#x4E14; $ \gcd(x, y) $ &#x4E3A;&#x8D28;&#x6570;&#x7684; $ (x, y) $ &#x6570;&#x91CF;&#x3002;</p>
+<a id="more"></a>
+<h3 id="&#x94FE;&#x63A5;">&#x94FE;&#x63A5;</h3>
+<p><a href="http://www.lydsy.com/JudgeOnline/problem.php?id=2820" target="_blank" rel="external">BZOJ 2820</a></p>
+<h3 id="&#x9898;&#x89E3;">&#x9898;&#x89E3;</h3>
+<p>&#x9996;&#x5148;&#xFF0C;&#x6211;&#x4EEC;&#x53EA;&#x9700;&#x8981;&#x5904;&#x7406; $ N \leq M $ &#x7684;&#x60C5;&#x51B5;&#xFF0C;&#x5F53; $ M \lt N $ &#x7684;&#x60C5;&#x51B5;&#x53EA;&#x9700;&#x8981;&#x4EA4;&#x6362; $ N $ &#x548C; $ M $ &#x5373;&#x53EF;&#x3002;</p>
+<p>&#x8BBE;&#x5C0F;&#x4E8E; $ N $ &#x8D28;&#x6570;&#x4E3A; $ p_1, p_2, &#x2026;, p_n $&#xFF0C;&#x5219;&#x7B54;&#x6848;&#x4E3A;</p>
+<p>$$ \sum\limits_{k = 1} ^ {n} \sum\limits_{i = 1} ^ {N} \sum\limits_{j = 1} ^ {M} [\gcd(i, j) = p_k] $$</p>
+<p>&#x6839;&#x636E;&#x83AB;&#x6BD4;&#x4E4C;&#x65AF;&#x53CD;&#x6F14;&#xFF0C;&#x6211;&#x4EEC;&#x6709;</p>
+<p>$$ \sum\limits_{k = 1} ^ {n} \sum\limits_{i = 1} ^ {N} \sum\limits_{j = 1} ^ {M} [\gcd(i, j) = p_k] = \sum\limits_{k = 1} ^ {n} \sum\limits_{d = 1} ^ {\lfloor \frac{N}{p_k} \rfloor} \mu(d) \lfloor \frac{N}{p_k \times d} \rfloor \lfloor \frac{M}{p_k \times d} \rfloor $$</p>
+<p>&#x4EE4; $ T = p_k \times d $ &#xFF0C;&#x6211;&#x4EEC;&#x5728;&#x5916;&#x5C42;&#x679A;&#x4E3E; $ T $ &#x7136;&#x540E;&#x5BF9;&#x6BCF;&#x4E2A;&#x8D28;&#x56E0;&#x5B50;&#x8BA1;&#x7B97; $ \mu $</p>
+<p>$$ \sum\limits_{T = 1} ^ {N} \lfloor \frac{N}{T} \rfloor \lfloor \frac{M}{T} \rfloor \sum\limits_{k \mid T} \mu(\frac{T}{k}) $$</p>
+<p>&#x8BBE;</p>
+<p>$$ f(T) = \sum\limits_{k \mid T} \mu(\frac{T}{k}) $$</p>
+<p>$$ T = p_1 ^ {x_1} \times p_2 ^ {x_2} \times &#x2026; p_n ^ {x_n} $$</p>
+<p>$$ T&#x2019; = p_1 ^ {x_1 - 1} \times p_2 ^ {x_2} \times &#x2026; p_n ^ {x_n} $$</p>
+<p>&#x8003;&#x8651;&#x7EBF;&#x6027;&#x7B5B;&#x6C42; $ \mu $ &#x7684;&#x8FC7;&#x7A0B;&#xFF0C;&#x5F53; $ T&#x2019; \ {\rm mod} \ p_1 = 0 $ &#x65F6;</p>
+<p>$$ \begin{align} f(T&#x2019;) &amp;= \sum\limits_{i = 2} ^ {k} \mu(\frac{T&#x2019;}{p_i}) \\ f(T) &amp;= \sum\limits_{i = 1} ^ {k} \mu(\frac{T}{p_i}) \\ &amp;= \mu(\frac{T}{p_i}) + \sum\limits_{i = 2} ^ {k} \mu(\frac{T}{p_i}) \\ &amp;= \mu(T&#x2019;) + \sum\limits_{i = 2} ^ {k} \mu(\frac{T&#x2019;}{p_i} \times p_1) \\ &amp;= \mu(T&#x2019;) + \sum\limits_{i = 2} ^ {k} \mu(\frac{T&#x2019;}{p_i}) \times \mu(p_1) \\ \mu(p_i) &amp;= 1 \\ f(T) &amp;= \mu(T&#x2019;) - f(T&#x2019;) \end{align} $$</p>
+<p>&#x5F53; $ x_1 \gt 1 $ &#x65F6;</p>
+<p>$$ \begin{align} \mu(p_1 ^ {x_1}) &amp;= 0 \\ f(T) &amp;= \sum\limits_{i = 1} ^ {k} \mu(\frac{T}{p_i}) \\ &amp;= \mu(\frac{T}{p_1}) + \sum\limits_{i = 2} ^ {k} \mu(\frac{T}{p_i}) \\ &amp;= \mu(T&#x2019;) + \sum\limits_{i = 2} ^ {k} \mu(\frac{T}{p_i \times p_1 ^ {x_1}} \times p_1 ^ {x_1}) \\ &amp;= \mu(T&#x2019;) + \sum\limits_{i = 2} ^ {k} \mu(\frac{T}{p_i \times p_1 ^ {x_1}}) \times \mu(p_1 ^ {x_1}) \\ &amp;= \mu(T&#x2019;) \end{align} $$</p>
+<p>&#x7EBF;&#x6027;&#x7B5B;&#x540E;&#x5206;&#x5757;&#x5904;&#x7406;&#x5373;&#x53EF;&#x3002;</p>
+<h3 id="&#x4EE3;&#x7801;">&#x4EE3;&#x7801;</h3>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;cmath&gt;</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;vector&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAXT = <span class="number">10000</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAXN = <span class="number">10000000</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAXM = <span class="number">10000000</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">bool</span> isNotPrime[MAXN + <span class="number">1</span>];</span><br><span class="line"><span class="keyword">int</span> miu[MAXN + <span class="number">1</span>], f[MAXN + <span class="number">1</span>], s[MAXN + <span class="number">1</span>];</span><br><span class="line"><span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; primes;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">getPrimes</span><span class="params">()</span> </span>{</span><br><span class="line">    primes.reserve(MAXN);</span><br><span class="line">    isNotPrime[<span class="number">0</span>] = isNotPrime[<span class="number">1</span>] = <span class="literal">true</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">2</span>; i &lt;= MAXN; i++) {</span><br><span class="line">        <span class="keyword">if</span> (!isNotPrime[i]) {</span><br><span class="line">            primes.push_back(i);</span><br><span class="line">            miu[i] = -<span class="number">1</span>;</span><br><span class="line">            f[i] = <span class="number">1</span>;</span><br><span class="line">        }</span><br><span class="line">        <span class="keyword">for</span> (<span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;::const_iterator p = primes.begin(); p != primes.end() &amp;&amp; i * *p &lt;= MAXN; p++) {</span><br><span class="line">            isNotPrime[i * *p] = <span class="literal">true</span>;</span><br><span class="line">            <span class="keyword">if</span> (i % *p == <span class="number">0</span>) {</span><br><span class="line">                miu[i * *p] = <span class="number">0</span>;</span><br><span class="line">                f[i * *p] = miu[i];</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            } <span class="keyword">else</span> {</span><br><span class="line">                miu[i * *p] = -miu[i];</span><br><span class="line">                f[i * *p] = miu[i] - f[i];</span><br><span class="line">            }</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= MAXN; i++) s[i] = s[i - <span class="number">1</span>] + f[i];</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">long</span> <span class="keyword">long</span> <span class="title">solve</span><span class="params">(<span class="keyword">const</span> <span class="keyword">int</span> n, <span class="keyword">const</span> <span class="keyword">int</span> m)</span> </span>{</span><br><span class="line">    <span class="keyword">long</span> <span class="keyword">long</span> ans = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> l = <span class="number">1</span>, r; l &lt;= n; l = r + <span class="number">1</span>) {</span><br><span class="line">        r = <span class="built_in">std</span>::min(n / (n / l), m / (m / l));</span><br><span class="line">        ans += (s[r] - s[l - <span class="number">1</span>]) * <span class="keyword">static_cast</span>&lt;<span class="keyword">long</span> <span class="keyword">long</span>&gt;(n / l) * <span class="keyword">static_cast</span>&lt;<span class="keyword">long</span> <span class="keyword">long</span>&gt;(m / l);</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>{</span><br><span class="line">    getPrimes();</span><br><span class="line">    <span class="keyword">int</span> t;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;t);</span><br><span class="line">    <span class="keyword">while</span> (t--) {</span><br><span class="line">        <span class="keyword">int</span> n, m;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">&quot;%d %d&quot;</span>, &amp;n, &amp;m);</span><br><span class="line">        <span class="keyword">if</span> (n &gt; m) <span class="built_in">std</span>::swap(n, m);</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%lld\n&quot;</span>, solve(n, m));</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+
+            
+        </div>
+    </div>
+    <div id="post-footer" class="post-footer main-content-wrap">
+        <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/haoi2011-problemb/"  data-tooltip="「HAOI2011」Problem b - 莫比乌斯反演">
+                
+                    <i class="fa fa-angle-left"></i>
+                    <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/after-ah-studying/" data-tooltip="写在安徽集训之后 ……">
+                
+                    <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
+                    <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a class="post-action-btn btn btn--default btn-open-shareoptions"  href="#btn-open-shareoptions">
+                <i class="fa fa-share-alt"></i>
+            </a>
+        </li>
+        <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://blog.menci.moe/bzoj-2820/">
+                <i class="fa fa-google-plus"></i>
+            </a>
+        </li>
+        <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.menci.moe/bzoj-2820/">
+                <i class="fa fa-facebook-official"></i>
+            </a>
+        </li>
+        <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://blog.menci.moe/bzoj-2820/">
+                <i class="fa fa-twitter"></i>
+            </a>
+        </li>
+        
+            <li class="post-action">
+                <a class="post-action-btn btn btn--default" href="#disqus_thread">
+                    <i class="fa fa-comment-o"></i>
+                </a>
+            </li>
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#">
+            
+                <i class="fa fa-list"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+        
+            
+                <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+            
+        
+    </div>
+</article>
+
+
+
+                <footer id="footer" class="main-content-wrap">
+    <span class="copyrights">
+        Copyrights &copy; 2016 Menci. All Rights Reserved.
+    </span>
+</footer>
+</script>
+
+            </div>
+            
+                <div id="bottom-bar" class="post-bottom-bar" data-behavior="2">
+                    <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/haoi2011-problemb/"  data-tooltip="「HAOI2011」Problem b - 莫比乌斯反演">
+                
+                    <i class="fa fa-angle-left"></i>
+                    <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/after-ah-studying/" data-tooltip="写在安徽集训之后 ……">
+                
+                    <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
+                    <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a class="post-action-btn btn btn--default btn-open-shareoptions"  href="#btn-open-shareoptions">
+                <i class="fa fa-share-alt"></i>
+            </a>
+        </li>
+        <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://blog.menci.moe/bzoj-2820/">
+                <i class="fa fa-google-plus"></i>
+            </a>
+        </li>
+        <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.menci.moe/bzoj-2820/">
+                <i class="fa fa-facebook-official"></i>
+            </a>
+        </li>
+        <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://blog.menci.moe/bzoj-2820/">
+                <i class="fa fa-twitter"></i>
+            </a>
+        </li>
+        
+            <li class="post-action">
+                <a class="post-action-btn btn btn--default" href="#disqus_thread">
+                    <i class="fa fa-comment-o"></i>
+                </a>
+            </li>
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#">
+            
+                <i class="fa fa-list"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+                </div>
+                <div id="share-options-bar" class="share-options-bar" data-behavior="2">
+    <ul class="share-options">
+        <li class="share-option">
+            <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=https://blog.menci.moe/bzoj-2820/">
+                <i class="fa fa-google-plus"></i><span class="">分享到 Google+</span>
+            </a>
+        </li>
+        <li class="share-option">
+            <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.menci.moe/bzoj-2820/">
+                <i class="fa fa-facebook-official"></i><span>分享到 Facebook</span>
+            </a>
+        </li>
+        <li class="share-option">
+            <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https://blog.menci.moe/bzoj-2820/">
+                <i class="fa fa-twitter"></i><span>分享到 Twitter</span>
+            </a>
+        </li>
+    </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+            
+        </div>
+        
+
+
+    
+        
+    
+
+<div id="about">
+    <div id="about-card">
+        <div id="about-btn-close">
+            <i class="fa fa-remove"></i>
+        </div>
+        
+            <img style="box-shadow: 0 0 15px gray;" id="about-card-picture" src="//dn-menci.qbox.me/assets/images/avatar.png"/>
+        
+            <h4 id="about-card-name">Menci</h4>
+        
+            <h5 id="about-card-bio">眉眼如初，岁月如故</h5>
+        
+        
+            <h5 id="about-card-job">
+                <i class="fa fa-cloud"></i>
+                <br/>
+                One day, <br> I'll reach the next stage <br> to realize all.
+            </h5>
+        
+        
+    </div>
+</div>
+
+        
+<div id="cover" style="background-image:url('//dn-menci.qbox.me/assets/images/cover.jpg');"></div>
+    </body>
+    <!--SCRIPTS-->
+<script src="//dn-menci.qbox.me/assets/js/scrip-0ewjnhvv8ytgl76lkiq8f541cfygs5bpfv33ohlfvpfklrfevqupdsxg46fk.min.js" type="text/javascript"></script>
+<!--SCRIPTS END-->
+
+    
+        <script>
+             var disqus_config = function () {
+				 MenciRemoveIndexDotHtml = function (url) {
+				 	if (url.substr(-10, 10) == 'index.html') return url.substr(0, url.length - 10);
+				 	else return url;
+				 }
+                 this.page.url = MenciRemoveIndexDotHtml('https://blog.menci.moe/bzoj-2820/');
+                 
+                 this.page.identifier = MenciRemoveIndexDotHtml('bzoj-2820/');
+                                  
+             };
+            (function() {
+                var d = document, s = d.createElement('script');
+                var disqus_shortname = 'menci';
+                s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+
+                s.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        </script>
+    
+
+
+    <script type="text/javascript">
+        (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+                (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+            e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+        })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+        _st('install','L51x_1_hCboFSsSLLGGK','2.0.0');
+    </script>
+
+
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/KaTeX/0.6.0/katex.min.js"></script>
+<!--script type="text/javascript" src="/assets/js/auto-render.min.js"></script-->
+<script>
+$(function() {
+	// renderKatexMathjaxFallback($('body')[0]);
+	renderMathInElement($('body')[0]);
+});
+</script>
+
+</html>

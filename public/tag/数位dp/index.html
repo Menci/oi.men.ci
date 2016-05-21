@@ -1,0 +1,698 @@
+
+<!DOCTYPE html>
+<html lang="zh-cn">
+    
+<head>
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="Menci">
+    <title>标签: 数位DP - Menci</title>
+    <meta name="author" content="Menci">
+    
+    
+        <link rel="icon" href="//dn-menci.qbox.me/assets/images/avatar.png">
+    
+    
+        <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
+    
+    <meta name="description">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="Menci">
+<meta property="og:url" content="https://blog.menci.moe/tag/数位dp/index.html">
+<meta property="og:site_name" content="Menci">
+<meta property="og:description">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Menci">
+<meta name="twitter:description">
+<meta name="twitter:creator" content="@HuangHaoRui">
+    
+        <meta rel="publisher" content="https://plus.google.com/103195680789397520000"/>
+    
+    
+        
+    
+    
+        <meta property="og:image" content="//dn-menci.qbox.me/assets/images/avatar.png"/>
+    
+    
+    
+    
+    <!--STYLES-->
+    <link rel="stylesheet" href="//dn-menci.qbox.me/assets/css/style-pcycimglbr925yrwj0efxsn118g0acj4bp3qcdehgw1freahg01piplpcrqd.min.css">
+    <!--STYLES END-->
+	<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/KaTeX/0.6.0/katex.min.css">
+	<link href='https://fonts.googleapis.com/css?family=Poiret+One' rel='stylesheet' type='text/css'>
+    
+    <script type="text/javascript">
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-75865916-1']);
+        _gaq.push(['_trackPageview']);
+        (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+    </script>
+
+    
+</head>
+
+    <body>
+        <div id="blog">
+            <!-- Define author's picture -->
+
+
+    
+        
+            
+        
+    
+
+<!--<header id="header" data-behavior="2">-->
+<header id="header" data-behavior="2">
+    <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+    <h1 class="header-title">
+        <a class="header-title-link" href="/ ">Menci</a>
+    </h1>
+    
+        
+            <a  class="header-right-picture "
+                href="/#about">
+        
+        
+            <img class="header-picture" src="//dn-menci.qbox.me/assets/images/avatar.png"/>
+        
+        </a>
+    
+</header>
+
+            <!-- Define author's picture -->
+
+
+
+        
+    
+
+<!--<nav id="sidebar" data-behavior="2">-->
+<nav id="sidebar" data-behavior="2">
+    
+        <div class="sidebar-profile">
+            <a href="/#about">
+                    <img class="sidebar-profile-picture" src="//dn-menci.qbox.me/assets/images/avatar.png"/>
+            </a>
+            <span class="sidebar-profile-name">Menci</span>
+        </div>
+    
+    
+        <ul class="sidebar-buttons">
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link "
+                         href="/ "
+                        
+                    >
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+                    <span class="sidebar-button-desc">首页</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link "
+                         href="/all-tags"
+                        
+                    >
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+                    <span class="sidebar-button-desc">标签</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link "
+                         href="/all-archives"
+                        
+                    >
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+                    <span class="sidebar-button-desc">归档</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link st-search-show-outputs"
+                         href="/#search"
+                        
+                    >
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-search"></i>
+                    <span class="sidebar-button-desc">搜索</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link "
+                         href="/about-me"
+                        
+                    >
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-info"></i>
+                    <span class="sidebar-button-desc">关于</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link "
+                         href="/friends"
+                        
+                    >
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-users"></i>
+                    <span class="sidebar-button-desc">伙伴</span>
+                </a>
+        </li>
+        
+    </ul>
+    
+        <ul class="sidebar-buttons">
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link " href="https://github.com/Menci" target="_blank">
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+                    <span class="sidebar-button-desc">GitHub</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link " href="https://twitter.com/HuangHaoRui" target="_blank">
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-twitter"></i>
+                    <span class="sidebar-button-desc">Twitter</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link " href="http://wpa.qq.com/msgrd?V=3&Uin=421899973" target="_blank">
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-qq"></i>
+                    <span class="sidebar-button-desc">QQ</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link " href="mailto:huanghaorui301@gmail.com" target="_blank">
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-envelope-o"></i>
+                    <span class="sidebar-button-desc">邮箱</span>
+                </a>
+        </li>
+        
+    </ul>
+    
+        <ul class="sidebar-buttons">
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link "
+                         href="/atom.xml"
+                        
+                    >
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-rss"></i>
+                    <span class="sidebar-button-desc">RSS</span>
+                </a>
+        </li>
+        
+    </ul>
+    
+</nav>
+
+            
+            <div id="main" data-behavior="2"
+                 class="
+                        hasCoverMetaIn
+                        ">
+                <style> .postShorten-meta { border-bottom: none !important; } </style>
+
+    
+
+<section class="postShorten-group main-content-wrap">
+    
+    
+    <article class="postShorten postShorten--thumbnailimg-right" itemscope itemType="http://schema.org/BlogPosting">
+        <div class="postShorten-wrap">
+            <div class="postShorten-header">
+                <h1 class="postShorten-title" itemprop="headline">
+                    
+                        <a class="link-unstyled" href="/hdu-5632/">
+                            「HDU 632」Rikka with Array - 数位DP
+                        </a>
+                    
+                </h1>
+                <div class="postShorten-meta" style="border-bottom: 1px solid #eef2f8;">
+    <time itemprop="datePublished" content="Thu May 12 2016 22:11:00 GMT+0800">
+	
+		    5月 12, 2016
+    	
+    </time>
+    
+        <span>发布在 </span>
+        
+    <a class="category-link" href="/categories/oi/">OI</a>
+
+
+    
+	
+		<div class="post-footer-tags" style="margin-top: 10px; margin-left: 10px; display: inline-block; border-bottom: none; ">
+			<!--span class="text-color-light text-small">标签</span><br/-->
+			
+    <a class="tag tag--primary tag--small t-link" href="/tag/dp/">DP</a> <a class="tag tag--primary tag--small t-link" href="/tag/hdu/">HDU</a> <a class="tag tag--primary tag--small t-link" href="/tag/数位dp/">数位DP</a>
+
+		</div>
+	
+</div>
+
+            </div>
+            
+            
+                <div class="postShorten-excerpt" itemprop="articleBody">
+                    <p>&#x8BBE; $ A(x) $ &#x8868;&#x793A; $ x $ &#x7684;&#x4E8C;&#x8FDB;&#x5236;&#x8868;&#x793A;&#x4E2D; $ 1 $ &#x7684;&#x6570;&#x91CF;&#xFF0C;&#x6C42;&#x6EE1;&#x8DB3; $ 1 \leq i \lt j \leq n,\ A(i) \gt A(j) $ &#x7684;&#x6570;&#x5BF9; $ [i, j] $ &#x7684;&#x6570;&#x91CF;&#x3002;</p>
+                    
+                        <a href="/hdu-5632/" class="postShorten-excerpt_link link">
+                            阅读全文
+                        </a>
+                        
+                    
+                </div>
+            
+        </div>
+        
+    </article>
+    
+    
+    <article class="postShorten postShorten--thumbnailimg-right" itemscope itemType="http://schema.org/BlogPosting">
+        <div class="postShorten-wrap">
+            <div class="postShorten-header">
+                <h1 class="postShorten-title" itemprop="headline">
+                    
+                        <a class="link-unstyled" href="/scoi2009-windy/">
+                            「SCOI2009」windy 数 - 数位DP
+                        </a>
+                    
+                </h1>
+                <div class="postShorten-meta" style="border-bottom: 1px solid #eef2f8;">
+    <time itemprop="datePublished" content="Thu May 12 2016 17:25:00 GMT+0800">
+	
+		    5月 12, 2016
+    	
+    </time>
+    
+        <span>发布在 </span>
+        
+    <a class="category-link" href="/categories/oi/">OI</a>
+
+
+    
+	
+		<div class="post-footer-tags" style="margin-top: 10px; margin-left: 10px; display: inline-block; border-bottom: none; ">
+			<!--span class="text-color-light text-small">标签</span><br/-->
+			
+    <a class="tag tag--primary tag--small t-link" href="/tag/bzoj/">BZOJ</a> <a class="tag tag--primary tag--small t-link" href="/tag/dp/">DP</a> <a class="tag tag--primary tag--small t-link" href="/tag/scoi/">SCOI</a> <a class="tag tag--primary tag--small t-link" href="/tag/数位dp/">数位DP</a>
+
+		</div>
+	
+</div>
+
+            </div>
+            
+            
+                <div class="postShorten-excerpt" itemprop="articleBody">
+                    <p>windy &#x5B9A;&#x4E49;&#x4E86;&#x4E00;&#x79CD; windy &#x6570;&#x3002;&#x4E0D;&#x542B;&#x524D;&#x5BFC;&#x96F6;&#x4E14;&#x76F8;&#x90BB;&#x4E24;&#x4E2A;&#x6570;&#x5B57;&#x4E4B;&#x5DEE;&#x81F3;&#x5C11;&#x4E3A; $ 2 $ &#x7684;&#x6B63;&#x6574;&#x6570;&#x88AB;&#x79F0;&#x4E3A; windy &#x6570;&#x3002;</p>
+<p>windy &#x60F3;&#x77E5;&#x9053;&#xFF0C;&#x5728; $ A $ &#x548C; $ B $ &#x4E4B;&#x95F4;&#xFF0C;&#x5305;&#x62EC; $ A $ &#x548C; $ B $&#xFF0C;&#x603B;&#x5171;&#x6709;&#x591A;&#x5C11;&#x4E2A; windy &#x6570;&#xFF1F;</p>
+                    
+                        <a href="/scoi2009-windy/" class="postShorten-excerpt_link link">
+                            阅读全文
+                        </a>
+                        
+                    
+                </div>
+            
+        </div>
+        
+    </article>
+    
+    
+    <article class="postShorten postShorten--thumbnailimg-right" itemscope itemType="http://schema.org/BlogPosting">
+        <div class="postShorten-wrap">
+            <div class="postShorten-header">
+                <h1 class="postShorten-title" itemprop="headline">
+                    
+                        <a class="link-unstyled" href="/cf-628d/">
+                            「Codeforces 628D」Magic Numbers - 数位DP
+                        </a>
+                    
+                </h1>
+                <div class="postShorten-meta" style="border-bottom: 1px solid #eef2f8;">
+    <time itemprop="datePublished" content="Thu May 12 2016 15:47:00 GMT+0800">
+	
+		    5月 12, 2016
+    	
+    </time>
+    
+        <span>发布在 </span>
+        
+    <a class="category-link" href="/categories/oi/">OI</a>
+
+
+    
+	
+		<div class="post-footer-tags" style="margin-top: 10px; margin-left: 10px; display: inline-block; border-bottom: none; ">
+			<!--span class="text-color-light text-small">标签</span><br/-->
+			
+    <a class="tag tag--primary tag--small t-link" href="/tag/codeforces/">Codeforces</a> <a class="tag tag--primary tag--small t-link" href="/tag/dp/">DP</a> <a class="tag tag--primary tag--small t-link" href="/tag/数位dp/">数位DP</a>
+
+		</div>
+	
+</div>
+
+            </div>
+            
+            
+                <div class="postShorten-excerpt" itemprop="articleBody">
+                    <p>&#x6211;&#x4EEC;&#x8BA4;&#x4E3A;&#x4E00;&#x4E2A;&#x6570;&#x662F; <code>d-magic</code> &#x7684;&#xFF0C;&#x5F53;&#x4E14;&#x4EC5;&#x5F53;&#x6570;&#x5B57; $ d $ &#x51FA;&#x73B0;&#x5728;&#x8FD9;&#x4E2A;&#x6570;&#x5B57;&#x7684;&#x5341;&#x8FDB;&#x5236;&#x8868;&#x793A;&#x7684;&#x6240;&#x6709;&#x5076;&#x6570;&#x4F4D;&#x4E0A;&#xFF0C;&#x800C;&#x4E0D;&#x4F1A;&#x51FA;&#x73B0;&#x5728;&#x5176;&#x5B83;&#x4F4D;&#x4E0A;&#x3002;</p>
+<p>&#x4F8B;&#x5982;&#xFF0C;$ 1727374,\ 17,\ 1 $ &#x662F; <code>7-magic</code> &#x7684;&#xFF0C;&#x4F46; $ 77,\ 7,\ 123,\ 34,\ 71 $ &#x4E0D;&#x662F; <code>7-magic</code> &#x7684;&#x3002;</p>
+<p>&#x627E;&#x51FA;&#x80FD;&#x88AB; <code>m</code> &#x6574;&#x9664;&#x7684; <code>d-magic</code> &#x7684;&#x6570;&#x5B57;&#x5728;&#x533A;&#x95F4; $ [a, b] $ &#x5185;&#x7684;&#x6570;&#x91CF;&#x3002;</p>
+                    
+                        <a href="/cf-628d/" class="postShorten-excerpt_link link">
+                            阅读全文
+                        </a>
+                        
+                    
+                </div>
+            
+        </div>
+        
+    </article>
+    
+    
+    <article class="postShorten postShorten--thumbnailimg-right" itemscope itemType="http://schema.org/BlogPosting">
+        <div class="postShorten-wrap">
+            <div class="postShorten-header">
+                <h1 class="postShorten-title" itemprop="headline">
+                    
+                        <a class="link-unstyled" href="/hdu-2089/">
+                            「HDU 2089」不要 62 - 数位DP
+                        </a>
+                    
+                </h1>
+                <div class="postShorten-meta" style="border-bottom: 1px solid #eef2f8;">
+    <time itemprop="datePublished" content="Thu May 12 2016 11:56:00 GMT+0800">
+	
+		    5月 12, 2016
+    	
+    </time>
+    
+        <span>发布在 </span>
+        
+    <a class="category-link" href="/categories/oi/">OI</a>
+
+
+    
+	
+		<div class="post-footer-tags" style="margin-top: 10px; margin-left: 10px; display: inline-block; border-bottom: none; ">
+			<!--span class="text-color-light text-small">标签</span><br/-->
+			
+    <a class="tag tag--primary tag--small t-link" href="/tag/dp/">DP</a> <a class="tag tag--primary tag--small t-link" href="/tag/hdu/">HDU</a> <a class="tag tag--primary tag--small t-link" href="/tag/数位dp/">数位DP</a>
+
+		</div>
+	
+</div>
+
+            </div>
+            
+            
+                <div class="postShorten-excerpt" itemprop="articleBody">
+                    <p>&#x4E0D;&#x5409;&#x5229;&#x7684;&#x6570;&#x5B57;&#x4E3A;&#x6240;&#x6709;&#x542B;&#x6709; $ 4 $ &#x6216; $ 62 $ &#x7684;&#x53F7;&#x7801;&#x3002;&#x4F8B;&#x5982;&#xFF1A;$ 62315,\ 73418,\ 88914 $ &#x90FD;&#x5C5E;&#x4E8E;&#x4E0D;&#x5409;&#x5229;&#x53F7;&#x7801;&#x3002;&#x4F46;&#x662F;&#xFF0C;$ 61152 $ &#x867D;&#x7136;&#x542B;&#x6709; $ 6 $ &#x548C; $ 2 $&#xFF0C;&#x4F46;&#x4E0D;&#x662F; $ 62 $ &#x8FDE;&#x53F7;&#xFF0C;&#x6240;&#x4EE5;&#x4E0D;&#x5C5E;&#x4E8E;&#x4E0D;&#x5409;&#x5229;&#x6570;&#x5B57;&#x4E4B;&#x5217;&#x3002;</p>
+<p>&#x4F60;&#x7684;&#x4EFB;&#x52A1;&#x662F;&#xFF0C;&#x5BF9;&#x4E8E;&#x6BCF;&#x6B21;&#x7ED9;&#x51FA;&#x7684;&#x4E00;&#x4E2A;&#x724C;&#x7167;&#x533A;&#x95F4;&#x53F7;&#xFF0C;&#x63A8;&#x65AD;&#x51FA;&#x4EA4;&#x7BA1;&#x5C40;&#x4ECA;&#x6B21;&#x53C8;&#x8981;&#x5B9E;&#x9645;&#x4E0A;&#x7ED9;&#x591A;&#x5C11;&#x8F86;&#x65B0;&#x7684;&#x58EB;&#x8F66;&#x4E0A;&#x724C;&#x7167;&#x4E86;&#x3002;</p>
+                    
+                        <a href="/hdu-2089/" class="postShorten-excerpt_link link">
+                            阅读全文
+                        </a>
+                        
+                    
+                </div>
+            
+        </div>
+        
+    </article>
+    
+    
+    <article class="postShorten postShorten--thumbnailimg-right" itemscope itemType="http://schema.org/BlogPosting">
+        <div class="postShorten-wrap">
+            <div class="postShorten-header">
+                <h1 class="postShorten-title" itemprop="headline">
+                    
+                        <a class="link-unstyled" href="/hdu-5642/">
+                            「HDU 5462」King&#39;s Order - 数位DP
+                        </a>
+                    
+                </h1>
+                <div class="postShorten-meta" style="border-bottom: 1px solid #eef2f8;">
+    <time itemprop="datePublished" content="Thu May 12 2016 07:47:00 GMT+0800">
+	
+		    5月 12, 2016
+    	
+    </time>
+    
+        <span>发布在 </span>
+        
+    <a class="category-link" href="/categories/oi/">OI</a>
+
+
+    
+	
+		<div class="post-footer-tags" style="margin-top: 10px; margin-left: 10px; display: inline-block; border-bottom: none; ">
+			<!--span class="text-color-light text-small">标签</span><br/-->
+			
+    <a class="tag tag--primary tag--small t-link" href="/tag/bestcoder/">BestCoder</a> <a class="tag tag--primary tag--small t-link" href="/tag/dp/">DP</a> <a class="tag tag--primary tag--small t-link" href="/tag/hdu/">HDU</a> <a class="tag tag--primary tag--small t-link" href="/tag/数位dp/">数位DP</a>
+
+		</div>
+	
+</div>
+
+            </div>
+            
+            
+                <div class="postShorten-excerpt" itemprop="articleBody">
+                    <p>&#x7531;&#x4E8E;&#x56FD;&#x738B;&#x7684;&#x53E3;&#x5403;&#x5E76;&#x6CA1;&#x6709;&#x6CBB;&#x6108;&#xFF0C;&#x6240;&#x4EE5;&#x4F20;&#x4EE4;&#x4E2D;&#x53EF;&#x80FD;&#x51FA;&#x73B0;&#xFF1A;&#x201C;&#x8BA9;&#x7B2C;&#x4E09;&#x519B;-&#x519B;-&#x519B;&#xFF0C;&#x5230;&#x524D;&#x7EBF;&#x53BB;&#x201D;&#x8FD9;&#x6837;&#x7684;&#x547D;&#x4EE4;&#x3002;&#x7531;&#x4E8E;&#x5927;&#x6D0B;&#x56FD;&#x5728;&#x519B;&#x961F;&#x4E2D;&#x5B89;&#x63D2;&#x4E86;&#x95F4;&#x8C0D;&#xFF0C;&#x6218;&#x4E8B;&#x7D27;&#x6025;&#xFF0C;&#x5F88;&#x591A;&#x65F6;&#x5019;&#x524D;&#x7EBF;&#x7684;&#x6307;&#x6325;&#x5B98;&#x4E0D;&#x80FD;&#x5206;&#x6E05;&#x54EA;&#x4E9B;&#x547D;&#x4EE4;&#x771F;&#x6B63;&#x6765;&#x81EA;&#x56FD;&#x738B;&#x3002;&#x4F46;&#x56FD;&#x738B;&#x7684;&#x547D;&#x4EE4;&#x6709;&#x4E00;&#x4E2A;&#x7279;&#x70B9;&#xFF0C;&#x4ED6;&#x6BCF;&#x6B21;&#x8FDE;&#x7EED;&#x91CD;&#x590D;&#x7684;&#x5B57;&#x7B26;&#x6700;&#x591A; $ 3 $ &#x6B21;. &#x6240;&#x4EE5;&#x8BF4;&#x4ED6;&#x7684;&#x547D;&#x4EE4;&#x4E2D;&#x6CA1;&#x6709;&#xFF1A;&#x201C;&#x8BA9;&#x7B2C;&#x4E09;&#x519B;-&#x519B;-&#x519B;-&#x519B;&#xFF0C;&#x5230;&#x524D;&#x7EBF;&#x53BB;&#x201D;&#xFF0C;&#x4F46;&#x662F;&#x53EF;&#x4EE5;&#x6709;&#xFF1A;&#x201C;&#x8BA9;&#x7B2C;&#x4E09;&#x519B;-&#x519B; &#xFF0C;&#x5230;&#x524D;&#x7EBF;&#x53BB;&#x201D;&#x3002;</p>
+<p>&#x6B64;&#x65F6;&#x5C06;&#x519B;&#x627E;&#x5230;&#x4E86;&#x4F60;&#xFF0C;&#x4F60;&#x9700;&#x8981;&#x544A;&#x8BC9;&#x4ED6;&#xFF0C;&#x7ED9;&#x5B9A;&#x547D;&#x4EE4;&#x7684;&#x957F;&#x5EA6;&#x957F;&#x5EA6;&#x4E3A; $ n $&#xFF0C;&#x6709;&#x591A;&#x5C11;&#x79CD;&#x4E0D;&#x540C;&#x7684;&#x547D;&#x4EE4;&#x53EF;&#x4EE5;&#x662F;&#x56FD;&#x738B;&#x53D1;&#x51FA;&#x7684;&#x3002;&#xFF08;&#x4E5F;&#x5C31;&#x662F;&#x6C42;&#x957F;&#x5EA6;&#x4E3A; $ n $ &#x7684;&#x5408;&#x683C;&#x5B57;&#x7B26;&#x4E32;&#x7684;&#x4E2A;&#x6570;&#xFF09;&#x5F53;&#x7136;&#xFF0C;&#x56FD;&#x738B;&#x53EF;&#x80FD;&#x8BF4;&#x51FA;&#x4E00;&#x53E5;&#x8BDD;&#x6CA1;&#x6709;&#x72AF;&#x4EFB;&#x4F55;&#x53E3;&#x5403;&#xFF0C;&#x5C31;&#x50CF;&#x4ED6;&#x90A3;&#x6B21;&#x6F14;&#x8BB2;&#x4E00;&#x6837;&#x3002;</p>
+                    
+                        <a href="/hdu-5642/" class="postShorten-excerpt_link link">
+                            阅读全文
+                        </a>
+                        
+                    
+                </div>
+            
+        </div>
+        
+    </article>
+    
+    
+    <article class="postShorten postShorten--thumbnailimg-right" itemscope itemType="http://schema.org/BlogPosting">
+        <div class="postShorten-wrap">
+            <div class="postShorten-header">
+                <h1 class="postShorten-title" itemprop="headline">
+                    
+                        <a class="link-unstyled" href="/cqoi2016-number/">
+                            「CQOI2016」手机号码 - 数位DP
+                        </a>
+                    
+                </h1>
+                <div class="postShorten-meta" style="border-bottom: 1px solid #eef2f8;">
+    <time itemprop="datePublished" content="Thu Apr 21 2016 23:31:24 GMT+0800">
+	
+		    4月 21, 2016
+    	
+    </time>
+    
+        <span>发布在 </span>
+        
+    <a class="category-link" href="/categories/oi/">OI</a>
+
+
+    
+	
+		<div class="post-footer-tags" style="margin-top: 10px; margin-left: 10px; display: inline-block; border-bottom: none; ">
+			<!--span class="text-color-light text-small">标签</span><br/-->
+			
+    <a class="tag tag--primary tag--small t-link" href="/tag/bzoj/">BZOJ</a> <a class="tag tag--primary tag--small t-link" href="/tag/cqoi/">CQOI</a> <a class="tag tag--primary tag--small t-link" href="/tag/dp/">DP</a> <a class="tag tag--primary tag--small t-link" href="/tag/数位dp/">数位DP</a>
+
+		</div>
+	
+</div>
+
+            </div>
+            
+            
+                <div class="postShorten-excerpt" itemprop="articleBody">
+                    <p>&#x5DE5;&#x5177;&#x9700;&#x8981;&#x68C0;&#x6D4B;&#x7684;&#x53F7;&#x7801;&#x7279;&#x5F81;&#x6709;&#x4E24;&#x4E2A;&#xFF1A;&#x53F7;&#x7801;&#x4E2D;&#x8981;&#x51FA;&#x73B0;&#x81F3;&#x5C11; $ 3 $ &#x4E2A;&#x76F8;&#x90BB;&#x7684;&#x76F8;&#x540C;&#x6570;&#x5B57;&#xFF0C;&#x53F7;&#x7801;&#x4E2D;&#x4E0D;&#x80FD;&#x540C;&#x65F6;&#x51FA;&#x73B0; $ 8 $ &#x548C; $ 4 $&#x3002;&#x53F7;&#x7801;&#x5FC5;&#x987B;&#x540C;&#x65F6;&#x5305;&#x542B;&#x4E24;&#x4E2A;&#x7279;&#x5F81;&#x624D;&#x6EE1;&#x8DB3;&#x6761;&#x4EF6;&#x3002;&#x6EE1;&#x8DB3;&#x6761;&#x4EF6;&#x7684;&#x53F7;&#x7801;&#x4F8B;&#x5982;&#xFF1A;$ 3000988721 $&#x3001;$ 23333333333 $&#x3001;$ 14444101000 $&#x3002;&#x800C;&#x4E0D;&#x6EE1;&#x8DB3;&#x6761;&#x4EF6;&#x7684;&#x53F7;&#x7801;&#x4F8B;&#x5982;&#xFF1A;$ 1015400080 $&#x3001;$ 10010012022 $&#x3002;</p>
+<p>&#x624B;&#x673A;&#x53F7;&#x7801;&#x4E00;&#x5B9A;&#x662F; $ 11 $ &#x4F4D;&#x6570;&#xFF0C;&#x524D;&#x4E0D;&#x542B;&#x524D;&#x5BFC;&#x7684; $ 0 $&#x3002;&#x5DE5;&#x5177;&#x63A5;&#x6536;&#x4E24;&#x4E2A;&#x6570; $ L $ &#x548C; $ R $&#xFF0C;&#x81EA;&#x52A8;&#x7EDF;&#x8BA1;&#x51FA; $ [L, R] $ &#x533A;&#x95F4;&#x5185;&#x6240;&#x6709;&#x6EE1;&#x8DB3;&#x6761;&#x4EF6;&#x7684;&#x53F7;&#x7801;&#x6570;&#x91CF;&#x3002;$ L $ &#x548C; $ R $ &#x4E5F;&#x662F; $ 11 $ &#x4F4D;&#x7684;&#x624B;&#x673A;&#x53F7;&#x7801;&#x3002;</p>
+                    
+                        <a href="/cqoi2016-number/" class="postShorten-excerpt_link link">
+                            阅读全文
+                        </a>
+                        
+                    
+                </div>
+            
+        </div>
+        
+    </article>
+    
+    
+    <article class="postShorten postShorten--thumbnailimg-right" itemscope itemType="http://schema.org/BlogPosting">
+        <div class="postShorten-wrap">
+            <div class="postShorten-header">
+                <h1 class="postShorten-title" itemprop="headline">
+                    
+                        <a class="link-unstyled" href="/uva-11361/">
+                            「UVa 11361」Investigating Div-Sum Property - 数位DP
+                        </a>
+                    
+                </h1>
+                <div class="postShorten-meta" style="border-bottom: 1px solid #eef2f8;">
+    <time itemprop="datePublished" content="Tue Mar 15 2016 08:53:05 GMT+0800">
+	
+		    3月 15, 2016
+    	
+    </time>
+    
+        <span>发布在 </span>
+        
+    <a class="category-link" href="/categories/oi/">OI</a>
+
+
+    
+	
+		<div class="post-footer-tags" style="margin-top: 10px; margin-left: 10px; display: inline-block; border-bottom: none; ">
+			<!--span class="text-color-light text-small">标签</span><br/-->
+			
+    <a class="tag tag--primary tag--small t-link" href="/tag/dp/">DP</a> <a class="tag tag--primary tag--small t-link" href="/tag/uva/">UVa</a> <a class="tag tag--primary tag--small t-link" href="/tag/数位dp/">数位DP</a> <a class="tag tag--primary tag--small t-link" href="/tag/数学/">数学</a> <a class="tag tag--primary tag--small t-link" href="/tag/递推/">递推</a>
+
+		</div>
+	
+</div>
+
+            </div>
+            
+            
+                <div class="postShorten-excerpt" itemprop="articleBody">
+                    <p>&#x95EE;&#x5728;&#x533A;&#x95F4; $ [a, b] $ &#x5185;&#x6709;&#x591A;&#x5C11;&#x6570; $ x $ &#x6EE1;&#x8DB3;&#xFF1A;</p>
+<ol style="list-style-type: decimal">
+<li>$ x $ &#x662F; $ k $ &#x7684;&#x500D;&#x6570;&#xFF1B;</li>
+<li>$ x $ &#x7684;&#x5404;&#x4F4D;&#x6570;&#x4E4B;&#x548C;&#x662F; $ k $ &#x7684;&#x500D;&#x6570;&#x3002;</li>
+</ol>
+                    
+                        <a href="/uva-11361/" class="postShorten-excerpt_link link">
+                            阅读全文
+                        </a>
+                        
+                    
+                </div>
+            
+        </div>
+        
+    </article>
+    
+    <div class="pagination-bar">
+    <ul class="pagination">
+        
+        
+        <li class="pagination-number">第 1 页 共 1 页</li>
+    </ul>
+</div>
+
+</section>
+
+
+
+                <footer id="footer" class="main-content-wrap">
+    <span class="copyrights">
+        Copyrights &copy; 2016 Menci. All Rights Reserved.
+    </span>
+</footer>
+</script>
+
+            </div>
+            
+        </div>
+        
+
+
+    
+        
+    
+
+<div id="about">
+    <div id="about-card">
+        <div id="about-btn-close">
+            <i class="fa fa-remove"></i>
+        </div>
+        
+            <img style="box-shadow: 0 0 15px gray;" id="about-card-picture" src="//dn-menci.qbox.me/assets/images/avatar.png"/>
+        
+            <h4 id="about-card-name">Menci</h4>
+        
+            <h5 id="about-card-bio">眉眼如初，岁月如故</h5>
+        
+        
+            <h5 id="about-card-job">
+                <i class="fa fa-cloud"></i>
+                <br/>
+                One day, <br> I'll reach the next stage <br> to realize all.
+            </h5>
+        
+        
+    </div>
+</div>
+
+        
+<div id="cover" style="background-image:url('//dn-menci.qbox.me/assets/images/cover.jpg');"></div>
+    </body>
+    <!--SCRIPTS-->
+<script src="//dn-menci.qbox.me/assets/js/scrip-0ewjnhvv8ytgl76lkiq8f541cfygs5bpfv33ohlfvpfklrfevqupdsxg46fk.min.js" type="text/javascript"></script>
+<!--SCRIPTS END-->
+
+
+    <script type="text/javascript">
+        (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+                (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+            e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+        })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+        _st('install','L51x_1_hCboFSsSLLGGK','2.0.0');
+    </script>
+
+
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/KaTeX/0.6.0/katex.min.js"></script>
+<!--script type="text/javascript" src="/assets/js/auto-render.min.js"></script-->
+<script>
+$(function() {
+	// renderKatexMathjaxFallback($('body')[0]);
+	renderMathInElement($('body')[0]);
+});
+</script>
+
+</html>

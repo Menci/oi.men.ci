@@ -1,0 +1,548 @@
+
+<!DOCTYPE html>
+<html lang="zh-cn">
+    
+<head>
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="Menci">
+    <title>「HAOI2015」树上操作 - 树链剖分 + DFS序 - Menci</title>
+    <meta name="author" content="Menci">
+    
+    
+        <link rel="icon" href="//dn-menci.qbox.me/assets/images/avatar.png">
+    
+    
+        <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
+    
+    <meta name="description" content="&amp;#x6709;&amp;#x4E00;&amp;#x68F5;&amp;#x70B9;&amp;#x6570;&amp;#x4E3A; $ N $ &amp;#x7684;&amp;#x6811;&amp;#xFF0C;&amp;#x4EE5;&amp;#x70B9; $ 1 $ &amp;#x4E3A;&amp;#x6839;&amp;#xFF0C;&amp;#x4E14;&amp;#x6811;&amp;#x70B9;&amp;#x6709;&amp;#x8FB9;&amp;#x6743;&amp;#x3002;&amp;#x7136;&amp;#x540E;&amp;#">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="「HAOI2015」树上操作 - 树链剖分 + DFS序">
+<meta property="og:url" content="https://blog.menci.moe/haoi2015-t2/index.html">
+<meta property="og:site_name" content="Menci">
+<meta property="og:description" content="&amp;#x6709;&amp;#x4E00;&amp;#x68F5;&amp;#x70B9;&amp;#x6570;&amp;#x4E3A; $ N $ &amp;#x7684;&amp;#x6811;&amp;#xFF0C;&amp;#x4EE5;&amp;#x70B9; $ 1 $ &amp;#x4E3A;&amp;#x6839;&amp;#xFF0C;&amp;#x4E14;&amp;#x6811;&amp;#x70B9;&amp;#x6709;&amp;#x8FB9;&amp;#x6743;&amp;#x3002;&amp;#x7136;&amp;#x540E;&amp;#">
+<meta property="og:updated_time" content="2016-05-11T09:33:24.440Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="「HAOI2015」树上操作 - 树链剖分 + DFS序">
+<meta name="twitter:description" content="&amp;#x6709;&amp;#x4E00;&amp;#x68F5;&amp;#x70B9;&amp;#x6570;&amp;#x4E3A; $ N $ &amp;#x7684;&amp;#x6811;&amp;#xFF0C;&amp;#x4EE5;&amp;#x70B9; $ 1 $ &amp;#x4E3A;&amp;#x6839;&amp;#xFF0C;&amp;#x4E14;&amp;#x6811;&amp;#x70B9;&amp;#x6709;&amp;#x8FB9;&amp;#x6743;&amp;#x3002;&amp;#x7136;&amp;#x540E;&amp;#">
+<meta name="twitter:creator" content="@HuangHaoRui">
+    
+        <meta rel="publisher" content="https://plus.google.com/103195680789397520000"/>
+    
+    
+        
+    
+    
+        <meta property="og:image" content="//dn-menci.qbox.me/assets/images/avatar.png"/>
+    
+    
+    
+    
+    <!--STYLES-->
+    <link rel="stylesheet" href="//dn-menci.qbox.me/assets/css/style-pcycimglbr925yrwj0efxsn118g0acj4bp3qcdehgw1freahg01piplpcrqd.min.css">
+    <!--STYLES END-->
+	<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/KaTeX/0.6.0/katex.min.css">
+	<link href='https://fonts.googleapis.com/css?family=Poiret+One' rel='stylesheet' type='text/css'>
+    
+    <script type="text/javascript">
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-75865916-1']);
+        _gaq.push(['_trackPageview']);
+        (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+    </script>
+
+    
+</head>
+
+    <body>
+        <div id="blog">
+            <!-- Define author's picture -->
+
+
+    
+        
+            
+        
+    
+
+<!--<header id="header" data-behavior="2">-->
+<header id="header" data-behavior="2">
+    <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+    <h1 class="header-title">
+        <a class="header-title-link" href="/ ">Menci</a>
+    </h1>
+    
+        
+            <a  class="header-right-picture "
+                href="/#about">
+        
+        
+            <img class="header-picture" src="//dn-menci.qbox.me/assets/images/avatar.png"/>
+        
+        </a>
+    
+</header>
+
+            <!-- Define author's picture -->
+
+
+
+        
+    
+
+<!--<nav id="sidebar" data-behavior="2">-->
+<nav id="sidebar" data-behavior="2">
+    
+        <div class="sidebar-profile">
+            <a href="/#about">
+                    <img class="sidebar-profile-picture" src="//dn-menci.qbox.me/assets/images/avatar.png"/>
+            </a>
+            <span class="sidebar-profile-name">Menci</span>
+        </div>
+    
+    
+        <ul class="sidebar-buttons">
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link "
+                         href="/ "
+                        
+                    >
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+                    <span class="sidebar-button-desc">首页</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link "
+                         href="/all-tags"
+                        
+                    >
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+                    <span class="sidebar-button-desc">标签</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link "
+                         href="/all-archives"
+                        
+                    >
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+                    <span class="sidebar-button-desc">归档</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link st-search-show-outputs"
+                         href="/#search"
+                        
+                    >
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-search"></i>
+                    <span class="sidebar-button-desc">搜索</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link "
+                         href="/about-me"
+                        
+                    >
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-info"></i>
+                    <span class="sidebar-button-desc">关于</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link "
+                         href="/friends"
+                        
+                    >
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-users"></i>
+                    <span class="sidebar-button-desc">伙伴</span>
+                </a>
+        </li>
+        
+    </ul>
+    
+        <ul class="sidebar-buttons">
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link " href="https://github.com/Menci" target="_blank">
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+                    <span class="sidebar-button-desc">GitHub</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link " href="https://twitter.com/HuangHaoRui" target="_blank">
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-twitter"></i>
+                    <span class="sidebar-button-desc">Twitter</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link " href="http://wpa.qq.com/msgrd?V=3&Uin=421899973" target="_blank">
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-qq"></i>
+                    <span class="sidebar-button-desc">QQ</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link " href="mailto:huanghaorui301@gmail.com" target="_blank">
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-envelope-o"></i>
+                    <span class="sidebar-button-desc">邮箱</span>
+                </a>
+        </li>
+        
+    </ul>
+    
+        <ul class="sidebar-buttons">
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link "
+                         href="/atom.xml"
+                        
+                    >
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-rss"></i>
+                    <span class="sidebar-button-desc">RSS</span>
+                </a>
+        </li>
+        
+    </ul>
+    
+</nav>
+
+            
+            <div id="main" data-behavior="2"
+                 class="
+                        hasCoverMetaIn
+                        ">
+                
+<article class="post" itemscope itemType="http://schema.org/BlogPosting">
+    
+    
+        <div class="post-header main-content-wrap text-left">
+    
+        <h1 class="post-title" itemprop="headline">
+            「HAOI2015」树上操作 - 树链剖分 + DFS序
+        </h1>
+    
+    <div class="post-meta" style="border-bottom: 1px solid #eef2f8;">
+    <time itemprop="datePublished" content="Sun Apr 03 2016 22:32:45 GMT+0800">
+	
+		    4月 03, 2016
+    	
+    </time>
+    
+        <span>发布在 </span>
+        
+    <a class="category-link" href="/categories/oi/">OI</a>
+
+
+    
+	
+		<div class="post-footer-tags" style="margin-top: 10px; margin-left: 10px; display: inline-block; border-bottom: none; ">
+			<!--span class="text-color-light text-small">标签</span><br/-->
+			
+    <a class="tag tag--primary tag--small t-link" href="/tag/bzoj/">BZOJ</a> <a class="tag tag--primary tag--small t-link" href="/tag/dfs序/">DFS序</a> <a class="tag tag--primary tag--small t-link" href="/tag/haoi/">HAOI</a> <a class="tag tag--primary tag--small t-link" href="/tag/树链剖分/">树链剖分</a> <a class="tag tag--primary tag--small t-link" href="/tag/线段树/">线段树</a>
+
+		</div>
+	
+</div>
+
+</div>
+    
+    <div class="post-content markdown" itemprop="articleBody">
+        <div class="main-content-wrap">
+            <p>&#x6709;&#x4E00;&#x68F5;&#x70B9;&#x6570;&#x4E3A; $ N $ &#x7684;&#x6811;&#xFF0C;&#x4EE5;&#x70B9; $ 1 $ &#x4E3A;&#x6839;&#xFF0C;&#x4E14;&#x6811;&#x70B9;&#x6709;&#x8FB9;&#x6743;&#x3002;&#x7136;&#x540E;&#x6709; $ M $ &#x4E2A;&#x64CD;&#x4F5C;&#xFF0C;&#x5206;&#x4E3A;&#x4E09;&#x79CD;&#xFF1A;</p>
+<ol style="list-style-type: decimal">
+<li>&#x628A;&#x67D0;&#x4E2A;&#x8282;&#x70B9; $ x $ &#x7684;&#x70B9;&#x6743;&#x589E;&#x52A0; $ a $&#x3002;</li>
+<li>&#x628A;&#x67D0;&#x4E2A;&#x8282;&#x70B9; $ x $ &#x4E3A;&#x6839;&#x7684;&#x5B50;&#x6811;&#x4E2D;&#x6240;&#x6709;&#x70B9;&#x7684;&#x70B9;&#x6743;&#x90FD;&#x589E;&#x52A0; $ a $&#x3002;</li>
+<li>&#x8BE2;&#x95EE;&#x67D0;&#x4E2A;&#x8282;&#x70B9; $ x $ &#x5230;&#x6839;&#x7684;&#x8DEF;&#x5F84;&#x4E2D;&#x6240;&#x6709;&#x70B9;&#x7684;&#x70B9;&#x6743;&#x548C;&#x3002;</li>
+</ol>
+<a id="more"></a>
+<h3 id="&#x94FE;&#x63A5;">&#x94FE;&#x63A5;</h3>
+<p><a href="http://www.lydsy.com/JudgeOnline/problem.php?id=4034" target="_blank" rel="external">BZOJ 4034</a><br>
+<a href="http://cogs.top/cogs/problem/problem.php?pid=1963" target="_blank" rel="external">COGS 1963</a></p>
+<h3 id="&#x9898;&#x89E3;">&#x9898;&#x89E3;</h3>
+<p>&#x88F8;&#x6811;&#x5256; + DFS&#x5E8F;&#xFF0C;&#x6CE8;&#x610F;&#x8981;&#x5F00; <code>long long</code>&#xFF0C;&#x8981;&#x4E0D;&#x7136;&#x548C;&#x66B4;&#x529B;&#x5206;&#x4E00;&#x6837; &#x2026;&#x2026;</p>
+<h3 id="&#x4EE3;&#x7801;">&#x4EE3;&#x7801;</h3>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;stack&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAXN = <span class="number">100000</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAXM = <span class="number">100000</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">struct</span> Node;</span><br><span class="line"><span class="keyword">struct</span> Edge;</span><br><span class="line"><span class="keyword">struct</span> Path;</span><br><span class="line"></span><br><span class="line"><span class="keyword">struct</span> Node {</span><br><span class="line">    Edge *e;</span><br><span class="line">    Node *c, *p;</span><br><span class="line">    <span class="keyword">int</span> size, pos, posEnd;</span><br><span class="line">    <span class="keyword">bool</span> visited;</span><br><span class="line">    Path *path;</span><br><span class="line">} N[MAXN];</span><br><span class="line"></span><br><span class="line"><span class="keyword">struct</span> Edge {</span><br><span class="line">    Node *s, *t;</span><br><span class="line">    Edge *next;</span><br><span class="line"></span><br><span class="line">    Edge(Node *s, Node *t) : s(s), t(t), next(s-&gt;e) {}</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">addEdge</span><span class="params">(<span class="keyword">const</span> <span class="keyword">int</span> u, <span class="keyword">const</span> <span class="keyword">int</span> v)</span> </span>{</span><br><span class="line">    N[u].e = <span class="keyword">new</span> Edge(&amp;N[u], &amp;N[v]);</span><br><span class="line">    N[v].e = <span class="keyword">new</span> Edge(&amp;N[v], &amp;N[u]);</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">struct</span> SegmentTree {</span><br><span class="line">    <span class="keyword">int</span> l, r;</span><br><span class="line">    SegmentTree *lc, *rc;</span><br><span class="line">    <span class="keyword">long</span> <span class="keyword">long</span> value, lazy;</span><br><span class="line"></span><br><span class="line">    SegmentTree(<span class="keyword">const</span> <span class="keyword">int</span> l, <span class="keyword">const</span> <span class="keyword">int</span> r, SegmentTree *lc, SegmentTree *rc) : l(l), r(r), lc(lc), rc(rc), value(<span class="number">0</span>), lazy(<span class="number">0</span>) {}</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">cover</span><span class="params">(<span class="keyword">const</span> <span class="keyword">long</span> <span class="keyword">long</span> delta)</span> </span>{ value += delta * (r - l + <span class="number">1</span>), lazy += delta; }</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">pushDown</span><span class="params">()</span> </span>{</span><br><span class="line">        <span class="keyword">if</span> (lazy) {</span><br><span class="line">            <span class="keyword">if</span> (lc) lc-&gt;cover(lazy);</span><br><span class="line">            <span class="keyword">if</span> (rc) rc-&gt;cover(lazy);</span><br><span class="line">            lazy = <span class="number">0</span>;</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">update</span><span class="params">(<span class="keyword">const</span> <span class="keyword">int</span> l, <span class="keyword">const</span> <span class="keyword">int</span> r, <span class="keyword">const</span> <span class="keyword">long</span> <span class="keyword">long</span> delta)</span> </span>{</span><br><span class="line">        <span class="keyword">if</span> (l &gt; <span class="keyword">this</span>-&gt;r || r &lt; <span class="keyword">this</span>-&gt;l) <span class="keyword">return</span>;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (l &lt;= <span class="keyword">this</span>-&gt;l &amp;&amp; r &gt;= <span class="keyword">this</span>-&gt;r) cover(delta);</span><br><span class="line">        <span class="keyword">else</span> {</span><br><span class="line">            pushDown();</span><br><span class="line">            value = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">if</span> (lc) lc-&gt;update(l, r, delta), value += lc-&gt;value;</span><br><span class="line">            <span class="keyword">if</span> (rc) rc-&gt;update(l, r, delta), value += rc-&gt;value;</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">long</span> <span class="keyword">long</span> <span class="title">query</span><span class="params">(<span class="keyword">const</span> <span class="keyword">int</span> l, <span class="keyword">const</span> <span class="keyword">int</span> r)</span> </span>{</span><br><span class="line">        <span class="keyword">if</span> (l &gt; <span class="keyword">this</span>-&gt;r || r &lt; <span class="keyword">this</span>-&gt;l) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (l &lt;= <span class="keyword">this</span>-&gt;l &amp;&amp; r &gt;= <span class="keyword">this</span>-&gt;r) <span class="keyword">return</span> value;</span><br><span class="line">        <span class="keyword">else</span> {</span><br><span class="line">            pushDown();</span><br><span class="line">            <span class="keyword">long</span> <span class="keyword">long</span> result = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">if</span> (lc) result += lc-&gt;query(l, r);</span><br><span class="line">            <span class="keyword">if</span> (rc) result += rc-&gt;query(l, r);</span><br><span class="line">            <span class="keyword">return</span> result;</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line">} *segment;</span><br><span class="line"></span><br><span class="line"><span class="function">SegmentTree *<span class="title">buildSegmentTree</span><span class="params">(<span class="keyword">const</span> <span class="keyword">int</span> l, <span class="keyword">const</span> <span class="keyword">int</span> r)</span> </span>{</span><br><span class="line">    <span class="keyword">if</span> (l &gt; r) <span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (l == r) <span class="keyword">return</span> <span class="keyword">new</span> SegmentTree(l, r, <span class="literal">NULL</span>, <span class="literal">NULL</span>);</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">return</span> <span class="keyword">new</span> SegmentTree(l, r, buildSegmentTree(l, l + ((r - l) &gt;&gt; <span class="number">1</span>)), buildSegmentTree(l + ((r - l) &gt;&gt; <span class="number">1</span>) + <span class="number">1</span>, r));</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">struct</span> Path {</span><br><span class="line">    Node *top;</span><br><span class="line"></span><br><span class="line">    Path(Node *top) : top(top) {}</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> n, m;</span><br><span class="line"><span class="keyword">long</span> <span class="keyword">long</span> a[MAXN];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">cut</span><span class="params">()</span> </span>{</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">stack</span>&lt;Node *&gt; s;</span><br><span class="line">    s.push(&amp;N[<span class="number">0</span>]);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> (!s.empty()) {</span><br><span class="line">        Node *v = s.top();</span><br><span class="line">        <span class="keyword">if</span> (!v-&gt;visited) {</span><br><span class="line">            v-&gt;visited = <span class="literal">true</span>;</span><br><span class="line">            <span class="keyword">for</span> (Edge *e = v-&gt;e; e; e = e-&gt;next) <span class="keyword">if</span> (e-&gt;t-&gt;p == <span class="literal">NULL</span> &amp;&amp; e-&gt;t != v-&gt;p) e-&gt;t-&gt;p = v, s.push(e-&gt;t);</span><br><span class="line">        } <span class="keyword">else</span> {</span><br><span class="line">            v-&gt;size = <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">for</span> (Edge *e = v-&gt;e; e; e = e-&gt;next) <span class="keyword">if</span> (e-&gt;t-&gt;p == v) {</span><br><span class="line">                v-&gt;size += e-&gt;t-&gt;size;</span><br><span class="line">                <span class="keyword">if</span> (v-&gt;c == <span class="literal">NULL</span> || v-&gt;c-&gt;size &lt; e-&gt;t-&gt;size) v-&gt;c = e-&gt;t;</span><br><span class="line">            }</span><br><span class="line"></span><br><span class="line">            s.pop();</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) N[i].visited = <span class="literal">false</span>;</span><br><span class="line"></span><br><span class="line">    s.push(&amp;N[<span class="number">0</span>]);</span><br><span class="line">    <span class="keyword">int</span> time = -<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span> (!s.empty()) {</span><br><span class="line">        Node *v = s.top();</span><br><span class="line">        <span class="keyword">if</span> (!v-&gt;visited) {</span><br><span class="line">            v-&gt;visited = <span class="literal">true</span>;</span><br><span class="line">            v-&gt;pos = ++time;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> (!v-&gt;p || v != v-&gt;p-&gt;c) v-&gt;path = <span class="keyword">new</span> Path(v);</span><br><span class="line">            <span class="keyword">else</span> v-&gt;path = v-&gt;p-&gt;path;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">for</span> (Edge *e = v-&gt;e; e; e = e-&gt;next) <span class="keyword">if</span> (e-&gt;t-&gt;p == v &amp;&amp; e-&gt;t != v-&gt;c) s.push(e-&gt;t);</span><br><span class="line">            <span class="keyword">if</span> (v-&gt;c) s.push(v-&gt;c);</span><br><span class="line">        } <span class="keyword">else</span> v-&gt;posEnd = time, s.pop();</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    segment = buildSegmentTree(<span class="number">0</span>, n - <span class="number">1</span>);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) segment-&gt;update(N[i].pos, N[i].pos, a[i]);</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">long</span> <span class="keyword">long</span> <span class="title">queryToRoot</span><span class="params">(<span class="keyword">const</span> <span class="keyword">int</span> x)</span> </span>{</span><br><span class="line">    Node *v = &amp;N[x];</span><br><span class="line">    <span class="keyword">long</span> <span class="keyword">long</span> sum = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span> (v) {</span><br><span class="line">        sum += segment-&gt;query(v-&gt;path-&gt;top-&gt;pos, v-&gt;pos);</span><br><span class="line">        v = v-&gt;path-&gt;top-&gt;p;</span><br><span class="line">    }</span><br><span class="line">    <span class="keyword">return</span> sum;</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>{</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d %d&quot;</span>, &amp;n, &amp;m);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) <span class="built_in">scanf</span>(<span class="string">&quot;%lld&quot;</span>, &amp;a[i]);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>, u, v; i &lt; n - <span class="number">1</span>; i++) <span class="built_in">scanf</span>(<span class="string">&quot;%d %d&quot;</span>, &amp;u, &amp;v), u--, v--, addEdge(u, v);</span><br><span class="line"></span><br><span class="line">    cut();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>, cmd; i &lt; m; i++) {</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;cmd);</span><br><span class="line">        <span class="keyword">if</span> (cmd == <span class="number">1</span>) {</span><br><span class="line">            <span class="keyword">int</span> x, a;</span><br><span class="line">            <span class="built_in">scanf</span>(<span class="string">&quot;%d %d&quot;</span>, &amp;x, &amp;a), x--;</span><br><span class="line">            segment-&gt;update(N[x].pos, N[x].pos, a);</span><br><span class="line">        } <span class="keyword">else</span> <span class="keyword">if</span> (cmd == <span class="number">2</span>) {</span><br><span class="line">            <span class="keyword">int</span> x, a;</span><br><span class="line">            <span class="built_in">scanf</span>(<span class="string">&quot;%d %d&quot;</span>, &amp;x, &amp;a), x--;</span><br><span class="line">            segment-&gt;update(N[x].pos, N[x].posEnd, a);</span><br><span class="line">        } <span class="keyword">else</span> <span class="keyword">if</span> (cmd == <span class="number">3</span>) {</span><br><span class="line">            <span class="keyword">int</span> x;</span><br><span class="line">            <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;x), x--;</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">&quot;%lld\n&quot;</span>, queryToRoot(x));</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+
+            
+        </div>
+    </div>
+    <div id="post-footer" class="post-footer main-content-wrap">
+        <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/noi2014-sleep/"  data-tooltip="「NOI2014」起床困难综合征 - 位运算 + 贪心">
+                
+                    <i class="fa fa-angle-left"></i>
+                    <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/bzoj-2296/" data-tooltip="「BZOJ 2296」随机种子 - 数论基础">
+                
+                    <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
+                    <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a class="post-action-btn btn btn--default btn-open-shareoptions"  href="#btn-open-shareoptions">
+                <i class="fa fa-share-alt"></i>
+            </a>
+        </li>
+        <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://blog.menci.moe/haoi2015-t2/">
+                <i class="fa fa-google-plus"></i>
+            </a>
+        </li>
+        <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.menci.moe/haoi2015-t2/">
+                <i class="fa fa-facebook-official"></i>
+            </a>
+        </li>
+        <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://blog.menci.moe/haoi2015-t2/">
+                <i class="fa fa-twitter"></i>
+            </a>
+        </li>
+        
+            <li class="post-action">
+                <a class="post-action-btn btn btn--default" href="#disqus_thread">
+                    <i class="fa fa-comment-o"></i>
+                </a>
+            </li>
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#">
+            
+                <i class="fa fa-list"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+        
+            
+                <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+            
+        
+    </div>
+</article>
+
+
+
+                <footer id="footer" class="main-content-wrap">
+    <span class="copyrights">
+        Copyrights &copy; 2016 Menci. All Rights Reserved.
+    </span>
+</footer>
+</script>
+
+            </div>
+            
+                <div id="bottom-bar" class="post-bottom-bar" data-behavior="2">
+                    <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/noi2014-sleep/"  data-tooltip="「NOI2014」起床困难综合征 - 位运算 + 贪心">
+                
+                    <i class="fa fa-angle-left"></i>
+                    <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/bzoj-2296/" data-tooltip="「BZOJ 2296」随机种子 - 数论基础">
+                
+                    <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
+                    <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a class="post-action-btn btn btn--default btn-open-shareoptions"  href="#btn-open-shareoptions">
+                <i class="fa fa-share-alt"></i>
+            </a>
+        </li>
+        <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://blog.menci.moe/haoi2015-t2/">
+                <i class="fa fa-google-plus"></i>
+            </a>
+        </li>
+        <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.menci.moe/haoi2015-t2/">
+                <i class="fa fa-facebook-official"></i>
+            </a>
+        </li>
+        <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://blog.menci.moe/haoi2015-t2/">
+                <i class="fa fa-twitter"></i>
+            </a>
+        </li>
+        
+            <li class="post-action">
+                <a class="post-action-btn btn btn--default" href="#disqus_thread">
+                    <i class="fa fa-comment-o"></i>
+                </a>
+            </li>
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#">
+            
+                <i class="fa fa-list"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+                </div>
+                <div id="share-options-bar" class="share-options-bar" data-behavior="2">
+    <ul class="share-options">
+        <li class="share-option">
+            <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=https://blog.menci.moe/haoi2015-t2/">
+                <i class="fa fa-google-plus"></i><span class="">分享到 Google+</span>
+            </a>
+        </li>
+        <li class="share-option">
+            <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.menci.moe/haoi2015-t2/">
+                <i class="fa fa-facebook-official"></i><span>分享到 Facebook</span>
+            </a>
+        </li>
+        <li class="share-option">
+            <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https://blog.menci.moe/haoi2015-t2/">
+                <i class="fa fa-twitter"></i><span>分享到 Twitter</span>
+            </a>
+        </li>
+    </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+            
+        </div>
+        
+
+
+    
+        
+    
+
+<div id="about">
+    <div id="about-card">
+        <div id="about-btn-close">
+            <i class="fa fa-remove"></i>
+        </div>
+        
+            <img style="box-shadow: 0 0 15px gray;" id="about-card-picture" src="//dn-menci.qbox.me/assets/images/avatar.png"/>
+        
+            <h4 id="about-card-name">Menci</h4>
+        
+            <h5 id="about-card-bio">眉眼如初，岁月如故</h5>
+        
+        
+            <h5 id="about-card-job">
+                <i class="fa fa-cloud"></i>
+                <br/>
+                One day, <br> I'll reach the next stage <br> to realize all.
+            </h5>
+        
+        
+    </div>
+</div>
+
+        
+<div id="cover" style="background-image:url('//dn-menci.qbox.me/assets/images/cover.jpg');"></div>
+    </body>
+    <!--SCRIPTS-->
+<script src="//dn-menci.qbox.me/assets/js/scrip-0ewjnhvv8ytgl76lkiq8f541cfygs5bpfv33ohlfvpfklrfevqupdsxg46fk.min.js" type="text/javascript"></script>
+<!--SCRIPTS END-->
+
+    
+        <script>
+             var disqus_config = function () {
+				 MenciRemoveIndexDotHtml = function (url) {
+				 	if (url.substr(-10, 10) == 'index.html') return url.substr(0, url.length - 10);
+				 	else return url;
+				 }
+                 this.page.url = MenciRemoveIndexDotHtml('https://blog.menci.moe/haoi2015-t2/');
+                 
+                 this.page.identifier = MenciRemoveIndexDotHtml('haoi2015-t2/');
+                                  
+             };
+            (function() {
+                var d = document, s = d.createElement('script');
+                var disqus_shortname = 'menci';
+                s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+
+                s.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        </script>
+    
+
+
+    <script type="text/javascript">
+        (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+                (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+            e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+        })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+        _st('install','L51x_1_hCboFSsSLLGGK','2.0.0');
+    </script>
+
+
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/KaTeX/0.6.0/katex.min.js"></script>
+<!--script type="text/javascript" src="/assets/js/auto-render.min.js"></script-->
+<script>
+$(function() {
+	// renderKatexMathjaxFallback($('body')[0]);
+	renderMathInElement($('body')[0]);
+});
+</script>
+
+</html>

@@ -1,0 +1,553 @@
+
+<!DOCTYPE html>
+<html lang="zh-cn">
+    
+<head>
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="Menci">
+    <title>「BZOJ 1756」小白逛公园 - 线段树 - Menci</title>
+    <meta name="author" content="Menci">
+    
+    
+        <link rel="icon" href="//dn-menci.qbox.me/assets/images/avatar.png">
+    
+    
+        <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
+    
+    <meta name="description" content="&amp;#x8DEF;&amp;#x7684;&amp;#x4E00;&amp;#x8FB9;&amp;#x4ECE;&amp;#x5357;&amp;#x5230;&amp;#x5317;&amp;#x4F9D;&amp;#x6B21;&amp;#x6392;&amp;#x7740; n &amp;#x4E2A;&amp;#x516C;&amp;#x56ED;&amp;#xFF0C;&amp;#x4E00;&amp;#x5F00;&amp;#x59CB;&amp;#xFF0C;&amp;#x5C0F;&amp;#x767D;&amp;#x5C31;&amp;#x6839;&amp;#x63">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="「BZOJ 1756」小白逛公园 - 线段树">
+<meta property="og:url" content="https://blog.menci.moe/bzoj-1756/index.html">
+<meta property="og:site_name" content="Menci">
+<meta property="og:description" content="&amp;#x8DEF;&amp;#x7684;&amp;#x4E00;&amp;#x8FB9;&amp;#x4ECE;&amp;#x5357;&amp;#x5230;&amp;#x5317;&amp;#x4F9D;&amp;#x6B21;&amp;#x6392;&amp;#x7740; n &amp;#x4E2A;&amp;#x516C;&amp;#x56ED;&amp;#xFF0C;&amp;#x4E00;&amp;#x5F00;&amp;#x59CB;&amp;#xFF0C;&amp;#x5C0F;&amp;#x767D;&amp;#x5C31;&amp;#x6839;&amp;#x63">
+<meta property="og:updated_time" content="2016-01-24T15:24:35.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="「BZOJ 1756」小白逛公园 - 线段树">
+<meta name="twitter:description" content="&amp;#x8DEF;&amp;#x7684;&amp;#x4E00;&amp;#x8FB9;&amp;#x4ECE;&amp;#x5357;&amp;#x5230;&amp;#x5317;&amp;#x4F9D;&amp;#x6B21;&amp;#x6392;&amp;#x7740; n &amp;#x4E2A;&amp;#x516C;&amp;#x56ED;&amp;#xFF0C;&amp;#x4E00;&amp;#x5F00;&amp;#x59CB;&amp;#xFF0C;&amp;#x5C0F;&amp;#x767D;&amp;#x5C31;&amp;#x6839;&amp;#x63">
+<meta name="twitter:creator" content="@HuangHaoRui">
+    
+        <meta rel="publisher" content="https://plus.google.com/103195680789397520000"/>
+    
+    
+        
+    
+    
+        <meta property="og:image" content="//dn-menci.qbox.me/assets/images/avatar.png"/>
+    
+    
+    
+    
+    <!--STYLES-->
+    <link rel="stylesheet" href="//dn-menci.qbox.me/assets/css/style-pcycimglbr925yrwj0efxsn118g0acj4bp3qcdehgw1freahg01piplpcrqd.min.css">
+    <!--STYLES END-->
+	<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/KaTeX/0.6.0/katex.min.css">
+	<link href='https://fonts.googleapis.com/css?family=Poiret+One' rel='stylesheet' type='text/css'>
+    
+    <script type="text/javascript">
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-75865916-1']);
+        _gaq.push(['_trackPageview']);
+        (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+    </script>
+
+    
+</head>
+
+    <body>
+        <div id="blog">
+            <!-- Define author's picture -->
+
+
+    
+        
+            
+        
+    
+
+<!--<header id="header" data-behavior="2">-->
+<header id="header" data-behavior="2">
+    <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+    <h1 class="header-title">
+        <a class="header-title-link" href="/ ">Menci</a>
+    </h1>
+    
+        
+            <a  class="header-right-picture "
+                href="/#about">
+        
+        
+            <img class="header-picture" src="//dn-menci.qbox.me/assets/images/avatar.png"/>
+        
+        </a>
+    
+</header>
+
+            <!-- Define author's picture -->
+
+
+
+        
+    
+
+<!--<nav id="sidebar" data-behavior="2">-->
+<nav id="sidebar" data-behavior="2">
+    
+        <div class="sidebar-profile">
+            <a href="/#about">
+                    <img class="sidebar-profile-picture" src="//dn-menci.qbox.me/assets/images/avatar.png"/>
+            </a>
+            <span class="sidebar-profile-name">Menci</span>
+        </div>
+    
+    
+        <ul class="sidebar-buttons">
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link "
+                         href="/ "
+                        
+                    >
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+                    <span class="sidebar-button-desc">首页</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link "
+                         href="/all-tags"
+                        
+                    >
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+                    <span class="sidebar-button-desc">标签</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link "
+                         href="/all-archives"
+                        
+                    >
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+                    <span class="sidebar-button-desc">归档</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link st-search-show-outputs"
+                         href="/#search"
+                        
+                    >
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-search"></i>
+                    <span class="sidebar-button-desc">搜索</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link "
+                         href="/about-me"
+                        
+                    >
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-info"></i>
+                    <span class="sidebar-button-desc">关于</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link "
+                         href="/friends"
+                        
+                    >
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-users"></i>
+                    <span class="sidebar-button-desc">伙伴</span>
+                </a>
+        </li>
+        
+    </ul>
+    
+        <ul class="sidebar-buttons">
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link " href="https://github.com/Menci" target="_blank">
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+                    <span class="sidebar-button-desc">GitHub</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link " href="https://twitter.com/HuangHaoRui" target="_blank">
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-twitter"></i>
+                    <span class="sidebar-button-desc">Twitter</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link " href="http://wpa.qq.com/msgrd?V=3&Uin=421899973" target="_blank">
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-qq"></i>
+                    <span class="sidebar-button-desc">QQ</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link " href="mailto:huanghaorui301@gmail.com" target="_blank">
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-envelope-o"></i>
+                    <span class="sidebar-button-desc">邮箱</span>
+                </a>
+        </li>
+        
+    </ul>
+    
+        <ul class="sidebar-buttons">
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link "
+                         href="/atom.xml"
+                        
+                    >
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-rss"></i>
+                    <span class="sidebar-button-desc">RSS</span>
+                </a>
+        </li>
+        
+    </ul>
+    
+</nav>
+
+            
+            <div id="main" data-behavior="2"
+                 class="
+                        hasCoverMetaIn
+                        ">
+                
+<article class="post" itemscope itemType="http://schema.org/BlogPosting">
+    
+    
+        <div class="post-header main-content-wrap text-left">
+    
+        <h1 class="post-title" itemprop="headline">
+            「BZOJ 1756」小白逛公园 - 线段树
+        </h1>
+    
+    <div class="post-meta" style="border-bottom: 1px solid #eef2f8;">
+    <time itemprop="datePublished" content="Sun Jan 24 2016 23:19:48 GMT+0800">
+	
+		    1月 24, 2016
+    	
+    </time>
+    
+        <span>发布在 </span>
+        
+    <a class="category-link" href="/categories/oi/">OI</a>
+
+
+    
+	
+		<div class="post-footer-tags" style="margin-top: 10px; margin-left: 10px; display: inline-block; border-bottom: none; ">
+			<!--span class="text-color-light text-small">标签</span><br/-->
+			
+    <a class="tag tag--primary tag--small t-link" href="/tag/bzoj/">BZOJ</a> <a class="tag tag--primary tag--small t-link" href="/tag/dp/">DP</a> <a class="tag tag--primary tag--small t-link" href="/tag/数据结构/">数据结构</a> <a class="tag tag--primary tag--small t-link" href="/tag/线段树/">线段树</a> <a class="tag tag--primary tag--small t-link" href="/tag/高级数据结构/">高级数据结构</a>
+
+		</div>
+	
+</div>
+
+</div>
+    
+    <div class="post-content markdown" itemprop="articleBody">
+        <div class="main-content-wrap">
+            <p>&#x8DEF;&#x7684;&#x4E00;&#x8FB9;&#x4ECE;&#x5357;&#x5230;&#x5317;&#x4F9D;&#x6B21;&#x6392;&#x7740; <code>n</code> &#x4E2A;&#x516C;&#x56ED;&#xFF0C;&#x4E00;&#x5F00;&#x59CB;&#xFF0C;&#x5C0F;&#x767D;&#x5C31;&#x6839;&#x636E;&#x516C;&#x56ED;&#x7684;&#x98CE;&#x666F;&#x7ED9;&#x6BCF;&#x4E2A;&#x516C;&#x56ED;&#x6253;&#x4E86;&#x5206;&#x3002;&#x5C0F;&#x65B0;&#x4E3A;&#x4E86;&#x7701;&#x4E8B;&#xFF0C;&#x6BCF;&#x6B21;&#x905B;&#x72D7;&#x7684;&#x65F6;&#x5019;&#x90FD;&#x4F1A;&#x4E8B;&#x5148;&#x89C4;&#x5B9A;&#x4E00;&#x4E2A;&#x8303;&#x56F4;&#xFF0C;&#x5C0F;&#x767D;&#x53EA;&#x53EF;&#x4EE5;&#x9009;&#x62E9;&#x7B2C; <code>a</code> &#x4E2A;&#x548C;&#x7B2C; <code>b</code> &#x4E2A;&#x516C;&#x56ED;&#x4E4B;&#x95F4;&#xFF08;&#x5305;&#x62EC; <code>a</code>&#x3001;<code>b</code> &#x4E24;&#x4E2A;&#x516C;&#x56ED;&#xFF09;&#x9009;&#x62E9;&#x8FDE;&#x7EED;&#x7684;&#x4E00;&#x4E9B;&#x516C;&#x56ED;&#x73A9;&#x3002;&#x5C0F;&#x767D;&#x5F53;&#x7136;&#x5E0C;&#x671B;&#x9009;&#x51FA;&#x7684;&#x516C;&#x56ED;&#x7684;&#x5206;&#x6570;&#x603B;&#x548C;&#x5C3D;&#x91CF;&#x9AD8;&#x54AF;&#x3002;&#x540C;&#x65F6;&#xFF0C;&#x7531;&#x4E8E;&#x4E00;&#x4E9B;&#x516C;&#x56ED;&#x7684;&#x666F;&#x89C2;&#x4F1A;&#x6709;&#x6240;&#x6539;&#x53D8;&#xFF0C;&#x6240;&#x4EE5;&#xFF0C;&#x5C0F;&#x767D;&#x7684;&#x6253;&#x5206;&#x4E5F;&#x53EF;&#x80FD;&#x4F1A;&#x6709;&#x4E00;&#x4E9B;&#x53D8;&#x5316;&#x3002;&#x90A3;&#x4E48;&#xFF0C;&#x5C31;&#x8BF7;&#x4F60;&#x6765;&#x5E2E;&#x5C0F;&#x767D;&#x9009;&#x62E9;&#x516C;&#x56ED;&#x5427;&#x3002;</p>
+<a id="more"></a>
+<h3 id="&#x94FE;&#x63A5;">&#x94FE;&#x63A5;</h3>
+<p><a href="http://www.lydsy.com/JudgeOnline/problem.php?id=1756" target="_blank" rel="external">BZOJ 1756</a></p>
+<h3 id="&#x9898;&#x89E3;">&#x9898;&#x89E3;</h3>
+<p>&#x533A;&#x95F4;&#x5185;&#x6700;&#x5927;&#x8FDE;&#x7EED;&#x548C;&#xFF0C;&#x8FD8;&#x5E26;&#x4FEE;&#x6539;&#xFF0C;&#x5F53;&#x7136;&#x662F;&#x7EBF;&#x6BB5;&#x6811;&#x54AF;&#xFF01;</p>
+<p>&#x6BCF;&#x4E2A;&#x8282;&#x70B9;&#x7EF4;&#x62A4;&#x4EE5;&#x4E0B;&#x51E0;&#x9879;&#x4FE1;&#x606F;&#xFF1A;</p>
+<ol style="list-style-type: decimal">
+<li>&#x533A;&#x95F4;&#x603B;&#x548C;&#xFF1B;</li>
+<li>&#x533A;&#x95F4;&#x6700;&#x5927;&#x8FDE;&#x7EED;&#x548C;&#xFF1B;</li>
+<li><strong>&#x5F3A;&#x5236;&#x5305;&#x542B;&#x5DE6;&#x7AEF;&#x70B9;</strong>&#x7684;&#x6700;&#x5927;&#x8FDE;&#x7EED;&#x548C;&#xFF1B;</li>
+<li><strong>&#x5F3A;&#x5236;&#x5305;&#x542B;&#x53F3;&#x7AEF;&#x70B9;</strong>&#x7684;&#x6700;&#x5927;&#x8FDE;&#x7EED;&#x548C;&#x3002;</li>
+</ol>
+<p>&#x7136;&#x540E;&#x4F7F;&#x7528;&#x52A8;&#x6001;&#x89C4;&#x5212;&#x7684;&#x65B9;&#x5F0F;&#x6C42;&#x51FA;&#x6BCF;&#x4E2A;&#x8282;&#x70B9;&#x7684;&#x56DB;&#x4E2A;&#x503C;&#x5373;&#x53EF;&#x3002;</p>
+<p>&#x67E5;&#x8BE2;&#x9EBB;&#x70E6;&#x4E00;&#x70B9;&#xFF0C;&#x5982;&#x679C;&#x8DE8;&#x5DE6;&#x53F3;&#x5B50;&#x6811;&#x67E5;&#x8BE2;&#x7684;&#x8BDD;&#xFF0C;&#x9700;&#x8981;&#x7EF4;&#x62A4;<strong>&#x8981;&#x67E5;&#x8BE2;&#x7684;&#x533A;&#x95F4;</strong>&#x7684;&#x4EE5;&#x4E0A;&#x56DB;&#x9879;&#x503C;&#xFF0C;&#x7136;&#x540E;&#x7528;&#x76F8;&#x4F3C;&#x7684;&#x65B9;&#x5F0F;&#x5411;&#x4E0A;&#x4F20;&#x9012;&#x3002;</p>
+<p>&#x5408;&#x5E76;&#x4E24;&#x4E2A;&#x533A;&#x95F4;&#x65F6;&#xFF0C;&#x9700;&#x8981;&#x6CE8;&#x610F;&#x7EC6;&#x8282;&#x3002;</p>
+<p>&#x8FD8;&#x6709;&#x5C31;&#x662F;&#x8BFB;&#x5165; <code>a</code>&#x3001;<code>b</code> &#x65F6;&#xFF0C;&#x6709;&#x53EF;&#x80FD; <code>a</code> &#x6BD4; <code>b</code> &#x5927;&#xFF01;</p>
+<h3 id="&#x4EE3;&#x7801;">&#x4EE3;&#x7801;</h3>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;climits&gt;</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;algorithm&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAXN = <span class="number">500000</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAXM = <span class="number">100000</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">struct</span> SegmentTree {</span><br><span class="line">    <span class="keyword">struct</span> Node {</span><br><span class="line">        Node *lchild, *rchild;</span><br><span class="line">        <span class="keyword">int</span> l, r;</span><br><span class="line">        <span class="keyword">int</span> value, sum, lsum, rsum, maxSum;</span><br><span class="line"></span><br><span class="line">        Node(<span class="keyword">int</span> l, <span class="keyword">int</span> r, Node *lchild, Node *rchild) : l(l), r(r), lchild(lchild), rchild(rchild) {}</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">void</span> <span class="title">maintain</span><span class="params">()</span> </span>{</span><br><span class="line">            sum = value;</span><br><span class="line">            <span class="keyword">if</span> (lchild) sum += lchild-&gt;sum;</span><br><span class="line">            <span class="keyword">if</span> (rchild) sum += rchild-&gt;sum;</span><br><span class="line"></span><br><span class="line">            lsum = rsum = sum;</span><br><span class="line">            <span class="keyword">if</span> (lchild) {</span><br><span class="line">                lsum = <span class="built_in">std</span>::max(lsum, lchild-&gt;lsum);</span><br><span class="line">                <span class="keyword">if</span> (rchild) lsum = <span class="built_in">std</span>::max(lsum, lchild-&gt;sum + rchild-&gt;lsum);</span><br><span class="line">            }</span><br><span class="line">            <span class="keyword">if</span> (rchild) {</span><br><span class="line">                rsum = <span class="built_in">std</span>::max(rsum, rchild-&gt;rsum);</span><br><span class="line">                <span class="keyword">if</span> (lchild) rsum = <span class="built_in">std</span>::max(rsum, rchild-&gt;sum + lchild-&gt;rsum);</span><br><span class="line">            }</span><br><span class="line"></span><br><span class="line">            maxSum = sum;</span><br><span class="line">            maxSum = <span class="built_in">std</span>::max(maxSum, lsum);</span><br><span class="line">            maxSum = <span class="built_in">std</span>::max(maxSum, rsum);</span><br><span class="line">            <span class="keyword">if</span> (lchild) maxSum = <span class="built_in">std</span>::max(maxSum, lchild-&gt;maxSum);</span><br><span class="line">            <span class="keyword">if</span> (rchild) maxSum = <span class="built_in">std</span>::max(maxSum, rchild-&gt;maxSum);</span><br><span class="line">            <span class="keyword">if</span> (lchild &amp;&amp; rchild) maxSum = <span class="built_in">std</span>::max(maxSum, lchild-&gt;rsum + rchild-&gt;lsum);</span><br><span class="line">        }</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">void</span> <span class="title">query</span><span class="params">(<span class="keyword">int</span> l, <span class="keyword">int</span> r, <span class="keyword">int</span> &amp;sum, <span class="keyword">int</span> &amp;lsum, <span class="keyword">int</span> &amp;rsum, <span class="keyword">int</span> &amp;maxSum)</span> </span>{</span><br><span class="line">            <span class="keyword">if</span> (<span class="keyword">this</span>-&gt;l &gt; r || <span class="keyword">this</span>-&gt;r &lt; l) <span class="keyword">throw</span>;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span> (<span class="keyword">this</span>-&gt;l &gt;= l &amp;&amp; <span class="keyword">this</span>-&gt;r &lt;= r) {</span><br><span class="line">                sum = <span class="keyword">this</span>-&gt;sum;</span><br><span class="line">                lsum = <span class="keyword">this</span>-&gt;lsum;</span><br><span class="line">                rsum = <span class="keyword">this</span>-&gt;rsum;</span><br><span class="line">                maxSum = <span class="keyword">this</span>-&gt;maxSum;</span><br><span class="line">            } <span class="keyword">else</span> {</span><br><span class="line">                <span class="keyword">int</span> mid = <span class="keyword">this</span>-&gt;l + ((<span class="keyword">this</span>-&gt;r - <span class="keyword">this</span>-&gt;l) &gt;&gt; <span class="number">1</span>);</span><br><span class="line">                <span class="keyword">if</span> (r &lt;= mid) <span class="keyword">return</span> lchild-&gt;query(l, r, sum, lsum, rsum, maxSum);</span><br><span class="line">                <span class="keyword">if</span> (l &gt;= mid + <span class="number">1</span>) <span class="keyword">return</span> rchild-&gt;query(l, r, sum, lsum, rsum, maxSum);</span><br><span class="line">                <span class="keyword">else</span> {</span><br><span class="line">                    <span class="keyword">int</span> suml, lsuml, rsuml, maxSuml;</span><br><span class="line">                    <span class="keyword">int</span> sumr, lsumr, rsumr, maxSumr;</span><br><span class="line">                    lchild-&gt;query(l, r, suml, lsuml, rsuml, maxSuml);</span><br><span class="line">                    rchild-&gt;query(l, r, sumr, lsumr, rsumr, maxSumr);</span><br><span class="line"></span><br><span class="line">                    maxSum = sum = suml + sumr;</span><br><span class="line">                    lsum = <span class="built_in">std</span>::max(lsuml, suml + lsumr);</span><br><span class="line">                    rsum = <span class="built_in">std</span>::max(rsumr, sumr + rsuml);</span><br><span class="line">                    maxSum = <span class="built_in">std</span>::max(maxSum, maxSuml);</span><br><span class="line">                    maxSum = <span class="built_in">std</span>::max(maxSum, maxSumr);</span><br><span class="line">                    maxSum = <span class="built_in">std</span>::max(maxSum, lsumr + rsuml);</span><br><span class="line">                }</span><br><span class="line">            }</span><br><span class="line">        }</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">void</span> <span class="title">update</span><span class="params">(<span class="keyword">int</span> pos, <span class="keyword">int</span> value)</span> </span>{</span><br><span class="line">            <span class="keyword">if</span> (<span class="keyword">this</span>-&gt;l &gt; pos || <span class="keyword">this</span>-&gt;r &lt; pos) <span class="keyword">return</span>;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span> (<span class="keyword">this</span>-&gt;l == pos &amp;&amp; <span class="keyword">this</span>-&gt;r == pos) <span class="keyword">this</span>-&gt;value = value, maintain();</span><br><span class="line">            <span class="keyword">else</span> {</span><br><span class="line">                <span class="keyword">if</span> (lchild) lchild-&gt;update(pos, value);</span><br><span class="line">                <span class="keyword">if</span> (rchild) rchild-&gt;update(pos, value);</span><br><span class="line">                maintain();</span><br><span class="line">            }</span><br><span class="line">        }</span><br><span class="line">    } *root;</span><br><span class="line"></span><br><span class="line">    SegmentTree(<span class="keyword">int</span> l, <span class="keyword">int</span> r) {</span><br><span class="line">        root = build(l, r);</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="function">Node *<span class="title">build</span><span class="params">(<span class="keyword">int</span> l, <span class="keyword">int</span> r)</span> </span>{</span><br><span class="line">        <span class="keyword">if</span> (l &gt; r) <span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (l == r) <span class="keyword">return</span> <span class="keyword">new</span> Node(l, r, <span class="literal">NULL</span>, <span class="literal">NULL</span>);</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">return</span> <span class="keyword">new</span> Node(l, r, build(l, l + ((r - l) &gt;&gt; <span class="number">1</span>)), build(l + ((r - l) &gt;&gt; <span class="number">1</span>) + <span class="number">1</span>, r));</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">update</span><span class="params">(<span class="keyword">int</span> pos, <span class="keyword">int</span> value)</span> </span>{</span><br><span class="line">        root-&gt;update(pos, value);</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">query</span><span class="params">(<span class="keyword">int</span> l, <span class="keyword">int</span> r)</span> </span>{</span><br><span class="line">        <span class="keyword">int</span> sum, lsum, rsum, maxSum;</span><br><span class="line">        root-&gt;query(l, r, sum, lsum, rsum, maxSum);</span><br><span class="line">        <span class="keyword">return</span> maxSum;</span><br><span class="line">    }</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>{</span><br><span class="line">    <span class="keyword">int</span> n, m;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d %d&quot;</span>, &amp;n, &amp;m);</span><br><span class="line"></span><br><span class="line">    SegmentTree *segment = <span class="keyword">new</span> SegmentTree(<span class="number">1</span>, n);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++) {</span><br><span class="line">        <span class="keyword">int</span> x;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;x);</span><br><span class="line">        segment-&gt;update(i, x);</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; m; i++) {</span><br><span class="line">        <span class="keyword">int</span> k;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;k);</span><br><span class="line">        <span class="keyword">if</span> (k == <span class="number">1</span>) {</span><br><span class="line">            <span class="keyword">int</span> l, r;</span><br><span class="line">            <span class="built_in">scanf</span>(<span class="string">&quot;%d %d&quot;</span>, &amp;l, &amp;r);</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>, segment-&gt;query(<span class="built_in">std</span>::min(l, r), <span class="built_in">std</span>::max(l, r)));</span><br><span class="line">        } <span class="keyword">else</span> {</span><br><span class="line">            <span class="keyword">int</span> p, s;</span><br><span class="line">            <span class="built_in">scanf</span>(<span class="string">&quot;%d %d&quot;</span>, &amp;p, &amp;s);</span><br><span class="line">            segment-&gt;update(p, s);</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+
+            
+        </div>
+    </div>
+    <div id="post-footer" class="post-footer main-content-wrap">
+        <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/markdown-latex-helper/"  data-tooltip="自动将 LaTex 代码转义为 Markdown 格式的小程序">
+                
+                    <i class="fa fa-angle-left"></i>
+                    <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/noi2004-cashier/" data-tooltip="「NOI2004」郁闷的出纳员 - Splay">
+                
+                    <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
+                    <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a class="post-action-btn btn btn--default btn-open-shareoptions"  href="#btn-open-shareoptions">
+                <i class="fa fa-share-alt"></i>
+            </a>
+        </li>
+        <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://blog.menci.moe/bzoj-1756/">
+                <i class="fa fa-google-plus"></i>
+            </a>
+        </li>
+        <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.menci.moe/bzoj-1756/">
+                <i class="fa fa-facebook-official"></i>
+            </a>
+        </li>
+        <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://blog.menci.moe/bzoj-1756/">
+                <i class="fa fa-twitter"></i>
+            </a>
+        </li>
+        
+            <li class="post-action">
+                <a class="post-action-btn btn btn--default" href="#disqus_thread">
+                    <i class="fa fa-comment-o"></i>
+                </a>
+            </li>
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#">
+            
+                <i class="fa fa-list"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+        
+            
+                <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+            
+        
+    </div>
+</article>
+
+
+
+                <footer id="footer" class="main-content-wrap">
+    <span class="copyrights">
+        Copyrights &copy; 2016 Menci. All Rights Reserved.
+    </span>
+</footer>
+</script>
+
+            </div>
+            
+                <div id="bottom-bar" class="post-bottom-bar" data-behavior="2">
+                    <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/markdown-latex-helper/"  data-tooltip="自动将 LaTex 代码转义为 Markdown 格式的小程序">
+                
+                    <i class="fa fa-angle-left"></i>
+                    <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/noi2004-cashier/" data-tooltip="「NOI2004」郁闷的出纳员 - Splay">
+                
+                    <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
+                    <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a class="post-action-btn btn btn--default btn-open-shareoptions"  href="#btn-open-shareoptions">
+                <i class="fa fa-share-alt"></i>
+            </a>
+        </li>
+        <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://blog.menci.moe/bzoj-1756/">
+                <i class="fa fa-google-plus"></i>
+            </a>
+        </li>
+        <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.menci.moe/bzoj-1756/">
+                <i class="fa fa-facebook-official"></i>
+            </a>
+        </li>
+        <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://blog.menci.moe/bzoj-1756/">
+                <i class="fa fa-twitter"></i>
+            </a>
+        </li>
+        
+            <li class="post-action">
+                <a class="post-action-btn btn btn--default" href="#disqus_thread">
+                    <i class="fa fa-comment-o"></i>
+                </a>
+            </li>
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#">
+            
+                <i class="fa fa-list"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+                </div>
+                <div id="share-options-bar" class="share-options-bar" data-behavior="2">
+    <ul class="share-options">
+        <li class="share-option">
+            <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=https://blog.menci.moe/bzoj-1756/">
+                <i class="fa fa-google-plus"></i><span class="">分享到 Google+</span>
+            </a>
+        </li>
+        <li class="share-option">
+            <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.menci.moe/bzoj-1756/">
+                <i class="fa fa-facebook-official"></i><span>分享到 Facebook</span>
+            </a>
+        </li>
+        <li class="share-option">
+            <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https://blog.menci.moe/bzoj-1756/">
+                <i class="fa fa-twitter"></i><span>分享到 Twitter</span>
+            </a>
+        </li>
+    </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+            
+        </div>
+        
+
+
+    
+        
+    
+
+<div id="about">
+    <div id="about-card">
+        <div id="about-btn-close">
+            <i class="fa fa-remove"></i>
+        </div>
+        
+            <img style="box-shadow: 0 0 15px gray;" id="about-card-picture" src="//dn-menci.qbox.me/assets/images/avatar.png"/>
+        
+            <h4 id="about-card-name">Menci</h4>
+        
+            <h5 id="about-card-bio">眉眼如初，岁月如故</h5>
+        
+        
+            <h5 id="about-card-job">
+                <i class="fa fa-cloud"></i>
+                <br/>
+                One day, <br> I'll reach the next stage <br> to realize all.
+            </h5>
+        
+        
+    </div>
+</div>
+
+        
+<div id="cover" style="background-image:url('//dn-menci.qbox.me/assets/images/cover.jpg');"></div>
+    </body>
+    <!--SCRIPTS-->
+<script src="//dn-menci.qbox.me/assets/js/scrip-0ewjnhvv8ytgl76lkiq8f541cfygs5bpfv33ohlfvpfklrfevqupdsxg46fk.min.js" type="text/javascript"></script>
+<!--SCRIPTS END-->
+
+    
+        <script>
+             var disqus_config = function () {
+				 MenciRemoveIndexDotHtml = function (url) {
+				 	if (url.substr(-10, 10) == 'index.html') return url.substr(0, url.length - 10);
+				 	else return url;
+				 }
+                 this.page.url = MenciRemoveIndexDotHtml('https://blog.menci.moe/bzoj-1756/');
+                 
+                 this.page.identifier = MenciRemoveIndexDotHtml('bzoj-1756/');
+                                  
+             };
+            (function() {
+                var d = document, s = d.createElement('script');
+                var disqus_shortname = 'menci';
+                s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+
+                s.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        </script>
+    
+
+
+    <script type="text/javascript">
+        (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+                (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+            e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+        })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+        _st('install','L51x_1_hCboFSsSLLGGK','2.0.0');
+    </script>
+
+
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/KaTeX/0.6.0/katex.min.js"></script>
+<!--script type="text/javascript" src="/assets/js/auto-render.min.js"></script-->
+<script>
+$(function() {
+	// renderKatexMathjaxFallback($('body')[0]);
+	renderMathInElement($('body')[0]);
+});
+</script>
+
+</html>

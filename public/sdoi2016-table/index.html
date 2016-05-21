@@ -1,0 +1,577 @@
+
+<!DOCTYPE html>
+<html lang="zh-cn">
+    
+<head>
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="Menci">
+    <title>「SDOI2016」储能表 - 二进制 - Menci</title>
+    <meta name="author" content="Menci">
+    
+    
+        <link rel="icon" href="//dn-menci.qbox.me/assets/images/avatar.png">
+    
+    
+        <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
+    
+    <meta name="description" content="&amp;#x6709;&amp;#x4E00;&amp;#x4E2A; $ n $ &amp;#x884C; $ m $ &amp;#x5217;&amp;#x7684;&amp;#x8868;&amp;#x683C;&amp;#xFF0C;&amp;#x884C;&amp;#x4ECE; $ 0 $ &amp;#x5230; $ n - 1 $ &amp;#x7F16;&amp;#x53F7;&amp;#xFF0C;&amp;#x5217;&amp;#x4ECE; $ 0 $ &amp;#x5230; $ m - 1 $ &amp;#x7F1">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="「SDOI2016」储能表 - 二进制">
+<meta property="og:url" content="https://blog.menci.moe/sdoi2016-table/index.html">
+<meta property="og:site_name" content="Menci">
+<meta property="og:description" content="&amp;#x6709;&amp;#x4E00;&amp;#x4E2A; $ n $ &amp;#x884C; $ m $ &amp;#x5217;&amp;#x7684;&amp;#x8868;&amp;#x683C;&amp;#xFF0C;&amp;#x884C;&amp;#x4ECE; $ 0 $ &amp;#x5230; $ n - 1 $ &amp;#x7F16;&amp;#x53F7;&amp;#xFF0C;&amp;#x5217;&amp;#x4ECE; $ 0 $ &amp;#x5230; $ m - 1 $ &amp;#x7F1">
+<meta property="og:updated_time" content="2016-05-11T09:33:24.460Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="「SDOI2016」储能表 - 二进制">
+<meta name="twitter:description" content="&amp;#x6709;&amp;#x4E00;&amp;#x4E2A; $ n $ &amp;#x884C; $ m $ &amp;#x5217;&amp;#x7684;&amp;#x8868;&amp;#x683C;&amp;#xFF0C;&amp;#x884C;&amp;#x4ECE; $ 0 $ &amp;#x5230; $ n - 1 $ &amp;#x7F16;&amp;#x53F7;&amp;#xFF0C;&amp;#x5217;&amp;#x4ECE; $ 0 $ &amp;#x5230; $ m - 1 $ &amp;#x7F1">
+<meta name="twitter:creator" content="@HuangHaoRui">
+    
+        <meta rel="publisher" content="https://plus.google.com/103195680789397520000"/>
+    
+    
+        
+    
+    
+        <meta property="og:image" content="//dn-menci.qbox.me/assets/images/avatar.png"/>
+    
+    
+    
+    
+    <!--STYLES-->
+    <link rel="stylesheet" href="//dn-menci.qbox.me/assets/css/style-pcycimglbr925yrwj0efxsn118g0acj4bp3qcdehgw1freahg01piplpcrqd.min.css">
+    <!--STYLES END-->
+	<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/KaTeX/0.6.0/katex.min.css">
+	<link href='https://fonts.googleapis.com/css?family=Poiret+One' rel='stylesheet' type='text/css'>
+    
+    <script type="text/javascript">
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-75865916-1']);
+        _gaq.push(['_trackPageview']);
+        (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+    </script>
+
+    
+</head>
+
+    <body>
+        <div id="blog">
+            <!-- Define author's picture -->
+
+
+    
+        
+            
+        
+    
+
+<!--<header id="header" data-behavior="2">-->
+<header id="header" data-behavior="2">
+    <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+    <h1 class="header-title">
+        <a class="header-title-link" href="/ ">Menci</a>
+    </h1>
+    
+        
+            <a  class="header-right-picture "
+                href="/#about">
+        
+        
+            <img class="header-picture" src="//dn-menci.qbox.me/assets/images/avatar.png"/>
+        
+        </a>
+    
+</header>
+
+            <!-- Define author's picture -->
+
+
+
+        
+    
+
+<!--<nav id="sidebar" data-behavior="2">-->
+<nav id="sidebar" data-behavior="2">
+    
+        <div class="sidebar-profile">
+            <a href="/#about">
+                    <img class="sidebar-profile-picture" src="//dn-menci.qbox.me/assets/images/avatar.png"/>
+            </a>
+            <span class="sidebar-profile-name">Menci</span>
+        </div>
+    
+    
+        <ul class="sidebar-buttons">
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link "
+                         href="/ "
+                        
+                    >
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+                    <span class="sidebar-button-desc">首页</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link "
+                         href="/all-tags"
+                        
+                    >
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+                    <span class="sidebar-button-desc">标签</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link "
+                         href="/all-archives"
+                        
+                    >
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+                    <span class="sidebar-button-desc">归档</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link st-search-show-outputs"
+                         href="/#search"
+                        
+                    >
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-search"></i>
+                    <span class="sidebar-button-desc">搜索</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link "
+                         href="/about-me"
+                        
+                    >
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-info"></i>
+                    <span class="sidebar-button-desc">关于</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link "
+                         href="/friends"
+                        
+                    >
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-users"></i>
+                    <span class="sidebar-button-desc">伙伴</span>
+                </a>
+        </li>
+        
+    </ul>
+    
+        <ul class="sidebar-buttons">
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link " href="https://github.com/Menci" target="_blank">
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+                    <span class="sidebar-button-desc">GitHub</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link " href="https://twitter.com/HuangHaoRui" target="_blank">
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-twitter"></i>
+                    <span class="sidebar-button-desc">Twitter</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link " href="http://wpa.qq.com/msgrd?V=3&Uin=421899973" target="_blank">
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-qq"></i>
+                    <span class="sidebar-button-desc">QQ</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link " href="mailto:huanghaorui301@gmail.com" target="_blank">
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-envelope-o"></i>
+                    <span class="sidebar-button-desc">邮箱</span>
+                </a>
+        </li>
+        
+    </ul>
+    
+        <ul class="sidebar-buttons">
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link "
+                         href="/atom.xml"
+                        
+                    >
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-rss"></i>
+                    <span class="sidebar-button-desc">RSS</span>
+                </a>
+        </li>
+        
+    </ul>
+    
+</nav>
+
+            
+            <div id="main" data-behavior="2"
+                 class="
+                        hasCoverMetaIn
+                        ">
+                
+<article class="post" itemscope itemType="http://schema.org/BlogPosting">
+    
+    
+        <div class="post-header main-content-wrap text-left">
+    
+        <h1 class="post-title" itemprop="headline">
+            「SDOI2016」储能表 - 二进制
+        </h1>
+    
+    <div class="post-meta" style="border-bottom: 1px solid #eef2f8;">
+    <time itemprop="datePublished" content="Mon Apr 18 2016 17:06:53 GMT+0800">
+	
+		    4月 18, 2016
+    	
+    </time>
+    
+        <span>发布在 </span>
+        
+    <a class="category-link" href="/categories/oi/">OI</a>
+
+
+    
+	
+		<div class="post-footer-tags" style="margin-top: 10px; margin-left: 10px; display: inline-block; border-bottom: none; ">
+			<!--span class="text-color-light text-small">标签</span><br/-->
+			
+    <a class="tag tag--primary tag--small t-link" href="/tag/bzoj/">BZOJ</a> <a class="tag tag--primary tag--small t-link" href="/tag/cogs/">COGS</a> <a class="tag tag--primary tag--small t-link" href="/tag/sdoi/">SDOI</a> <a class="tag tag--primary tag--small t-link" href="/tag/二进制/">二进制</a> <a class="tag tag--primary tag--small t-link" href="/tag/位运算/">位运算</a> <a class="tag tag--primary tag--small t-link" href="/tag/异或/">异或</a>
+
+		</div>
+	
+</div>
+
+</div>
+    
+    <div class="post-content markdown" itemprop="articleBody">
+        <div class="main-content-wrap">
+            <p>&#x6709;&#x4E00;&#x4E2A; $ n $ &#x884C; $ m $ &#x5217;&#x7684;&#x8868;&#x683C;&#xFF0C;&#x884C;&#x4ECE; $ 0 $ &#x5230; $ n - 1 $ &#x7F16;&#x53F7;&#xFF0C;&#x5217;&#x4ECE; $ 0 $ &#x5230; $ m - 1 $ &#x7F16;&#x53F7;&#x3002;<br>
+&#x6BCF;&#x4E2A;&#x683C;&#x5B50;&#x90FD;&#x50A8;&#x5B58;&#x7740;&#x80FD;&#x91CF;&#x3002;&#x6700;&#x521D;&#xFF0C;&#x7B2C; $ i $ &#x884C;&#x7B2C; $ j $ &#x5217;&#x7684;&#x683C;&#x5B50;&#x50A8;&#x5B58;&#x7740; $ (i \ {\rm xor} \ j) $ &#x70B9;&#x80FD;&#x91CF;&#x3002;&#x6240;&#x4EE5;&#xFF0C;&#x6574;&#x4E2A;&#x8868;&#x683C;&#x50A8;&#x5B58;&#x7684;&#x603B;&#x80FD;&#x91CF;&#x662F;&#xFF0C;</p>
+<p>$$ \sum\limits_{i = 0} ^ {n - 1} \sum\limits_{j = 0} ^ {m - 1} (i \ {\rm xor} \ j) $$</p>
+<p>&#x968F;&#x7740;&#x65F6;&#x95F4;&#x7684;&#x63A8;&#x79FB;&#xFF0C;&#x683C;&#x5B50;&#x4E2D;&#x7684;&#x80FD;&#x91CF;&#x4F1A;&#x6E10;&#x6E10;&#x51CF;&#x5C11;&#x3002;&#x4E00;&#x4E2A;&#x65F6;&#x95F4;&#x5355;&#x4F4D;&#xFF0C;&#x6BCF;&#x4E2A;&#x683C;&#x5B50;&#x4E2D;&#x7684;&#x80FD;&#x91CF;&#x90FD;&#x4F1A;&#x51CF;&#x5C11; $ 1 $&#x3002;&#x663E;&#x7136;&#xFF0C;&#x4E00;&#x4E2A;&#x683C;&#x5B50;&#x7684;&#x80FD;&#x91CF;&#x51CF;&#x5C11;&#x5230; $ 0 $ &#x4E4B;&#x540E;&#x5C31;&#x4E0D;&#x4F1A;&#x518D;&#x51CF;&#x5C11;&#x4E86;&#x3002;<br>
+&#x4E5F;&#x5C31;&#x662F;&#x8BF4;&#xFF0C;$ k $ &#x4E2A;&#x65F6;&#x95F4;&#x5355;&#x4F4D;&#x540E;&#xFF0C;&#x6574;&#x4E2A;&#x8868;&#x683C;&#x50A8;&#x5B58;&#x7684;&#x603B;&#x80FD;&#x91CF;&#x662F;&#xFF0C;</p>
+<p>$$ \sum\limits_{i = 0} ^ {n - 1} \sum\limits_{j = 0} ^ {m - 1} \max((i \ {\rm xor} \ j) - k, 0) $$</p>
+<p>&#x7ED9;&#x51FA;&#x4E00;&#x4E2A;&#x8868;&#x683C;&#xFF0C;&#x6C42; $ k $ &#x4E2A;&#x65F6;&#x95F4;&#x5355;&#x4F4D;&#x540E;&#x5B83;&#x50A8;&#x5B58;&#x7684;&#x603B;&#x80FD;&#x91CF;&#x3002;<br>
+&#x7531;&#x4E8E;&#x603B;&#x80FD;&#x91CF;&#x53EF;&#x80FD;&#x8F83;&#x5927;&#xFF0C;&#x8F93;&#x51FA;&#x65F6;&#x5BF9; $ p $ &#x53D6;&#x6A21;&#x3002;</p>
+<a id="more"></a>
+<h3 id="&#x94FE;&#x63A5;">&#x94FE;&#x63A5;</h3>
+<p><a href="http://cogs.top/cogs/problem/problem.php?pid=2220" target="_blank" rel="external">COGS 2220</a><br>
+<a href="http://www.lydsy.com/JudgeOnline/problem.php?id=4513" target="_blank" rel="external">BZOJ 4513</a></p>
+<h3 id="&#x9898;&#x89E3;">&#x9898;&#x89E3;</h3>
+<p>&#x6B63;&#x89E3;&#x662F;&#x6570;&#x4F4D; DP &#x2026;&#x2026; &#x8FD9;&#x91CC;&#x8BB2;&#x4E00;&#x79CD;&#x4E71;&#x641E;&#x505A;&#x6CD5; &#x2026;&#x2026;</p>
+<p>&#x8003;&#x8651;&#x5F02;&#x6216;&#x7684;&#x6027;&#x8D28;&#xFF1A;</p>
+<p>&#x6027;&#x8D28;&#x4E00;&#xFF1A;&#x5BF9;&#x4E8E;&#x4EFB;&#x610F; $ x &lt; 2 ^ N $&#xFF0C;$ y &lt; 2 ^ N $&#xFF0C;&#x5FC5;&#x6709; $ (x + 2 ^ N) \ {\rm xor} \ (y + 2 ^ N) = x \ {\rm xor} \ y $</p>
+<blockquote>
+<p>&#x8BC1;&#x660E;&#xFF1A;&#x4E4B;&#x524D;&#x4E24;&#x4E2A;&#x6570;&#x7684;&#x4ECE;&#x4F4E;&#x5230;&#x9AD8;&#x7B2C; $ N $ &#x4F4D;&#x5747;&#x4E3A; $ 0 $&#xFF0C;&#x73B0;&#x5728;&#x5747;&#x4E3A; $ 1 $&#xFF0C;&#x5F02;&#x6216;&#x540E;&#x7ED3;&#x679C;&#x4E0D;&#x53D8;&#x3002;</p>
+</blockquote>
+<p>&#x6027;&#x8D28;&#x4E8C;&#xFF1A;&#x5BF9;&#x4E8E;&#x4EFB;&#x610F; $ x \neq y $&#xFF0C;&#x5FC5;&#x6709; $ x \ {\rm xor} \ z \neq y \ {\rm xor} \ z $</p>
+<blockquote>
+<p>&#x8BC1;&#x660E;&#xFF1A;&#x53CD;&#x8BC1;&#x6CD5;&#xFF0C;&#x5047;&#x8BBE; $ x \ {\rm xor} \ z = y \ {\rm xor} \ z = a $&#xFF0C;&#x5219;&#x6709; $ x \ {\rm xor} \ a = z $&#x3001;$ y \ {\rm xor} \ a = z $&#xFF0C;&#x5373; $ x = y $&#xFF0C;&#x4E0E;&#x9898;&#x8BBE;&#x77DB;&#x76FE;&#x3002;</p>
+</blockquote>
+<p>&#x6027;&#x8D28;&#x4E09;&#xFF1A;&#x5BF9;&#x4E8E;&#x4EFB;&#x610F; $ x &lt; 2 ^ N $&#xFF0C;$ [0, 2 ^ N - 1] $ &#x7684;&#x6240;&#x6709;&#x6570;&#x4E0E; $ x $ &#x7684;&#x5F02;&#x6216;&#x6240;&#x5F97;&#x7ED3;&#x679C;&#x53D6;&#x904D; $ [0, 2 ^ N - 1] $ &#x7684;&#x6240;&#x6709;&#x6570;&#x3002;</p>
+<blockquote>
+<p>&#x8BC1;&#x660E;&#xFF1A;&#x663E;&#x7136;&#xFF0C;&#x6709;&#x6027;&#x8D28; 2 &#x53EF;&#x77E5;&#x8FD9;&#x4E9B;&#x6570;&#x4E92;&#x4E0D;&#x76F8;&#x540C;&#xFF0C;&#x5E76;&#x4E14;&#x4E8C;&#x8FDB;&#x5236;&#x6700;&#x591A;&#x6709; $ N $ &#x4F4D;&#xFF0C;&#x4E0D;&#x53EF;&#x80FD;&#x5927;&#x4E8E;&#x7B49;&#x4E8E; $ 2 ^ N $&#xFF0C;&#x5373;&#x8FD9; $ 2 ^ N - 1 $ &#x4E2A;&#x4E92;&#x4E0D;&#x76F8;&#x540C;&#x7684;&#x6570;&#x90FD;&#x5728; $ [0, 2 ^ N - 1] $ &#x5185;&#x3002;</p>
+</blockquote>
+<p>&#x8BBE; $ n &gt; m $&#xFF0C;&#x4E3A;&#x65B9;&#x4FBF;&#x9605;&#x8BFB;&#xFF0C;$ n $ &#x8868;&#x793A;&#x5217;&#x6570;&#xFF0C;$ m $ &#x8868;&#x793A;&#x884C;&#x6570;&#x3002;</p>
+<p>&#x6253;&#x8868;&#x627E;&#x89C4;&#x5F8B;&#xFF0C;&#x5148;&#x4ECE;&#x6700;&#x7B80;&#x5355;&#x7684;&#x5F00;&#x59CB;&#x641E;&#x3002;&#x4E0D;&#x8003;&#x8651; $ k $&#xFF0C;&#x5F53; $ n = m = 2 ^ N $&#xFF08;$ N = 3 $&#xFF09;&#x65F6;&#xFF0C;&#x7ED3;&#x679C;&#x4E3A;</p>
+<p>$$ \begin{matrix} 0 &amp; 1 &amp; 2 &amp; 3 &amp; 4 &amp; 5 &amp; 6 &amp; 7 \\ 1 &amp; 0 &amp; 3 &amp; 2 &amp; 5 &amp; 4 &amp; 7 &amp; 6 \\ 2 &amp; 3 &amp; 0 &amp; 1 &amp; 6 &amp; 7 &amp; 4 &amp; 5 \\ 3 &amp; 2 &amp; 1 &amp; 0 &amp; 7 &amp; 6 &amp; 5 &amp; 4 \\ 4 &amp; 5 &amp; 6 &amp; 7 &amp; 0 &amp; 1 &amp; 2 &amp; 3 \\ 5 &amp; 4 &amp; 7 &amp; 6 &amp; 1 &amp; 0 &amp; 3 &amp; 2 \\ 6 &amp; 7 &amp; 4 &amp; 5 &amp; 2 &amp; 3 &amp; 0 &amp; 1 \\ 7 &amp; 6 &amp; 5 &amp; 4 &amp; 3 &amp; 2 &amp; 1 &amp; 0 \\ \end{matrix} $$</p>
+<p>&#x53EF;&#x4EE5;&#x770B;&#x5230;&#xFF0C;&#x6574;&#x4E2A;&#x77E9;&#x9635;&#x7684;&#x6BCF;&#x4E00;&#x884C;&#x5305;&#x542B;&#x4E86; $ [0, 2 ^ N - 1] $ &#x7684;&#x6240;&#x6709;&#x6570;&#x5B57;&#x3002;&#x76F4;&#x63A5;&#x4F7F;&#x7528;&#x7B49;&#x5DEE;&#x6570;&#x5217;&#x6C42;&#x548C;&#x516C;&#x5F0F;&#x8BA1;&#x7B97;&#x5373;&#x53EF;&#x3002;</p>
+<p>&#x7A0D;&#x590D;&#x6742;&#x7684;&#x60C5;&#x51B5;&#xFF0C;&#x8BBE; $ N = \lfloor \log_2 n \rfloor $&#xFF0C;$ M = \lfloor \log_2 m \rfloor $&#x3002;&#x5F53; $ N = M $ &#x65F6;&#xFF0C;&#x6253;&#x8868;&#x7ED3;&#x679C;&#x4E3A;</p>
+<p>$$ \begin{matrix} 0 &amp; 1 &amp; 2 &amp; 3 &amp; 4 &amp; 5 &amp; 6 &amp; 7 &amp; \color{rgb(236, 62, 61)}{8} &amp; \color{rgb(236, 62, 61)}{9} \\ 1 &amp; 0 &amp; 3 &amp; 2 &amp; 5 &amp; 4 &amp; 7 &amp; 6 &amp; \color{rgb(236, 62, 61)}{9} &amp; \color{rgb(236, 62, 61)}{8} \\ 2 &amp; 3 &amp; 0 &amp; 1 &amp; 6 &amp; 7 &amp; 4 &amp; 5 &amp; \color{rgb(236, 62, 61)}{10} &amp; \color{rgb(236, 62, 61)}{11} \\ 3 &amp; 2 &amp; 1 &amp; 0 &amp; 7 &amp; 6 &amp; 5 &amp; 4 &amp; \color{rgb(236, 62, 61)}{11} &amp; \color{rgb(236, 62, 61)}{10} \\ 4 &amp; 5 &amp; 6 &amp; 7 &amp; 0 &amp; 1 &amp; 2 &amp; 3 &amp; \color{rgb(236, 62, 61)}{12} &amp; \color{rgb(236, 62, 61)}{13} \\ 5 &amp; 4 &amp; 7 &amp; 6 &amp; 1 &amp; 0 &amp; 3 &amp; 2 &amp; \color{rgb(236, 62, 61)}{13} &amp; \color{rgb(236, 62, 61)}{12} \\ 6 &amp; 7 &amp; 4 &amp; 5 &amp; 2 &amp; 3 &amp; 0 &amp; 1 &amp; \color{rgb(236, 62, 61)}{14} &amp; \color{rgb(236, 62, 61)}{15} \\ 7 &amp; 6 &amp; 5 &amp; 4 &amp; 3 &amp; 2 &amp; 1 &amp; 0 &amp; \color{rgb(236, 62, 61)}{15} &amp; \color{rgb(236, 62, 61)}{14} \\ \color{rgb(20, 122, 4)}{8} &amp; \color{rgb(20, 122, 4)}{9} &amp; \color{rgb(20, 122, 4)}{10} &amp; \color{rgb(20, 122, 4)}{11} &amp; \color{rgb(20, 122, 4)}{12} &amp; \color{rgb(20, 122, 4)}{13} &amp; \color{rgb(20, 122, 4)}{14} &amp; \color{rgb(20, 122, 4)}{15} &amp; \color{rgb(249, 181, 37)}{0} &amp; \color{rgb(249, 181, 37)}{1} \\ \color{rgb(20, 122, 4)}{9} &amp; \color{rgb(20, 122, 4)}{8} &amp; \color{rgb(20, 122, 4)}{11} &amp; \color{rgb(20, 122, 4)}{10} &amp; \color{rgb(20, 122, 4)}{13} &amp; \color{rgb(20, 122, 4)}{12} &amp; \color{rgb(20, 122, 4)}{15} &amp; \color{rgb(20, 122, 4)}{14} &amp; \color{rgb(249, 181, 37)}{1} &amp; \color{rgb(249, 181, 37)}{0} \\ \end{matrix} $$</p>
+<p>&#x5DE6;&#x4E0A;&#x89D2;&#x7684;&#x9ED1;&#x8272;&#x90E8;&#x5206;&#x53EF;&#x4EE5;&#x76F4;&#x63A5;&#x89C4;&#x7EA6;&#x5230;&#x7B2C;&#x4E00;&#x79CD;&#x60C5;&#x51B5;&#x3002;&#x7EA2;&#x8272;&#x7684;&#x90E8;&#x5206;&#x4E2D;&#xFF0C;&#x53C2;&#x4E0E;&#x5F02;&#x6216;&#x8FD0;&#x7B97;&#x7684;&#x4E00;&#x4E2A;&#x6570;&#x591A;&#x4E86;&#x4E00;&#x4E2A;&#x4E8C;&#x8FDB;&#x5236;&#x4F4D;&#xFF0C;&#x6839;&#x636E;&#x6027;&#x8D28;&#x4E09;&#xFF0C;&#x8FD9;&#x4E00;&#x90E8;&#x5206;&#x80FD;&#x53D6;&#x5230; $ [2 ^ N&#xFF0C; 2 ^ N + 2 ^ M - 1] $ &#x7684;&#x6240;&#x6709;&#x6570;&#x3002;&#x7EFF;&#x8272;&#x90E8;&#x5206;&#x540C;&#x7406;&#x3002;</p>
+<p>&#x5BF9;&#x4E8E;&#x9EC4;&#x8272;&#x90E8;&#x5206;&#xFF0C;&#x76F8;&#x5F53;&#x4E8E;&#x53BB;&#x6389;&#x4E86; $ n $ &#x548C; $ m $ &#x7684;&#x6700;&#x9AD8;&#x4F4D;&#x540E;&#x7684;&#x4E00;&#x4E2A;&#x5B50;&#x95EE;&#x9898;&#xFF0C;&#x9012;&#x5F52;&#x8BA1;&#x7B97;&#x5373;&#x53EF;&#x3002;</p>
+<p>&#x66F4;&#x590D;&#x6742;&#x7684;&#x60C5;&#x51B5;&#xFF0C;&#x5F53; $ N &gt; M $&#xFF08;&#x56E0;&#x4E3A; $ n &gt; m $ &#x6240;&#x4EE5;&#x4E0D;&#x53EF;&#x80FD;&#x5B58;&#x5728; $ N &lt; M $&#xFF09;&#x65F6;&#xFF0C;&#x6253;&#x8868;&#x7ED3;&#x679C;&#x4E3A;</p>
+<p>$$ \begin{matrix} 0 &amp; 1 &amp; 2 &amp; 3 &amp; 4 &amp; 5 &amp; 6 &amp; 7 &amp; \color{rgb(102, 204, 255)}{8} &amp; \color{rgb(102, 204, 255)}{9} \\ 1 &amp; 0 &amp; 3 &amp; 2 &amp; 5 &amp; 4 &amp; 7 &amp; 6 &amp; \color{rgb(102, 204, 255)}{9} &amp; \color{rgb(102, 204, 255)}{8} \\ 2 &amp; 3 &amp; 0 &amp; 1 &amp; 6 &amp; 7 &amp; 4 &amp; 5 &amp; \color{rgb(102, 204, 255)}{10} &amp; \color{rgb(102, 204, 255)}{11} \\ 3 &amp; 2 &amp; 1 &amp; 0 &amp; 7 &amp; 6 &amp; 5 &amp; 4 &amp; \color{rgb(102, 204, 255)}{11} &amp; \color{rgb(102, 204, 255)}{10} \\ \end{matrix} $$</p>
+<p>&#x7531;&#x6027;&#x8D28;&#x4E09;&#x5F97;&#xFF0C;&#x5DE6;&#x8FB9;&#x9ED1;&#x8272;&#x90E8;&#x5206;&#x53D6;&#x904D;&#x4E86; $ [0, 2 ^ N - 1] $&#xFF0C;&#x53EF;&#x7528;&#x7B49;&#x5DEE;&#x6570;&#x5217;&#x6C42;&#x548C;&#x516C;&#x5F0F;&#x76F4;&#x63A5;&#x8BA1;&#x7B97;&#xFF0C;&#x53F3;&#x8FB9;&#x90E8;&#x5206;&#x90FD;&#x5927;&#x4E8E;&#x7B49;&#x4E8E; $ 2 ^ N $&#xFF0C;&#x5C06;&#x5B83;&#x4EEC;&#x540C;&#x65F6;&#x51CF;&#x53BB; $ 2 ^ N $ &#x540E;&#x5373;&#x4E3A; $ N = M $ &#x7684;&#x60C5;&#x51B5;&#xFF0C;&#x9012;&#x5F52;&#x5904;&#x7406;&#x540E;&#x4E3A;&#x6BCF;&#x4E2A;&#x6570;&#x52A0;&#x4E0A; $ 2 ^ N $ &#x5373;&#x53EF;&#x3002;</p>
+<p>&#x73B0;&#x5728;&#x8003;&#x8651; $ k $ &#x5BF9;&#x7ED3;&#x679C;&#x7684;&#x5F71;&#x54CD;&#xFF0C;&#x6211;&#x4EEC;&#x5728;&#x8BA1;&#x7B97;&#x4E00;&#x4E2A;&#x7B49;&#x5DEE;&#x6570;&#x5217; $ 0, 1, 2, 3, &#x2026; n $ &#x65F6;&#xFF0C;&#x524D;&#x9762;&#x6240;&#x6709; $ \leq k $ &#x7684;&#x9879;&#x90FD;&#x4F1A;&#x53D8;&#x6210; $ 0 $&#xFF0C;&#x540E;&#x9762;&#x6240;&#x6709;&#x9879;&#x51CF;&#x53BB; $ k $&#xFF0C;&#x76F8;&#x5F53;&#x4E8E;&#x4E00;&#x4E2A;&#x4EE5; $ 1 $ &#x5F00;&#x59CB;&#xFF0C;&#x957F;&#x5EA6;&#x4E3A; $ n - k $ &#x7684;&#x7B49;&#x5DEE;&#x6570;&#x5217;&#xFF0C;&#x4EE3;&#x5165;&#x516C;&#x5F0F;&#x5373;&#x53EF;&#x3002;</p>
+<p>&#x5BF9;&#x4E8E;&#x6700;&#x540E;&#x4E00;&#x79CD;&#x60C5;&#x51B5;&#x7684;&#x9012;&#x5F52;&#xFF0C;&#x9700;&#x8981;&#x5728; $ k $ &#x4E2D;&#x5C06; $ n $ &#x7684;&#x6700;&#x9AD8;&#x4F4D;&#x53BB;&#x6389;&#x3002;&#x6700;&#x540E;&#x4E3A;&#x6BCF;&#x4E2A;&#x6570;&#x52A0;&#x4E0A;&#x65F6;&#xFF0C;&#x5BF9;&#x6BCF;&#x4E2A;&#x6570;&#x7684;&#x589E;&#x91CF;&#x51CF;&#x53BB; $ k $ &#x5373;&#x53EF;&#x3002;</p>
+<p>&#x6BCF;&#x6B21;&#x9012;&#x5F52;&#x65F6;&#xFF0C;&#x4F1A;&#x53BB;&#x6389; $ n $ &#x4E8C;&#x8FDB;&#x5236;&#x6700;&#x9AD8;&#x4F4D;&#x4E0A;&#x7684; $ 1 $&#xFF0C;&#x5176;&#x4ED6;&#x7684;&#x8BA1;&#x7B97;&#x90FD;&#x53EF;&#x4EE5;&#x5728;&#x5E38;&#x6570;&#x65F6;&#x95F4;&#x5185;&#x5B8C;&#x6210;&#xFF0C;&#x603B;&#x65F6;&#x95F4;&#x590D;&#x6742;&#x5EA6;&#x4E3A; $ O(T \log (\max(n, m))) $&#x3002;</p>
+<h3 id="&#x4EE3;&#x7801;">&#x4EE3;&#x7801;</h3>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;algorithm&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAXT = <span class="number">5000</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">long</span> <span class="keyword">long</span> MAXN = <span class="number">1e18</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">long</span> <span class="keyword">long</span> MAXM = <span class="number">1e18</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">long</span> <span class="keyword">long</span> MAXK = <span class="number">1e18</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAXP = <span class="number">1e9</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">long</span> <span class="keyword">long</span> p = MAXP;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span><br><span class="line">template &lt;typename T&gt;</span><br><span class="line">inline int bitsCount(const T &amp;x) {</span><br><span class="line">    for (int i = sizeof(T) * 8 - 1; i &gt;= 0; i--) if (x &amp; ((T)1 &lt;&lt; i)) return i + 1;</span><br><span class="line">    return 0;</span><br><span class="line">}</span><br><span class="line">*/</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">bitsPrint</span><span class="params">(<span class="keyword">const</span> T &amp;x)</span> </span>{</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="keyword">sizeof</span>(T) * <span class="number">8</span> - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--)</span><br><span class="line">        <span class="keyword">if</span> (x &amp; ((T)<span class="number">1</span> &lt;&lt; i)) <span class="built_in">putchar</span>(<span class="string">&apos;1&apos;</span>);</span><br><span class="line">        <span class="keyword">else</span> <span class="built_in">putchar</span>(<span class="string">&apos;0&apos;</span>);</span><br><span class="line">    <span class="built_in">putchar</span>(<span class="string">&apos;\n&apos;</span>);</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> T <span class="title">lowbit</span><span class="params">(<span class="keyword">const</span> T &amp;x)</span> </span>{ <span class="keyword">return</span> x &amp; -x; }</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">log2</span><span class="params">(T x)</span> </span>{</span><br><span class="line">    <span class="keyword">int</span> ans = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span> (x &gt;&gt;= <span class="number">1</span>) ans++;</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> T <span class="title">mul</span><span class="params">(T x, T y, <span class="keyword">const</span> T &amp;z = <span class="number">1</span>)</span> </span>{</span><br><span class="line">    <span class="comment">// (x * y) / z, z is 1 or 2;</span></span><br><span class="line">    <span class="keyword">if</span> (z == <span class="number">2</span>) {</span><br><span class="line">        <span class="keyword">if</span> (x &amp; <span class="number">1</span>) y &gt;&gt;= <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (y &amp; <span class="number">1</span>) x &gt;&gt;= <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">throw</span>;</span><br><span class="line">    }</span><br><span class="line">    <span class="keyword">return</span> (x % p) * (y % p) % p;</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">long</span> <span class="keyword">long</span> <span class="title">sumTimes</span><span class="params">(<span class="keyword">long</span> <span class="keyword">long</span> first, <span class="keyword">long</span> <span class="keyword">long</span> n, <span class="keyword">const</span> <span class="keyword">long</span> <span class="keyword">long</span> k, <span class="keyword">const</span> <span class="keyword">long</span> <span class="keyword">long</span> t)</span> </span>{</span><br><span class="line">   <span class="comment">//  printf(&quot;from %lld to %lld = (%lld + %lld) * %lld / 2, and %lld times\n&quot;, first, first + n - 1, first, (first + n - 1), n, t);</span></span><br><span class="line">    first -= k;</span><br><span class="line">    <span class="keyword">if</span> (first &lt; <span class="number">1</span>) n -= (<span class="number">1</span> - first), first = <span class="number">1</span>;</span><br><span class="line">    <span class="comment">// printf(&quot;from %lld to %lld = (%lld + %lld) * %lld / 2, and %lld times\n&quot;, first, first + n - 1, first, (first + n - 1), n, t);</span></span><br><span class="line">    <span class="keyword">if</span> (n &lt;= <span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">return</span> mul(mul(first + (first + n - <span class="number">1</span>), n, <span class="number">2l</span>l), t);</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">long</span> <span class="keyword">long</span> <span class="title">solve</span><span class="params">(<span class="keyword">long</span> <span class="keyword">long</span> n, <span class="keyword">long</span> <span class="keyword">long</span> m, <span class="keyword">long</span> <span class="keyword">long</span> k)</span> </span>{</span><br><span class="line">    <span class="comment">// printf(&quot;solve(%lld, %lld, %lld)\n&quot;, n, m, k);</span></span><br><span class="line">    <span class="keyword">if</span> (n == <span class="number">0</span> || m == <span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (k &lt; <span class="number">0</span>) k = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">if</span> (n &lt; m) <span class="built_in">std</span>::swap(n, m);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (n == <span class="function">m &amp;&amp; <span class="title">lowbit</span><span class="params">(n)</span> </span>== n) {</span><br><span class="line">        <span class="keyword">return</span> sumTimes(<span class="number">1</span>, n - <span class="number">1</span>, k, m);</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> N = log2(n), M = log2(m);</span><br><span class="line">    <span class="keyword">long</span> <span class="keyword">long</span> centerWidth = (<span class="number">1l</span>l &lt;&lt; N), centerHeight = (<span class="number">1l</span>l &lt;&lt; M);</span><br><span class="line">    <span class="keyword">if</span> (N == M) {</span><br><span class="line">        <span class="keyword">long</span> <span class="keyword">long</span> rightWidth = n - centerWidth, rightHeight = centerHeight;</span><br><span class="line">        <span class="keyword">long</span> <span class="keyword">long</span> bottomWidth = centerWidth, bottomHeight = m - centerHeight;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">long</span> <span class="keyword">long</span> rightSum = sumTimes(centerWidth, rightHeight, k, rightWidth);</span><br><span class="line">        <span class="keyword">long</span> <span class="keyword">long</span> bottomSum = sumTimes(centerHeight, bottomWidth, k, bottomHeight);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">long</span> <span class="keyword">long</span> sideSum = solve(rightWidth, bottomHeight, k);</span><br><span class="line">        <span class="keyword">long</span> <span class="keyword">long</span> centerSum = solve(bottomWidth, rightHeight, k);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> ((rightSum + bottomSum) % p + (sideSum + centerSum) % p) % p;</span><br><span class="line">    } <span class="keyword">else</span> {</span><br><span class="line">        <span class="keyword">long</span> <span class="keyword">long</span> leftWidth = (<span class="number">1l</span>l &lt;&lt; N), leftHeight = m;</span><br><span class="line">        <span class="keyword">long</span> <span class="keyword">long</span> rightWidth = n - leftWidth, rightHeight = leftHeight;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">long</span> <span class="keyword">long</span> leftSum = sumTimes(<span class="number">0</span>, leftWidth, k, leftHeight);</span><br><span class="line">        <span class="keyword">long</span> <span class="keyword">long</span> rightSum = solve(rightWidth, rightHeight, k - leftWidth);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (leftWidth &gt; k) {</span><br><span class="line">            rightSum += mul(mul(leftWidth - k, m), n - leftWidth);</span><br><span class="line">            rightSum %= p;</span><br><span class="line">        }</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> (leftSum + rightSum) % p;</span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>{</span><br><span class="line">    freopen(<span class="string">&quot;menci_table.in&quot;</span>, <span class="string">&quot;r&quot;</span>, <span class="built_in">stdin</span>);</span><br><span class="line">    freopen(<span class="string">&quot;menci_table.out&quot;</span>, <span class="string">&quot;w&quot;</span>, <span class="built_in">stdout</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> t;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;t);</span><br><span class="line">    <span class="keyword">while</span> (t--) {</span><br><span class="line">        <span class="keyword">long</span> <span class="keyword">long</span> n, m, k;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">&quot;%lld %lld %lld %lld&quot;</span>, &amp;n, &amp;m, &amp;k, &amp;p);</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%lld\n&quot;</span>, solve(n, m, k));</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="comment">// long long n, m, k;</span></span><br><span class="line">    <span class="comment">// scanf(&quot;%lld %lld %lld&quot;, &amp;n, &amp;m, &amp;k);</span></span><br><span class="line">    <span class="comment">// bitsPrint(n), bitsPrint(m);</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// printf(&quot;lowbit(%lld) = %lld\nbitsCount(%lld) = %d\n2 ^ bitsCount(%lld) = %d\n&quot;, n, lowbit(n), n, bitsCount(n), n, 1 &lt;&lt; (bitsCount(n)));</span></span><br><span class="line">    <span class="comment">// bitsPrint((1 &lt;&lt; bitsCount(n)) - 1);</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">/*long long ans = 0;</span><br><span class="line">    for (int i = 0; i &lt; n; i++) {</span><br><span class="line">        for (int j = 0; j &lt; m; j++) {</span><br><span class="line">            int t = std::max((i ^ j) - k, 0ll);</span><br><span class="line">            printf(&quot;%3d&quot;, t);</span><br><span class="line">            ans += t;</span><br><span class="line">        }</span><br><span class="line">        putchar(&apos;\n&apos;);</span><br><span class="line">    }*/</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// printf(&quot;ans = %lld\n&quot;, ans);</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// printf(&quot;%lld\n&quot;, solve(n, m, k));</span></span><br><span class="line"></span><br><span class="line">    fclose(<span class="built_in">stdin</span>);</span><br><span class="line">    fclose(<span class="built_in">stdout</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+
+            
+        </div>
+    </div>
+    <div id="post-footer" class="post-footer main-content-wrap">
+        <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/jsoi2016-light/"  data-tooltip="「JSOI2016」灯塔 - 分块 + RMQ">
+                
+                    <i class="fa fa-angle-left"></i>
+                    <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/sdoi2016-journey/" data-tooltip="「SDOI2016」征途 - 斜率优化DP">
+                
+                    <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
+                    <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a class="post-action-btn btn btn--default btn-open-shareoptions"  href="#btn-open-shareoptions">
+                <i class="fa fa-share-alt"></i>
+            </a>
+        </li>
+        <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://blog.menci.moe/sdoi2016-table/">
+                <i class="fa fa-google-plus"></i>
+            </a>
+        </li>
+        <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.menci.moe/sdoi2016-table/">
+                <i class="fa fa-facebook-official"></i>
+            </a>
+        </li>
+        <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://blog.menci.moe/sdoi2016-table/">
+                <i class="fa fa-twitter"></i>
+            </a>
+        </li>
+        
+            <li class="post-action">
+                <a class="post-action-btn btn btn--default" href="#disqus_thread">
+                    <i class="fa fa-comment-o"></i>
+                </a>
+            </li>
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#">
+            
+                <i class="fa fa-list"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+        
+            
+                <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+            
+        
+    </div>
+</article>
+
+
+
+                <footer id="footer" class="main-content-wrap">
+    <span class="copyrights">
+        Copyrights &copy; 2016 Menci. All Rights Reserved.
+    </span>
+</footer>
+</script>
+
+            </div>
+            
+                <div id="bottom-bar" class="post-bottom-bar" data-behavior="2">
+                    <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/jsoi2016-light/"  data-tooltip="「JSOI2016」灯塔 - 分块 + RMQ">
+                
+                    <i class="fa fa-angle-left"></i>
+                    <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/sdoi2016-journey/" data-tooltip="「SDOI2016」征途 - 斜率优化DP">
+                
+                    <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
+                    <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a class="post-action-btn btn btn--default btn-open-shareoptions"  href="#btn-open-shareoptions">
+                <i class="fa fa-share-alt"></i>
+            </a>
+        </li>
+        <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://blog.menci.moe/sdoi2016-table/">
+                <i class="fa fa-google-plus"></i>
+            </a>
+        </li>
+        <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.menci.moe/sdoi2016-table/">
+                <i class="fa fa-facebook-official"></i>
+            </a>
+        </li>
+        <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://blog.menci.moe/sdoi2016-table/">
+                <i class="fa fa-twitter"></i>
+            </a>
+        </li>
+        
+            <li class="post-action">
+                <a class="post-action-btn btn btn--default" href="#disqus_thread">
+                    <i class="fa fa-comment-o"></i>
+                </a>
+            </li>
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#">
+            
+                <i class="fa fa-list"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+                </div>
+                <div id="share-options-bar" class="share-options-bar" data-behavior="2">
+    <ul class="share-options">
+        <li class="share-option">
+            <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=https://blog.menci.moe/sdoi2016-table/">
+                <i class="fa fa-google-plus"></i><span class="">分享到 Google+</span>
+            </a>
+        </li>
+        <li class="share-option">
+            <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.menci.moe/sdoi2016-table/">
+                <i class="fa fa-facebook-official"></i><span>分享到 Facebook</span>
+            </a>
+        </li>
+        <li class="share-option">
+            <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https://blog.menci.moe/sdoi2016-table/">
+                <i class="fa fa-twitter"></i><span>分享到 Twitter</span>
+            </a>
+        </li>
+    </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+            
+        </div>
+        
+
+
+    
+        
+    
+
+<div id="about">
+    <div id="about-card">
+        <div id="about-btn-close">
+            <i class="fa fa-remove"></i>
+        </div>
+        
+            <img style="box-shadow: 0 0 15px gray;" id="about-card-picture" src="//dn-menci.qbox.me/assets/images/avatar.png"/>
+        
+            <h4 id="about-card-name">Menci</h4>
+        
+            <h5 id="about-card-bio">眉眼如初，岁月如故</h5>
+        
+        
+            <h5 id="about-card-job">
+                <i class="fa fa-cloud"></i>
+                <br/>
+                One day, <br> I'll reach the next stage <br> to realize all.
+            </h5>
+        
+        
+    </div>
+</div>
+
+        
+<div id="cover" style="background-image:url('//dn-menci.qbox.me/assets/images/cover.jpg');"></div>
+    </body>
+    <!--SCRIPTS-->
+<script src="//dn-menci.qbox.me/assets/js/scrip-0ewjnhvv8ytgl76lkiq8f541cfygs5bpfv33ohlfvpfklrfevqupdsxg46fk.min.js" type="text/javascript"></script>
+<!--SCRIPTS END-->
+
+    
+        <script>
+             var disqus_config = function () {
+				 MenciRemoveIndexDotHtml = function (url) {
+				 	if (url.substr(-10, 10) == 'index.html') return url.substr(0, url.length - 10);
+				 	else return url;
+				 }
+                 this.page.url = MenciRemoveIndexDotHtml('https://blog.menci.moe/sdoi2016-table/');
+                 
+                 this.page.identifier = MenciRemoveIndexDotHtml('sdoi2016-table/');
+                                  
+             };
+            (function() {
+                var d = document, s = d.createElement('script');
+                var disqus_shortname = 'menci';
+                s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+
+                s.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        </script>
+    
+
+
+    <script type="text/javascript">
+        (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+                (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+            e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+        })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+        _st('install','L51x_1_hCboFSsSLLGGK','2.0.0');
+    </script>
+
+
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/KaTeX/0.6.0/katex.min.js"></script>
+<!--script type="text/javascript" src="/assets/js/auto-render.min.js"></script-->
+<script>
+$(function() {
+	// renderKatexMathjaxFallback($('body')[0]);
+	renderMathInElement($('body')[0]);
+});
+</script>
+
+</html>

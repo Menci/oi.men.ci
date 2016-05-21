@@ -1,0 +1,561 @@
+
+<!DOCTYPE html>
+<html lang="zh-cn">
+    
+<head>
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="Menci">
+    <title>「HAOI2011」Problem b - 莫比乌斯反演 - Menci</title>
+    <meta name="author" content="Menci">
+    
+    
+        <link rel="icon" href="//dn-menci.qbox.me/assets/images/avatar.png">
+    
+    
+        <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
+    
+    <meta name="description" content="&amp;#x5BF9;&amp;#x4E8E;&amp;#x7ED9;&amp;#x51FA;&amp;#x7684; $ n $ &amp;#x4E2A;&amp;#x8BE2;&amp;#x95EE;&amp;#xFF0C;&amp;#x6BCF;&amp;#x6B21;&amp;#x6C42;&amp;#x6709;&amp;#x591A;&amp;#x5C11;&amp;#x4E2A;&amp;#x6570;&amp;#x5BF9; $ (x, y) $&amp;#xFF0C;&amp;#x6EE1;&amp;#x8DB3; $ a \leq x \l">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="「HAOI2011」Problem b - 莫比乌斯反演">
+<meta property="og:url" content="https://blog.menci.moe/haoi2011-problemb/index.html">
+<meta property="og:site_name" content="Menci">
+<meta property="og:description" content="&amp;#x5BF9;&amp;#x4E8E;&amp;#x7ED9;&amp;#x51FA;&amp;#x7684; $ n $ &amp;#x4E2A;&amp;#x8BE2;&amp;#x95EE;&amp;#xFF0C;&amp;#x6BCF;&amp;#x6B21;&amp;#x6C42;&amp;#x6709;&amp;#x591A;&amp;#x5C11;&amp;#x4E2A;&amp;#x6570;&amp;#x5BF9; $ (x, y) $&amp;#xFF0C;&amp;#x6EE1;&amp;#x8DB3; $ a \leq x \l">
+<meta property="og:updated_time" content="2016-05-11T09:33:24.440Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="「HAOI2011」Problem b - 莫比乌斯反演">
+<meta name="twitter:description" content="&amp;#x5BF9;&amp;#x4E8E;&amp;#x7ED9;&amp;#x51FA;&amp;#x7684; $ n $ &amp;#x4E2A;&amp;#x8BE2;&amp;#x95EE;&amp;#xFF0C;&amp;#x6BCF;&amp;#x6B21;&amp;#x6C42;&amp;#x6709;&amp;#x591A;&amp;#x5C11;&amp;#x4E2A;&amp;#x6570;&amp;#x5BF9; $ (x, y) $&amp;#xFF0C;&amp;#x6EE1;&amp;#x8DB3; $ a \leq x \l">
+<meta name="twitter:creator" content="@HuangHaoRui">
+    
+        <meta rel="publisher" content="https://plus.google.com/103195680789397520000"/>
+    
+    
+        
+    
+    
+        <meta property="og:image" content="//dn-menci.qbox.me/assets/images/avatar.png"/>
+    
+    
+    
+    
+    <!--STYLES-->
+    <link rel="stylesheet" href="//dn-menci.qbox.me/assets/css/style-pcycimglbr925yrwj0efxsn118g0acj4bp3qcdehgw1freahg01piplpcrqd.min.css">
+    <!--STYLES END-->
+	<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/KaTeX/0.6.0/katex.min.css">
+	<link href='https://fonts.googleapis.com/css?family=Poiret+One' rel='stylesheet' type='text/css'>
+    
+    <script type="text/javascript">
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-75865916-1']);
+        _gaq.push(['_trackPageview']);
+        (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+    </script>
+
+    
+</head>
+
+    <body>
+        <div id="blog">
+            <!-- Define author's picture -->
+
+
+    
+        
+            
+        
+    
+
+<!--<header id="header" data-behavior="2">-->
+<header id="header" data-behavior="2">
+    <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+    <h1 class="header-title">
+        <a class="header-title-link" href="/ ">Menci</a>
+    </h1>
+    
+        
+            <a  class="header-right-picture "
+                href="/#about">
+        
+        
+            <img class="header-picture" src="//dn-menci.qbox.me/assets/images/avatar.png"/>
+        
+        </a>
+    
+</header>
+
+            <!-- Define author's picture -->
+
+
+
+        
+    
+
+<!--<nav id="sidebar" data-behavior="2">-->
+<nav id="sidebar" data-behavior="2">
+    
+        <div class="sidebar-profile">
+            <a href="/#about">
+                    <img class="sidebar-profile-picture" src="//dn-menci.qbox.me/assets/images/avatar.png"/>
+            </a>
+            <span class="sidebar-profile-name">Menci</span>
+        </div>
+    
+    
+        <ul class="sidebar-buttons">
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link "
+                         href="/ "
+                        
+                    >
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+                    <span class="sidebar-button-desc">首页</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link "
+                         href="/all-tags"
+                        
+                    >
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+                    <span class="sidebar-button-desc">标签</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link "
+                         href="/all-archives"
+                        
+                    >
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+                    <span class="sidebar-button-desc">归档</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link st-search-show-outputs"
+                         href="/#search"
+                        
+                    >
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-search"></i>
+                    <span class="sidebar-button-desc">搜索</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link "
+                         href="/about-me"
+                        
+                    >
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-info"></i>
+                    <span class="sidebar-button-desc">关于</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link "
+                         href="/friends"
+                        
+                    >
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-users"></i>
+                    <span class="sidebar-button-desc">伙伴</span>
+                </a>
+        </li>
+        
+    </ul>
+    
+        <ul class="sidebar-buttons">
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link " href="https://github.com/Menci" target="_blank">
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+                    <span class="sidebar-button-desc">GitHub</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link " href="https://twitter.com/HuangHaoRui" target="_blank">
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-twitter"></i>
+                    <span class="sidebar-button-desc">Twitter</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link " href="http://wpa.qq.com/msgrd?V=3&Uin=421899973" target="_blank">
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-qq"></i>
+                    <span class="sidebar-button-desc">QQ</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link " href="mailto:huanghaorui301@gmail.com" target="_blank">
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-envelope-o"></i>
+                    <span class="sidebar-button-desc">邮箱</span>
+                </a>
+        </li>
+        
+    </ul>
+    
+        <ul class="sidebar-buttons">
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link "
+                         href="/atom.xml"
+                        
+                    >
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-rss"></i>
+                    <span class="sidebar-button-desc">RSS</span>
+                </a>
+        </li>
+        
+    </ul>
+    
+</nav>
+
+            
+            <div id="main" data-behavior="2"
+                 class="
+                        hasCoverMetaIn
+                        ">
+                
+<article class="post" itemscope itemType="http://schema.org/BlogPosting">
+    
+    
+        <div class="post-header main-content-wrap text-left">
+    
+        <h1 class="post-title" itemprop="headline">
+            「HAOI2011」Problem b - 莫比乌斯反演
+        </h1>
+    
+    <div class="post-meta" style="border-bottom: 1px solid #eef2f8;">
+    <time itemprop="datePublished" content="Fri Apr 08 2016 11:32:33 GMT+0800">
+	
+		    4月 08, 2016
+    	
+    </time>
+    
+        <span>发布在 </span>
+        
+    <a class="category-link" href="/categories/oi/">OI</a>
+
+
+    
+	
+		<div class="post-footer-tags" style="margin-top: 10px; margin-left: 10px; display: inline-block; border-bottom: none; ">
+			<!--span class="text-color-light text-small">标签</span><br/-->
+			
+    <a class="tag tag--primary tag--small t-link" href="/tag/bzoj/">BZOJ</a> <a class="tag tag--primary tag--small t-link" href="/tag/cogs/">COGS</a> <a class="tag tag--primary tag--small t-link" href="/tag/haoi/">HAOI</a> <a class="tag tag--primary tag--small t-link" href="/tag/数学/">数学</a> <a class="tag tag--primary tag--small t-link" href="/tag/数论/">数论</a> <a class="tag tag--primary tag--small t-link" href="/tag/线性筛/">线性筛</a> <a class="tag tag--primary tag--small t-link" href="/tag/莫比乌斯反演/">莫比乌斯反演</a>
+
+		</div>
+	
+</div>
+
+</div>
+    
+    <div class="post-content markdown" itemprop="articleBody">
+        <div class="main-content-wrap">
+            <p>&#x5BF9;&#x4E8E;&#x7ED9;&#x51FA;&#x7684; $ n $ &#x4E2A;&#x8BE2;&#x95EE;&#xFF0C;&#x6BCF;&#x6B21;&#x6C42;&#x6709;&#x591A;&#x5C11;&#x4E2A;&#x6570;&#x5BF9; $ (x, y) $&#xFF0C;&#x6EE1;&#x8DB3; $ a \leq x \leq b $&#xFF0C;$ c \leq y \leq d $&#xFF0C;&#x4E14; $ \gcd(x, y) = k $&#xFF0C;$ \gcd(x, y) $&#x51FD;&#x6570;&#x4E3A; $ x $ &#x548C; $ y $ &#x7684;&#x6700;&#x5927;&#x516C;&#x7EA6;&#x6570;&#x3002;</p>
+<a id="more"></a>
+<h3 id="&#x94FE;&#x63A5;">&#x94FE;&#x63A5;</h3>
+<p><a href="http://www.lydsy.com/JudgeOnline/problem.php?id=2301" target="_blank" rel="external">BZOJ 2301</a><br>
+<a href="http://cogs.top/cogs/problem/problem.php?pid=548" target="_blank" rel="external">COGS 548</a></p>
+<h3 id="&#x9898;&#x89E3;">&#x9898;&#x89E3;</h3>
+<p>&#x95EE;&#x9898;&#x4E3A;&#xFF1A;&#x6C42;</p>
+<p>$$ \sum\limits_{i = a} ^ {b} \sum\limits_{j = c} ^ {d} [\gcd(i, j) = k] $$</p>
+<p>&#x8BBE;</p>
+<p>$$ F(n, m, k) = \sum\limits_{i = 1} ^ {n} \sum\limits_{j = 1} ^ {m} [\gcd(i, j) = k] $$</p>
+<p>&#x6839;&#x636E;&#x5BB9;&#x65A5;&#x539F;&#x7406;&#xFF0C;&#x7B54;&#x6848;&#x5373;&#x4E3A;</p>
+<p>$$ F(b, d, k) - F(a - 1, d, k) - F(b, c - 1, k) + F(a - 1, c - 1, k) $$</p>
+<p>&#x73B0;&#x5728;&#x7684;&#x95EE;&#x9898;&#x5C31;&#x662F;&#x6C42;&#x51FA; $ F $ &#x51FD;&#x6570;&#x7684;&#x503C;</p>
+<p>&#x8BBE;</p>
+<p>$$ \begin{align} f(k) &amp;= \sum\limits_{i = 1} ^ {n} \sum\limits_{j = 1} ^ {m} [\gcd(i, j) = k] \\ \end{align} $$</p>
+<p>&#x6784;&#x9020;&#x51FD;&#x6570; $ g(k) $</p>
+<p>$$ \begin{align} g(k) &amp;= \sum\limits_{k \mid d} f(d) \\ &amp;= \sum\limits_{t = 1} ^ {\lfloor \frac{n}{k} \rfloor} f(t \times k) \\ &amp;= \sum\limits_{t = 1} ^ {\lfloor \frac{n}{k} \rfloor} \sum\limits_{i = 1} ^ {n} \sum\limits_{j = 1} ^ {m} [\gcd(i, j) = t \times k] \\ &amp;= \sum\limits_{i = 1} ^ {n} \sum\limits_{j = 1} ^ {m} [k \mid \gcd(i, j)] \\ &amp;= \lfloor \frac{n}{k} \rfloor \lfloor \frac{m}{k} \rfloor \\ \end{align} $$</p>
+<p>&#x7531;&#x83AB;&#x6BD4;&#x4E4C;&#x65AF;&#x53CD;&#x6F14;&#x5F97;</p>
+<p>$$ \begin{align} f(k) &amp;= \sum\limits_{k \mid d} g(d) \mu(\frac{d}{k}) \\ &amp;= \sum\limits_{t = 1} ^ {\lfloor \frac{n}{k} \rfloor} g(tk) \mu(t) \\ &amp;= \sum\limits_{t = 1} ^ {\lfloor \frac{n}{k} \rfloor} \lfloor \frac{n}{tk} \rfloor \lfloor \frac{m}{tk} \rfloor \mu(t) \\ \end{align} $$</p>
+<p>&#x8FD9;&#x65F6;&#x5019;&#x6211;&#x4EEC;&#x5DF2;&#x7ECF;&#x53EF;&#x4EE5;&#x66B4;&#x529B;&#x8BA1;&#x7B97; $ F(n, m, k) $ &#x4E86;</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> ans = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> d = <span class="number">1</span>; d &lt;= (n / k); d++) {</span><br><span class="line">    ans += mu[d] * (n / (k * d)) * (m / (k * d));</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<p>&#x4F46;&#x662F;&#x8FD9;&#x6837;&#x7684;&#x590D;&#x6742;&#x5EA6;&#x8FD8;&#x662F;&#x4F1A;&#x8D85;&#x65F6;&#x7684;&#xFF0C;&#x6211;&#x4EEC;&#x8003;&#x8651;&#x5206;&#x5757;&#x8BA1;&#x7B97;&#x3002;</p>
+<p>&#x6CE8;&#x610F;&#x5230;&#x6211;&#x4EEC;&#x7684;&#x4EE3;&#x7801;&#x4E2D;&#x591A;&#x6B21;&#x51FA;&#x73B0;&#x4E86;&#x5F62;&#x5982; $ \frac{n}{k} $ &#x7684;&#x5F0F;&#x5B50;&#xFF0C;&#x8003;&#x8651;&#x6784;&#x9020;&#x4E00;&#x4E2A;&#x65B0;&#x51FD;&#x6570; $ F&#x2019;(n&#x2019;, m&#x2019;) $</p>
+<p>$$ \begin{align} n&#x2019; &amp;= \lfloor \frac{n}{k} \rfloor \\ m&#x2019; &amp;= \lfloor \frac{m}{k} \rfloor \\ F(n, m, k) &amp;= F&#x2019;(\lfloor \frac{n}{k} \rfloor, \lfloor \frac{m}{k} \rfloor) \\ F&#x2019;(n&#x2019;, m&#x2019;) &amp;= \sum\limits_{T = 1} ^ {n&#x2019;} \lfloor \frac{n&#x2019;}{T} \rfloor \lfloor \frac{m&#x2019;}{T} \rfloor \mu(T) \\ \end{align} $$</p>
+<p>&#x6B64;&#x65F6;&#x7684; $ F&#x2019; $ &#x5DF2;&#x7ECF;&#x53EF;&#x4EE5;&#x5206;&#x5757;&#x8BA1;&#x7B97;&#x4E86;&#xFF0C;&#x901A;&#x8FC7;&#x9884;&#x5904;&#x7406; $ \mu(T) $ &#x7684;&#x524D;&#x7F00;&#x548C;&#xFF0C;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x5728; $ O(\sqrt{n}) $ &#x7684;&#x65F6;&#x95F4;&#x5185;&#x56DE;&#x7B54;&#x4E00;&#x7EC4;&#x8BE2;&#x95EE;&#x3002;</p>
+<h3 id="&#x4EE3;&#x7801;">&#x4EE3;&#x7801;</h3>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;algorithm&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAXT = <span class="number">50000</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAXN = <span class="number">50000</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAXK = <span class="number">50000</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">bool</span> isNotPrime[MAXN + <span class="number">1</span>];</span><br><span class="line"><span class="keyword">int</span> mu[MAXN + <span class="number">1</span>], s[MAXN + <span class="number">1</span>], primes[MAXN + <span class="number">1</span>], cnt;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">getPrimes</span><span class="params">()</span> </span>{</span><br><span class="line">    isNotPrime[<span class="number">0</span>] = isNotPrime[<span class="number">1</span>] = <span class="literal">true</span>;</span><br><span class="line">    mu[<span class="number">1</span>] = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">2</span>; i &lt;= MAXN; i++) {</span><br><span class="line">        <span class="keyword">if</span> (!isNotPrime[i]) {</span><br><span class="line">            primes[cnt++] = i;</span><br><span class="line">            mu[i] = -<span class="number">1</span>;</span><br><span class="line">        }</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; cnt; j++) {</span><br><span class="line">            <span class="keyword">int</span> t = i * primes[j];</span><br><span class="line">            <span class="keyword">if</span> (t &gt; MAXN) <span class="keyword">break</span>;</span><br><span class="line">            isNotPrime[t] = <span class="literal">true</span>;</span><br><span class="line">            <span class="keyword">if</span> (i % primes[j] == <span class="number">0</span>) {</span><br><span class="line">                mu[t] = <span class="number">0</span>;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            } <span class="keyword">else</span> mu[t] = -mu[i];</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= MAXN; i++) s[i] = s[i - <span class="number">1</span>] + mu[i];</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">gcd</span><span class="params">(<span class="keyword">const</span> <span class="keyword">int</span> a, <span class="keyword">const</span> <span class="keyword">int</span> b)</span> </span>{ <span class="keyword">return</span> !b ? a : gcd(b, a % b); }</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">solve</span><span class="params">(<span class="keyword">int</span> n, <span class="keyword">int</span> m, <span class="keyword">const</span> <span class="keyword">int</span> k)</span> </span>{</span><br><span class="line">    <span class="keyword">if</span> (n &gt; m) <span class="built_in">std</span>::swap(n, m);</span><br><span class="line">    n /= k, m /= k;</span><br><span class="line">    <span class="keyword">int</span> ans = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> l = <span class="number">1</span>, r; l &lt;= n; l = r + <span class="number">1</span>) {</span><br><span class="line">        r = <span class="built_in">std</span>::min(n / (n / l), m / (m / l));</span><br><span class="line">        ans += (s[r] - s[l - <span class="number">1</span>]) * ((n / l) * (m / l));</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/*int ans = 0;</span><br><span class="line">    for (int i = 1; i &lt;= n; i++) for (int j = 1; j &lt;= m; j++) if (gcd(i, j) == k) ans++;</span><br><span class="line">    return ans;*/</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">/*int ans = 0;</span><br><span class="line">    for (int d = 1; d &lt;= (n / k); d++) {</span><br><span class="line">        ans += mu[d] * (n / (k * d)) * (m / (k * d));</span><br><span class="line">    }*/</span></span><br><span class="line">    <span class="comment">// printf(&quot;solve(%d, %d, %d) = %d\n&quot;, n, m, k, ans);</span></span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">solve</span><span class="params">(<span class="keyword">const</span> <span class="keyword">int</span> a, <span class="keyword">const</span> <span class="keyword">int</span> b, <span class="keyword">const</span> <span class="keyword">int</span> c, <span class="keyword">const</span> <span class="keyword">int</span> d, <span class="keyword">const</span> <span class="keyword">int</span> k)</span> </span>{</span><br><span class="line">    <span class="keyword">return</span> solve(b, d, k) - solve(a - <span class="number">1</span>, d, k) - solve(b, c - <span class="number">1</span>, k) + solve(a - <span class="number">1</span>, c - <span class="number">1</span>, k);</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>{</span><br><span class="line">    getPrimes();</span><br><span class="line">    <span class="keyword">int</span> t;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;t);</span><br><span class="line">    <span class="keyword">while</span> (t--) {</span><br><span class="line">        <span class="keyword">int</span> a, b, c, d, k;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">&quot;%d %d %d %d %d&quot;</span>, &amp;a, &amp;b, &amp;c, &amp;d, &amp;k);</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>, solve(a, b, c, d, k));</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+
+            
+        </div>
+    </div>
+    <div id="post-footer" class="post-footer main-content-wrap">
+        <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/euler-sieve/"  data-tooltip="线性筛法筛素数、莫比乌斯函数、欧拉函数">
+                
+                    <i class="fa fa-angle-left"></i>
+                    <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/bzoj-2820/" data-tooltip="「BZOJ 2820」YY的GCD - 莫比乌斯反演">
+                
+                    <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
+                    <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a class="post-action-btn btn btn--default btn-open-shareoptions"  href="#btn-open-shareoptions">
+                <i class="fa fa-share-alt"></i>
+            </a>
+        </li>
+        <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://blog.menci.moe/haoi2011-problemb/">
+                <i class="fa fa-google-plus"></i>
+            </a>
+        </li>
+        <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.menci.moe/haoi2011-problemb/">
+                <i class="fa fa-facebook-official"></i>
+            </a>
+        </li>
+        <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://blog.menci.moe/haoi2011-problemb/">
+                <i class="fa fa-twitter"></i>
+            </a>
+        </li>
+        
+            <li class="post-action">
+                <a class="post-action-btn btn btn--default" href="#disqus_thread">
+                    <i class="fa fa-comment-o"></i>
+                </a>
+            </li>
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#">
+            
+                <i class="fa fa-list"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+        
+            
+                <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+            
+        
+    </div>
+</article>
+
+
+
+                <footer id="footer" class="main-content-wrap">
+    <span class="copyrights">
+        Copyrights &copy; 2016 Menci. All Rights Reserved.
+    </span>
+</footer>
+</script>
+
+            </div>
+            
+                <div id="bottom-bar" class="post-bottom-bar" data-behavior="2">
+                    <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/euler-sieve/"  data-tooltip="线性筛法筛素数、莫比乌斯函数、欧拉函数">
+                
+                    <i class="fa fa-angle-left"></i>
+                    <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/bzoj-2820/" data-tooltip="「BZOJ 2820」YY的GCD - 莫比乌斯反演">
+                
+                    <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
+                    <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a class="post-action-btn btn btn--default btn-open-shareoptions"  href="#btn-open-shareoptions">
+                <i class="fa fa-share-alt"></i>
+            </a>
+        </li>
+        <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://blog.menci.moe/haoi2011-problemb/">
+                <i class="fa fa-google-plus"></i>
+            </a>
+        </li>
+        <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.menci.moe/haoi2011-problemb/">
+                <i class="fa fa-facebook-official"></i>
+            </a>
+        </li>
+        <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://blog.menci.moe/haoi2011-problemb/">
+                <i class="fa fa-twitter"></i>
+            </a>
+        </li>
+        
+            <li class="post-action">
+                <a class="post-action-btn btn btn--default" href="#disqus_thread">
+                    <i class="fa fa-comment-o"></i>
+                </a>
+            </li>
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#">
+            
+                <i class="fa fa-list"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+                </div>
+                <div id="share-options-bar" class="share-options-bar" data-behavior="2">
+    <ul class="share-options">
+        <li class="share-option">
+            <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=https://blog.menci.moe/haoi2011-problemb/">
+                <i class="fa fa-google-plus"></i><span class="">分享到 Google+</span>
+            </a>
+        </li>
+        <li class="share-option">
+            <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.menci.moe/haoi2011-problemb/">
+                <i class="fa fa-facebook-official"></i><span>分享到 Facebook</span>
+            </a>
+        </li>
+        <li class="share-option">
+            <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https://blog.menci.moe/haoi2011-problemb/">
+                <i class="fa fa-twitter"></i><span>分享到 Twitter</span>
+            </a>
+        </li>
+    </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+            
+        </div>
+        
+
+
+    
+        
+    
+
+<div id="about">
+    <div id="about-card">
+        <div id="about-btn-close">
+            <i class="fa fa-remove"></i>
+        </div>
+        
+            <img style="box-shadow: 0 0 15px gray;" id="about-card-picture" src="//dn-menci.qbox.me/assets/images/avatar.png"/>
+        
+            <h4 id="about-card-name">Menci</h4>
+        
+            <h5 id="about-card-bio">眉眼如初，岁月如故</h5>
+        
+        
+            <h5 id="about-card-job">
+                <i class="fa fa-cloud"></i>
+                <br/>
+                One day, <br> I'll reach the next stage <br> to realize all.
+            </h5>
+        
+        
+    </div>
+</div>
+
+        
+<div id="cover" style="background-image:url('//dn-menci.qbox.me/assets/images/cover.jpg');"></div>
+    </body>
+    <!--SCRIPTS-->
+<script src="//dn-menci.qbox.me/assets/js/scrip-0ewjnhvv8ytgl76lkiq8f541cfygs5bpfv33ohlfvpfklrfevqupdsxg46fk.min.js" type="text/javascript"></script>
+<!--SCRIPTS END-->
+
+    
+        <script>
+             var disqus_config = function () {
+				 MenciRemoveIndexDotHtml = function (url) {
+				 	if (url.substr(-10, 10) == 'index.html') return url.substr(0, url.length - 10);
+				 	else return url;
+				 }
+                 this.page.url = MenciRemoveIndexDotHtml('https://blog.menci.moe/haoi2011-problemb/');
+                 
+                 this.page.identifier = MenciRemoveIndexDotHtml('haoi2011-problemb/');
+                                  
+             };
+            (function() {
+                var d = document, s = d.createElement('script');
+                var disqus_shortname = 'menci';
+                s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+
+                s.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        </script>
+    
+
+
+    <script type="text/javascript">
+        (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+                (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+            e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+        })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+        _st('install','L51x_1_hCboFSsSLLGGK','2.0.0');
+    </script>
+
+
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/KaTeX/0.6.0/katex.min.js"></script>
+<!--script type="text/javascript" src="/assets/js/auto-render.min.js"></script-->
+<script>
+$(function() {
+	// renderKatexMathjaxFallback($('body')[0]);
+	renderMathInElement($('body')[0]);
+});
+</script>
+
+</html>

@@ -1,0 +1,571 @@
+
+<!DOCTYPE html>
+<html lang="zh-cn">
+    
+<head>
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="Menci">
+    <title>数论学习笔记（一） - Menci</title>
+    <meta name="author" content="Menci">
+    
+    
+        <link rel="icon" href="//dn-menci.qbox.me/assets/images/avatar.png">
+    
+    
+        <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
+    
+    <meta name="description" content="&amp;#x6570;&amp;#x8BBA;&amp;#x662F; OI &amp;#x4E2D;&amp;#x5F88;&amp;#x91CD;&amp;#x8981;&amp;#x7684;&amp;#x4E00;&amp;#x90E8;&amp;#x5206;&amp;#xFF0C;&amp;#x7136;&amp;#x800C;&amp;#x6211;&amp;#x57FA;&amp;#x672C;&amp;#x4E0A;&amp;#x90FD;&amp;#x4E0D;&amp;#x4F1A;&amp;#xFF0C;&amp;#x6240;&amp;#x4EE5;&amp;#x4">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="数论学习笔记（一）">
+<meta property="og:url" content="https://blog.menci.moe/number-theory-notes-1/index.html">
+<meta property="og:site_name" content="Menci">
+<meta property="og:description" content="&amp;#x6570;&amp;#x8BBA;&amp;#x662F; OI &amp;#x4E2D;&amp;#x5F88;&amp;#x91CD;&amp;#x8981;&amp;#x7684;&amp;#x4E00;&amp;#x90E8;&amp;#x5206;&amp;#xFF0C;&amp;#x7136;&amp;#x800C;&amp;#x6211;&amp;#x57FA;&amp;#x672C;&amp;#x4E0A;&amp;#x90FD;&amp;#x4E0D;&amp;#x4F1A;&amp;#xFF0C;&amp;#x6240;&amp;#x4EE5;&amp;#x4">
+<meta property="og:updated_time" content="2016-05-11T09:33:24.450Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="数论学习笔记（一）">
+<meta name="twitter:description" content="&amp;#x6570;&amp;#x8BBA;&amp;#x662F; OI &amp;#x4E2D;&amp;#x5F88;&amp;#x91CD;&amp;#x8981;&amp;#x7684;&amp;#x4E00;&amp;#x90E8;&amp;#x5206;&amp;#xFF0C;&amp;#x7136;&amp;#x800C;&amp;#x6211;&amp;#x57FA;&amp;#x672C;&amp;#x4E0A;&amp;#x90FD;&amp;#x4E0D;&amp;#x4F1A;&amp;#xFF0C;&amp;#x6240;&amp;#x4EE5;&amp;#x4">
+<meta name="twitter:creator" content="@HuangHaoRui">
+    
+        <meta rel="publisher" content="https://plus.google.com/103195680789397520000"/>
+    
+    
+        
+    
+    
+        <meta property="og:image" content="//dn-menci.qbox.me/assets/images/avatar.png"/>
+    
+    
+    
+    
+    <!--STYLES-->
+    <link rel="stylesheet" href="//dn-menci.qbox.me/assets/css/style-pcycimglbr925yrwj0efxsn118g0acj4bp3qcdehgw1freahg01piplpcrqd.min.css">
+    <!--STYLES END-->
+	<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/KaTeX/0.6.0/katex.min.css">
+	<link href='https://fonts.googleapis.com/css?family=Poiret+One' rel='stylesheet' type='text/css'>
+    
+    <script type="text/javascript">
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-75865916-1']);
+        _gaq.push(['_trackPageview']);
+        (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+    </script>
+
+    
+</head>
+
+    <body>
+        <div id="blog">
+            <!-- Define author's picture -->
+
+
+    
+        
+            
+        
+    
+
+<!--<header id="header" data-behavior="2">-->
+<header id="header" data-behavior="2">
+    <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+    <h1 class="header-title">
+        <a class="header-title-link" href="/ ">Menci</a>
+    </h1>
+    
+        
+            <a  class="header-right-picture "
+                href="/#about">
+        
+        
+            <img class="header-picture" src="//dn-menci.qbox.me/assets/images/avatar.png"/>
+        
+        </a>
+    
+</header>
+
+            <!-- Define author's picture -->
+
+
+
+        
+    
+
+<!--<nav id="sidebar" data-behavior="2">-->
+<nav id="sidebar" data-behavior="2">
+    
+        <div class="sidebar-profile">
+            <a href="/#about">
+                    <img class="sidebar-profile-picture" src="//dn-menci.qbox.me/assets/images/avatar.png"/>
+            </a>
+            <span class="sidebar-profile-name">Menci</span>
+        </div>
+    
+    
+        <ul class="sidebar-buttons">
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link "
+                         href="/ "
+                        
+                    >
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+                    <span class="sidebar-button-desc">首页</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link "
+                         href="/all-tags"
+                        
+                    >
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+                    <span class="sidebar-button-desc">标签</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link "
+                         href="/all-archives"
+                        
+                    >
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+                    <span class="sidebar-button-desc">归档</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link st-search-show-outputs"
+                         href="/#search"
+                        
+                    >
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-search"></i>
+                    <span class="sidebar-button-desc">搜索</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link "
+                         href="/about-me"
+                        
+                    >
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-info"></i>
+                    <span class="sidebar-button-desc">关于</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link "
+                         href="/friends"
+                        
+                    >
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-users"></i>
+                    <span class="sidebar-button-desc">伙伴</span>
+                </a>
+        </li>
+        
+    </ul>
+    
+        <ul class="sidebar-buttons">
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link " href="https://github.com/Menci" target="_blank">
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+                    <span class="sidebar-button-desc">GitHub</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link " href="https://twitter.com/HuangHaoRui" target="_blank">
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-twitter"></i>
+                    <span class="sidebar-button-desc">Twitter</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link " href="http://wpa.qq.com/msgrd?V=3&Uin=421899973" target="_blank">
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-qq"></i>
+                    <span class="sidebar-button-desc">QQ</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link " href="mailto:huanghaorui301@gmail.com" target="_blank">
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-envelope-o"></i>
+                    <span class="sidebar-button-desc">邮箱</span>
+                </a>
+        </li>
+        
+    </ul>
+    
+        <ul class="sidebar-buttons">
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link "
+                         href="/atom.xml"
+                        
+                    >
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-rss"></i>
+                    <span class="sidebar-button-desc">RSS</span>
+                </a>
+        </li>
+        
+    </ul>
+    
+</nav>
+
+            
+            <div id="main" data-behavior="2"
+                 class="
+                        hasCoverMetaIn
+                        ">
+                
+<article class="post" itemscope itemType="http://schema.org/BlogPosting">
+    
+    
+        <div class="post-header main-content-wrap text-left">
+    
+        <h1 class="post-title" itemprop="headline">
+            数论学习笔记（一）
+        </h1>
+    
+    <div class="post-meta" style="border-bottom: 1px solid #eef2f8;">
+    <time itemprop="datePublished" content="Tue Jan 19 2016 21:48:24 GMT+0800">
+	
+		    1月 19, 2016
+    	
+    </time>
+    
+        <span>发布在 </span>
+        
+    <a class="category-link" href="/categories/oi/">OI</a>
+
+
+    
+	
+		<div class="post-footer-tags" style="margin-top: 10px; margin-left: 10px; display: inline-block; border-bottom: none; ">
+			<!--span class="text-color-light text-small">标签</span><br/-->
+			
+    <a class="tag tag--primary tag--small t-link" href="/tag/学习笔记/">学习笔记</a> <a class="tag tag--primary tag--small t-link" href="/tag/数学/">数学</a> <a class="tag tag--primary tag--small t-link" href="/tag/数论/">数论</a> <a class="tag tag--primary tag--small t-link" href="/tag/算法模板/">算法模板</a>
+
+		</div>
+	
+</div>
+
+</div>
+    
+    <div class="post-content markdown" itemprop="articleBody">
+        <div class="main-content-wrap">
+            <p>&#x6570;&#x8BBA;&#x662F; OI &#x4E2D;&#x5F88;&#x91CD;&#x8981;&#x7684;&#x4E00;&#x90E8;&#x5206;&#xFF0C;&#x7136;&#x800C;&#x6211;&#x57FA;&#x672C;&#x4E0A;&#x90FD;&#x4E0D;&#x4F1A;&#xFF0C;&#x6240;&#x4EE5;&#x4ECE;&#x73B0;&#x5728;&#x5F00;&#x59CB;&#x6211;&#x8981;&#x5B66;&#x6570;&#x8BBA;&#xFF01;</p>
+<a id="more"></a>
+<h3 id="&#x6B27;&#x51E0;&#x91CC;&#x5F97;">&#x6B27;&#x51E0;&#x91CC;&#x5F97;</h3>
+<p>&#x7B97;&#x662F; OI &#x4E2D;&#x6570;&#x8BBA;&#x6700;&#x57FA;&#x672C;&#x7684;&#x4E86;&#x5427;&#xFF0C;&#x6C42;&#x4E24;&#x4E2A;&#x6570;&#x7684;&#x6700;&#x5927;&#x516C;&#x7EA6;&#x6570;&#x3002;</p>
+<p>$$ \gcd(a,b)=\cases{ a &amp; b = 0 \\ \gcd(b,a \ {\rm mod} \ b) &amp; b &#x2260; 0 } $$</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">gcd</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span> </span>{</span><br><span class="line">    <span class="keyword">return</span> !b ? a : gcd(b, a % b);</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<p>&#x987A;&#x4FBF;&#x6C42;&#x4E24;&#x4E2A;&#x6570;&#x7684;&#x6700;&#x5C0F;&#x516C;&#x500D;&#x6570;&#x3002;</p>
+<p>$$ {\rm lcm}(a,b)=\frac{a*b}{\gcd(a,b)} $$</p>
+<p>&#x5199;&#x7A0B;&#x5E8F;&#x65F6;&#x5148;&#x9664;&#x540E;&#x4E58;&#x9632;&#x70B8;&#x3002;</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">lcm</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span> </span>{</span><br><span class="line">    <span class="keyword">return</span> a / gcd(a, b) * b;</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<h3 id="&#x6269;&#x5C55;&#x6B27;&#x51E0;&#x91CC;&#x5F97;">&#x6269;&#x5C55;&#x6B27;&#x51E0;&#x91CC;&#x5F97;</h3>
+<p>&#x6269;&#x5C55;&#x6B27;&#x51E0;&#x91CC;&#x5F97; <code>exgcd</code> &#x53EF;&#x4EE5;&#x5728;&#x6C42;&#x51FA; $\gcd(a,b)$ &#x7684;&#x540C;&#x65F6;&#x6C42;&#x51FA;&#x4E8C;&#x5143;&#x4E00;&#x6B21;&#x4E0D;&#x5B9A;&#x65B9;&#x7A0B; $ax+by=\gcd(a,b)$&#x7684;&#x4E00;&#x7EC4;&#x6574;&#x6570;&#x89E3;&#x3002;</p>
+<p>&#x4E3E;&#x4E2A;&#x6817;&#x5B50;&#xFF0C;&#x6C42; $\gcd(47,30)$ &#x65F6;&#xFF0C;&#x5F97;&#x5230;&#x4EE5;&#x4E0B;&#x5F0F;&#x5B50;&#x3002;</p>
+<p>$$ \begin{align*} &amp; 47=30*1+17 \\ &amp; 30=17*1+13 \\ &amp; 17=13*1+4 \\ &amp; 13=4*3+1 \\ \end{align*} $$</p>
+<p>&#x628A;&#x4F59;&#x6570;&#x79FB;&#x5230;&#x5DE6;&#x8FB9;</p>
+<p>$$ \begin{align*} &amp; 17=47+30*(-1) \\ &amp; 13=30+17*(-1) \\ &amp; 4=17+13*(-1) \\ &amp; 1=13+4*(-3) \\ \end{align*} $$</p>
+<p>&#x4ECE; $\gcd(47,30)=1$ &#x5F00;&#x59CB;&#xFF0C;&#x5C06;&#x56DB;&#x4E2A;&#x5F0F;&#x5B50;&#x4F9D;&#x6B21;&#x5E26;&#x5165;&#xFF0C;&#x5F97;</p>
+<p>$$ \begin{align*} &amp; \gcd(47,30) \\ &amp; =1 \\ &amp; =13*1+4*(-3) \\ &amp; =13*1+[17+13*(-1)]*(-3) \\ &amp; =13*4+17*(-3) \\ &amp; =17*3+13*4 \\ &amp; =17*3+[30+17*(-1)]*4 \\ &amp; =17*(-7)+30*4 \\ &amp; =30*4+17*(-7) \\ &amp; =30*4+[47+30*(-1)]*(-7) \\ &amp; =30*11+47*(-7) \\ &amp; =47*(-7)+30*11 \\ \end{align*} $$</p>
+<p>&#x89E3;&#x5F97; $x=-7,y=11$&#x3002;</p>
+<p>&#x7531;&#x4E0A;&#x8FF0;&#x5F0F;&#x5B50;&#x53EF;&#x89C2;&#x5BDF;&#x5230;&#xFF0C;&#x6BCF;&#x6B21;&#x8F97;&#x8F6C;&#x4EA4;&#x6362;&#x4E86; <code>x</code> &#x548C; <code>y</code>&#xFF0C;&#x5E76;&#x5C06; <code>y</code> &#x51CF;&#x53BB;&#x4E86;&#x539F; <code>x</code> &#x4E0E;&#x8F97;&#x8F6C;&#x76F8;&#x9664;&#x6240;&#x5F97;&#x5546;&#x7684;&#x4E58;&#x79EF;&#x3002;</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">exgcd</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b, <span class="keyword">int</span> g, <span class="keyword">int</span> &amp;x, <span class="keyword">int</span> &amp;y)</span> </span>{</span><br><span class="line">    <span class="keyword">if</span> (b == <span class="number">0</span>) {</span><br><span class="line">        x = <span class="number">1</span>, y = <span class="number">0</span>;</span><br><span class="line">        g = a;</span><br><span class="line">    } <span class="keyword">else</span> {</span><br><span class="line">        exgcd(b, a % b, g, y, x);</span><br><span class="line">        y -= x * (a / b);</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<h3 id="eratosthenes-&#x7B5B;&#x6CD5;">Eratosthenes &#x7B5B;&#x6CD5;</h3>
+<p>&#x5728;&#x7B5B;&#x9009;&#x4E4B;&#x524D;&#xFF0C;&#x5148;&#x8BA4;&#x4E3A;&#x6BCF;&#x4E2A;&#x6570;&#x90FD;&#x662F;&#x7D20;&#x6570;&#x3002;&#x679A;&#x4E3E;&#x6240;&#x6709;&#x6570;&#xFF0C;&#x5982;&#x679C;&#x8FD9;&#x4E2A;&#x6570;&#x662F;&#x7D20;&#x6570;&#xFF0C;&#x90A3;&#x4E48;&#x7B5B;&#x6389;&#x8FD9;&#x4E2A;&#x6570;&#x7684;&#x6240;&#x6709;&#x500D;&#x6570;&#xFF0C;&#x6807;&#x8BB0;&#x5B83;&#x4EEC;&#x4E3A;&#x201C;&#x4E0D;&#x662F;&#x7D20;&#x6570;&#x201D;&#x3002;</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">bool</span> isNotPrime[MAXN + <span class="number">1</span>];</span><br><span class="line"><span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; primes;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">getPrimes</span><span class="params">(<span class="keyword">int</span> n)</span> </span>{</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">2</span>; i &lt;= n; i++) {</span><br><span class="line">        <span class="keyword">if</span> (isNotPrime[i]) <span class="keyword">continue</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = i * <span class="number">2</span>; j &lt;= n; j += i) isNotPrime[j] = <span class="literal">true</span>;</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    primes.reserve(n);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">2</span>; i &lt;= n; i++) <span class="keyword">if</span> (!isNotPrime[i]) primes.push_back(i);</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<p>&#x4E24;&#x4E2A;&#x4F18;&#x5316;&#xFF1A; 1. &#x7B2C;&#x4E8C;&#x5C42;&#x5FAA;&#x73AF;&#x53EF;&#x4EE5;&#x4ECE; $i^2$ &#x5F00;&#x59CB;&#xFF0C;&#x56E0;&#x4E3A;&#x5BF9;&#x4E8E;&#x6BCF;&#x4E2A;&#x5C0F;&#x4E8E; $i$ &#x7684;&#x6570; $i&#x2019;$&#xFF0C;$i*i&#x2019;$ &#x90FD;&#x5DF2;&#x7ECF;&#x5728;&#x7B2C; $i&#x2019;$ &#x6B21;&#x5FAA;&#x73AF;&#x7B5B;&#x6389;&#x4E86;&#x3002; 2. &#x679A;&#x4E3E; $[2,\sqrt{n}]$ &#x7684;&#x7D20;&#x6570;&#x5373;&#x53EF;&#xFF0C;&#x56E0;&#x4E3A;&#x5BF9;&#x4E8E;&#x6BCF;&#x4E2A;&#x5408;&#x6570; $p&gt;\sqrt{n}$&#xFF0C;&#x5219;&#x5FC5;&#x6709;&#x7D20;&#x6570; $k$ &#x6EE1;&#x8DB3; $p=k*k&#x2019;$ &#x4E14; $k&lt; \sqrt{n}$&#xFF0C;&#x6240;&#x4EE5; $p$ &#x4F1A;&#x5728;&#x7B2C; $k$ &#x6B21;&#x5FAA;&#x73AF;&#x88AB;&#x7B5B;&#x6389;&#x3002;</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">bool</span> isNotPrime[MAXN + <span class="number">1</span>];</span><br><span class="line"><span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; primes;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">getPrimes</span><span class="params">(<span class="keyword">int</span> n)</span> </span>{</span><br><span class="line">    <span class="keyword">int</span> m = <span class="built_in">floor</span>(<span class="built_in">sqrt</span>(n + <span class="number">0.5</span>));</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">2</span>; i &lt;= m; i++) {</span><br><span class="line">        <span class="keyword">if</span> (isNotPrime[i]) <span class="keyword">continue</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = i * i; j &lt;= n; j += i) isNotPrime[j] = <span class="literal">true</span>;</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    primes.reserve(n);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">2</span>; i &lt;= n; i++) <span class="keyword">if</span> (!isNotPrime[i]) primes.push_back(i);</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<h3 id="&#x6B27;&#x62C9;&#x51FD;&#x6570;">&#x6B27;&#x62C9;&#x51FD;&#x6570;</h3>
+<p>&#x6839;&#x636E;&#x552F;&#x4E00;&#x5206;&#x89E3;&#x5B9A;&#x7406;&#xFF0C;&#x4EFB;&#x4F55;&#x4E00;&#x4E2A;&#x6B63;&#x6574;&#x6570; $n$ &#x90FD;&#x53EF;&#x4EE5;&#x5199;&#x6210; $k$ &#x4E2A;&#x7D20;&#x6570;&#x7684;&#x5E42;&#x7684;&#x79EF;&#x7684;&#x5F62;&#x5F0F;&#xFF0C;&#x5176;&#x4E2D;&#x7B2C; $i$ &#x4E2A;&#x7D20;&#x6570;&#x7684;&#x6307;&#x6570;&#x4E3A; $a_i$&#x3002;&#x5373;&#xFF1A;</p>
+<p>$$ n={\prod_{i=1}^{k}} \ {p_i}^{a_i} $$</p>
+<p>&#x6839;&#x636E;&#x5BB9;&#x65A5;&#x539F;&#x7406;&#xFF0C;&#x4ECE;&#x603B;&#x6570; $n$ &#x4E2D;&#x5148;&#x51CF;&#x53BB;&#x6BCF;&#x4E2A; $p_i$ &#x7684;&#x500D;&#x6570;&#xFF0C;&#x518D;&#x628A;&#x591A;&#x51CF;&#x7684;&#x8865;&#x56DE;&#x6765;&#xFF0C;&#x518D;&#x628A;&#x591A;&#x8865;&#x7684;&#x51CF;&#x56DE;&#x6765; &#x2026;&#x2026; &#x6700;&#x7EC8;&#x5F97;&#x5230;&#x516C;&#x5F0F;</p>
+<p>$$ \phi(n)={\sum_{S{\subseteq}\{p_1,p_2,\ldots,p_k\}}{(-1)^{|S|}} * {\frac{n}{ {\prod_{ {p_i}{\in}S} } \ p_i }}} $$</p>
+<p>&#x628A;&#x6C42;&#x548C;&#x548C;&#x5BB9;&#x65A5;&#x539F;&#x7406;&#x7684;&#x5E94;&#x7528;&#x5168;&#x90E8;&#x5C55;&#x5F00;&#x4E4B;&#x540E;&#x5C31;&#x662F;</p>
+<p>$$ \phi(n)=n*\prod_{i=1}^{k} (1 - \frac{1}{p_i}) $$</p>
+<p>&#x7A0B;&#x5E8F;&#x5B9E;&#x73B0;&#x5C31;&#x662F;&#x5148;&#x4EE4;&#x7ED3;&#x679C;&#x4E3A; $n$&#xFF0C;&#x6BCF;&#x6B21;&#x628A;&#x7ED3;&#x679C;&#x9664;&#x6389;&#x4E00;&#x4E2A; $p$ &#x518D;&#x4E58;&#x4E0A; $p-1$&#x3002;&#x55EF;&#xFF0C;&#x4E0D;&#x662F;&#x5F88;&#x597D;&#x7406;&#x89E3; &#x2026;&#x2026;</p>
+<p>&#x5BF9;&#x4E8E;&#x7ED9;&#x5B9A;&#x7684; $n$&#xFF0C;&#x7528;&#x7C7B;&#x4F3C;&#x7B5B;&#x6CD5;&#x7684;&#x601D;&#x60F3;&#x679A;&#x4E3E;&#x7D20;&#x6570;&#xFF0C;&#x6BCF;&#x6B21;&#x627E;&#x5230;&#x4E00;&#x4E2A;&#x7D20;&#x6570;&#x540E;&#x628A;&#x5B83;&#x7684;&#x500D;&#x6570;&#x5168;&#x90E8;&#x7B5B;&#x6389;&#x3002;</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">phi</span><span class="params">()</span> </span>{</span><br><span class="line">    <span class="keyword">int</span> m = <span class="built_in">floor</span>(<span class="built_in">sqrt</span>(n + <span class="number">0.5</span>)), ans = n;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">2</span>; i &lt;= m; i++) {</span><br><span class="line">        <span class="keyword">if</span> (n % i == <span class="number">0</span>) {</span><br><span class="line">            ans = ans / i * (i - <span class="number">1</span>);</span><br><span class="line">            <span class="keyword">while</span> (n % i == <span class="number">0</span>) n /= i;</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (n != <span class="number">1</span>) ans = ans / n * (n - <span class="number">1</span>); <span class="comment">// &#x524D;&#x9762;&#x6CA1;&#x7B5B;&#x5E72;&#x51C0;&#x7684;</span></span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<p>&#x672A;&#x5B8C;&#x5F85;&#x7EED; &#x2026;&#x2026;</p>
+
+            
+        </div>
+    </div>
+    <div id="post-footer" class="post-footer main-content-wrap">
+        <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/noi2015-prog/"  data-tooltip="「NOI2015」程序自动分析 - 离散化 + 并查集">
+                
+                    <i class="fa fa-angle-left"></i>
+                    <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/noip2012-mod/" data-tooltip="「NOIP2012」同余方程 - 扩展欧几里得">
+                
+                    <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
+                    <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a class="post-action-btn btn btn--default btn-open-shareoptions"  href="#btn-open-shareoptions">
+                <i class="fa fa-share-alt"></i>
+            </a>
+        </li>
+        <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://blog.menci.moe/number-theory-notes-1/">
+                <i class="fa fa-google-plus"></i>
+            </a>
+        </li>
+        <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.menci.moe/number-theory-notes-1/">
+                <i class="fa fa-facebook-official"></i>
+            </a>
+        </li>
+        <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://blog.menci.moe/number-theory-notes-1/">
+                <i class="fa fa-twitter"></i>
+            </a>
+        </li>
+        
+            <li class="post-action">
+                <a class="post-action-btn btn btn--default" href="#disqus_thread">
+                    <i class="fa fa-comment-o"></i>
+                </a>
+            </li>
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#">
+            
+                <i class="fa fa-list"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+        
+            
+                <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+            
+        
+    </div>
+</article>
+
+
+
+                <footer id="footer" class="main-content-wrap">
+    <span class="copyrights">
+        Copyrights &copy; 2016 Menci. All Rights Reserved.
+    </span>
+</footer>
+</script>
+
+            </div>
+            
+                <div id="bottom-bar" class="post-bottom-bar" data-behavior="2">
+                    <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/noi2015-prog/"  data-tooltip="「NOI2015」程序自动分析 - 离散化 + 并查集">
+                
+                    <i class="fa fa-angle-left"></i>
+                    <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/noip2012-mod/" data-tooltip="「NOIP2012」同余方程 - 扩展欧几里得">
+                
+                    <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
+                    <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a class="post-action-btn btn btn--default btn-open-shareoptions"  href="#btn-open-shareoptions">
+                <i class="fa fa-share-alt"></i>
+            </a>
+        </li>
+        <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://blog.menci.moe/number-theory-notes-1/">
+                <i class="fa fa-google-plus"></i>
+            </a>
+        </li>
+        <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.menci.moe/number-theory-notes-1/">
+                <i class="fa fa-facebook-official"></i>
+            </a>
+        </li>
+        <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://blog.menci.moe/number-theory-notes-1/">
+                <i class="fa fa-twitter"></i>
+            </a>
+        </li>
+        
+            <li class="post-action">
+                <a class="post-action-btn btn btn--default" href="#disqus_thread">
+                    <i class="fa fa-comment-o"></i>
+                </a>
+            </li>
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#">
+            
+                <i class="fa fa-list"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+                </div>
+                <div id="share-options-bar" class="share-options-bar" data-behavior="2">
+    <ul class="share-options">
+        <li class="share-option">
+            <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=https://blog.menci.moe/number-theory-notes-1/">
+                <i class="fa fa-google-plus"></i><span class="">分享到 Google+</span>
+            </a>
+        </li>
+        <li class="share-option">
+            <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.menci.moe/number-theory-notes-1/">
+                <i class="fa fa-facebook-official"></i><span>分享到 Facebook</span>
+            </a>
+        </li>
+        <li class="share-option">
+            <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https://blog.menci.moe/number-theory-notes-1/">
+                <i class="fa fa-twitter"></i><span>分享到 Twitter</span>
+            </a>
+        </li>
+    </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+            
+        </div>
+        
+
+
+    
+        
+    
+
+<div id="about">
+    <div id="about-card">
+        <div id="about-btn-close">
+            <i class="fa fa-remove"></i>
+        </div>
+        
+            <img style="box-shadow: 0 0 15px gray;" id="about-card-picture" src="//dn-menci.qbox.me/assets/images/avatar.png"/>
+        
+            <h4 id="about-card-name">Menci</h4>
+        
+            <h5 id="about-card-bio">眉眼如初，岁月如故</h5>
+        
+        
+            <h5 id="about-card-job">
+                <i class="fa fa-cloud"></i>
+                <br/>
+                One day, <br> I'll reach the next stage <br> to realize all.
+            </h5>
+        
+        
+    </div>
+</div>
+
+        
+<div id="cover" style="background-image:url('//dn-menci.qbox.me/assets/images/cover.jpg');"></div>
+    </body>
+    <!--SCRIPTS-->
+<script src="//dn-menci.qbox.me/assets/js/scrip-0ewjnhvv8ytgl76lkiq8f541cfygs5bpfv33ohlfvpfklrfevqupdsxg46fk.min.js" type="text/javascript"></script>
+<!--SCRIPTS END-->
+
+    
+        <script>
+             var disqus_config = function () {
+				 MenciRemoveIndexDotHtml = function (url) {
+				 	if (url.substr(-10, 10) == 'index.html') return url.substr(0, url.length - 10);
+				 	else return url;
+				 }
+                 this.page.url = MenciRemoveIndexDotHtml('https://blog.menci.moe/number-theory-notes-1/');
+                 
+                 this.page.identifier = MenciRemoveIndexDotHtml('number-theory-notes-1/');
+                                  
+             };
+            (function() {
+                var d = document, s = d.createElement('script');
+                var disqus_shortname = 'menci';
+                s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+
+                s.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        </script>
+    
+
+
+    <script type="text/javascript">
+        (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+                (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+            e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+        })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+        _st('install','L51x_1_hCboFSsSLLGGK','2.0.0');
+    </script>
+
+
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/KaTeX/0.6.0/katex.min.js"></script>
+<!--script type="text/javascript" src="/assets/js/auto-render.min.js"></script-->
+<script>
+$(function() {
+	// renderKatexMathjaxFallback($('body')[0]);
+	renderMathInElement($('body')[0]);
+});
+</script>
+
+</html>

@@ -1,0 +1,557 @@
+
+<!DOCTYPE html>
+<html lang="zh-cn">
+    
+<head>
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="Menci">
+    <title>「CodeVS 2598」编辑距离问题 - 线性DP - Menci</title>
+    <meta name="author" content="Menci">
+    
+    
+        <link rel="icon" href="//dn-menci.qbox.me/assets/images/avatar.png">
+    
+    
+        <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
+    
+    <meta name="description" content="&amp;#x8BBE; A &amp;#x548C; B &amp;#x662F; 2 &amp;#x4E2A;&amp;#x5B57;&amp;#x7B26;&amp;#x4E32;&amp;#x3002;&amp;#x8981;&amp;#x7528;&amp;#x6700;&amp;#x5C11;&amp;#x7684;&amp;#x5B57;&amp;#x7B26;&amp;#x64CD;&amp;#x4F5C;&amp;#x5C06;&amp;#x5B57;&amp;#x7B26;&amp;#x4E32; A &amp;#x8F6C;&amp;#x6362;&amp;#x4">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="「CodeVS 2598」编辑距离问题 - 线性DP">
+<meta property="og:url" content="https://blog.menci.moe/codevs-2598/index.html">
+<meta property="og:site_name" content="Menci">
+<meta property="og:description" content="&amp;#x8BBE; A &amp;#x548C; B &amp;#x662F; 2 &amp;#x4E2A;&amp;#x5B57;&amp;#x7B26;&amp;#x4E32;&amp;#x3002;&amp;#x8981;&amp;#x7528;&amp;#x6700;&amp;#x5C11;&amp;#x7684;&amp;#x5B57;&amp;#x7B26;&amp;#x64CD;&amp;#x4F5C;&amp;#x5C06;&amp;#x5B57;&amp;#x7B26;&amp;#x4E32; A &amp;#x8F6C;&amp;#x6362;&amp;#x4">
+<meta property="og:updated_time" content="2016-01-19T13:05:21.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="「CodeVS 2598」编辑距离问题 - 线性DP">
+<meta name="twitter:description" content="&amp;#x8BBE; A &amp;#x548C; B &amp;#x662F; 2 &amp;#x4E2A;&amp;#x5B57;&amp;#x7B26;&amp;#x4E32;&amp;#x3002;&amp;#x8981;&amp;#x7528;&amp;#x6700;&amp;#x5C11;&amp;#x7684;&amp;#x5B57;&amp;#x7B26;&amp;#x64CD;&amp;#x4F5C;&amp;#x5C06;&amp;#x5B57;&amp;#x7B26;&amp;#x4E32; A &amp;#x8F6C;&amp;#x6362;&amp;#x4">
+<meta name="twitter:creator" content="@HuangHaoRui">
+    
+        <meta rel="publisher" content="https://plus.google.com/103195680789397520000"/>
+    
+    
+        
+    
+    
+        <meta property="og:image" content="//dn-menci.qbox.me/assets/images/avatar.png"/>
+    
+    
+    
+    
+    <!--STYLES-->
+    <link rel="stylesheet" href="//dn-menci.qbox.me/assets/css/style-pcycimglbr925yrwj0efxsn118g0acj4bp3qcdehgw1freahg01piplpcrqd.min.css">
+    <!--STYLES END-->
+	<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/KaTeX/0.6.0/katex.min.css">
+	<link href='https://fonts.googleapis.com/css?family=Poiret+One' rel='stylesheet' type='text/css'>
+    
+    <script type="text/javascript">
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-75865916-1']);
+        _gaq.push(['_trackPageview']);
+        (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+    </script>
+
+    
+</head>
+
+    <body>
+        <div id="blog">
+            <!-- Define author's picture -->
+
+
+    
+        
+            
+        
+    
+
+<!--<header id="header" data-behavior="2">-->
+<header id="header" data-behavior="2">
+    <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+    <h1 class="header-title">
+        <a class="header-title-link" href="/ ">Menci</a>
+    </h1>
+    
+        
+            <a  class="header-right-picture "
+                href="/#about">
+        
+        
+            <img class="header-picture" src="//dn-menci.qbox.me/assets/images/avatar.png"/>
+        
+        </a>
+    
+</header>
+
+            <!-- Define author's picture -->
+
+
+
+        
+    
+
+<!--<nav id="sidebar" data-behavior="2">-->
+<nav id="sidebar" data-behavior="2">
+    
+        <div class="sidebar-profile">
+            <a href="/#about">
+                    <img class="sidebar-profile-picture" src="//dn-menci.qbox.me/assets/images/avatar.png"/>
+            </a>
+            <span class="sidebar-profile-name">Menci</span>
+        </div>
+    
+    
+        <ul class="sidebar-buttons">
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link "
+                         href="/ "
+                        
+                    >
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+                    <span class="sidebar-button-desc">首页</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link "
+                         href="/all-tags"
+                        
+                    >
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+                    <span class="sidebar-button-desc">标签</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link "
+                         href="/all-archives"
+                        
+                    >
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+                    <span class="sidebar-button-desc">归档</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link st-search-show-outputs"
+                         href="/#search"
+                        
+                    >
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-search"></i>
+                    <span class="sidebar-button-desc">搜索</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link "
+                         href="/about-me"
+                        
+                    >
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-info"></i>
+                    <span class="sidebar-button-desc">关于</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link "
+                         href="/friends"
+                        
+                    >
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-users"></i>
+                    <span class="sidebar-button-desc">伙伴</span>
+                </a>
+        </li>
+        
+    </ul>
+    
+        <ul class="sidebar-buttons">
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link " href="https://github.com/Menci" target="_blank">
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+                    <span class="sidebar-button-desc">GitHub</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link " href="https://twitter.com/HuangHaoRui" target="_blank">
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-twitter"></i>
+                    <span class="sidebar-button-desc">Twitter</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link " href="http://wpa.qq.com/msgrd?V=3&Uin=421899973" target="_blank">
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-qq"></i>
+                    <span class="sidebar-button-desc">QQ</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link " href="mailto:huanghaorui301@gmail.com" target="_blank">
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-envelope-o"></i>
+                    <span class="sidebar-button-desc">邮箱</span>
+                </a>
+        </li>
+        
+    </ul>
+    
+        <ul class="sidebar-buttons">
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link "
+                         href="/atom.xml"
+                        
+                    >
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-rss"></i>
+                    <span class="sidebar-button-desc">RSS</span>
+                </a>
+        </li>
+        
+    </ul>
+    
+</nav>
+
+            
+            <div id="main" data-behavior="2"
+                 class="
+                        hasCoverMetaIn
+                        ">
+                
+<article class="post" itemscope itemType="http://schema.org/BlogPosting">
+    
+    
+        <div class="post-header main-content-wrap text-left">
+    
+        <h1 class="post-title" itemprop="headline">
+            「CodeVS 2598」编辑距离问题 - 线性DP
+        </h1>
+    
+    <div class="post-meta" style="border-bottom: 1px solid #eef2f8;">
+    <time itemprop="datePublished" content="Sat Jan 09 2016 05:32:19 GMT+0800">
+	
+		    1月 09, 2016
+    	
+    </time>
+    
+        <span>发布在 </span>
+        
+    <a class="category-link" href="/categories/oi/">OI</a>
+
+
+    
+	
+		<div class="post-footer-tags" style="margin-top: 10px; margin-left: 10px; display: inline-block; border-bottom: none; ">
+			<!--span class="text-color-light text-small">标签</span><br/-->
+			
+    <a class="tag tag--primary tag--small t-link" href="/tag/codevs/">CodeVS</a> <a class="tag tag--primary tag--small t-link" href="/tag/dp/">DP</a> <a class="tag tag--primary tag--small t-link" href="/tag/字符串/">字符串</a> <a class="tag tag--primary tag--small t-link" href="/tag/线性dp/">线性DP</a>
+
+		</div>
+	
+</div>
+
+</div>
+    
+    <div class="post-content markdown" itemprop="articleBody">
+        <div class="main-content-wrap">
+            <p>&#x8BBE; A &#x548C; B &#x662F; 2 &#x4E2A;&#x5B57;&#x7B26;&#x4E32;&#x3002;&#x8981;&#x7528;&#x6700;&#x5C11;&#x7684;&#x5B57;&#x7B26;&#x64CD;&#x4F5C;&#x5C06;&#x5B57;&#x7B26;&#x4E32; A &#x8F6C;&#x6362;&#x4E3A;&#x5B57;&#x7B26;&#x4E32; B&#x3002;&#x8FD9;&#x91CC;&#x6240;&#x8BF4;&#x7684;&#x5B57;&#x7B26;&#x64CD;&#x4F5C;&#x5305;&#x62EC;&#xFF1A;</p>
+<ol style="list-style-type: decimal">
+<li>&#x5220;&#x9664;&#x4E00;&#x4E2A;&#x5B57;&#x7B26;&#xFF1B;</li>
+<li>&#x63D2;&#x5165;&#x4E00;&#x4E2A;&#x5B57;&#x7B26;&#xFF1B;</li>
+<li>&#x5C06;&#x4E00;&#x4E2A;&#x5B57;&#x7B26;&#x6539;&#x4E3A;&#x53E6;&#x4E00;&#x4E2A;&#x5B57;&#x7B26;&#x3002;</li>
+</ol>
+<p>&#x6C42;&#x5C06;&#x5B57;&#x7B26;&#x4E32; A &#x53D8;&#x6362;&#x4E3A;&#x5B57;&#x7B26;&#x4E32; B &#x6240;&#x7528;&#x7684;&#x6700;&#x5C11;&#x5B57;&#x7B26;&#x64CD;&#x4F5C;&#x6570;&#xFF0C;&#x5373; A &#x5230; B &#x7684;&#x7F16;&#x8F91;&#x8DDD;&#x79BB;&#x3002;</p>
+<p>&#x5B57;&#x7B26;&#x4E32; A&#x3001;B &#x7684;&#x957F;&#x5EA6;&#x5747;&#x4E0D;&#x8D85;&#x8FC7;4000&#x3002;</p>
+<a id="more"></a>
+<h3 id="&#x94FE;&#x63A5;">&#x94FE;&#x63A5;</h3>
+<p><a href="http://codevs.cn/problem/2598/" target="_blank" rel="external">CodeVS 2598</a></p>
+<h3 id="&#x9898;&#x89E3;">&#x9898;&#x89E3;</h3>
+<p>&#x5B57;&#x7B26;&#x4E32;&#x7684;&#x9898;&#x4E4D;&#x4E00;&#x770B;&#x90FD;&#x5F88;&#x6076;&#x5FC3;&#xFF0C;&#x4F46;&#x8FD9;&#x9053;&#x9898;&#x4ED4;&#x7EC6;&#x60F3;&#x60F3;&#x8FD8;&#x662F;&#x5F88;&#x7B80;&#x5355;&#x7684;&#x3002; &#x7528; <code>f[i][j]</code> &#x8868;&#x793A;&#x5B57;&#x7B26;&#x4E32; A &#x7684;&#x524D; <code>i</code> &#x4E2A;&#x5B57;&#x7B26;&#x5230;&#x5B57;&#x7B26;&#x4E32; B &#x7684;&#x524D; <code>j</code> &#x4E2A;&#x5B57;&#x7B26;&#x7684;&#x7F16;&#x8F91;&#x8DDD;&#x79BB;&#xFF0C;&#x5219;&#x8F6C;&#x79FB;&#x65B9;&#x7A0B;&#x4E3A;&#xFF1A;</p>
+<p>$$ f[i][j] = \cases{ f[i-1][j-1] &amp; A[i]=B[j] \\ {\min}(f[i][j-1],f[i-1][j],f[i-1][j-1])+1 &amp; A[i] &#x2260; B[j]} $$</p>
+<p>&#x5F53; $ A[i]=B[j] $ &#x65F6;&#xFF0C;&#x5F53;&#x524D;&#x4F4D;&#x7F6E;&#x65E0;&#x9700;&#x7F16;&#x8F91;&#xFF0C;&#x76F4;&#x63A5;&#x7B49;&#x4E8E;&#x4E0A;&#x4E00;&#x4F4D;&#x7684;&#x7F16;&#x8F91;&#x8DDD;&#x79BB;&#x3002;</p>
+<p>&#x5F53; $ A[i]&#x2260;B[j] $ &#x65F6;&#xFF0C;&#x6709;&#x4E09;&#x79CD;&#x60C5;&#x51B5;&#xFF1A;</p>
+<ol style="list-style-type: decimal">
+<li>&#x5B57;&#x7B26;&#x4E32; B &#x7684;&#x524D; <code>j</code> &#x4F4D;&#x53EF;&#x7531; $A[i]$ &#x7F16;&#x8F91;&#x5230; $B[j-1]$ &#x540E;&#x63D2;&#x5165; B &#x7684;&#x7B2C; <code>j</code> &#x4E2A;&#x5B57;&#x7B26;&#x5F97;&#x5230;&#x3002;</li>
+<li>&#x5B57;&#x7B26;&#x4E32; B &#x7684;&#x524D; <code>j</code> &#x4F4D;&#x53EF;&#x7531; $A[i-1]$ &#x7F16;&#x8F91;&#x5230; $B[j]$ &#x540E;&#x5220;&#x9664; A &#x7684;&#x7B2C; <code>i</code> &#x4E2A;&#x5B57;&#x7B26;&#x5F97;&#x5230;&#x3002;</li>
+<li>&#x5B57;&#x7B26;&#x4E32; B &#x7684;&#x524D; <code>j</code> &#x4F4D;&#x53EF;&#x7531; $A[i-1]$ &#x7F16;&#x8F91;&#x5230; $B[j-1]$ &#x540E;&#x4FEE;&#x6539; A &#x7684;&#x7B2C; <code>i</code> &#x4E2A;&#x5B57;&#x7B26;&#x4E3A; B &#x7684;&#x7B2C; <code>j</code> &#x4E2A;&#x5B57;&#x7B26;&#x5F97;&#x5230;&#x3002;</li>
+</ol>
+<h3 id="&#x4EE3;&#x7801;">&#x4EE3;&#x7801;</h3>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;climits&gt;</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;algorithm&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAXN = <span class="number">4000</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">char</span> s1[MAXN + <span class="number">1</span>], s2[MAXN + <span class="number">1</span>];</span><br><span class="line"><span class="keyword">int</span> n1, n2, ans[MAXN][MAXN];</span><br><span class="line"><span class="keyword">bool</span> calced[MAXN][MAXN];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">search</span><span class="params">(<span class="keyword">int</span> i, <span class="keyword">int</span> j)</span> </span>{</span><br><span class="line">    <span class="keyword">if</span> (i == <span class="number">0</span>) <span class="keyword">return</span> j;</span><br><span class="line">    <span class="keyword">if</span> (j == <span class="number">0</span>) <span class="keyword">return</span> i;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (!calced[i - <span class="number">1</span>][j - <span class="number">1</span>]) {</span><br><span class="line">        <span class="keyword">if</span> (s1[i - <span class="number">1</span>] == s2[j - <span class="number">1</span>]) {</span><br><span class="line">            ans[i - <span class="number">1</span>][j - <span class="number">1</span>] = search(i - <span class="number">1</span>, j - <span class="number">1</span>);</span><br><span class="line">        } <span class="keyword">else</span> {</span><br><span class="line">            ans[i - <span class="number">1</span>][j - <span class="number">1</span>] = INT_MAX;</span><br><span class="line">            ans[i - <span class="number">1</span>][j - <span class="number">1</span>] = <span class="built_in">std</span>::min(ans[i - <span class="number">1</span>][j - <span class="number">1</span>], search(i - <span class="number">1</span>, j - <span class="number">1</span>) + <span class="number">1</span>);</span><br><span class="line">            ans[i - <span class="number">1</span>][j - <span class="number">1</span>] = <span class="built_in">std</span>::min(ans[i - <span class="number">1</span>][j - <span class="number">1</span>], search(i - <span class="number">1</span>, j) + <span class="number">1</span>);</span><br><span class="line">            ans[i - <span class="number">1</span>][j - <span class="number">1</span>] = <span class="built_in">std</span>::min(ans[i - <span class="number">1</span>][j - <span class="number">1</span>], search(i, j - <span class="number">1</span>) + <span class="number">1</span>);</span><br><span class="line">        }</span><br><span class="line"></span><br><span class="line">        calced[i - <span class="number">1</span>][j - <span class="number">1</span>] = <span class="literal">true</span>;</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> ans[i - <span class="number">1</span>][j - <span class="number">1</span>];</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>{</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%s %s&quot;</span>, s1, s2);</span><br><span class="line">    n1 = <span class="built_in">strlen</span>(s1), n2 = <span class="built_in">strlen</span>(s2);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>, search(n1, n2));</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+
+            
+        </div>
+    </div>
+    <div id="post-footer" class="post-footer main-content-wrap">
+        <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/tyvj-3317/"  data-tooltip="「Tyvj 3317」火车票 - 划分DP">
+                
+                    <i class="fa fa-angle-left"></i>
+                    <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/noip2000-cheng-ji-zui-da/" data-tooltip="「NOIP2000」乘积最大 - 划分DP">
+                
+                    <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
+                    <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a class="post-action-btn btn btn--default btn-open-shareoptions"  href="#btn-open-shareoptions">
+                <i class="fa fa-share-alt"></i>
+            </a>
+        </li>
+        <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://blog.menci.moe/codevs-2598/">
+                <i class="fa fa-google-plus"></i>
+            </a>
+        </li>
+        <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.menci.moe/codevs-2598/">
+                <i class="fa fa-facebook-official"></i>
+            </a>
+        </li>
+        <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://blog.menci.moe/codevs-2598/">
+                <i class="fa fa-twitter"></i>
+            </a>
+        </li>
+        
+            <li class="post-action">
+                <a class="post-action-btn btn btn--default" href="#disqus_thread">
+                    <i class="fa fa-comment-o"></i>
+                </a>
+            </li>
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#">
+            
+                <i class="fa fa-list"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+        
+            
+                <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+            
+        
+    </div>
+</article>
+
+
+
+                <footer id="footer" class="main-content-wrap">
+    <span class="copyrights">
+        Copyrights &copy; 2016 Menci. All Rights Reserved.
+    </span>
+</footer>
+</script>
+
+            </div>
+            
+                <div id="bottom-bar" class="post-bottom-bar" data-behavior="2">
+                    <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/tyvj-3317/"  data-tooltip="「Tyvj 3317」火车票 - 划分DP">
+                
+                    <i class="fa fa-angle-left"></i>
+                    <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/noip2000-cheng-ji-zui-da/" data-tooltip="「NOIP2000」乘积最大 - 划分DP">
+                
+                    <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
+                    <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a class="post-action-btn btn btn--default btn-open-shareoptions"  href="#btn-open-shareoptions">
+                <i class="fa fa-share-alt"></i>
+            </a>
+        </li>
+        <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://blog.menci.moe/codevs-2598/">
+                <i class="fa fa-google-plus"></i>
+            </a>
+        </li>
+        <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.menci.moe/codevs-2598/">
+                <i class="fa fa-facebook-official"></i>
+            </a>
+        </li>
+        <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://blog.menci.moe/codevs-2598/">
+                <i class="fa fa-twitter"></i>
+            </a>
+        </li>
+        
+            <li class="post-action">
+                <a class="post-action-btn btn btn--default" href="#disqus_thread">
+                    <i class="fa fa-comment-o"></i>
+                </a>
+            </li>
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#">
+            
+                <i class="fa fa-list"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+                </div>
+                <div id="share-options-bar" class="share-options-bar" data-behavior="2">
+    <ul class="share-options">
+        <li class="share-option">
+            <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=https://blog.menci.moe/codevs-2598/">
+                <i class="fa fa-google-plus"></i><span class="">分享到 Google+</span>
+            </a>
+        </li>
+        <li class="share-option">
+            <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.menci.moe/codevs-2598/">
+                <i class="fa fa-facebook-official"></i><span>分享到 Facebook</span>
+            </a>
+        </li>
+        <li class="share-option">
+            <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https://blog.menci.moe/codevs-2598/">
+                <i class="fa fa-twitter"></i><span>分享到 Twitter</span>
+            </a>
+        </li>
+    </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+            
+        </div>
+        
+
+
+    
+        
+    
+
+<div id="about">
+    <div id="about-card">
+        <div id="about-btn-close">
+            <i class="fa fa-remove"></i>
+        </div>
+        
+            <img style="box-shadow: 0 0 15px gray;" id="about-card-picture" src="//dn-menci.qbox.me/assets/images/avatar.png"/>
+        
+            <h4 id="about-card-name">Menci</h4>
+        
+            <h5 id="about-card-bio">眉眼如初，岁月如故</h5>
+        
+        
+            <h5 id="about-card-job">
+                <i class="fa fa-cloud"></i>
+                <br/>
+                One day, <br> I'll reach the next stage <br> to realize all.
+            </h5>
+        
+        
+    </div>
+</div>
+
+        
+<div id="cover" style="background-image:url('//dn-menci.qbox.me/assets/images/cover.jpg');"></div>
+    </body>
+    <!--SCRIPTS-->
+<script src="//dn-menci.qbox.me/assets/js/scrip-0ewjnhvv8ytgl76lkiq8f541cfygs5bpfv33ohlfvpfklrfevqupdsxg46fk.min.js" type="text/javascript"></script>
+<!--SCRIPTS END-->
+
+    
+        <script>
+             var disqus_config = function () {
+				 MenciRemoveIndexDotHtml = function (url) {
+				 	if (url.substr(-10, 10) == 'index.html') return url.substr(0, url.length - 10);
+				 	else return url;
+				 }
+                 this.page.url = MenciRemoveIndexDotHtml('https://blog.menci.moe/codevs-2598/');
+                 
+                 this.page.identifier = MenciRemoveIndexDotHtml('codevs-2598/');
+                                  
+             };
+            (function() {
+                var d = document, s = d.createElement('script');
+                var disqus_shortname = 'menci';
+                s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+
+                s.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        </script>
+    
+
+
+    <script type="text/javascript">
+        (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+                (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+            e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+        })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+        _st('install','L51x_1_hCboFSsSLLGGK','2.0.0');
+    </script>
+
+
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/KaTeX/0.6.0/katex.min.js"></script>
+<!--script type="text/javascript" src="/assets/js/auto-render.min.js"></script-->
+<script>
+$(function() {
+	// renderKatexMathjaxFallback($('body')[0]);
+	renderMathInElement($('body')[0]);
+});
+</script>
+
+</html>

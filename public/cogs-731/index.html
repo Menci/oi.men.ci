@@ -1,0 +1,567 @@
+
+<!DOCTYPE html>
+<html lang="zh-cn">
+    
+<head>
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="Menci">
+    <title>「COGS 731」最长递增子序列 - 线性DP + 网络流 - Menci</title>
+    <meta name="author" content="Menci">
+    
+    
+        <link rel="icon" href="//dn-menci.qbox.me/assets/images/avatar.png">
+    
+    
+        <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
+    
+    <meta name="description" content="&amp;#x7ED9;&amp;#x5B9A;&amp;#x6B63;&amp;#x6574;&amp;#x6570;&amp;#x5E8F;&amp;#x5217; X1 ~ Xn&amp;#x3002;
+
+&amp;#x8BA1;&amp;#x7B97;&amp;#x5176;&amp;#x6700;&amp;#x957F;&amp;#x9012;&amp;#x589E;&amp;#x5B50;&amp;#x5E8F;&amp;#x5217;&amp;#x7684;&amp;#x957F;&amp;#x5EA6; s&amp;#x3002;
+&amp;#x8BA1;&amp;#x">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="「COGS 731」最长递增子序列 - 线性DP + 网络流">
+<meta property="og:url" content="https://blog.menci.moe/cogs-731/index.html">
+<meta property="og:site_name" content="Menci">
+<meta property="og:description" content="&amp;#x7ED9;&amp;#x5B9A;&amp;#x6B63;&amp;#x6574;&amp;#x6570;&amp;#x5E8F;&amp;#x5217; X1 ~ Xn&amp;#x3002;
+
+&amp;#x8BA1;&amp;#x7B97;&amp;#x5176;&amp;#x6700;&amp;#x957F;&amp;#x9012;&amp;#x589E;&amp;#x5B50;&amp;#x5E8F;&amp;#x5217;&amp;#x7684;&amp;#x957F;&amp;#x5EA6; s&amp;#x3002;
+&amp;#x8BA1;&amp;#x">
+<meta property="og:updated_time" content="2016-02-09T06:40:10.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="「COGS 731」最长递增子序列 - 线性DP + 网络流">
+<meta name="twitter:description" content="&amp;#x7ED9;&amp;#x5B9A;&amp;#x6B63;&amp;#x6574;&amp;#x6570;&amp;#x5E8F;&amp;#x5217; X1 ~ Xn&amp;#x3002;
+
+&amp;#x8BA1;&amp;#x7B97;&amp;#x5176;&amp;#x6700;&amp;#x957F;&amp;#x9012;&amp;#x589E;&amp;#x5B50;&amp;#x5E8F;&amp;#x5217;&amp;#x7684;&amp;#x957F;&amp;#x5EA6; s&amp;#x3002;
+&amp;#x8BA1;&amp;#x">
+<meta name="twitter:creator" content="@HuangHaoRui">
+    
+        <meta rel="publisher" content="https://plus.google.com/103195680789397520000"/>
+    
+    
+        
+    
+    
+        <meta property="og:image" content="//dn-menci.qbox.me/assets/images/avatar.png"/>
+    
+    
+    
+    
+    <!--STYLES-->
+    <link rel="stylesheet" href="//dn-menci.qbox.me/assets/css/style-pcycimglbr925yrwj0efxsn118g0acj4bp3qcdehgw1freahg01piplpcrqd.min.css">
+    <!--STYLES END-->
+	<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/KaTeX/0.6.0/katex.min.css">
+	<link href='https://fonts.googleapis.com/css?family=Poiret+One' rel='stylesheet' type='text/css'>
+    
+    <script type="text/javascript">
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-75865916-1']);
+        _gaq.push(['_trackPageview']);
+        (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+    </script>
+
+    
+</head>
+
+    <body>
+        <div id="blog">
+            <!-- Define author's picture -->
+
+
+    
+        
+            
+        
+    
+
+<!--<header id="header" data-behavior="2">-->
+<header id="header" data-behavior="2">
+    <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+    <h1 class="header-title">
+        <a class="header-title-link" href="/ ">Menci</a>
+    </h1>
+    
+        
+            <a  class="header-right-picture "
+                href="/#about">
+        
+        
+            <img class="header-picture" src="//dn-menci.qbox.me/assets/images/avatar.png"/>
+        
+        </a>
+    
+</header>
+
+            <!-- Define author's picture -->
+
+
+
+        
+    
+
+<!--<nav id="sidebar" data-behavior="2">-->
+<nav id="sidebar" data-behavior="2">
+    
+        <div class="sidebar-profile">
+            <a href="/#about">
+                    <img class="sidebar-profile-picture" src="//dn-menci.qbox.me/assets/images/avatar.png"/>
+            </a>
+            <span class="sidebar-profile-name">Menci</span>
+        </div>
+    
+    
+        <ul class="sidebar-buttons">
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link "
+                         href="/ "
+                        
+                    >
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+                    <span class="sidebar-button-desc">首页</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link "
+                         href="/all-tags"
+                        
+                    >
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+                    <span class="sidebar-button-desc">标签</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link "
+                         href="/all-archives"
+                        
+                    >
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+                    <span class="sidebar-button-desc">归档</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link st-search-show-outputs"
+                         href="/#search"
+                        
+                    >
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-search"></i>
+                    <span class="sidebar-button-desc">搜索</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link "
+                         href="/about-me"
+                        
+                    >
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-info"></i>
+                    <span class="sidebar-button-desc">关于</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link "
+                         href="/friends"
+                        
+                    >
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-users"></i>
+                    <span class="sidebar-button-desc">伙伴</span>
+                </a>
+        </li>
+        
+    </ul>
+    
+        <ul class="sidebar-buttons">
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link " href="https://github.com/Menci" target="_blank">
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+                    <span class="sidebar-button-desc">GitHub</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link " href="https://twitter.com/HuangHaoRui" target="_blank">
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-twitter"></i>
+                    <span class="sidebar-button-desc">Twitter</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link " href="http://wpa.qq.com/msgrd?V=3&Uin=421899973" target="_blank">
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-qq"></i>
+                    <span class="sidebar-button-desc">QQ</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link " href="mailto:huanghaorui301@gmail.com" target="_blank">
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-envelope-o"></i>
+                    <span class="sidebar-button-desc">邮箱</span>
+                </a>
+        </li>
+        
+    </ul>
+    
+        <ul class="sidebar-buttons">
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link "
+                         href="/atom.xml"
+                        
+                    >
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-rss"></i>
+                    <span class="sidebar-button-desc">RSS</span>
+                </a>
+        </li>
+        
+    </ul>
+    
+</nav>
+
+            
+            <div id="main" data-behavior="2"
+                 class="
+                        hasCoverMetaIn
+                        ">
+                
+<article class="post" itemscope itemType="http://schema.org/BlogPosting">
+    
+    
+        <div class="post-header main-content-wrap text-left">
+    
+        <h1 class="post-title" itemprop="headline">
+            「COGS 731」最长递增子序列 - 线性DP + 网络流
+        </h1>
+    
+    <div class="post-meta" style="border-bottom: 1px solid #eef2f8;">
+    <time itemprop="datePublished" content="Tue Feb 09 2016 14:37:32 GMT+0800">
+	
+		    2月 09, 2016
+    	
+    </time>
+    
+        <span>发布在 </span>
+        
+    <a class="category-link" href="/categories/oi/">OI</a>
+
+
+    
+	
+		<div class="post-footer-tags" style="margin-top: 10px; margin-left: 10px; display: inline-block; border-bottom: none; ">
+			<!--span class="text-color-light text-small">标签</span><br/-->
+			
+    <a class="tag tag--primary tag--small t-link" href="/tag/cogs/">COGS</a> <a class="tag tag--primary tag--small t-link" href="/tag/dinic/">Dinic</a> <a class="tag tag--primary tag--small t-link" href="/tag/图论/">图论</a> <a class="tag tag--primary tag--small t-link" href="/tag/网络流/">网络流</a> <a class="tag tag--primary tag--small t-link" href="/tag/网络流-24-题/">网络流 24 题</a>
+
+		</div>
+	
+</div>
+
+</div>
+    
+    <div class="post-content markdown" itemprop="articleBody">
+        <div class="main-content-wrap">
+            <p>&#x7ED9;&#x5B9A;&#x6B63;&#x6574;&#x6570;&#x5E8F;&#x5217; <code>X1 ~ Xn</code>&#x3002;</p>
+<ol style="list-style-type: decimal">
+<li>&#x8BA1;&#x7B97;&#x5176;&#x6700;&#x957F;&#x9012;&#x589E;&#x5B50;&#x5E8F;&#x5217;&#x7684;&#x957F;&#x5EA6; <code>s</code>&#x3002;</li>
+<li>&#x8BA1;&#x7B97;&#x4ECE;&#x7ED9;&#x5B9A;&#x7684;&#x5E8F;&#x5217;&#x4E2D;&#x6700;&#x591A;&#x53EF;&#x53D6;&#x51FA;&#x591A;&#x5C11;&#x4E2A;&#x957F;&#x5EA6;&#x4E3A; <code>s</code> &#x7684;&#x9012;&#x589E;&#x5B50;&#x5E8F;&#x5217;&#x3002;</li>
+<li>&#x5982;&#x679C;&#x5141;&#x8BB8;&#x5728;&#x53D6;&#x51FA;&#x7684;&#x5E8F;&#x5217;&#x4E2D;&#x591A;&#x6B21;&#x4F7F;&#x7528; <code>X1</code> &#x548C; <code>Xn</code>&#xFF0C;&#x5219;&#x4ECE;&#x7ED9;&#x5B9A;&#x5E8F;&#x5217;&#x4E2D;&#x6700;&#x591A;&#x53EF;&#x53D6;&#x51FA;&#x591A;&#x5C11;&#x4E2A;&#x957F;&#x5EA6;&#x4E3A; <code>s</code> &#x7684;&#x9012;&#x589E;&#x5B50;&#x5E8F;&#x5217;&#x3002;</li>
+</ol>
+<a id="more"></a>
+<h3 id="&#x94FE;&#x63A5;">&#x94FE;&#x63A5;</h3>
+<p><a href="http://cogs.top/cogs/problem/problem.php?pid=731" target="_blank" rel="external">COGS 731</a></p>
+<h3 id="&#x9898;&#x89E3;">&#x9898;&#x89E3;</h3>
+<p>&#x9996;&#x5148;&#xFF0C;&#x91CD;&#x8981;&#x7684;&#x4E8B;&#x60C5;&#x8BF4;&#x4E09;&#x904D;&#xFF1A;<strong>&#x975E;&#x4E25;&#x683C;&#x9012;&#x589E;&#xFF01;&#x975E;&#x4E25;&#x683C;&#x9012;&#x589E;&#xFF01;&#x975E;&#x4E25;&#x683C;&#x9012;&#x589E;&#xFF01;</strong></p>
+<p>&#x8BBE;&#x4EE5; $X_i$ &#x7ED3;&#x5C3E;&#x7684;&#x6700;&#x957F;&#x9012;&#x589E;&#x5B50;&#x5E8F;&#x5217;&#x957F;&#x5EA6;&#x4E3A; $F_i$&#xFF0C;&#x7528;&#x52A8;&#x6001;&#x89C4;&#x5212;&#x6C42;&#x51FA;&#x6BCF;&#x4E2A; $F_i$&#xFF0C;&#x6700;&#x5927;&#x7684;&#x4E00;&#x4E2A;&#x5C31;&#x662F;&#x7B2C;&#x4E00;&#x95EE;&#x7B54;&#x6848;&#xFF0C;&#x8BBE;&#x5B83;&#x4E3A; $K$&#x3002;</p>
+<p>&#x7B2C;&#x4E8C;&#x95EE;&#x91C7;&#x7528;&#x7F51;&#x7EDC;&#x6D41;&#x5EFA;&#x6A21;&#xFF1A;</p>
+<ol style="list-style-type: decimal">
+<li>&#x5BF9;&#x4E8E;&#x6BCF;&#x4E2A;&#x6EE1;&#x8DB3; $F_i = K$ &#x7684;&#x70B9;&#xFF0C;&#x4ECE;&#x8BE5;&#x70B9;&#x5411;&#x6C47;&#x70B9;&#x8FDE;&#x4E00;&#x6761;&#x8FB9;&#xFF0C;&#x5BB9;&#x91CF;&#x4E3A; 1&#xFF1B;</li>
+<li>&#x5BF9;&#x4E8E;&#x6BCF;&#x4E2A;&#x6EE1;&#x8DB3; $F_i = 1$ &#x7684;&#x70B9;&#xFF0C;&#x4ECE;&#x6E90;&#x70B9;&#x5411;&#x8BE5;&#x70B9;&#x8FDE;&#x4E00;&#x6761;&#x8FB9;&#xFF0C;&#x5BB9;&#x91CF;&#x4E3A; 1&#xFF1B;</li>
+<li>&#x5BF9;&#x4E8E;&#x7B2C;&#x4E00;&#x95EE;&#x4E2D;&#x6BCF;&#x4E00;&#x6B21;&#x6240;&#x6709;&#x7684;&#x6709;&#x6548;&#x72B6;&#x6001;&#x8F6C;&#x79FB;&#xFF08;&#x5373;&#x6EE1;&#x8DB3;$ X_j&#x2264;X_i $&#x4E14;$F_i=F_j+1$&#x7684;&#x70B9;&#x5BF9; <code>i</code>&#x3001;<code>j</code>&#xFF09;&#x4ECE; <code>j</code> &#x5411; <code>i</code> &#x8FDE;&#x4E00;&#x6761;&#x8FB9;&#xFF0C;&#x5BB9;&#x91CF;&#x4E3A; 1&#x3002;</li>
+</ol>
+<p>&#x6C42;&#x51FA;&#x6700;&#x5927;&#x6D41;&#x5373;&#x4E3A;&#x7B54;&#x6848;&#x3002;</p>
+<p>&#x4F46;&#x662F;&#x8FD9;&#x6837;&#x505A;&#x6709;&#x4E2A;&#x95EE;&#x9898;&#xFF0C;&#x67D0;&#x4E00;&#x4E2A;&#x70B9;&#x53EF;&#x80FD;&#x88AB;&#x4F7F;&#x7528;&#x6240;&#x6B21;&#xFF0C;&#x4E0D;&#x7B26;&#x5408;&#x9898;&#x76EE;&#x8981;&#x6C42;&#x3002;&#x89E3;&#x51B3;&#x65B9;&#x6CD5;&#x662F;&#x628A;&#x6BCF;&#x4E00;&#x4E2A;&#x70B9; <code>i</code> &#x62C6;&#x6210;&#x4E24;&#x4E2A;&#x70B9; <code>i</code> &#x548C; <code>i&apos;</code>&#xFF0C;&#x6240;&#x6709;&#x8FDB;&#x5165;&#x8BE5;&#x70B9;&#x7684;&#x8FB9;&#x8FDE;&#x63A5; <code>i</code>&#xFF0C;&#x6240;&#x6709;&#x51FA;&#x8BE5;&#x70B9;&#x8FB9;&#x4ECE; <code>i&apos;</code> &#x8FDE;&#x51FA;&#xFF0C;&#x5E76;&#x4ECE; <code>i</code> &#x5230; <code>i&apos;</code> &#x8FDE;&#x63A5;&#x4E00;&#x6761;&#x5BB9;&#x91CF;&#x4E3A; 1 &#x7684;&#x8FB9;&#xFF0C;&#x4FDD;&#x8BC1;&#x4E86;&#x6D41;&#x8FC7;&#x6BCF;&#x4E2A;&#x70B9;&#x7684;&#x6D41;&#x91CF;&#x6700;&#x591A;&#x4E3A; 1&#x3002;</p>
+<p>&#x7B2C;&#x4E09;&#x95EE;&#x53EA;&#x9700;&#x8981;&#x5728;&#x7B2C;&#x4E8C;&#x95EE;&#x7684;&#x57FA;&#x7840;&#x4E0A;&#x505A;&#x51FA;&#x4E00;&#x4E9B;&#x4FEE;&#x6539;&#xFF0C;&#x628A;&#x6240;&#x6709;&#x4E0E; <code>1</code>&#x3001;<code>n</code> &#x4E24;&#x4E2A;&#x70B9;&#x76F8;&#x5173;&#x7684;&#x8FB9;&#x5BB9;&#x91CF;&#x6539;&#x4E3A;&#x65E0;&#x7A77;&#x5927;&#xFF0C;&#x5C31;&#x53EF;&#x4EE5;&#x4F7F;&#x8FD9;&#x4E24;&#x4E2A;&#x6570;&#x201C;&#x53EF;&#x591A;&#x6B21;&#x4F7F;&#x7528;&#x201D;&#x3002;</p>
+<p><strong>&#x6CE8;&#x610F;&#x7279;&#x5224;</strong>&#xFF0C;&#x5982;&#x679C;&#x8F93;&#x5165;&#x8FDB;&#x6765;&#x7684;&#x662F;&#x4E00;&#x4E2A;&#x4E25;&#x683C;&#x9012;&#x964D;&#x5E8F;&#x5217;&#xFF0C;&#x7B54;&#x6848;&#x5C31;&#x662F; 1&#x3001;N&#x3001;N&#x3002;&#x4ECE;&#x8FD9;&#x91CC;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x770B;&#x51FA;&#x7EC6;&#x8282;&#x7684;&#x91CD;&#x8981;&#x6027;&#x4EE5;&#x53CA;&#x51FA;&#x9898;&#x4EBA;&#x7684;&#x6076;&#x610F;&#x3002;</p>
+<h3 id="&#x4EE3;&#x7801;">&#x4EE3;&#x7801;</h3>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;climits&gt;</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;queue&gt;</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;vector&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAXN = <span class="number">500</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">struct</span> Node;</span><br><span class="line"><span class="keyword">struct</span> Edge;</span><br><span class="line"></span><br><span class="line"><span class="keyword">struct</span> Node {</span><br><span class="line">    Edge *firstEdge;</span><br><span class="line">    <span class="keyword">int</span> level, id;</span><br><span class="line">} nodes[MAXN * <span class="number">2</span> + <span class="number">2</span>];</span><br><span class="line"></span><br><span class="line"><span class="keyword">struct</span> Edge {</span><br><span class="line">    Node *from, *to;</span><br><span class="line">    <span class="keyword">int</span> capacity, flow;</span><br><span class="line">    Edge *next, *reversedEdge;</span><br><span class="line"></span><br><span class="line">    Edge(Node *from, Node *to, <span class="keyword">int</span> capacity) : from(from), to(to), capacity(capacity), flow(<span class="number">0</span>), next(from-&gt;firstEdge) {}</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> n, a[MAXN], f[MAXN], k;</span><br><span class="line"></span><br><span class="line"><span class="keyword">struct</span> Dinic {</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">makeLevelGraph</span><span class="params">(Node *s, Node *t, <span class="keyword">int</span> n)</span> </span>{</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) nodes[i].level = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">        <span class="built_in">std</span>::<span class="built_in">queue</span>&lt;Node *&gt; q;</span><br><span class="line">        q.push(s);</span><br><span class="line">        s-&gt;level = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span> (!q.empty()) {</span><br><span class="line">            Node *v = q.front();</span><br><span class="line">            q.pop();</span><br><span class="line"></span><br><span class="line">            <span class="keyword">for</span> (Edge *e = v-&gt;firstEdge; e; e = e-&gt;next) {</span><br><span class="line">                <span class="keyword">if</span> (e-&gt;flow &lt; e-&gt;capacity &amp;&amp; e-&gt;to-&gt;level == <span class="number">0</span>) {</span><br><span class="line">                    e-&gt;to-&gt;level = v-&gt;level + <span class="number">1</span>;</span><br><span class="line">                    <span class="keyword">if</span> (e-&gt;to == t) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">                    <span class="keyword">else</span> q.push(e-&gt;to);</span><br><span class="line">                }</span><br><span class="line">            }</span><br><span class="line">        }</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">findPath</span><span class="params">(Node *s, Node *t, <span class="keyword">int</span> limit)</span> </span>{</span><br><span class="line">        <span class="keyword">if</span> (s == t) <span class="keyword">return</span> limit;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (Edge *e = s-&gt;firstEdge; e; e = e-&gt;next) {</span><br><span class="line">            <span class="keyword">if</span> (e-&gt;flow &lt; e-&gt;capacity &amp;&amp; e-&gt;to-&gt;level == s-&gt;level + <span class="number">1</span>) {</span><br><span class="line">                <span class="keyword">int</span> flow = findPath(e-&gt;to, t, <span class="built_in">std</span>::min(e-&gt;capacity - e-&gt;flow, limit));</span><br><span class="line">                <span class="keyword">if</span> (flow &gt; <span class="number">0</span>) {</span><br><span class="line">                    e-&gt;flow += flow;</span><br><span class="line">                    e-&gt;reversedEdge-&gt;flow -= flow;</span><br><span class="line">                    <span class="keyword">return</span> flow;</span><br><span class="line">                }</span><br><span class="line">            }</span><br><span class="line">        }</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">operator</span><span class="params">()</span><span class="params">(<span class="keyword">int</span> s, <span class="keyword">int</span> t, <span class="keyword">int</span> n)</span> </span>{</span><br><span class="line">        <span class="keyword">int</span> ans = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span> (makeLevelGraph(&amp;nodes[s], &amp;nodes[t], n)) {</span><br><span class="line">            <span class="keyword">int</span> flow;</span><br><span class="line">            <span class="keyword">while</span> ((flow = findPath(&amp;nodes[s], &amp;nodes[t], INT_MAX)) &gt; <span class="number">0</span>) ans += flow;</span><br><span class="line">        }</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    }</span><br><span class="line">} dinic;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">addEdge</span><span class="params">(<span class="keyword">int</span> from, <span class="keyword">int</span> to, <span class="keyword">int</span> capacity)</span> </span>{</span><br><span class="line">    nodes[from].firstEdge = <span class="keyword">new</span> Edge(&amp;nodes[from], &amp;nodes[to], capacity);</span><br><span class="line">    nodes[to].firstEdge = <span class="keyword">new</span> Edge(&amp;nodes[to], &amp;nodes[from], <span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">    nodes[from].firstEdge-&gt;reversedEdge = nodes[to].firstEdge, nodes[to].firstEdge-&gt;reversedEdge = nodes[from].firstEdge;</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">dp</span><span class="params">()</span> </span>{</span><br><span class="line">    <span class="keyword">int</span> ans = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) {</span><br><span class="line">        <span class="keyword">int</span> last = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; i; j++) {</span><br><span class="line">            <span class="keyword">if</span> (a[j] &lt;= a[i] &amp;&amp; f[j] &gt; last) last = f[j];</span><br><span class="line">        }</span><br><span class="line"></span><br><span class="line">        f[i] = last + <span class="number">1</span>;</span><br><span class="line">        ans = <span class="built_in">std</span>::max(ans, f[i]);</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">solve2</span><span class="params">()</span> </span>{</span><br><span class="line">    <span class="built_in">memset</span>(nodes, <span class="number">0</span>, <span class="keyword">sizeof</span>(Node) * (n * <span class="number">2</span> + <span class="number">2</span>));</span><br><span class="line"></span><br><span class="line">    <span class="keyword">const</span> <span class="keyword">int</span> s = <span class="number">0</span>, t = n * <span class="number">2</span> + <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++) {</span><br><span class="line">        addEdge(i, i + n, <span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (f[i - <span class="number">1</span>] == <span class="number">1</span>) addEdge(s, i, <span class="number">1</span>);</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (f[i - <span class="number">1</span>] == k) addEdge(i + n, t, <span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt; i; j++) {</span><br><span class="line">            <span class="keyword">if</span> (f[j - <span class="number">1</span>] == f[i - <span class="number">1</span>] - <span class="number">1</span>) addEdge(j + n, i, <span class="number">1</span>);</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> dinic(s, t, n * <span class="number">2</span> + <span class="number">2</span>);</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">solve3</span><span class="params">()</span> </span>{</span><br><span class="line">    <span class="built_in">memset</span>(nodes, <span class="number">0</span>, <span class="keyword">sizeof</span>(Node) * (n * <span class="number">2</span> + <span class="number">2</span>));</span><br><span class="line"></span><br><span class="line">    <span class="keyword">const</span> <span class="keyword">int</span> s = <span class="number">0</span>, t = n * <span class="number">2</span> + <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++) {</span><br><span class="line">        <span class="keyword">int</span> capacity = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">if</span> (i == <span class="number">1</span> || i == n) capacity = INT_MAX;</span><br><span class="line"></span><br><span class="line">        addEdge(i, i + n, capacity) ;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (f[i - <span class="number">1</span>] == <span class="number">1</span>) addEdge(s, i, capacity);</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (f[i - <span class="number">1</span>] == k) addEdge(i + n, t, capacity);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt; i; j++) {</span><br><span class="line">            <span class="keyword">if</span> (f[j - <span class="number">1</span>] == f[i - <span class="number">1</span>] - <span class="number">1</span> &amp;&amp; a[j - <span class="number">1</span>] &lt;= a[i - <span class="number">1</span>]) addEdge(j + n, i, <span class="number">1</span>);</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> dinic(s, t, n * <span class="number">2</span> + <span class="number">2</span>);</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>{</span><br><span class="line">    freopen(<span class="string">&quot;alis.in&quot;</span>, <span class="string">&quot;r&quot;</span>, <span class="built_in">stdin</span>);</span><br><span class="line">    freopen(<span class="string">&quot;alis.out&quot;</span>, <span class="string">&quot;w&quot;</span>, <span class="built_in">stdout</span>);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;n);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) {</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;a[i]);</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    k = dp();</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>, k);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (k == <span class="number">1</span>) <span class="built_in">printf</span>(<span class="string">&quot;%d\n%d\n&quot;</span>, n, n);</span><br><span class="line">    <span class="keyword">else</span> {</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>, solve2());</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>, solve3());</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    fclose(<span class="built_in">stdin</span>);</span><br><span class="line">    fclose(<span class="built_in">stdout</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+
+            
+        </div>
+    </div>
+    <div id="post-footer" class="post-footer main-content-wrap">
+        <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/cogs-727/"  data-tooltip="「COGS 727」太空飞行计划 - 最大权闭合图">
+                
+                    <i class="fa fa-angle-left"></i>
+                    <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/cogs-729/" data-tooltip="「COGS 729」圆桌聚餐 - 网络流">
+                
+                    <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
+                    <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a class="post-action-btn btn btn--default btn-open-shareoptions"  href="#btn-open-shareoptions">
+                <i class="fa fa-share-alt"></i>
+            </a>
+        </li>
+        <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://blog.menci.moe/cogs-731/">
+                <i class="fa fa-google-plus"></i>
+            </a>
+        </li>
+        <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.menci.moe/cogs-731/">
+                <i class="fa fa-facebook-official"></i>
+            </a>
+        </li>
+        <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://blog.menci.moe/cogs-731/">
+                <i class="fa fa-twitter"></i>
+            </a>
+        </li>
+        
+            <li class="post-action">
+                <a class="post-action-btn btn btn--default" href="#disqus_thread">
+                    <i class="fa fa-comment-o"></i>
+                </a>
+            </li>
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#">
+            
+                <i class="fa fa-list"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+        
+            
+                <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+            
+        
+    </div>
+</article>
+
+
+
+                <footer id="footer" class="main-content-wrap">
+    <span class="copyrights">
+        Copyrights &copy; 2016 Menci. All Rights Reserved.
+    </span>
+</footer>
+</script>
+
+            </div>
+            
+                <div id="bottom-bar" class="post-bottom-bar" data-behavior="2">
+                    <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/cogs-727/"  data-tooltip="「COGS 727」太空飞行计划 - 最大权闭合图">
+                
+                    <i class="fa fa-angle-left"></i>
+                    <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/cogs-729/" data-tooltip="「COGS 729」圆桌聚餐 - 网络流">
+                
+                    <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
+                    <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a class="post-action-btn btn btn--default btn-open-shareoptions"  href="#btn-open-shareoptions">
+                <i class="fa fa-share-alt"></i>
+            </a>
+        </li>
+        <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://blog.menci.moe/cogs-731/">
+                <i class="fa fa-google-plus"></i>
+            </a>
+        </li>
+        <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.menci.moe/cogs-731/">
+                <i class="fa fa-facebook-official"></i>
+            </a>
+        </li>
+        <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://blog.menci.moe/cogs-731/">
+                <i class="fa fa-twitter"></i>
+            </a>
+        </li>
+        
+            <li class="post-action">
+                <a class="post-action-btn btn btn--default" href="#disqus_thread">
+                    <i class="fa fa-comment-o"></i>
+                </a>
+            </li>
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#">
+            
+                <i class="fa fa-list"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+                </div>
+                <div id="share-options-bar" class="share-options-bar" data-behavior="2">
+    <ul class="share-options">
+        <li class="share-option">
+            <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=https://blog.menci.moe/cogs-731/">
+                <i class="fa fa-google-plus"></i><span class="">分享到 Google+</span>
+            </a>
+        </li>
+        <li class="share-option">
+            <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.menci.moe/cogs-731/">
+                <i class="fa fa-facebook-official"></i><span>分享到 Facebook</span>
+            </a>
+        </li>
+        <li class="share-option">
+            <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https://blog.menci.moe/cogs-731/">
+                <i class="fa fa-twitter"></i><span>分享到 Twitter</span>
+            </a>
+        </li>
+    </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+            
+        </div>
+        
+
+
+    
+        
+    
+
+<div id="about">
+    <div id="about-card">
+        <div id="about-btn-close">
+            <i class="fa fa-remove"></i>
+        </div>
+        
+            <img style="box-shadow: 0 0 15px gray;" id="about-card-picture" src="//dn-menci.qbox.me/assets/images/avatar.png"/>
+        
+            <h4 id="about-card-name">Menci</h4>
+        
+            <h5 id="about-card-bio">眉眼如初，岁月如故</h5>
+        
+        
+            <h5 id="about-card-job">
+                <i class="fa fa-cloud"></i>
+                <br/>
+                One day, <br> I'll reach the next stage <br> to realize all.
+            </h5>
+        
+        
+    </div>
+</div>
+
+        
+<div id="cover" style="background-image:url('//dn-menci.qbox.me/assets/images/cover.jpg');"></div>
+    </body>
+    <!--SCRIPTS-->
+<script src="//dn-menci.qbox.me/assets/js/scrip-0ewjnhvv8ytgl76lkiq8f541cfygs5bpfv33ohlfvpfklrfevqupdsxg46fk.min.js" type="text/javascript"></script>
+<!--SCRIPTS END-->
+
+    
+        <script>
+             var disqus_config = function () {
+				 MenciRemoveIndexDotHtml = function (url) {
+				 	if (url.substr(-10, 10) == 'index.html') return url.substr(0, url.length - 10);
+				 	else return url;
+				 }
+                 this.page.url = MenciRemoveIndexDotHtml('https://blog.menci.moe/cogs-731/');
+                 
+                 this.page.identifier = MenciRemoveIndexDotHtml('cogs-731/');
+                                  
+             };
+            (function() {
+                var d = document, s = d.createElement('script');
+                var disqus_shortname = 'menci';
+                s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+
+                s.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        </script>
+    
+
+
+    <script type="text/javascript">
+        (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+                (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+            e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+        })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+        _st('install','L51x_1_hCboFSsSLLGGK','2.0.0');
+    </script>
+
+
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/KaTeX/0.6.0/katex.min.js"></script>
+<!--script type="text/javascript" src="/assets/js/auto-render.min.js"></script-->
+<script>
+$(function() {
+	// renderKatexMathjaxFallback($('body')[0]);
+	renderMathInElement($('body')[0]);
+});
+</script>
+
+</html>

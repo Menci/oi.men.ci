@@ -1,0 +1,606 @@
+
+<!DOCTYPE html>
+<html lang="zh-cn">
+    
+<head>
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="Menci">
+    <title>Link-Cut Tree 学习笔记 - Menci</title>
+    <meta name="author" content="Menci">
+    
+    
+        <link rel="icon" href="//dn-menci.qbox.me/assets/images/avatar.png">
+    
+    
+        <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
+    
+    <meta name="description" content="Link-Cut Tree &amp;#x662F;&amp;#x4E00;&amp;#x79CD;&amp;#x7528;&amp;#x6765;&amp;#x7EF4;&amp;#x62A4;&amp;#x52A8;&amp;#x6001;&amp;#x68EE;&amp;#x6797;&amp;#x8FDE;&amp;#x901A;&amp;#x6027;&amp;#x7684;&amp;#x6570;&amp;#x636E;&amp;#x7ED3;&amp;#x6784;&amp;#xFF0C;&amp;#x9002;&amp;#x7528;&amp;#x4E8E;&amp;#">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="Link-Cut Tree 学习笔记">
+<meta property="og:url" content="https://blog.menci.moe/link-cut-tree-notes/index.html">
+<meta property="og:site_name" content="Menci">
+<meta property="og:description" content="Link-Cut Tree &amp;#x662F;&amp;#x4E00;&amp;#x79CD;&amp;#x7528;&amp;#x6765;&amp;#x7EF4;&amp;#x62A4;&amp;#x52A8;&amp;#x6001;&amp;#x68EE;&amp;#x6797;&amp;#x8FDE;&amp;#x901A;&amp;#x6027;&amp;#x7684;&amp;#x6570;&amp;#x636E;&amp;#x7ED3;&amp;#x6784;&amp;#xFF0C;&amp;#x9002;&amp;#x7528;&amp;#x4E8E;&amp;#">
+<meta property="og:updated_time" content="2016-05-11T09:33:24.440Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Link-Cut Tree 学习笔记">
+<meta name="twitter:description" content="Link-Cut Tree &amp;#x662F;&amp;#x4E00;&amp;#x79CD;&amp;#x7528;&amp;#x6765;&amp;#x7EF4;&amp;#x62A4;&amp;#x52A8;&amp;#x6001;&amp;#x68EE;&amp;#x6797;&amp;#x8FDE;&amp;#x901A;&amp;#x6027;&amp;#x7684;&amp;#x6570;&amp;#x636E;&amp;#x7ED3;&amp;#x6784;&amp;#xFF0C;&amp;#x9002;&amp;#x7528;&amp;#x4E8E;&amp;#">
+<meta name="twitter:creator" content="@HuangHaoRui">
+    
+        <meta rel="publisher" content="https://plus.google.com/103195680789397520000"/>
+    
+    
+        
+    
+    
+        <meta property="og:image" content="//dn-menci.qbox.me/assets/images/avatar.png"/>
+    
+    
+    
+    
+    <!--STYLES-->
+    <link rel="stylesheet" href="//dn-menci.qbox.me/assets/css/style-pcycimglbr925yrwj0efxsn118g0acj4bp3qcdehgw1freahg01piplpcrqd.min.css">
+    <!--STYLES END-->
+	<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/KaTeX/0.6.0/katex.min.css">
+	<link href='https://fonts.googleapis.com/css?family=Poiret+One' rel='stylesheet' type='text/css'>
+    
+    <script type="text/javascript">
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-75865916-1']);
+        _gaq.push(['_trackPageview']);
+        (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+    </script>
+
+    
+</head>
+
+    <body>
+        <div id="blog">
+            <!-- Define author's picture -->
+
+
+    
+        
+            
+        
+    
+
+<!--<header id="header" data-behavior="2">-->
+<header id="header" data-behavior="2">
+    <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+    <h1 class="header-title">
+        <a class="header-title-link" href="/ ">Menci</a>
+    </h1>
+    
+        
+            <a  class="header-right-picture "
+                href="/#about">
+        
+        
+            <img class="header-picture" src="//dn-menci.qbox.me/assets/images/avatar.png"/>
+        
+        </a>
+    
+</header>
+
+            <!-- Define author's picture -->
+
+
+
+        
+    
+
+<!--<nav id="sidebar" data-behavior="2">-->
+<nav id="sidebar" data-behavior="2">
+    
+        <div class="sidebar-profile">
+            <a href="/#about">
+                    <img class="sidebar-profile-picture" src="//dn-menci.qbox.me/assets/images/avatar.png"/>
+            </a>
+            <span class="sidebar-profile-name">Menci</span>
+        </div>
+    
+    
+        <ul class="sidebar-buttons">
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link "
+                         href="/ "
+                        
+                    >
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+                    <span class="sidebar-button-desc">首页</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link "
+                         href="/all-tags"
+                        
+                    >
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+                    <span class="sidebar-button-desc">标签</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link "
+                         href="/all-archives"
+                        
+                    >
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+                    <span class="sidebar-button-desc">归档</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link st-search-show-outputs"
+                         href="/#search"
+                        
+                    >
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-search"></i>
+                    <span class="sidebar-button-desc">搜索</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link "
+                         href="/about-me"
+                        
+                    >
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-info"></i>
+                    <span class="sidebar-button-desc">关于</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link "
+                         href="/friends"
+                        
+                    >
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-users"></i>
+                    <span class="sidebar-button-desc">伙伴</span>
+                </a>
+        </li>
+        
+    </ul>
+    
+        <ul class="sidebar-buttons">
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link " href="https://github.com/Menci" target="_blank">
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+                    <span class="sidebar-button-desc">GitHub</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link " href="https://twitter.com/HuangHaoRui" target="_blank">
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-twitter"></i>
+                    <span class="sidebar-button-desc">Twitter</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link " href="http://wpa.qq.com/msgrd?V=3&Uin=421899973" target="_blank">
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-qq"></i>
+                    <span class="sidebar-button-desc">QQ</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link " href="mailto:huanghaorui301@gmail.com" target="_blank">
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-envelope-o"></i>
+                    <span class="sidebar-button-desc">邮箱</span>
+                </a>
+        </li>
+        
+    </ul>
+    
+        <ul class="sidebar-buttons">
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link "
+                         href="/atom.xml"
+                        
+                    >
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-rss"></i>
+                    <span class="sidebar-button-desc">RSS</span>
+                </a>
+        </li>
+        
+    </ul>
+    
+</nav>
+
+            
+            <div id="main" data-behavior="2"
+                 class="
+                        hasCoverMetaIn
+                        ">
+                
+<article class="post" itemscope itemType="http://schema.org/BlogPosting">
+    
+    
+        <div class="post-header main-content-wrap text-left">
+    
+        <h1 class="post-title" itemprop="headline">
+            Link-Cut Tree 学习笔记
+        </h1>
+    
+    <div class="post-meta" style="border-bottom: 1px solid #eef2f8;">
+    <time itemprop="datePublished" content="Tue Jan 19 2016 20:50:40 GMT+0800">
+	
+		    1月 19, 2016
+    	
+    </time>
+    
+        <span>发布在 </span>
+        
+    <a class="category-link" href="/categories/oi/">OI</a>
+
+
+    
+	
+		<div class="post-footer-tags" style="margin-top: 10px; margin-left: 10px; display: inline-block; border-bottom: none; ">
+			<!--span class="text-color-light text-small">标签</span><br/-->
+			
+    <a class="tag tag--primary tag--small t-link" href="/tag/link-cut-tree/">Link-Cut Tree</a> <a class="tag tag--primary tag--small t-link" href="/tag/splay/">Splay</a> <a class="tag tag--primary tag--small t-link" href="/tag/动态树/">动态树</a> <a class="tag tag--primary tag--small t-link" href="/tag/数据结构/">数据结构</a> <a class="tag tag--primary tag--small t-link" href="/tag/算法模板/">算法模板</a> <a class="tag tag--primary tag--small t-link" href="/tag/高级数据结构/">高级数据结构</a>
+
+		</div>
+	
+</div>
+
+</div>
+    
+    <div class="post-content markdown" itemprop="articleBody">
+        <div class="main-content-wrap">
+            <p>Link-Cut Tree &#x662F;&#x4E00;&#x79CD;&#x7528;&#x6765;&#x7EF4;&#x62A4;&#x52A8;&#x6001;&#x68EE;&#x6797;&#x8FDE;&#x901A;&#x6027;&#x7684;&#x6570;&#x636E;&#x7ED3;&#x6784;&#xFF0C;&#x9002;&#x7528;&#x4E8E;&#x52A8;&#x6001;&#x6811;&#x95EE;&#x9898;&#x3002;&#x5B83;&#x91C7;&#x7528;&#x7C7B;&#x4F3C;&#x6811;&#x94FE;&#x5256;&#x5206;&#x7684;&#x8F7B;&#x91CD;&#x8FB9;&#x8DEF;&#x5F84;&#x5256;&#x5206;&#xFF0C;&#x628A;&#x6811;&#x8FB9;&#x5206;&#x4E3A;&#x5B9E;&#x8FB9;&#x548C;&#x865A;&#x8FB9;&#xFF0C;&#x5E76;&#x7528; Splay &#x6765;&#x7EF4;&#x62A4;&#x6BCF;&#x4E00;&#x6761;&#x5B9E;&#x8DEF;&#x5F84;&#x3002;Link-Cut Tree &#x7684;&#x57FA;&#x672C;&#x64CD;&#x4F5C;&#x590D;&#x6742;&#x5EA6;&#x4E3A;&#x5747;&#x644A; $O({\log}n)$&#xFF0C;&#x4F46;&#x5E38;&#x6570;&#x56E0;&#x5B50;&#x8F83;&#x5927;&#xFF0C;&#x4E00;&#x822C;&#x6548;&#x7387;&#x4F1A;&#x4F4E;&#x4E8E;&#x6811;&#x94FE;&#x5256;&#x5206;&#x3002;</p>
+<a id="more"></a>
+<h3 id="&#x5B9A;&#x4E49;">&#x5B9A;&#x4E49;</h3>
+<p>&#x4E00;&#x68F5; Link-Cut Tree &#x4E0A;&#x7684;&#x8FB9;&#x5206;&#x4E3A;&#x4E24;&#x79CD;&#xFF1A;&#x5B9E;&#x8FB9;&#x548C;&#x865A;&#x8FB9;&#x3002;&#x6BCF;&#x4E00;&#x79CD;&#x8FB9;&#x90FD;&#x662F;&#x6709;&#x5411;&#x7684;&#xFF0C;&#x7531;&#x5B50;&#x8282;&#x70B9;&#x6307;&#x5411;&#x7236;&#x8282;&#x70B9;&#x3002;&#x9996;&#x5C3E;&#x76F8;&#x8FDE;&#x7684;&#x5B9E;&#x8FB9;&#x7EC4;&#x6210;&#x7684;&#x4E0D;&#x53EF;&#x5EF6;&#x4F38;&#x7684;&#x94FE;&#x53EB;&#x505A;&#x8DEF;&#x5F84;&#x3002;&#x8DEF;&#x5F84;&#x4E2D;<strong>&#x6DF1;&#x5EA6;&#x6700;&#x5927;</strong>&#x7684;&#x8282;&#x70B9;&#x79F0;&#x4E3A;&#x8DEF;&#x5F84;&#x5934;&#x90E8;&#xFF0C;<strong>&#x6DF1;&#x5EA6;&#x6700;&#x5C0F;</strong>&#x7684;&#x8282;&#x70B9;&#x79F0;&#x4E3A;&#x8DEF;&#x5F84;&#x5C3E;&#x90E8;&#x3002;</p>
+<p>&#x5C06;&#x6BCF;&#x4E00;&#x6761;&#x8DEF;&#x5F84;&#x4E0A;&#x7684;&#x8282;&#x70B9;&#x6309;&#x7167;&#x6DF1;&#x5EA6;&#x6392;&#x5E8F;&#xFF0C;&#x5F97;&#x5230;&#x4E00;&#x4E2A;&#x5E8F;&#x5217;&#xFF0C;&#x7528; Splay &#x6765;&#x7EF4;&#x62A4;&#x8FD9;&#x4E2A;&#x5E8F;&#x5217;&#x3002;</p>
+<p>&#x6BCF;&#x4E00;&#x6761;&#x94FE;&#x5BF9;&#x5E94;&#x7740;&#x4E00;&#x68F5; Splay&#xFF0C;&#x6BCF;&#x68F5; Splay &#x7684;&#x6839;&#x8282;&#x70B9;&#x6709;&#x4E00;&#x4E2A;&#x6210;&#x5458; <code>Path Parent</code>&#xFF0C;&#x8868;&#x793A;&#x8BE5; Splay &#x7EF4;&#x62A4;&#x7684;&#x8DEF;&#x5F84;&#x7684;&#x5C3E;&#x90E8;&#x7684;&#x8282;&#x70B9;&#x7684;<strong>&#x7236;&#x8282;&#x70B9;</strong>&#xFF0C;&#x6574;&#x68F5;&#x6811;&#x7684;&#x6839;&#x8282;&#x70B9;&#x6240;&#x5BF9;&#x5E94;&#x7684; Splay &#x8282;&#x70B9;&#x7684; <code>Path Parent</code> &#x4E3A;&#x7A7A;&#xFF1B;&#x5176;&#x4ED6;&#x8282;&#x70B9;&#xFF08;&#x4E0D;&#x662F;&#x5176;&#x6240;&#x5728; Splay &#x7684;&#x6839;&#x8282;&#x70B9;&#x7684;&#x8282;&#x70B9;&#xFF09;&#x7684; <code>Path Parent</code> &#x4E5F;&#x4E3A;&#x7A7A;&#x3002;</p>
+<p><code>value</code> &#x7528;&#x4E8E;&#x7EF4;&#x62A4;&#x70B9;&#x6743;&#xFF0C;<code>sum</code> &#x548C; <code>max</code> &#x662F;&#x6839;&#x636E;&#x9898;&#x76EE;&#x8981;&#x6C42;&#x7EF4;&#x62A4;&#x7684;&#x94FE;&#x4E0A;&#x7684;&#x533A;&#x95F4;&#x4FE1;&#x606F;&#x3002;<code>reversed</code> &#x8868;&#x793A;&#x4EE5;&#x8BE5;&#x8282;&#x70B9;&#x4E3A;&#x6839;&#x7684; Splay &#x6709;&#x6CA1;&#x6709;&#x88AB;&#x7FFB;&#x8F6C;&#x3002;</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> Node {</span><br><span class="line">    Node *child[<span class="number">2</span>], *parent, *pathParent;</span><br><span class="line">    T value, sum, max;</span><br><span class="line">    <span class="keyword">bool</span> reversed;</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<h3 id="&#x64CD;&#x4F5C;">&#x64CD;&#x4F5C;</h3>
+<p>Link-Cut Tree &#x652F;&#x6301;&#x4EE5;&#x4E0B;&#x51E0;&#x79CD;&#x57FA;&#x672C;&#x64CD;&#x4F5C;&#xFF1A;</p>
+<ol style="list-style-type: decimal">
+<li><code>Access(u)</code>&#xFF0C;&#x201C;&#x8BBF;&#x95EE;&#x201D;&#x67D0;&#x4E2A;&#x8282;&#x70B9; <code>u</code>&#xFF0C;&#x88AB;&#x201C;&#x8BBF;&#x95EE;&#x201D;&#x8FC7;&#x7684;&#x8282;&#x70B9;&#x4F1A;&#x4E0E;&#x6839;&#x8282;&#x70B9;&#x4E4B;&#x95F4;&#x4EE5;&#x8DEF;&#x5F84;&#x76F8;&#x8FDE;&#xFF0C;&#x5E76;&#x4E14;&#x8BE5;&#x8282;&#x70B9;&#x4E3A;&#x8DEF;&#x5F84;&#x5934;&#x90E8;&#xFF08;&#x6700;&#x4E0B;&#x7AEF;&#xFF09;&#xFF1B;</li>
+<li><code>Evert(u)</code>&#xFF0C;&#x5C06;&#x67D0;&#x4E2A;&#x8282;&#x70B9; <code>u</code> &#x7F6E;&#x4E3A;&#x5176;&#x6240;&#x5728;&#x6811;&#x7684;&#x6839;&#x8282;&#x70B9;&#xFF0C;&#x8BE5;&#x64CD;&#x4F5C;&#x7B49;&#x4EF7;&#x4E8E;&#x628A;&#x8BE5;&#x8282;&#x70B9;&#x5230;&#x6839;&#x8282;&#x70B9;&#x6240;&#x7ECF;&#x8FC7;&#x7684;&#x6240;&#x6709;&#x8FB9;&#x65B9;&#x5411;&#x53D6;&#x53CD;&#xFF1B;</li>
+<li><code>Link(u, v)</code>&#xFF0C;&#x5C06;&#x67D0;&#x4E24;&#x4E2A;&#x8282;&#x70B9; <code>u</code> &#x548C; <code>v</code> &#x8FDE;&#x63A5;&#xFF0C;&#x6267;&#x884C;&#x64CD;&#x4F5C;&#x540E; <code>u</code> &#x6210;&#x4E3A; <code>v</code> &#x7684;&#x7236;&#x8282;&#x70B9;&#xFF1B;</li>
+<li><code>Cut(u, v)</code>&#xFF0C;&#x5C06;&#x67D0;&#x4E24;&#x4E2A;&#x8282;&#x70B9; <code>u</code> &#x548C; <code>v</code> &#x5206;&#x79BB;&#xFF0C;&#x6267;&#x884C;&#x64CD;&#x4F5C;&#x540E; <code>v</code> &#x53CA;&#x5176;&#x5B50;&#x8282;&#x70B9;&#x7EC4;&#x6210;&#x5355;&#x72EC;&#x7684;&#x4E00;&#x68F5;&#x6811;&#xFF1B;</li>
+<li><code>FindRoot(u)</code>&#xFF0C;&#x67E5;&#x627E;&#x67D0;&#x4E2A;&#x8282;&#x70B9; <code>u</code> &#x6240;&#x5728;&#x6811;&#x7684;&#x6839;&#x8282;&#x70B9;&#xFF1B;</li>
+<li><code>MakeTree()</code>&#xFF0C;&#x5411;&#x68EE;&#x6797;&#x4E2D;&#x79CD;&#x690D;&#x4E00;&#x68F5;&#x65B0;&#x7684;&#x6811;&#x3002;</li>
+</ol>
+<h3 id="access-&#x64CD;&#x4F5C;"><code>Access</code> &#x64CD;&#x4F5C;</h3>
+<h4 id="expose-&#x64CD;&#x4F5C;"><code>Expose</code> &#x64CD;&#x4F5C;</h4>
+<p>&#x5728;&#x5B9E;&#x73B0; <code>Access</code> &#x64CD;&#x4F5C;&#x524D;&#xFF0C;&#x6211;&#x4EEC;&#x5148;&#x6765;&#x5B9E;&#x73B0; <code>Expose</code> &#x64CD;&#x4F5C;&#xFF0C;&#x5B83;&#x7684;&#x4F5C;&#x7528;&#x662F;&#x5C06;&#x5F53;&#x524D;&#x8282;&#x70B9;&#x7F6E;&#x4E3A;&#x5176;&#x6240;&#x5728;&#x8DEF;&#x5F84;&#x7684;&#x5934;&#x90E8;&#x8282;&#x70B9;&#xFF0C;&#x5373;&#x5207;&#x65AD;&#x81EA;&#x8BE5;&#x8282;&#x70B9;&#x5411;&#x4E0B;&#x7684;&#x90E8;&#x5206;&#x8DEF;&#x5F84;&#x3002;</p>
+<ol style="list-style-type: decimal">
+<li>&#x5C06;&#x8BE5;&#x8282;&#x70B9; <code>Splay</code> &#x5230;&#x5176;&#x6240;&#x5728; Splay &#x7684;&#x6839;&#x8282;&#x70B9;&#xFF1B;</li>
+<li>&#x5982;&#x679C;&#x8BE5;&#x8282;&#x70B9;&#x6709;&#x53F3;&#x5B69;&#x5B50;&#xFF0C;&#x90A3;&#x4E48;&#x65AD;&#x5F00;&#x5176;&#x4E0E;&#x5176;&#x53F3;&#x5B69;&#x5B50;&#x7684;&#x8FDE;&#x63A5;&#x3002;</li>
+</ol>
+<p>&#x4E0D;&#x8981;&#x5FD8;&#x4E86;&#x5404;&#x79CD;&#x6807;&#x8BB0;&#x7684;&#x4E0B;&#x653E;&#x548C;&#x503C;&#x7684;&#x7EF4;&#x62A4;&#x3002;</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">expose</span><span class="params">()</span> </span>{</span><br><span class="line">    splay();</span><br><span class="line">    pushDown();</span><br><span class="line">    <span class="keyword">if</span> (child[R]) {</span><br><span class="line">        child[R]-&gt;parent = <span class="literal">NULL</span>;</span><br><span class="line">        child[R]-&gt;pathParent = <span class="keyword">this</span>;</span><br><span class="line">        child[R] = <span class="literal">NULL</span>;</span><br><span class="line">        maintain();</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<h4 id="splice-&#x64CD;&#x4F5C;"><code>Splice</code> &#x64CD;&#x4F5C;</h4>
+<p>&#x63A5;&#x4E0B;&#x6765;&#xFF0C;&#x6211;&#x4EEC;&#x6765;&#x5B9E;&#x73B0; <code>Splice</code> &#x64CD;&#x4F5C;&#xFF0C;&#x5B83;&#x7684;&#x4F5C;&#x7528;&#x662F;&#x5C06;<strong>&#x5F53;&#x524D;&#x8282;&#x70B9;</strong>&#x6240;&#x5728;&#x7684;&#x8DEF;&#x5F84;&#x4E0E;<strong>&#x5176;&#x5C3E;&#x90E8;&#x8282;&#x70B9;&#x7684;&#x7236;&#x8282;&#x70B9;</strong>&#x6240;&#x5728;&#x7684;&#x8DEF;&#x5F84;&#x5408;&#x5E76;&#xFF0C;&#x5373;&#x5B9E;&#x73B0;&#x4E86;&#x8DEF;&#x5F84;&#x7684;&#x5411;&#x4E0A;&#x5EF6;&#x957F;&#x3002;</p>
+<ol style="list-style-type: decimal">
+<li>&#x5C06;&#x8BE5;&#x8282;&#x70B9; <code>Splay</code> &#x5230;&#x5176;&#x6240;&#x5728; Splay &#x7684;&#x6839;&#x8282;&#x70B9;&#xFF1B;</li>
+<li>&#x5982;&#x679C;&#x8BE5;&#x8282;&#x70B9;&#x6CA1;&#x6709; <code>Path Parent</code>&#xFF0C;&#x90A3;&#x4E48;&#x8BF4;&#x660E;&#x8BE5;&#x8282;&#x70B9;&#x6240;&#x5728;&#x8DEF;&#x5F84;&#x4E2D;&#x5305;&#x542B;&#x6839;&#x8282;&#x70B9;&#xFF0C;&#x5373; <code>Splice</code> &#x64CD;&#x4F5C;&#x5931;&#x8D25;&#x3002;</li>
+<li>&#x5BF9;&#x8BE5;&#x8282;&#x70B9;&#x7684; <code>Path Parent</code> &#x6267;&#x884C; <code>Expose</code> &#x64CD;&#x4F5C;&#xFF0C;&#x5C06;&#x5176;&#x539F;&#x6709;&#x7684;&#x8DEF;&#x5F84;&#x65AD;&#x5F00;&#xFF1B;</li>
+<li>&#x5C06;&#x8BE5;&#x8282;&#x70B9;&#x8FDE;&#x63A5;&#x5230;&#x5176; <code>Path Parent</code> &#x7684;&#x53F3;&#x5B69;&#x5B50;&#x4E0A;&#xFF0C;&#x5E76;&#x5C06; <code>Path Parent</code> &#x7F6E;&#x4E3A;&#x7A7A;&#x3002;</li>
+</ol>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">splice</span><span class="params">()</span> </span>{</span><br><span class="line">    splay();</span><br><span class="line">    <span class="keyword">if</span> (!pathParent) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line"></span><br><span class="line">    pathParent-&gt;expose();</span><br><span class="line">    pathParent-&gt;child[R] = <span class="keyword">this</span>;</span><br><span class="line">    parent = pathParent;</span><br><span class="line">    pathParent = <span class="literal">NULL</span>;</span><br><span class="line">    parent-&gt;maintain();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<h4 id="access-&#x64CD;&#x4F5C;-1"><code>Access</code> &#x64CD;&#x4F5C;</h4>
+<p>&#x6709;&#x4E86; <code>Expose</code> &#x548C; <code>Splice</code>&#xFF0C;<code>Access</code> &#x5C31;&#x7B80;&#x5355;&#x591A;&#x4E86;&#xFF0C;<code>Expose</code> &#x540E;&#x6267;&#x884C; <code>Splice</code> &#x76F4;&#x5230;&#x5931;&#x8D25;&#x5373;&#x53EF;&#x3002;</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">access</span><span class="params">()</span> </span>{</span><br><span class="line">    expose();</span><br><span class="line">    <span class="keyword">while</span> (splice());</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<h3 id="evert-&#x64CD;&#x4F5C;"><code>Evert</code> &#x64CD;&#x4F5C;</h3>
+<p>&#x9996;&#x5148;&#x6267;&#x884C; <code>Access</code>&#xFF0C;&#x5C06;&#x8BE5;&#x8282;&#x70B9;&#x4E0E;&#x6839;&#x8282;&#x70B9;&#x4E4B;&#x95F4;&#x7528;&#x4E00;&#x6761;&#x5B8C;&#x6574;&#x7684;&#x8DEF;&#x5F84;&#x8FDE;&#x63A5;&#xFF0C;&#x7136;&#x540E;&#x7FFB;&#x8F6C;&#x8FD9;&#x6761;&#x8DEF;&#x5F84;&#x5373;&#x53EF;&#x3002;</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">evert</span><span class="params">()</span> </span>{</span><br><span class="line">    access();</span><br><span class="line">    splay();</span><br><span class="line">    reversed ^= <span class="number">1</span>;</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<h3 id="link-&#x64CD;&#x4F5C;"><code>Link</code> &#x64CD;&#x4F5C;</h3>
+<p>&#x5C06;&#x8282;&#x70B9; <code>v</code> &#x7F6E;&#x4E3A;&#x5176;&#x6240;&#x5728;&#x6811;&#x7684;&#x6839;&#xFF0C;&#x7136;&#x540E;&#x5C06;&#x5176; <code>Path Parent</code> &#x7F6E;&#x4E3A;&#x8282;&#x70B9; <code>u</code> &#x5373;&#x53EF;&#x3002;</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">link</span><span class="params">(<span class="keyword">int</span> u, <span class="keyword">int</span> v)</span> </span>{</span><br><span class="line">    nodes[v - <span class="number">1</span>]-&gt;evert();</span><br><span class="line">    nodes[v - <span class="number">1</span>]-&gt;pathParent = nodes[u - <span class="number">1</span>];</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<h3 id="cut-&#x64CD;&#x4F5C;"><code>Cut</code> &#x64CD;&#x4F5C;</h3>
+<p><code>Cut</code> &#x64CD;&#x4F5C;&#x7A0D;&#x5FAE;&#x590D;&#x6742;&#x4E00;&#x70B9;&#xFF1A;</p>
+<ol style="list-style-type: decimal">
+<li>&#x5C06;&#x8282;&#x70B9; <code>u</code> &#x7F6E;&#x4E3A;&#x5176;&#x6240;&#x5728;&#x6811;&#x7684;&#x6839;&#x8282;&#x70B9;&#xFF0C;&#x4EE5;&#x4FDD;&#x8BC1; <code>v</code> &#x662F; <code>u</code> &#x7684;&#x5B50;&#x8282;&#x70B9;&#xFF1B;</li>
+<li>&#x5BF9; <code>v</code> &#x6267;&#x884C; <code>Access</code> &#x64CD;&#x4F5C;&#xFF0C;&#x5C06; <code>v</code> &#x4E0E; <code>u</code> &#x4E4B;&#x95F4;&#x7528;&#x4E00;&#x6761;&#x5B8C;&#x6574;&#x7684;&#x8DEF;&#x5F84;&#x8FDE;&#x63A5;&#xFF1B;</li>
+<li>&#x5BF9; <code>v</code> &#x6267;&#x884C; <code>Splay</code> &#x64CD;&#x4F5C;&#xFF0C;&#x5C06; <code>v</code> &#x7F6E;&#x4E8E;<strong>&#x5176;&#x6240;&#x5728; Splay &#x7684;&#x6839;&#x8282;&#x70B9;</strong>&#xFF1B;</li>
+<li>&#x5C06; <code>v</code> &#x4E0E;&#x5176;&#x5DE6;&#x5B50;&#x6811;&#x5206;&#x79BB;&#xFF0C;&#x5373;&#x5C06;&#x8DEF;&#x5F84;&#x65AD;&#x5F00;&#x3002;</li>
+</ol>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">cut</span><span class="params">(<span class="keyword">int</span> u, <span class="keyword">int</span> v)</span> </span>{</span><br><span class="line">    nodes[u - <span class="number">1</span>]-&gt;evert();</span><br><span class="line">    nodes[v - <span class="number">1</span>]-&gt;access();</span><br><span class="line">    nodes[v - <span class="number">1</span>]-&gt;splay();</span><br><span class="line">    nodes[v - <span class="number">1</span>]-&gt;pushDown();</span><br><span class="line">    nodes[v - <span class="number">1</span>]-&gt;child[L]-&gt;parent = <span class="literal">NULL</span>;</span><br><span class="line">    nodes[v - <span class="number">1</span>]-&gt;child[L] = <span class="literal">NULL</span>;</span><br><span class="line">    nodes[v - <span class="number">1</span>]-&gt;maintain();</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<h3 id="query-&#x548C;-update-&#x64CD;&#x4F5C;"><code>Query</code> &#x548C; <code>Update</code> &#x64CD;&#x4F5C;</h3>
+<p>&#x4EE5; <code>QueryMax(u, v)</code> &#x67E5;&#x8BE2;&#x4E24;&#x4E2A;&#x70B9;&#x4E4B;&#x95F4;&#x7684;&#x70B9;&#x6743;&#x6700;&#x5927;&#x503C;&#x4E3A;&#x4F8B;&#x3002;&#x9996;&#x5148;&#x5728; <code>Node</code> &#x7ED3;&#x6784;&#x4F53;&#x4E2D;&#x5B58;&#x50A8; <code>max</code> &#x6210;&#x5458;&#xFF0C;&#x5E76;&#x5728; <code>Maintain()</code> &#x4E2D;&#x7EF4;&#x62A4;&#x5B83;&#x3002;</p>
+<p>&#x9996;&#x5148;&#xFF0C;&#x5982;&#x679C;&#x9700;&#x8981;&#x67E5;&#x8BE2;&#x67D0;&#x4E2A;&#x70B9;&#x5230;&#x6839;&#x8282;&#x70B9;&#x4E4B;&#x95F4;&#x7684;&#x70B9;&#x6743;&#x6700;&#x5927;&#x503C;&#xFF0C;&#x53EA;&#x9700;&#x5148;&#x8BBF;&#x95EE;&#x8FD9;&#x4E2A;&#x8282;&#x70B9;&#xFF0C;&#x5373; <code>Access(u)</code>&#xFF0C;&#x7136;&#x540E;&#x5BF9;&#x8BE5;&#x8282;&#x70B9;&#x6267;&#x884C; <code>Splay</code> &#x64CD;&#x4F5C;&#xFF0C;&#x5C06;&#x5176;&#x7F6E;&#x4E3A;&#x5176;&#x6240;&#x5728; Splay &#x7684;&#x6839;&#x8282;&#x70B9;&#xFF0C;&#x6B64;&#x65F6; <code>u</code> &#x7684; <code>max</code> &#x5B58;&#x50A8;&#x7684;&#x503C;&#x5373;&#x4E3A; <code>u</code> &#x5230;&#x5176;&#x6240;&#x5728;&#x6811;&#x7684;&#x6839;&#x8282;&#x70B9;&#x7684;&#x8DEF;&#x5F84;&#x4E0A;&#x7684;&#x70B9;&#x6743;&#x6700;&#x5927;&#x503C;&#x3002;</p>
+<p>&#x5982;&#x679C;&#x8981;&#x67E5;&#x8BE2;&#x4EFB;&#x610F;&#x4E24;&#x70B9;&#x95F4;&#x7684;&#x70B9;&#x6743;&#x6700;&#x5927;&#x503C;&#xFF0C;&#x53EA;&#x9700;&#x8981;&#x5148;&#x5BF9;&#x5176;&#x4E2D;&#x4E00;&#x4E2A;&#x8282;&#x70B9;&#x6267;&#x884C; <code>Evert</code> &#x64CD;&#x4F5C;&#xFF0C;&#x5C06;&#x5176;&#x7F6E;&#x4E3A;&#x6811;&#x6839;&#xFF0C;&#x5C31;&#x53EF;&#x4EE5;&#x8F6C;&#x5316;&#x4E3A;&#x4E0A;&#x8FF0;&#x60C5;&#x51B5;&#x8FDB;&#x884C;&#x5904;&#x7406;&#x3002;</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> T &amp;Node::queryMax() {</span><br><span class="line">    access();</span><br><span class="line">    splay();</span><br><span class="line">    <span class="keyword">return</span> max;</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">const</span> T &amp;<span class="title">queryMax</span><span class="params">(<span class="keyword">int</span> u, <span class="keyword">int</span> v)</span> </span>{</span><br><span class="line">    nodes[u - <span class="number">1</span>]-&gt;evert();</span><br><span class="line">    <span class="keyword">return</span> nodes[v - <span class="number">1</span>]-&gt;queryMax();</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<p>&#x8981;&#x4FEE;&#x6539;&#x67D0;&#x4E2A;&#x70B9;&#x7684;&#x70B9;&#x6743;&#x503C;&#xFF0C;&#x53EA;&#x9700;&#x8981;&#x5BF9;&#x8BE5;&#x8282;&#x70B9;&#x6267;&#x884C; <code>Splay</code> &#x64CD;&#x4F5C;&#xFF0C;&#x5C06;&#x5176;&#x7F6E;&#x4E3A;&#x5176;&#x6240;&#x5728; Splay &#x7684;&#x6839;&#x8282;&#x70B9;&#xFF0C;&#x7136;&#x540E;&#x76F4;&#x63A5;&#x4FEE;&#x6539;&#x5373;&#x53EF;&#xFF0C;&#x8FD9;&#x6837;&#x53EF;&#x4EE5;&#x907F;&#x514D;&#x4FEE;&#x6539;&#x65F6;&#x6807;&#x8BB0;&#x7684;&#x5411;&#x4E0A;&#x4F20;&#x9012;&#x3002;</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">update</span><span class="params">(<span class="keyword">int</span> u, <span class="keyword">const</span> T &amp;value)</span> </span>{</span><br><span class="line">    nodes[u - <span class="number">1</span>]-&gt;splay();</span><br><span class="line">    nodes[u - <span class="number">1</span>]-&gt;value = value;</span><br><span class="line">    nodes[u - <span class="number">1</span>]-&gt;maintain();</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<h3 id="maketree-&#x64CD;&#x4F5C;"><code>MakeTree</code> &#x64CD;&#x4F5C;</h3>
+<p>&#x76F4;&#x63A5;&#x65B0;&#x5EFA;&#x8282;&#x70B9;&#x5C31;&#x53EF;&#x4EE5;&#x3002;</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">makeTree</span><span class="params">(<span class="keyword">int</span> u, <span class="keyword">const</span> T &amp;value)</span> </span>{</span><br><span class="line">    nodes[u - <span class="number">1</span>] = <span class="keyword">new</span> Node(value);</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<h3 id="&#x5176;&#x4ED6;&#x64CD;&#x4F5C;-&#x6CE8;&#x610F;&#x4E8B;&#x9879;">&#x5176;&#x4ED6;&#x64CD;&#x4F5C; &amp; &#x6CE8;&#x610F;&#x4E8B;&#x9879;</h3>
+<ol style="list-style-type: decimal">
+<li>&#x8FDB;&#x884C; <code>Splay</code> &#x548C; <code>Rotate</code> &#x65F6;&#xFF0C;&#x8981;&#x6CE8;&#x610F;&#x6807;&#x8BB0;&#x7684;&#x4F20;&#x9012;&#xFF1B;</li>
+<li><code>Rotate</code> &#x65F6;&#xFF0C;&#x9700;&#x8981;&#x5C06;&#x81EA;&#x5DF1;&#x7684; <code>Path Parent</code> &#x4E0E;&#x7236;&#x8282;&#x70B9;&#x7684; <code>Path Parent</code> &#x4E92;&#x6362;&#xFF0C;&#x4EE5;&#x4FDD;&#x8BC1; <code>Path Parent</code> &#x6210;&#x5458;&#x7684;&#x6709;&#x6548;&#x503C;&#x603B;&#x5728;&#x4E00;&#x68F5; Splay &#x7684;&#x6839;&#x8282;&#x70B9;&#x4E0A;&#x3002;</li>
+</ol>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">pushDown</span><span class="params">()</span> </span>{</span><br><span class="line">    <span class="keyword">if</span> (reversed) {</span><br><span class="line">        <span class="built_in">std</span>::swap(child[L], child[R]);</span><br><span class="line">        <span class="keyword">if</span> (child[L]) child[L]-&gt;reversed ^= <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">if</span> (child[R]) child[R]-&gt;reversed ^= <span class="number">1</span>;</span><br><span class="line">        reversed = <span class="literal">false</span>;</span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">maintain</span><span class="params">()</span> </span>{</span><br><span class="line">    sum = value;</span><br><span class="line">    <span class="keyword">if</span> (child[L]) sum += child[L]-&gt;sum;</span><br><span class="line">    <span class="keyword">if</span> (child[R]) sum += child[R]-&gt;sum;</span><br><span class="line"></span><br><span class="line">    max = value;</span><br><span class="line">    <span class="keyword">if</span> (child[L]) max = <span class="built_in">std</span>::max(max, child[L]-&gt;max);</span><br><span class="line">    <span class="keyword">if</span> (child[R]) max = <span class="built_in">std</span>::max(max, child[R]-&gt;max);</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">rotate</span><span class="params">()</span> </span>{</span><br><span class="line">    <span class="keyword">if</span> (parent-&gt;parent) parent-&gt;parent-&gt;pushDown();</span><br><span class="line">    parent-&gt;pushDown(), pushDown();</span><br><span class="line">    <span class="built_in">std</span>::swap(pathParent, parent-&gt;pathParent);</span><br><span class="line"></span><br><span class="line">    Relation x = relation();</span><br><span class="line">    Node *oldParent = parent;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (oldParent-&gt;parent) oldParent-&gt;parent-&gt;child[oldParent-&gt;relation()] = <span class="keyword">this</span>;</span><br><span class="line">    parent = oldParent-&gt;parent;</span><br><span class="line"></span><br><span class="line">    oldParent-&gt;child[x] = child[x ^ <span class="number">1</span>];</span><br><span class="line">    <span class="keyword">if</span> (child[x ^ <span class="number">1</span>]) child[x ^ <span class="number">1</span>]-&gt;parent = oldParent;</span><br><span class="line"></span><br><span class="line">    child[x ^ <span class="number">1</span>] = oldParent;</span><br><span class="line">    oldParent-&gt;parent = <span class="keyword">this</span>;</span><br><span class="line"></span><br><span class="line">    oldParent-&gt;maintain(), maintain();</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">splay</span><span class="params">()</span> </span>{</span><br><span class="line">    <span class="keyword">while</span> (parent) {</span><br><span class="line">        <span class="keyword">if</span> (!parent-&gt;parent) rotate();</span><br><span class="line">        <span class="keyword">else</span> {</span><br><span class="line">            parent-&gt;parent-&gt;pushDown(), parent-&gt;pushDown();</span><br><span class="line">            <span class="keyword">if</span> (relation() == parent-&gt;relation()) parent-&gt;rotate(), rotate();</span><br><span class="line">            <span class="keyword">else</span> rotate(), rotate();</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<h3 id="&#x5B8C;&#x6574;&#x4EE3;&#x7801;&#x6811;&#x7684;&#x7EDF;&#x8BA1;">&#x5B8C;&#x6574;&#x4EE3;&#x7801;&#xFF08;&#x6811;&#x7684;&#x7EDF;&#x8BA1;&#xFF09;</h3>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;climits&gt;</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;algorithm&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAXN = <span class="number">30000</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">print</span><span class="params">(<span class="keyword">void</span> *p)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="keyword">struct</span> LinkCutTree {</span><br><span class="line">    <span class="keyword">enum</span> Relation {</span><br><span class="line">        L = <span class="number">0</span>, R = <span class="number">1</span></span><br><span class="line">    };</span><br><span class="line"></span><br><span class="line">    <span class="keyword">struct</span> Node {</span><br><span class="line">        Node *child[<span class="number">2</span>], *parent, *pathParent;</span><br><span class="line">        T value, sum, max;</span><br><span class="line">        <span class="keyword">bool</span> reversed;</span><br><span class="line"></span><br><span class="line">        Node(<span class="keyword">const</span> T &amp;value) : reversed(<span class="literal">false</span>), value(value), sum(value), max(value), parent(<span class="literal">NULL</span>), pathParent(<span class="literal">NULL</span>) {</span><br><span class="line">            child[L] = child[R] = <span class="literal">NULL</span>;</span><br><span class="line">        }</span><br><span class="line"></span><br><span class="line">        <span class="function">Relation <span class="title">relation</span><span class="params">()</span> </span>{</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">this</span> == parent-&gt;child[L] ? L : R;</span><br><span class="line">        }</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">void</span> <span class="title">pushDown</span><span class="params">()</span> </span>{</span><br><span class="line">            <span class="keyword">if</span> (reversed) {</span><br><span class="line">                <span class="built_in">std</span>::swap(child[L], child[R]);</span><br><span class="line">                <span class="keyword">if</span> (child[L]) child[L]-&gt;reversed ^= <span class="number">1</span>;</span><br><span class="line">                <span class="keyword">if</span> (child[R]) child[R]-&gt;reversed ^= <span class="number">1</span>;</span><br><span class="line">                reversed = <span class="literal">false</span>;</span><br><span class="line">            }</span><br><span class="line">        }</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">void</span> <span class="title">maintain</span><span class="params">()</span> </span>{</span><br><span class="line">            sum = value;</span><br><span class="line">            <span class="keyword">if</span> (child[L]) sum += child[L]-&gt;sum;</span><br><span class="line">            <span class="keyword">if</span> (child[R]) sum += child[R]-&gt;sum;</span><br><span class="line"></span><br><span class="line">            max = value;</span><br><span class="line">            <span class="keyword">if</span> (child[L]) max = <span class="built_in">std</span>::max(max, child[L]-&gt;max);</span><br><span class="line">            <span class="keyword">if</span> (child[R]) max = <span class="built_in">std</span>::max(max, child[R]-&gt;max);</span><br><span class="line">        }</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">void</span> <span class="title">rotate</span><span class="params">()</span> </span>{</span><br><span class="line">            <span class="keyword">if</span> (parent-&gt;parent) parent-&gt;parent-&gt;pushDown();</span><br><span class="line">            parent-&gt;pushDown(), pushDown();</span><br><span class="line">            <span class="built_in">std</span>::swap(pathParent, parent-&gt;pathParent);</span><br><span class="line"></span><br><span class="line">            Relation x = relation();</span><br><span class="line">            Node *oldParent = parent;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> (oldParent-&gt;parent) oldParent-&gt;parent-&gt;child[oldParent-&gt;relation()] = <span class="keyword">this</span>;</span><br><span class="line">            parent = oldParent-&gt;parent;</span><br><span class="line"></span><br><span class="line">            oldParent-&gt;child[x] = child[x ^ <span class="number">1</span>];</span><br><span class="line">            <span class="keyword">if</span> (child[x ^ <span class="number">1</span>]) child[x ^ <span class="number">1</span>]-&gt;parent = oldParent;</span><br><span class="line"></span><br><span class="line">            child[x ^ <span class="number">1</span>] = oldParent;</span><br><span class="line">            oldParent-&gt;parent = <span class="keyword">this</span>;</span><br><span class="line"></span><br><span class="line">            oldParent-&gt;maintain(), maintain();</span><br><span class="line">        }</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">void</span> <span class="title">splay</span><span class="params">()</span> </span>{</span><br><span class="line">            <span class="keyword">while</span> (parent) {</span><br><span class="line">                <span class="keyword">if</span> (!parent-&gt;parent) rotate();</span><br><span class="line">                <span class="keyword">else</span> {</span><br><span class="line">                    parent-&gt;parent-&gt;pushDown(), parent-&gt;pushDown();</span><br><span class="line">                    <span class="keyword">if</span> (relation() == parent-&gt;relation()) parent-&gt;rotate(), rotate();</span><br><span class="line">                    <span class="keyword">else</span> rotate(), rotate();</span><br><span class="line">                }</span><br><span class="line">            }</span><br><span class="line">        }</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">void</span> <span class="title">evert</span><span class="params">()</span> </span>{</span><br><span class="line">            access();</span><br><span class="line">            splay();</span><br><span class="line">            reversed ^= <span class="number">1</span>;</span><br><span class="line">        }</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">void</span> <span class="title">expose</span><span class="params">()</span> </span>{</span><br><span class="line">            splay();</span><br><span class="line">            pushDown();</span><br><span class="line">            <span class="keyword">if</span> (child[R]) {</span><br><span class="line">                child[R]-&gt;parent = <span class="literal">NULL</span>;</span><br><span class="line">                child[R]-&gt;pathParent = <span class="keyword">this</span>;</span><br><span class="line">                child[R] = <span class="literal">NULL</span>;</span><br><span class="line">                maintain();</span><br><span class="line">            }</span><br><span class="line">        }</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">bool</span> <span class="title">splice</span><span class="params">()</span> </span>{</span><br><span class="line">            splay();</span><br><span class="line">            <span class="keyword">if</span> (!pathParent) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line"></span><br><span class="line">            pathParent-&gt;expose();</span><br><span class="line">            pathParent-&gt;child[R] = <span class="keyword">this</span>;</span><br><span class="line">            parent = pathParent;</span><br><span class="line">            pathParent = <span class="literal">NULL</span>;</span><br><span class="line">            parent-&gt;maintain();</span><br><span class="line"></span><br><span class="line">            <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        }</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">void</span> <span class="title">access</span><span class="params">()</span> </span>{</span><br><span class="line">            expose();</span><br><span class="line">            <span class="keyword">while</span> (splice());</span><br><span class="line">        }</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">const</span> T &amp;<span class="title">querySum</span><span class="params">()</span> </span>{</span><br><span class="line">            access();</span><br><span class="line">            splay();</span><br><span class="line">            <span class="keyword">return</span> sum;</span><br><span class="line">        }</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">const</span> T &amp;<span class="title">queryMax</span><span class="params">()</span> </span>{</span><br><span class="line">            access();</span><br><span class="line">            splay();</span><br><span class="line">            <span class="keyword">return</span> max;</span><br><span class="line">        }</span><br><span class="line">    };</span><br><span class="line"></span><br><span class="line">    Node *nodes[MAXN];</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">makeTree</span><span class="params">(<span class="keyword">int</span> u, <span class="keyword">const</span> T &amp;value)</span> </span>{</span><br><span class="line">        nodes[u - <span class="number">1</span>] = <span class="keyword">new</span> Node(value);</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">link</span><span class="params">(<span class="keyword">int</span> u, <span class="keyword">int</span> v)</span> </span>{</span><br><span class="line">        nodes[v - <span class="number">1</span>]-&gt;evert();</span><br><span class="line">        nodes[v - <span class="number">1</span>]-&gt;pathParent = nodes[u - <span class="number">1</span>];</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">cut</span><span class="params">(<span class="keyword">int</span> u, <span class="keyword">int</span> v)</span> </span>{</span><br><span class="line">        nodes[u - <span class="number">1</span>]-&gt;evert();</span><br><span class="line">        nodes[v - <span class="number">1</span>]-&gt;access();</span><br><span class="line">        nodes[v - <span class="number">1</span>]-&gt;splay();</span><br><span class="line">        nodes[v - <span class="number">1</span>]-&gt;pushDown();</span><br><span class="line">        nodes[v - <span class="number">1</span>]-&gt;child[L]-&gt;parent = <span class="literal">NULL</span>;</span><br><span class="line">        nodes[v - <span class="number">1</span>]-&gt;child[L] = <span class="literal">NULL</span>;</span><br><span class="line">        nodes[v - <span class="number">1</span>]-&gt;maintain();</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">const</span> T &amp;<span class="title">querySum</span><span class="params">(<span class="keyword">int</span> u, <span class="keyword">int</span> v)</span> </span>{</span><br><span class="line">        nodes[u - <span class="number">1</span>]-&gt;evert();</span><br><span class="line">        <span class="keyword">return</span> nodes[v - <span class="number">1</span>]-&gt;querySum();</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">const</span> T &amp;<span class="title">queryMax</span><span class="params">(<span class="keyword">int</span> u, <span class="keyword">int</span> v)</span> </span>{</span><br><span class="line">        nodes[u - <span class="number">1</span>]-&gt;evert();</span><br><span class="line">        <span class="keyword">return</span> nodes[v - <span class="number">1</span>]-&gt;queryMax();</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">update</span><span class="params">(<span class="keyword">int</span> u, <span class="keyword">const</span> T &amp;value)</span> </span>{</span><br><span class="line">        nodes[u - <span class="number">1</span>]-&gt;splay();</span><br><span class="line">        nodes[u - <span class="number">1</span>]-&gt;value = value;</span><br><span class="line">        nodes[u - <span class="number">1</span>]-&gt;maintain();</span><br><span class="line">    }</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line"><span class="keyword">struct</span> UndirectedEdge {</span><br><span class="line">    <span class="keyword">int</span> u, v;</span><br><span class="line"></span><br><span class="line">    UndirectedEdge() {}</span><br><span class="line"></span><br><span class="line">    UndirectedEdge(<span class="keyword">int</span> u, <span class="keyword">int</span> v) : u(u), v(v) {}</span><br><span class="line">} edges[MAXN - <span class="number">1</span>];</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> n, q;</span><br><span class="line">LinkCutTree&lt;<span class="keyword">int</span>&gt; lct;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(LinkCutTree&lt;<span class="keyword">int</span>&gt;::Node *v, <span class="keyword">int</span> depth)</span> </span>{</span><br><span class="line">    <span class="keyword">if</span> (!v) <span class="keyword">return</span>;</span><br><span class="line">    dfs(v-&gt;child[LinkCutTree&lt;<span class="keyword">int</span>&gt;::L], depth + <span class="number">1</span>);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; depth; i++) <span class="built_in">putchar</span>(<span class="string">&apos; &apos;</span>);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d, max = %d, sum = %d\n&quot;</span>, v-&gt;value, v-&gt;max, v-&gt;sum);</span><br><span class="line">    dfs(v-&gt;child[LinkCutTree&lt;<span class="keyword">int</span>&gt;::R], depth + <span class="number">1</span>);</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">print</span><span class="params">(<span class="keyword">void</span> *p)</span> </span>{</span><br><span class="line">    dfs((LinkCutTree&lt;<span class="keyword">int</span>&gt;::Node *)p, <span class="number">0</span>);</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>{</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;n);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n - <span class="number">1</span>; i++) {</span><br><span class="line">        <span class="keyword">int</span> u, v;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">&quot;%d %d&quot;</span>, &amp;u, &amp;v);</span><br><span class="line">        edges[i] = UndirectedEdge(u, v);</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++) {</span><br><span class="line">        <span class="keyword">int</span> value;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;value);</span><br><span class="line">        lct.makeTree(i, value);</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n - <span class="number">1</span>; i++) {</span><br><span class="line">        lct.link(edges[i].u, edges[i].v);</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;q);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; q; i++) {</span><br><span class="line">        <span class="keyword">char</span> str[<span class="number">6</span> + <span class="number">1</span>];</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">&quot;%s&quot;</span>, str);</span><br><span class="line">        <span class="keyword">if</span> (str[<span class="number">1</span>] == <span class="string">&apos;H&apos;</span>) {</span><br><span class="line">            <span class="keyword">int</span> u, t;</span><br><span class="line">            <span class="built_in">scanf</span>(<span class="string">&quot;%d %d&quot;</span>, &amp;u, &amp;t);</span><br><span class="line">            lct.update(u, t);</span><br><span class="line">        } <span class="keyword">else</span> <span class="keyword">if</span> (str[<span class="number">1</span>] == <span class="string">&apos;M&apos;</span>) {</span><br><span class="line">            <span class="keyword">int</span> u, v;</span><br><span class="line">            <span class="built_in">scanf</span>(<span class="string">&quot;%d %d&quot;</span>, &amp;u, &amp;v);</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>, lct.queryMax(u, v));</span><br><span class="line">        } <span class="keyword">else</span> <span class="keyword">if</span> (str[<span class="number">1</span>] == <span class="string">&apos;S&apos;</span>) {</span><br><span class="line">            <span class="keyword">int</span> u, v;</span><br><span class="line">            <span class="built_in">scanf</span>(<span class="string">&quot;%d %d&quot;</span>, &amp;u, &amp;v);</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>, lct.querySum(u, v));</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+
+            
+        </div>
+    </div>
+    <div id="post-footer" class="post-footer main-content-wrap">
+        <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/noip2012-mod/"  data-tooltip="「NOIP2012」同余方程 - 扩展欧几里得">
+                
+                    <i class="fa fa-angle-left"></i>
+                    <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/splay-notes-3/" data-tooltip="Splay 学习笔记（三）">
+                
+                    <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
+                    <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a class="post-action-btn btn btn--default btn-open-shareoptions"  href="#btn-open-shareoptions">
+                <i class="fa fa-share-alt"></i>
+            </a>
+        </li>
+        <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://blog.menci.moe/link-cut-tree-notes/">
+                <i class="fa fa-google-plus"></i>
+            </a>
+        </li>
+        <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.menci.moe/link-cut-tree-notes/">
+                <i class="fa fa-facebook-official"></i>
+            </a>
+        </li>
+        <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://blog.menci.moe/link-cut-tree-notes/">
+                <i class="fa fa-twitter"></i>
+            </a>
+        </li>
+        
+            <li class="post-action">
+                <a class="post-action-btn btn btn--default" href="#disqus_thread">
+                    <i class="fa fa-comment-o"></i>
+                </a>
+            </li>
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#">
+            
+                <i class="fa fa-list"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+        
+            
+                <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+            
+        
+    </div>
+</article>
+
+
+
+                <footer id="footer" class="main-content-wrap">
+    <span class="copyrights">
+        Copyrights &copy; 2016 Menci. All Rights Reserved.
+    </span>
+</footer>
+</script>
+
+            </div>
+            
+                <div id="bottom-bar" class="post-bottom-bar" data-behavior="2">
+                    <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/noip2012-mod/"  data-tooltip="「NOIP2012」同余方程 - 扩展欧几里得">
+                
+                    <i class="fa fa-angle-left"></i>
+                    <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/splay-notes-3/" data-tooltip="Splay 学习笔记（三）">
+                
+                    <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
+                    <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a class="post-action-btn btn btn--default btn-open-shareoptions"  href="#btn-open-shareoptions">
+                <i class="fa fa-share-alt"></i>
+            </a>
+        </li>
+        <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://blog.menci.moe/link-cut-tree-notes/">
+                <i class="fa fa-google-plus"></i>
+            </a>
+        </li>
+        <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.menci.moe/link-cut-tree-notes/">
+                <i class="fa fa-facebook-official"></i>
+            </a>
+        </li>
+        <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://blog.menci.moe/link-cut-tree-notes/">
+                <i class="fa fa-twitter"></i>
+            </a>
+        </li>
+        
+            <li class="post-action">
+                <a class="post-action-btn btn btn--default" href="#disqus_thread">
+                    <i class="fa fa-comment-o"></i>
+                </a>
+            </li>
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#">
+            
+                <i class="fa fa-list"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+                </div>
+                <div id="share-options-bar" class="share-options-bar" data-behavior="2">
+    <ul class="share-options">
+        <li class="share-option">
+            <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=https://blog.menci.moe/link-cut-tree-notes/">
+                <i class="fa fa-google-plus"></i><span class="">分享到 Google+</span>
+            </a>
+        </li>
+        <li class="share-option">
+            <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.menci.moe/link-cut-tree-notes/">
+                <i class="fa fa-facebook-official"></i><span>分享到 Facebook</span>
+            </a>
+        </li>
+        <li class="share-option">
+            <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https://blog.menci.moe/link-cut-tree-notes/">
+                <i class="fa fa-twitter"></i><span>分享到 Twitter</span>
+            </a>
+        </li>
+    </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+            
+        </div>
+        
+
+
+    
+        
+    
+
+<div id="about">
+    <div id="about-card">
+        <div id="about-btn-close">
+            <i class="fa fa-remove"></i>
+        </div>
+        
+            <img style="box-shadow: 0 0 15px gray;" id="about-card-picture" src="//dn-menci.qbox.me/assets/images/avatar.png"/>
+        
+            <h4 id="about-card-name">Menci</h4>
+        
+            <h5 id="about-card-bio">眉眼如初，岁月如故</h5>
+        
+        
+            <h5 id="about-card-job">
+                <i class="fa fa-cloud"></i>
+                <br/>
+                One day, <br> I'll reach the next stage <br> to realize all.
+            </h5>
+        
+        
+    </div>
+</div>
+
+        
+<div id="cover" style="background-image:url('//dn-menci.qbox.me/assets/images/cover.jpg');"></div>
+    </body>
+    <!--SCRIPTS-->
+<script src="//dn-menci.qbox.me/assets/js/scrip-0ewjnhvv8ytgl76lkiq8f541cfygs5bpfv33ohlfvpfklrfevqupdsxg46fk.min.js" type="text/javascript"></script>
+<!--SCRIPTS END-->
+
+    
+        <script>
+             var disqus_config = function () {
+				 MenciRemoveIndexDotHtml = function (url) {
+				 	if (url.substr(-10, 10) == 'index.html') return url.substr(0, url.length - 10);
+				 	else return url;
+				 }
+                 this.page.url = MenciRemoveIndexDotHtml('https://blog.menci.moe/link-cut-tree-notes/');
+                 
+                 this.page.identifier = MenciRemoveIndexDotHtml('link-cut-tree-notes/');
+                                  
+             };
+            (function() {
+                var d = document, s = d.createElement('script');
+                var disqus_shortname = 'menci';
+                s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+
+                s.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        </script>
+    
+
+
+    <script type="text/javascript">
+        (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+                (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+            e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+        })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+        _st('install','L51x_1_hCboFSsSLLGGK','2.0.0');
+    </script>
+
+
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/KaTeX/0.6.0/katex.min.js"></script>
+<!--script type="text/javascript" src="/assets/js/auto-render.min.js"></script-->
+<script>
+$(function() {
+	// renderKatexMathjaxFallback($('body')[0]);
+	renderMathInElement($('body')[0]);
+});
+</script>
+
+</html>

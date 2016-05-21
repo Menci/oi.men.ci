@@ -1,0 +1,547 @@
+
+<!DOCTYPE html>
+<html lang="zh-cn">
+    
+<head>
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="Menci">
+    <title>「SCOI2015」国旗计划 - 贪心 + 倍增 - Menci</title>
+    <meta name="author" content="Menci">
+    
+    
+        <link rel="icon" href="//dn-menci.qbox.me/assets/images/avatar.png">
+    
+    
+        <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
+    
+    <meta name="description" content="A &amp;#x56FD;&amp;#x5E45;&amp;#x5458;&amp;#x8FBD;&amp;#x9614;&amp;#xFF0C;&amp;#x8FB9;&amp;#x5883;&amp;#x7EBF;&amp;#x4E0A;&amp;#x8BBE;&amp;#x6709; $ M $ &amp;#x4E2A;&amp;#x8FB9;&amp;#x9632;&amp;#x7AD9;&amp;#xFF0C;&amp;#x987A;&amp;#x65F6;&amp;#x9488;&amp;#x7F16;&amp;#x53F7; $ 1 $ &amp;#x81F3;">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="「SCOI2015」国旗计划 - 贪心 + 倍增">
+<meta property="og:url" content="https://blog.menci.moe/scoi2015-flag/index.html">
+<meta property="og:site_name" content="Menci">
+<meta property="og:description" content="A &amp;#x56FD;&amp;#x5E45;&amp;#x5458;&amp;#x8FBD;&amp;#x9614;&amp;#xFF0C;&amp;#x8FB9;&amp;#x5883;&amp;#x7EBF;&amp;#x4E0A;&amp;#x8BBE;&amp;#x6709; $ M $ &amp;#x4E2A;&amp;#x8FB9;&amp;#x9632;&amp;#x7AD9;&amp;#xFF0C;&amp;#x987A;&amp;#x65F6;&amp;#x9488;&amp;#x7F16;&amp;#x53F7; $ 1 $ &amp;#x81F3;">
+<meta property="og:updated_time" content="2016-05-11T09:33:24.450Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="「SCOI2015」国旗计划 - 贪心 + 倍增">
+<meta name="twitter:description" content="A &amp;#x56FD;&amp;#x5E45;&amp;#x5458;&amp;#x8FBD;&amp;#x9614;&amp;#xFF0C;&amp;#x8FB9;&amp;#x5883;&amp;#x7EBF;&amp;#x4E0A;&amp;#x8BBE;&amp;#x6709; $ M $ &amp;#x4E2A;&amp;#x8FB9;&amp;#x9632;&amp;#x7AD9;&amp;#xFF0C;&amp;#x987A;&amp;#x65F6;&amp;#x9488;&amp;#x7F16;&amp;#x53F7; $ 1 $ &amp;#x81F3;">
+<meta name="twitter:creator" content="@HuangHaoRui">
+    
+        <meta rel="publisher" content="https://plus.google.com/103195680789397520000"/>
+    
+    
+        
+    
+    
+        <meta property="og:image" content="//dn-menci.qbox.me/assets/images/avatar.png"/>
+    
+    
+    
+    
+    <!--STYLES-->
+    <link rel="stylesheet" href="//dn-menci.qbox.me/assets/css/style-pcycimglbr925yrwj0efxsn118g0acj4bp3qcdehgw1freahg01piplpcrqd.min.css">
+    <!--STYLES END-->
+	<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/KaTeX/0.6.0/katex.min.css">
+	<link href='https://fonts.googleapis.com/css?family=Poiret+One' rel='stylesheet' type='text/css'>
+    
+    <script type="text/javascript">
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-75865916-1']);
+        _gaq.push(['_trackPageview']);
+        (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+    </script>
+
+    
+</head>
+
+    <body>
+        <div id="blog">
+            <!-- Define author's picture -->
+
+
+    
+        
+            
+        
+    
+
+<!--<header id="header" data-behavior="2">-->
+<header id="header" data-behavior="2">
+    <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+    <h1 class="header-title">
+        <a class="header-title-link" href="/ ">Menci</a>
+    </h1>
+    
+        
+            <a  class="header-right-picture "
+                href="/#about">
+        
+        
+            <img class="header-picture" src="//dn-menci.qbox.me/assets/images/avatar.png"/>
+        
+        </a>
+    
+</header>
+
+            <!-- Define author's picture -->
+
+
+
+        
+    
+
+<!--<nav id="sidebar" data-behavior="2">-->
+<nav id="sidebar" data-behavior="2">
+    
+        <div class="sidebar-profile">
+            <a href="/#about">
+                    <img class="sidebar-profile-picture" src="//dn-menci.qbox.me/assets/images/avatar.png"/>
+            </a>
+            <span class="sidebar-profile-name">Menci</span>
+        </div>
+    
+    
+        <ul class="sidebar-buttons">
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link "
+                         href="/ "
+                        
+                    >
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+                    <span class="sidebar-button-desc">首页</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link "
+                         href="/all-tags"
+                        
+                    >
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+                    <span class="sidebar-button-desc">标签</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link "
+                         href="/all-archives"
+                        
+                    >
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+                    <span class="sidebar-button-desc">归档</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link st-search-show-outputs"
+                         href="/#search"
+                        
+                    >
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-search"></i>
+                    <span class="sidebar-button-desc">搜索</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link "
+                         href="/about-me"
+                        
+                    >
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-info"></i>
+                    <span class="sidebar-button-desc">关于</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link "
+                         href="/friends"
+                        
+                    >
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-users"></i>
+                    <span class="sidebar-button-desc">伙伴</span>
+                </a>
+        </li>
+        
+    </ul>
+    
+        <ul class="sidebar-buttons">
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link " href="https://github.com/Menci" target="_blank">
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+                    <span class="sidebar-button-desc">GitHub</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link " href="https://twitter.com/HuangHaoRui" target="_blank">
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-twitter"></i>
+                    <span class="sidebar-button-desc">Twitter</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link " href="http://wpa.qq.com/msgrd?V=3&Uin=421899973" target="_blank">
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-qq"></i>
+                    <span class="sidebar-button-desc">QQ</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link " href="mailto:huanghaorui301@gmail.com" target="_blank">
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-envelope-o"></i>
+                    <span class="sidebar-button-desc">邮箱</span>
+                </a>
+        </li>
+        
+    </ul>
+    
+        <ul class="sidebar-buttons">
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link "
+                         href="/atom.xml"
+                        
+                    >
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-rss"></i>
+                    <span class="sidebar-button-desc">RSS</span>
+                </a>
+        </li>
+        
+    </ul>
+    
+</nav>
+
+            
+            <div id="main" data-behavior="2"
+                 class="
+                        hasCoverMetaIn
+                        ">
+                
+<article class="post" itemscope itemType="http://schema.org/BlogPosting">
+    
+    
+        <div class="post-header main-content-wrap text-left">
+    
+        <h1 class="post-title" itemprop="headline">
+            「SCOI2015」国旗计划 - 贪心 + 倍增
+        </h1>
+    
+    <div class="post-meta" style="border-bottom: 1px solid #eef2f8;">
+    <time itemprop="datePublished" content="Tue Mar 22 2016 18:25:14 GMT+0800">
+	
+		    3月 22, 2016
+    	
+    </time>
+    
+        <span>发布在 </span>
+        
+    <a class="category-link" href="/categories/oi/">OI</a>
+
+
+    
+	
+		<div class="post-footer-tags" style="margin-top: 10px; margin-left: 10px; display: inline-block; border-bottom: none; ">
+			<!--span class="text-color-light text-small">标签</span><br/-->
+			
+    <a class="tag tag--primary tag--small t-link" href="/tag/bzoj/">BZOJ</a> <a class="tag tag--primary tag--small t-link" href="/tag/scoi/">SCOI</a> <a class="tag tag--primary tag--small t-link" href="/tag/倍增/">倍增</a> <a class="tag tag--primary tag--small t-link" href="/tag/安徽集训/">安徽集训</a> <a class="tag tag--primary tag--small t-link" href="/tag/贪心/">贪心</a>
+
+		</div>
+	
+</div>
+
+</div>
+    
+    <div class="post-content markdown" itemprop="articleBody">
+        <div class="main-content-wrap">
+            <p>A &#x56FD;&#x5E45;&#x5458;&#x8FBD;&#x9614;&#xFF0C;&#x8FB9;&#x5883;&#x7EBF;&#x4E0A;&#x8BBE;&#x6709; $ M $ &#x4E2A;&#x8FB9;&#x9632;&#x7AD9;&#xFF0C;&#x987A;&#x65F6;&#x9488;&#x7F16;&#x53F7; $ 1 $ &#x81F3; $ M $&#x3002;&#x6BCF;&#x540D;&#x8FB9;&#x9632;&#x6218;&#x58EB;&#x5E38;&#x9A7B;&#x4E24;&#x4E2A;&#x8FB9;&#x9632;&#x7AD9;&#xFF0C;&#x5E76;&#x4E14;&#x5584;&#x4E8E;&#x5728;&#x8FD9;&#x4E24;&#x4E2A;&#x8FB9;&#x9632;&#x7AD9;&#x4E4B;&#x95F4;&#x957F;&#x9014;&#x5954;&#x88AD;&#xFF0C;&#x6211;&#x4EEC;&#x79F0;&#x8FD9;&#x4E24;&#x4E2A;&#x8FB9;&#x9632;&#x7AD9;&#x4E4B;&#x95F4;&#x7684;&#x8DEF;&#x7A0B;&#x662F;&#x8FD9;&#x4E2A;&#x8FB9;&#x9632;&#x6218;&#x58EB;&#x7684;&#x5954;&#x88AD;&#x533A;&#x95F4;&#x3002;&#x6BCF;&#x540D;&#x6218;&#x58EB;&#x7684;&#x5954;&#x88AD;&#x533A;&#x95F4;&#x90FD;&#x4E0D;&#x4F1A;&#x88AB;&#x5176;&#x4ED6;&#x6218;&#x58EB;&#x7684;&#x5954;&#x88AD;&#x533A;&#x95F4;&#x6240;&#x5305;&#x542B;&#x3002;</p>
+<p>&#x73B0;&#x5728;&#xFF0C;&#x5C40;&#x957F;&#x5E0C;&#x671B;&#x77E5;&#x9053;&#xFF0C;&#x81F3;&#x5C11;&#x9700;&#x8981;&#x591A;&#x5C11;&#x540D;&#x6218;&#x58EB;&#xFF0C;&#x624D;&#x80FD;&#x4F7F;&#x5F97;&#x4ED6;&#x4EEC;&#x7684;&#x5954;&#x88AD;&#x533A;&#x95F4;&#x8986;&#x76D6;&#x5168;&#x90E8;&#x7684;&#x8FB9;&#x5883;&#x7EBF;&#x3002;&#x5C40;&#x957F;&#x8FD8;&#x5E0C;&#x671B;&#x77E5;&#x9053;&#x5BF9;&#x4E8E;&#x6BCF;&#x4E00;&#x540D;&#x6218;&#x58EB;&#xFF0C;&#x5728;&#x4ED6;&#x5FC5;&#x987B;&#x53C2;&#x52A0;&#x56FD;&#x65D7;&#x8BA1;&#x5212;&#x7684;&#x524D;&#x63D0;&#x4E0B;&#xFF0C;&#x81F3;&#x5C11;&#x9700;&#x8981;&#x591A;&#x5C11;&#x540D;&#x6218;&#x58EB;&#x624D;&#x80FD;&#x8986;&#x76D6;&#x5168;&#x90E8;&#x8FB9;&#x5883;&#x7EBF;&#x3002;</p>
+<a id="more"></a>
+<h3 id="&#x94FE;&#x63A5;">&#x94FE;&#x63A5;</h3>
+<p><a href="http://www.lydsy.com/JudgeOnline/problem.php?id=4444" target="_blank" rel="external">BZOJ 4444</a></p>
+<h3 id="&#x9898;&#x89E3;">&#x9898;&#x89E3;</h3>
+<p>&#x9996;&#x5148;&#xFF0C;&#x660E;&#x786E;&#x4E00;&#x4E2A;&#x8D2A;&#x5FC3;&#x7684;&#x601D;&#x8DEF;&#xFF1A;&#x5BF9;&#x4E8E;&#x4EFB;&#x4F55;&#x4E00;&#x4E2A;&#x6218;&#x58EB;&#xFF0C;&#x9009;&#x62E9;&#x4ED6;&#x540E;&#x8981;&#x9009;&#x62E9;&#x7684;&#x4E0B;&#x4E00;&#x4E2A;&#xFF0C;&#x4E00;&#x5B9A;&#x662F;&#x5728;&#x4ED6;&#x540E;&#x9762;&#x5E76;&#x4E14;&#x4E0E;&#x4ED6;&#x5954;&#x88AD;&#x533A;&#x95F4;&#x4EA4;&#x96C6;&#x6700;&#x5C0F;&#x7684;&#xFF08;&#x56E0;&#x4E3A;&#x6240;&#x6709;&#x7684;&#x533A;&#x95F4;&#x5B8C;&#x5168;&#x8986;&#x76D6;&#x5E76;&#x4E14;&#x6CA1;&#x6709;&#x76F8;&#x4E92;&#x5305;&#x542B;&#xFF09;&#x3002;</p>
+<p>&#x628A;&#x6240;&#x6709;&#x533A;&#x95F4;&#x7FFB;&#x500D;&#x5B58;&#x50A8;&#xFF0C;&#x4EE5;&#x5DE6;&#x7AEF;&#x70B9;&#x6392;&#x5E8F;&#x3002;</p>
+<p>40 &#x5206;&#xFF1A;&#x679A;&#x4E3E;&#x6BCF;&#x4E2A;&#x6218;&#x58EB;&#xFF0C;&#x5728;&#x4ED6;&#x4E4B;&#x540E;&#x7684;&#x6240;&#x6709;&#x6218;&#x58EB;&#x4E2D;&#x786E;&#x5B9A;&#x4E00;&#x4E2A;&#x4E0E;&#x4ED6;&#x5954;&#x88AD;&#x533A;&#x95F4;&#x4EA4;&#x96C6;&#x6700;&#x5C0F;&#x7684;&#xFF0C;&#x4F5C;&#x4E3A;&#x4ED6;&#x7684;&#x4E0B;&#x4E00;&#x4E2A;&#xFF08;&#x65F6;&#x95F4;&#x590D;&#x6742;&#x5EA6; $ O(n ^ 2) $&#xFF09;&#xFF1B;&#x7136;&#x540E;&#x5BF9;&#x4E8E;&#x6BCF;&#x4E2A;&#x8BE2;&#x95EE;&#x4ECE;&#x8BE5;&#x6218;&#x58EB;&#x5F00;&#x59CB;&#x4E0D;&#x65AD;&#x627E;&#x4E0B;&#x4E00;&#x4E2A;&#x6218;&#x58EB;&#xFF0C;&#x76F4;&#x5230;&#x627E;&#x56DE;&#x6765;&#x4E3A;&#x6B62;&#xFF1B;</p>
+<p>70 &#x5206;&#xFF1A;&#x628A;&#x627E;&#x300C;&#x4E0B;&#x4E00;&#x4E2A;&#x6218;&#x58EB;&#x300D;&#x7684;&#x590D;&#x6742;&#x5EA6;&#x4F18;&#x5316;&#x4E3A; $ O(n \log n) $&#xFF0C;&#x4F7F;&#x7528; <code>std::upper_bound</code>&#xFF0C;&#x7528;&#x5F53;&#x524D;&#x6218;&#x58EB;&#x7684;&#x533A;&#x95F4;&#x53F3;&#x7AEF;&#x70B9;&#x548C;&#x5176;&#x4ED6;&#x533A;&#x95F4;&#x7684;&#x5DE6;&#x7AEF;&#x70B9;&#x6BD4;&#x8F83;&#xFF0C;&#x8FD4;&#x56DE;&#x7684;&#x7ED3;&#x679C; -1 &#x5373;&#x4E3A;&#x8981;&#x627E;&#x7684;&#x300C;&#x4E0B;&#x4E00;&#x4E2A;&#x6218;&#x58EB;&#x300D;&#x3002;</p>
+<p>100 &#x5206;&#xFF1A;&#x601D;&#x8003;&#x56DE;&#x7B54;&#x8BE2;&#x95EE;&#x65F6;&#x7684;&#x8FC7;&#x7A0B;&#xFF0C;&#x6BCF;&#x6B21;&#x7EBF;&#x6027;&#x5730;&#x5411;&#x540E;&#x626B;&#x63CF;&#x505A;&#x4E86;&#x5F88;&#x591A;&#x91CD;&#x590D;&#x7684;&#x5DE5;&#x4F5C;&#xFF0C;&#x8003;&#x8651;&#x5230;&#x65E0;&#x8BBA;&#x4ECE;&#x90A3;&#x4E2A;&#x6218;&#x58EB;&#x51FA;&#x53D1;&#xFF0C;&#x7ECF;&#x8FC7;&#x7684;&#x76F8;&#x540C;&#x4F4D;&#x7F6E;&#x5411;&#x540E;&#x7684;&#x8DEF;&#x7EBF;&#x90FD;&#x662F;&#x76F8;&#x540C;&#x7684;&#xFF0C;&#x6240;&#x4EE5;&#x53EF;&#x4EE5;&#x5148; $ O(n \log n) $ &#x5730;&#x9884;&#x5904;&#x7406;&#x51FA;&#x4E00;&#x4E2A;&#x7A00;&#x758F;&#x8868;&#xFF0C;&#x7528; $ next_{i, j} $ &#x8868;&#x793A;&#x6218;&#x58EB; $ i $ &#x5411;&#x540E;&#x627E; $ 2 ^ j $ &#x6B21;&#x6240;&#x5230;&#x8FBE;&#x7684;&#x6218;&#x58EB;&#xFF0C;&#x7136;&#x540E;&#x5C31;&#x53EF;&#x4EE5; $ O(\log n) $ &#x5730;&#x56DE;&#x7B54;&#x6BCF;&#x4E2A;&#x8BE2;&#x95EE;&#x4E86;&#x3002;</p>
+<h3 id="&#x4EE3;&#x7801;">&#x4EE3;&#x7801;</h3>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;algorithm&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAXN = <span class="number">200000</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAXLOGN = <span class="number">18</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">struct</span> Fighter {</span><br><span class="line">    <span class="keyword">int</span> id, l, r, ans;</span><br><span class="line">    Fighter *next[MAXLOGN + <span class="number">1</span>];</span><br><span class="line">} fighters[MAXN * <span class="number">2</span>];</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> n, m, ans[MAXN];</span><br><span class="line"></span><br><span class="line"><span class="keyword">bool</span> <span class="keyword">operator</span>&lt;(<span class="keyword">const</span> Fighter &amp;a, <span class="keyword">const</span> Fighter &amp;b) {</span><br><span class="line">    <span class="keyword">return</span> a.l &lt; b.l;</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">bool</span> <span class="keyword">operator</span>&lt;(<span class="keyword">int</span> r, <span class="keyword">const</span> Fighter &amp;a) {</span><br><span class="line">    <span class="keyword">return</span> r &lt; a.l;</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>{</span><br><span class="line">    freopen(<span class="string">&quot;flag.in&quot;</span>, <span class="string">&quot;r&quot;</span>, <span class="built_in">stdin</span>);</span><br><span class="line">    <span class="comment">// freopen(&quot;flag.out&quot;, &quot;w&quot;, stdout);</span></span><br><span class="line"></span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d %d&quot;</span>, &amp;n, &amp;m);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) {</span><br><span class="line">        Fighter &amp;a = fighters[i];</span><br><span class="line">        a.id = i;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">&quot;%d %d&quot;</span>, &amp;a.l, &amp;a.r);</span><br><span class="line">        <span class="keyword">if</span> (a.l &gt; a.r) a.r += m;</span><br><span class="line">        fighters[i + n].l = a.l + m, fighters[i + n].r = a.r + m;</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="built_in">std</span>::sort(fighters, fighters + n * <span class="number">2</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n * <span class="number">2</span>; i++) {</span><br><span class="line">        Fighter &amp;a = fighters[i];</span><br><span class="line">        a.next[<span class="number">0</span>] = <span class="built_in">std</span>::upper_bound(fighters, fighters + n * <span class="number">2</span>, a.r) - <span class="number">1</span>;</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; (<span class="number">1</span> &lt;&lt; j) &lt;= n * <span class="number">2</span>; j++) {</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n * <span class="number">2</span>; i++) {</span><br><span class="line">            Fighter &amp;a = fighters[i];</span><br><span class="line">            <span class="keyword">if</span> (a.next[j - <span class="number">1</span>]) {</span><br><span class="line">                a.next[j] = a.next[j - <span class="number">1</span>]-&gt;next[j - <span class="number">1</span>];</span><br><span class="line">            }</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) {</span><br><span class="line">        Fighter *p = &amp;fighters[i];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = MAXLOGN; j &gt;= <span class="number">0</span>; j--) {</span><br><span class="line">            <span class="keyword">if</span> (p-&gt;next[j] &amp;&amp; p-&gt;next[j]-&gt;r &lt; fighters[i].l + m) {</span><br><span class="line">                ans[fighters[i].id] += (<span class="number">1</span> &lt;&lt; j);</span><br><span class="line">                p = p-&gt;next[j];</span><br><span class="line">            }</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) {</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%d &quot;</span>, ans[i] + <span class="number">2</span>);</span><br><span class="line">    }</span><br><span class="line">    <span class="built_in">putchar</span>(<span class="string">&apos;\n&apos;</span>);</span><br><span class="line"></span><br><span class="line">    fclose(<span class="built_in">stdin</span>);</span><br><span class="line">    fclose(<span class="built_in">stdout</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+
+            
+        </div>
+    </div>
+    <div id="post-footer" class="post-footer main-content-wrap">
+        <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/bzoj-2143/"  data-tooltip="「BZOJ 2143」飞飞侠 - 最短路">
+                
+                    <i class="fa fa-angle-left"></i>
+                    <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/scoi2015-message/" data-tooltip="「SCOI2015」情报传递 - 离线 + Link-Cut Tree">
+                
+                    <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
+                    <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a class="post-action-btn btn btn--default btn-open-shareoptions"  href="#btn-open-shareoptions">
+                <i class="fa fa-share-alt"></i>
+            </a>
+        </li>
+        <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://blog.menci.moe/scoi2015-flag/">
+                <i class="fa fa-google-plus"></i>
+            </a>
+        </li>
+        <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.menci.moe/scoi2015-flag/">
+                <i class="fa fa-facebook-official"></i>
+            </a>
+        </li>
+        <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://blog.menci.moe/scoi2015-flag/">
+                <i class="fa fa-twitter"></i>
+            </a>
+        </li>
+        
+            <li class="post-action">
+                <a class="post-action-btn btn btn--default" href="#disqus_thread">
+                    <i class="fa fa-comment-o"></i>
+                </a>
+            </li>
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#">
+            
+                <i class="fa fa-list"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+        
+            
+                <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+            
+        
+    </div>
+</article>
+
+
+
+                <footer id="footer" class="main-content-wrap">
+    <span class="copyrights">
+        Copyrights &copy; 2016 Menci. All Rights Reserved.
+    </span>
+</footer>
+</script>
+
+            </div>
+            
+                <div id="bottom-bar" class="post-bottom-bar" data-behavior="2">
+                    <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/bzoj-2143/"  data-tooltip="「BZOJ 2143」飞飞侠 - 最短路">
+                
+                    <i class="fa fa-angle-left"></i>
+                    <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/scoi2015-message/" data-tooltip="「SCOI2015」情报传递 - 离线 + Link-Cut Tree">
+                
+                    <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
+                    <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a class="post-action-btn btn btn--default btn-open-shareoptions"  href="#btn-open-shareoptions">
+                <i class="fa fa-share-alt"></i>
+            </a>
+        </li>
+        <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://blog.menci.moe/scoi2015-flag/">
+                <i class="fa fa-google-plus"></i>
+            </a>
+        </li>
+        <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.menci.moe/scoi2015-flag/">
+                <i class="fa fa-facebook-official"></i>
+            </a>
+        </li>
+        <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://blog.menci.moe/scoi2015-flag/">
+                <i class="fa fa-twitter"></i>
+            </a>
+        </li>
+        
+            <li class="post-action">
+                <a class="post-action-btn btn btn--default" href="#disqus_thread">
+                    <i class="fa fa-comment-o"></i>
+                </a>
+            </li>
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#">
+            
+                <i class="fa fa-list"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+                </div>
+                <div id="share-options-bar" class="share-options-bar" data-behavior="2">
+    <ul class="share-options">
+        <li class="share-option">
+            <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=https://blog.menci.moe/scoi2015-flag/">
+                <i class="fa fa-google-plus"></i><span class="">分享到 Google+</span>
+            </a>
+        </li>
+        <li class="share-option">
+            <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.menci.moe/scoi2015-flag/">
+                <i class="fa fa-facebook-official"></i><span>分享到 Facebook</span>
+            </a>
+        </li>
+        <li class="share-option">
+            <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https://blog.menci.moe/scoi2015-flag/">
+                <i class="fa fa-twitter"></i><span>分享到 Twitter</span>
+            </a>
+        </li>
+    </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+            
+        </div>
+        
+
+
+    
+        
+    
+
+<div id="about">
+    <div id="about-card">
+        <div id="about-btn-close">
+            <i class="fa fa-remove"></i>
+        </div>
+        
+            <img style="box-shadow: 0 0 15px gray;" id="about-card-picture" src="//dn-menci.qbox.me/assets/images/avatar.png"/>
+        
+            <h4 id="about-card-name">Menci</h4>
+        
+            <h5 id="about-card-bio">眉眼如初，岁月如故</h5>
+        
+        
+            <h5 id="about-card-job">
+                <i class="fa fa-cloud"></i>
+                <br/>
+                One day, <br> I'll reach the next stage <br> to realize all.
+            </h5>
+        
+        
+    </div>
+</div>
+
+        
+<div id="cover" style="background-image:url('//dn-menci.qbox.me/assets/images/cover.jpg');"></div>
+    </body>
+    <!--SCRIPTS-->
+<script src="//dn-menci.qbox.me/assets/js/scrip-0ewjnhvv8ytgl76lkiq8f541cfygs5bpfv33ohlfvpfklrfevqupdsxg46fk.min.js" type="text/javascript"></script>
+<!--SCRIPTS END-->
+
+    
+        <script>
+             var disqus_config = function () {
+				 MenciRemoveIndexDotHtml = function (url) {
+				 	if (url.substr(-10, 10) == 'index.html') return url.substr(0, url.length - 10);
+				 	else return url;
+				 }
+                 this.page.url = MenciRemoveIndexDotHtml('https://blog.menci.moe/scoi2015-flag/');
+                 
+                 this.page.identifier = MenciRemoveIndexDotHtml('scoi2015-flag/');
+                                  
+             };
+            (function() {
+                var d = document, s = d.createElement('script');
+                var disqus_shortname = 'menci';
+                s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+
+                s.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        </script>
+    
+
+
+    <script type="text/javascript">
+        (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+                (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+            e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+        })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+        _st('install','L51x_1_hCboFSsSLLGGK','2.0.0');
+    </script>
+
+
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/KaTeX/0.6.0/katex.min.js"></script>
+<!--script type="text/javascript" src="/assets/js/auto-render.min.js"></script-->
+<script>
+$(function() {
+	// renderKatexMathjaxFallback($('body')[0]);
+	renderMathInElement($('body')[0]);
+});
+</script>
+
+</html>

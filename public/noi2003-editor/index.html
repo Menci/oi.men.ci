@@ -1,0 +1,615 @@
+
+<!DOCTYPE html>
+<html lang="zh-cn">
+    
+<head>
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="Menci">
+    <title>「NOI2003」文本编辑器 - Splay - Menci</title>
+    <meta name="author" content="Menci">
+    
+    
+        <link rel="icon" href="//dn-menci.qbox.me/assets/images/avatar.png">
+    
+    
+        <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
+    
+    <meta name="description" content="&amp;#x64CD;&amp;#x4F5C;&amp;#x540D;&amp;#x79F0;
+&amp;#x8F93;&amp;#x5165;&amp;#x6587;&amp;#x4EF6;&amp;#x4E2D;&amp;#x7684;&amp;#x683C;&amp;#x5F0F;
+&amp;#x529F;&amp;#x80FD;
+
+
+
+
+$ {\rm MOVE}(k) $
+Move k
+&amp;#x5C06;&amp;#x5149;&amp;#x6807;&amp;#x79FB;&amp;#x52A8;&amp;#x5230;&amp;#x7B2C;">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="「NOI2003」文本编辑器 - Splay">
+<meta property="og:url" content="https://blog.menci.moe/noi2003-editor/index.html">
+<meta property="og:site_name" content="Menci">
+<meta property="og:description" content="&amp;#x64CD;&amp;#x4F5C;&amp;#x540D;&amp;#x79F0;
+&amp;#x8F93;&amp;#x5165;&amp;#x6587;&amp;#x4EF6;&amp;#x4E2D;&amp;#x7684;&amp;#x683C;&amp;#x5F0F;
+&amp;#x529F;&amp;#x80FD;
+
+
+
+
+$ {\rm MOVE}(k) $
+Move k
+&amp;#x5C06;&amp;#x5149;&amp;#x6807;&amp;#x79FB;&amp;#x52A8;&amp;#x5230;&amp;#x7B2C;">
+<meta property="og:updated_time" content="2016-05-11T09:33:24.450Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="「NOI2003」文本编辑器 - Splay">
+<meta name="twitter:description" content="&amp;#x64CD;&amp;#x4F5C;&amp;#x540D;&amp;#x79F0;
+&amp;#x8F93;&amp;#x5165;&amp;#x6587;&amp;#x4EF6;&amp;#x4E2D;&amp;#x7684;&amp;#x683C;&amp;#x5F0F;
+&amp;#x529F;&amp;#x80FD;
+
+
+
+
+$ {\rm MOVE}(k) $
+Move k
+&amp;#x5C06;&amp;#x5149;&amp;#x6807;&amp;#x79FB;&amp;#x52A8;&amp;#x5230;&amp;#x7B2C;">
+<meta name="twitter:creator" content="@HuangHaoRui">
+    
+        <meta rel="publisher" content="https://plus.google.com/103195680789397520000"/>
+    
+    
+        
+    
+    
+        <meta property="og:image" content="//dn-menci.qbox.me/assets/images/avatar.png"/>
+    
+    
+    
+    
+    <!--STYLES-->
+    <link rel="stylesheet" href="//dn-menci.qbox.me/assets/css/style-pcycimglbr925yrwj0efxsn118g0acj4bp3qcdehgw1freahg01piplpcrqd.min.css">
+    <!--STYLES END-->
+	<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/KaTeX/0.6.0/katex.min.css">
+	<link href='https://fonts.googleapis.com/css?family=Poiret+One' rel='stylesheet' type='text/css'>
+    
+    <script type="text/javascript">
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-75865916-1']);
+        _gaq.push(['_trackPageview']);
+        (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+    </script>
+
+    
+</head>
+
+    <body>
+        <div id="blog">
+            <!-- Define author's picture -->
+
+
+    
+        
+            
+        
+    
+
+<!--<header id="header" data-behavior="2">-->
+<header id="header" data-behavior="2">
+    <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+    <h1 class="header-title">
+        <a class="header-title-link" href="/ ">Menci</a>
+    </h1>
+    
+        
+            <a  class="header-right-picture "
+                href="/#about">
+        
+        
+            <img class="header-picture" src="//dn-menci.qbox.me/assets/images/avatar.png"/>
+        
+        </a>
+    
+</header>
+
+            <!-- Define author's picture -->
+
+
+
+        
+    
+
+<!--<nav id="sidebar" data-behavior="2">-->
+<nav id="sidebar" data-behavior="2">
+    
+        <div class="sidebar-profile">
+            <a href="/#about">
+                    <img class="sidebar-profile-picture" src="//dn-menci.qbox.me/assets/images/avatar.png"/>
+            </a>
+            <span class="sidebar-profile-name">Menci</span>
+        </div>
+    
+    
+        <ul class="sidebar-buttons">
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link "
+                         href="/ "
+                        
+                    >
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+                    <span class="sidebar-button-desc">首页</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link "
+                         href="/all-tags"
+                        
+                    >
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+                    <span class="sidebar-button-desc">标签</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link "
+                         href="/all-archives"
+                        
+                    >
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+                    <span class="sidebar-button-desc">归档</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link st-search-show-outputs"
+                         href="/#search"
+                        
+                    >
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-search"></i>
+                    <span class="sidebar-button-desc">搜索</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link "
+                         href="/about-me"
+                        
+                    >
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-info"></i>
+                    <span class="sidebar-button-desc">关于</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link "
+                         href="/friends"
+                        
+                    >
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-users"></i>
+                    <span class="sidebar-button-desc">伙伴</span>
+                </a>
+        </li>
+        
+    </ul>
+    
+        <ul class="sidebar-buttons">
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link " href="https://github.com/Menci" target="_blank">
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+                    <span class="sidebar-button-desc">GitHub</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link " href="https://twitter.com/HuangHaoRui" target="_blank">
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-twitter"></i>
+                    <span class="sidebar-button-desc">Twitter</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link " href="http://wpa.qq.com/msgrd?V=3&Uin=421899973" target="_blank">
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-qq"></i>
+                    <span class="sidebar-button-desc">QQ</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link " href="mailto:huanghaorui301@gmail.com" target="_blank">
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-envelope-o"></i>
+                    <span class="sidebar-button-desc">邮箱</span>
+                </a>
+        </li>
+        
+    </ul>
+    
+        <ul class="sidebar-buttons">
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link "
+                         href="/atom.xml"
+                        
+                    >
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-rss"></i>
+                    <span class="sidebar-button-desc">RSS</span>
+                </a>
+        </li>
+        
+    </ul>
+    
+</nav>
+
+            
+            <div id="main" data-behavior="2"
+                 class="
+                        hasCoverMetaIn
+                        ">
+                
+<article class="post" itemscope itemType="http://schema.org/BlogPosting">
+    
+    
+        <div class="post-header main-content-wrap text-left">
+    
+        <h1 class="post-title" itemprop="headline">
+            「NOI2003」文本编辑器 - Splay
+        </h1>
+    
+    <div class="post-meta" style="border-bottom: 1px solid #eef2f8;">
+    <time itemprop="datePublished" content="Sun Mar 06 2016 19:49:35 GMT+0800">
+	
+		    3月 06, 2016
+    	
+    </time>
+    
+        <span>发布在 </span>
+        
+    <a class="category-link" href="/categories/oi/">OI</a>
+
+
+    
+	
+		<div class="post-footer-tags" style="margin-top: 10px; margin-left: 10px; display: inline-block; border-bottom: none; ">
+			<!--span class="text-color-light text-small">标签</span><br/-->
+			
+    <a class="tag tag--primary tag--small t-link" href="/tag/bzoj/">BZOJ</a> <a class="tag tag--primary tag--small t-link" href="/tag/noi/">NOI</a> <a class="tag tag--primary tag--small t-link" href="/tag/splay/">Splay</a> <a class="tag tag--primary tag--small t-link" href="/tag/数据结构/">数据结构</a> <a class="tag tag--primary tag--small t-link" href="/tag/高级数据结构/">高级数据结构</a>
+
+		</div>
+	
+</div>
+
+</div>
+    
+    <div class="post-content markdown" itemprop="articleBody">
+        <div class="main-content-wrap">
+            <table style="width:68%;">
+<colgroup>
+<col width="34%">
+<col width="26%">
+<col width="6%">
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center">&#x64CD;&#x4F5C;&#x540D;&#x79F0;</th>
+<th align="center">&#x8F93;&#x5165;&#x6587;&#x4EF6;&#x4E2D;&#x7684;&#x683C;&#x5F0F;</th>
+<th>&#x529F;&#x80FD;</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">$ {\rm MOVE}(k) $</td>
+<td align="center"><code>Move k</code></td>
+<td>&#x5C06;&#x5149;&#x6807;&#x79FB;&#x52A8;&#x5230;&#x7B2C; $ k $ &#x4E2A;&#x5B57;&#x7B26;&#x4E4B;&#x540E;&#xFF0C;&#x5982;&#x679C; $ k=0 $&#xFF0C;&#x5C06;&#x5149;&#x6807;&#x79FB;&#x5230;&#x6587;&#x672C;&#x7B2C;&#x4E00;&#x4E2A;&#x5B57;&#x7B26;&#x4E4B;&#x524D;</td>
+</tr>
+<tr class="even">
+<td align="center">$ {\rm INSERT}(n, s) $</td>
+<td align="center"><code>Insert n S</code></td>
+<td>&#x5728;&#x5149;&#x6807;&#x540E;&#x63D2;&#x5165;&#x957F;&#x5EA6;&#x4E3A; $ n $ &#x7684;&#x5B57;&#x7B26;&#x4E32; $ s $&#xFF0C;&#x5149;&#x6807;&#x4F4D;&#x7F6E;&#x4E0D;&#x53D8;&#xFF0C;$ n &#x2265; 1 $</td>
+</tr>
+<tr class="odd">
+<td align="center">$ {\rm DELETE}(n) $</td>
+<td align="center"><code>Delete n</code></td>
+<td>&#x5220;&#x9664;&#x5149;&#x6807;&#x540E;&#x7684; $ n $ &#x4E2A;&#x5B57;&#x7B26;&#xFF0C;&#x5149;&#x6807;&#x4F4D;&#x7F6E;&#x4E0D;&#x53D8;&#xFF0C;$ n &#x2265; 1 $</td>
+</tr>
+<tr class="even">
+<td align="center">$ {\rm GET}(n) $</td>
+<td align="center"><code>Get n</code></td>
+<td>&#x8F93;&#x51FA;&#x5149;&#x6807;&#x540E;&#x7684; $ n $ &#x4E2A;&#x5B57;&#x7B26;&#xFF0C;&#x5149;&#x6807;&#x4F4D;&#x7F6E;&#x4E0D;&#x53D8;&#xFF0C;$ n &#x2265; 1 $</td>
+</tr>
+<tr class="odd">
+<td align="center">$ {\rm PREV}() $</td>
+<td align="center"><code>Prev</code></td>
+<td>&#x5149;&#x6807;&#x524D;&#x79FB;&#x4E00;&#x4E2A;&#x5B57;&#x7B26;</td>
+</tr>
+<tr class="even">
+<td align="center">$ {\rm NEXT}() $</td>
+<td align="center"><code>Next</code></td>
+<td>&#x5149;&#x6807;&#x540E;&#x79FB;&#x4E00;&#x4E2A;&#x5B57;&#x7B26;</td>
+</tr>
+</tbody>
+</table>
+<a id="more"></a>
+<h3 id="&#x94FE;&#x63A5;">&#x94FE;&#x63A5;</h3>
+<p><a href="http://www.lydsy.com/JudgeOnline/problem.php?id=1507" target="_blank" rel="external">BZOJ 1507</a></p>
+<h3 id="&#x9898;&#x89E3;">&#x9898;&#x89E3;</h3>
+<p>&#x5757;&#x72B6;&#x94FE;&#x8868;&#x592A;&#x9B3C;&#x755C;&#x8FA3;&#xFF01;&#x8FD8;&#x662F; Splay &#x6BD4;&#x8F83;&#x597D;&#x5199;&#x597D;&#x8C03;w</p>
+<p>&#x4E00;&#x70B9;&#x5C0F;&#x6280;&#x5DE7;&#xFF0C;&#x63D2;&#x5165;&#x7684;&#x65F6;&#x5019;&#x53EF;&#x4EE5;&#x7167;&#x7740;&#x9009;&#x62E9;&#x533A;&#x95F4;&#x7684;&#x65B9;&#x6CD5;&#x9009;&#x51FA;&#x4E00;&#x6BB5;&#x7A7A;&#x767D;&#x533A;&#x95F4;&#xFF0C;&#x7136;&#x540E; <code>build</code> &#x51FA;&#x4E00;&#x68F5;&#x5B50;&#x6811;&#x7ED9;&#x63A5;&#x4E0A;&#x53BB;&#xFF0C;&#x53EF;&#x4EE5;&#x5C11;&#x4E00;&#x4E2A; $ \log $&#x3002;</p>
+<h3 id="&#x4EE3;&#x7801;">&#x4EE3;&#x7801;</h3>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;algorithm&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAXM = <span class="number">50000</span> + <span class="number">4000</span> + <span class="number">200000</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="keyword">struct</span> Splay {</span><br><span class="line">    <span class="keyword">enum</span> Relation {</span><br><span class="line">        L = <span class="number">0</span>, R = <span class="number">1</span></span><br><span class="line">    };</span><br><span class="line"></span><br><span class="line">    <span class="keyword">struct</span> Node {</span><br><span class="line">        Node *child[<span class="number">2</span>], *parent, **root;</span><br><span class="line">        T value;</span><br><span class="line">        <span class="keyword">int</span> size;</span><br><span class="line">        <span class="keyword">bool</span> bound;</span><br><span class="line"></span><br><span class="line">        Node(Node *parent, <span class="keyword">const</span> T &amp;value, Node **root, <span class="keyword">bool</span> bound = <span class="literal">false</span>) : parent(parent), value(value), root(root), size(<span class="number">1</span>), bound(bound) {</span><br><span class="line">            child[L] = child[R] = <span class="literal">NULL</span>;</span><br><span class="line">        }</span><br><span class="line"></span><br><span class="line">        ~Node() {</span><br><span class="line">            <span class="keyword">if</span> (child[L]) <span class="keyword">delete</span> child[L];</span><br><span class="line">            <span class="keyword">if</span> (child[R]) <span class="keyword">delete</span> child[R];</span><br><span class="line">        }</span><br><span class="line"></span><br><span class="line">        <span class="function">Relation <span class="title">relation</span><span class="params">()</span> </span>{</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">this</span> == parent-&gt;child[L] ? L : R;</span><br><span class="line">        }</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">void</span> <span class="title">maintain</span><span class="params">()</span> </span>{</span><br><span class="line">            <span class="comment">//if (child[L]) child[L]-&gt;maintain();</span></span><br><span class="line">            <span class="comment">//if (child[R]) child[R]-&gt;maintain();</span></span><br><span class="line">            size = (child[L] ? child[L]-&gt;size : <span class="number">0</span>) + (child[R] ? child[R]-&gt;size : <span class="number">0</span>) + <span class="number">1</span>;</span><br><span class="line">        }</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">void</span> <span class="title">rotate</span><span class="params">()</span> </span>{</span><br><span class="line">            Relation x = relation();</span><br><span class="line">            Node *oldParent = parent;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> (oldParent-&gt;parent) oldParent-&gt;parent-&gt;child[oldParent-&gt;relation()] = <span class="keyword">this</span>;</span><br><span class="line">            parent = oldParent-&gt;parent;</span><br><span class="line"></span><br><span class="line">            oldParent-&gt;child[x] = child[x ^ <span class="number">1</span>];</span><br><span class="line">            <span class="keyword">if</span> (child[x ^ <span class="number">1</span>]) child[x ^ <span class="number">1</span>]-&gt;parent = oldParent;</span><br><span class="line"></span><br><span class="line">            child[x ^ <span class="number">1</span>] = oldParent;</span><br><span class="line">            oldParent-&gt;parent = <span class="keyword">this</span>;</span><br><span class="line"></span><br><span class="line">            oldParent-&gt;maintain(), maintain();</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> (!parent) *root = <span class="keyword">this</span>;</span><br><span class="line">        }</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">void</span> <span class="title">splay</span><span class="params">(Node *targetParent = <span class="literal">NULL</span>)</span> </span>{</span><br><span class="line">            <span class="keyword">while</span> (parent != targetParent){</span><br><span class="line">                <span class="keyword">if</span> (parent-&gt;parent == targetParent) rotate();</span><br><span class="line">                <span class="keyword">else</span> <span class="keyword">if</span> (parent-&gt;relation() == relation()) parent-&gt;rotate(), rotate();</span><br><span class="line">                <span class="keyword">else</span> rotate(), rotate();</span><br><span class="line">            }</span><br><span class="line">        }</span><br><span class="line"></span><br><span class="line">        <span class="function">Node *<span class="title">pred</span><span class="params">()</span> </span>{</span><br><span class="line">            splay();</span><br><span class="line">            Node *v = child[L];</span><br><span class="line">            <span class="keyword">while</span> (v-&gt;child[R]) v = v-&gt;child[R];</span><br><span class="line">            <span class="keyword">return</span> v;</span><br><span class="line">        }</span><br><span class="line"></span><br><span class="line">        <span class="function">Node *<span class="title">succ</span><span class="params">()</span> </span>{</span><br><span class="line">            splay();</span><br><span class="line">            Node *v = child[R];</span><br><span class="line">            <span class="keyword">while</span> (v-&gt;child[L]) v = v-&gt;child[L];</span><br><span class="line">            <span class="keyword">return</span> v;</span><br><span class="line">        }</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">int</span> <span class="title">rank</span><span class="params">()</span> </span>{</span><br><span class="line">            <span class="keyword">return</span> child[L] ? child[L]-&gt;size : <span class="number">0</span>;</span><br><span class="line">        }</span><br><span class="line">    } *root;</span><br><span class="line"></span><br><span class="line">    Splay() : root(<span class="literal">NULL</span>) {</span><br><span class="line">        buildBound(L), buildBound(R);</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    ~Splay() {</span><br><span class="line">        <span class="keyword">if</span> (root) <span class="keyword">delete</span> root;</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">buildBound</span><span class="params">(Relation x)</span> </span>{</span><br><span class="line">        Node **v = &amp;root, *parent = <span class="literal">NULL</span>;</span><br><span class="line">        <span class="keyword">while</span> (*v) {</span><br><span class="line">            parent = *v;</span><br><span class="line">            parent-&gt;size++;</span><br><span class="line">            v = &amp;parent-&gt;child[x];</span><br><span class="line">        }</span><br><span class="line"></span><br><span class="line">        *v = <span class="keyword">new</span> Node(parent, <span class="number">0</span>, &amp;root, <span class="literal">true</span>);</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="function">Node *<span class="title">build</span><span class="params">(<span class="keyword">const</span> T *a, <span class="keyword">int</span> l, <span class="keyword">int</span> r, Node *parent = <span class="literal">NULL</span>)</span> </span>{</span><br><span class="line">        <span class="keyword">if</span> (l &gt; r) <span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line">        <span class="keyword">int</span> mid = l + ((r - l) &gt;&gt; <span class="number">1</span>);</span><br><span class="line">        Node *v = <span class="keyword">new</span> Node(parent, a[mid - <span class="number">1</span>], &amp;root);</span><br><span class="line">        v-&gt;child[L] = build(a, l, mid - <span class="number">1</span>, v);</span><br><span class="line">        v-&gt;child[R] = build(a, mid + <span class="number">1</span>, r, v);</span><br><span class="line">        v-&gt;maintain();</span><br><span class="line">        <span class="keyword">return</span> v;</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="function">Node *<span class="title">select</span><span class="params">(<span class="keyword">int</span> k)</span> </span>{</span><br><span class="line">        k++;</span><br><span class="line">        <span class="comment">//printf(&quot;select(%d) in size = %d\n&quot;, k, root-&gt;size);</span></span><br><span class="line">        Node *v = root;</span><br><span class="line">        <span class="keyword">while</span> (v-&gt;maintain(), k != v-&gt;rank() + <span class="number">1</span>) {</span><br><span class="line">            <span class="keyword">if</span> (k &lt; v-&gt;rank() + <span class="number">1</span>) v = v-&gt;child[L];</span><br><span class="line">            <span class="keyword">else</span> k -= v-&gt;rank() + <span class="number">1</span>, v = v-&gt;child[R];</span><br><span class="line">        }</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> v;</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="function">Node *&amp;<span class="title">select</span><span class="params">(<span class="keyword">int</span> l, <span class="keyword">int</span> r)</span> </span>{</span><br><span class="line">        Node *lbound = select(l - <span class="number">1</span>);</span><br><span class="line">        Node *rbound = select(r + <span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">        lbound-&gt;splay();</span><br><span class="line">        rbound-&gt;splay(lbound);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> rbound-&gt;child[L];</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">insert</span><span class="params">(<span class="keyword">const</span> T *a, <span class="keyword">int</span> n, <span class="keyword">int</span> pos)</span> </span>{</span><br><span class="line">        Node *&amp;v = select(pos + <span class="number">1</span>, pos);</span><br><span class="line">        v = build(a, <span class="number">1</span>, n, root-&gt;child[R]);</span><br><span class="line">        root-&gt;child[R]-&gt;maintain(), root-&gt;maintain();</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">erase</span><span class="params">(<span class="keyword">int</span> l, <span class="keyword">int</span> r)</span> </span>{</span><br><span class="line">        Node *&amp;v = select(l, r);</span><br><span class="line">        <span class="keyword">delete</span> v;</span><br><span class="line">        v = <span class="literal">NULL</span>;</span><br><span class="line">        root-&gt;child[R]-&gt;maintain(), root-&gt;maintain();</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">fetch</span><span class="params">(T *a, <span class="keyword">int</span> l, <span class="keyword">int</span> r)</span> </span>{</span><br><span class="line">        <span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line">        dfs(select(l, r), a, i);</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(Node *v, T *a, <span class="keyword">int</span> &amp;i)</span> </span>{</span><br><span class="line">        <span class="keyword">if</span> (!v) <span class="keyword">return</span>;</span><br><span class="line">        dfs(v-&gt;child[L], a, i);</span><br><span class="line">        a[i++] = v-&gt;value;</span><br><span class="line">        dfs(v-&gt;child[R], a, i);</span><br><span class="line">    }</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> t, pos;</span><br><span class="line">Splay&lt;<span class="keyword">char</span>&gt; splay;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">bool</span> <span class="title">isValid</span><span class="params">(<span class="keyword">char</span> ch)</span> </span>{</span><br><span class="line">    <span class="keyword">return</span> ch &gt;= <span class="number">32</span> &amp;&amp; ch &lt;= <span class="number">126</span>;</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>{</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;t);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">static</span> <span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">char</span>&gt; buffers;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; t; i++) {</span><br><span class="line">        <span class="keyword">char</span> command[<span class="keyword">sizeof</span>(<span class="string">&quot;Insert&quot;</span>)];</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">&quot;%s&quot;</span>, command);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (command[<span class="number">0</span>] == <span class="string">&apos;M&apos;</span>) {</span><br><span class="line">            <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;pos);</span><br><span class="line">        } <span class="keyword">else</span> <span class="keyword">if</span> (command[<span class="number">0</span>] == <span class="string">&apos;I&apos;</span>) {</span><br><span class="line">            <span class="keyword">int</span> n;</span><br><span class="line">            <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;n);</span><br><span class="line"></span><br><span class="line">            buffers.clear();</span><br><span class="line">            buffers.reserve(n);</span><br><span class="line"></span><br><span class="line">            <span class="keyword">char</span> ch;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; ) {</span><br><span class="line">                <span class="keyword">if</span> (isValid(ch = getchar())) {</span><br><span class="line">                    buffers.push_back(ch);</span><br><span class="line">                    i++;</span><br><span class="line">                }</span><br><span class="line">            }</span><br><span class="line"></span><br><span class="line">            splay.insert(buffers.data(), n, pos);</span><br><span class="line">        } <span class="keyword">else</span> <span class="keyword">if</span> (command[<span class="number">0</span>] == <span class="string">&apos;D&apos;</span>) {</span><br><span class="line">            <span class="keyword">int</span> n;</span><br><span class="line">            <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;n);</span><br><span class="line">            splay.erase(pos + <span class="number">1</span>, pos + n);</span><br><span class="line">        } <span class="keyword">else</span> <span class="keyword">if</span> (command[<span class="number">0</span>] == <span class="string">&apos;G&apos;</span>) {</span><br><span class="line">            <span class="keyword">int</span> n;</span><br><span class="line">            <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;n);</span><br><span class="line"></span><br><span class="line">            buffers.clear();</span><br><span class="line">            buffers.resize(n + <span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">            splay.fetch(<span class="keyword">const_cast</span>&lt;<span class="keyword">char</span> *&gt;(buffers.data()), pos + <span class="number">1</span>, pos + n);</span><br><span class="line">            buffers[n] = <span class="string">&apos;\0&apos;</span>;</span><br><span class="line"></span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">&quot;%s\n&quot;</span>, buffers.data());</span><br><span class="line">        } <span class="keyword">else</span> <span class="keyword">if</span> (command[<span class="number">0</span>] == <span class="string">&apos;P&apos;</span>) pos--;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (command[<span class="number">0</span>] == <span class="string">&apos;N&apos;</span>) pos++;</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+
+            
+        </div>
+    </div>
+    <div id="post-footer" class="post-footer main-content-wrap">
+        <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/virtualbox-archlinux/"  data-tooltip="OS X 与虚拟机中 Linux 无缝整合">
+                
+                    <i class="fa fa-angle-left"></i>
+                    <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/scoi2011-candy/" data-tooltip="「SCOI2011」糖果 - 强联通分量 + 拓扑排序">
+                
+                    <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
+                    <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a class="post-action-btn btn btn--default btn-open-shareoptions"  href="#btn-open-shareoptions">
+                <i class="fa fa-share-alt"></i>
+            </a>
+        </li>
+        <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://blog.menci.moe/noi2003-editor/">
+                <i class="fa fa-google-plus"></i>
+            </a>
+        </li>
+        <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.menci.moe/noi2003-editor/">
+                <i class="fa fa-facebook-official"></i>
+            </a>
+        </li>
+        <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://blog.menci.moe/noi2003-editor/">
+                <i class="fa fa-twitter"></i>
+            </a>
+        </li>
+        
+            <li class="post-action">
+                <a class="post-action-btn btn btn--default" href="#disqus_thread">
+                    <i class="fa fa-comment-o"></i>
+                </a>
+            </li>
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#">
+            
+                <i class="fa fa-list"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+        
+            
+                <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+            
+        
+    </div>
+</article>
+
+
+
+                <footer id="footer" class="main-content-wrap">
+    <span class="copyrights">
+        Copyrights &copy; 2016 Menci. All Rights Reserved.
+    </span>
+</footer>
+</script>
+
+            </div>
+            
+                <div id="bottom-bar" class="post-bottom-bar" data-behavior="2">
+                    <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/virtualbox-archlinux/"  data-tooltip="OS X 与虚拟机中 Linux 无缝整合">
+                
+                    <i class="fa fa-angle-left"></i>
+                    <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/scoi2011-candy/" data-tooltip="「SCOI2011」糖果 - 强联通分量 + 拓扑排序">
+                
+                    <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
+                    <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a class="post-action-btn btn btn--default btn-open-shareoptions"  href="#btn-open-shareoptions">
+                <i class="fa fa-share-alt"></i>
+            </a>
+        </li>
+        <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://blog.menci.moe/noi2003-editor/">
+                <i class="fa fa-google-plus"></i>
+            </a>
+        </li>
+        <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.menci.moe/noi2003-editor/">
+                <i class="fa fa-facebook-official"></i>
+            </a>
+        </li>
+        <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://blog.menci.moe/noi2003-editor/">
+                <i class="fa fa-twitter"></i>
+            </a>
+        </li>
+        
+            <li class="post-action">
+                <a class="post-action-btn btn btn--default" href="#disqus_thread">
+                    <i class="fa fa-comment-o"></i>
+                </a>
+            </li>
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#">
+            
+                <i class="fa fa-list"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+                </div>
+                <div id="share-options-bar" class="share-options-bar" data-behavior="2">
+    <ul class="share-options">
+        <li class="share-option">
+            <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=https://blog.menci.moe/noi2003-editor/">
+                <i class="fa fa-google-plus"></i><span class="">分享到 Google+</span>
+            </a>
+        </li>
+        <li class="share-option">
+            <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.menci.moe/noi2003-editor/">
+                <i class="fa fa-facebook-official"></i><span>分享到 Facebook</span>
+            </a>
+        </li>
+        <li class="share-option">
+            <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https://blog.menci.moe/noi2003-editor/">
+                <i class="fa fa-twitter"></i><span>分享到 Twitter</span>
+            </a>
+        </li>
+    </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+            
+        </div>
+        
+
+
+    
+        
+    
+
+<div id="about">
+    <div id="about-card">
+        <div id="about-btn-close">
+            <i class="fa fa-remove"></i>
+        </div>
+        
+            <img style="box-shadow: 0 0 15px gray;" id="about-card-picture" src="//dn-menci.qbox.me/assets/images/avatar.png"/>
+        
+            <h4 id="about-card-name">Menci</h4>
+        
+            <h5 id="about-card-bio">眉眼如初，岁月如故</h5>
+        
+        
+            <h5 id="about-card-job">
+                <i class="fa fa-cloud"></i>
+                <br/>
+                One day, <br> I'll reach the next stage <br> to realize all.
+            </h5>
+        
+        
+    </div>
+</div>
+
+        
+<div id="cover" style="background-image:url('//dn-menci.qbox.me/assets/images/cover.jpg');"></div>
+    </body>
+    <!--SCRIPTS-->
+<script src="//dn-menci.qbox.me/assets/js/scrip-0ewjnhvv8ytgl76lkiq8f541cfygs5bpfv33ohlfvpfklrfevqupdsxg46fk.min.js" type="text/javascript"></script>
+<!--SCRIPTS END-->
+
+    
+        <script>
+             var disqus_config = function () {
+				 MenciRemoveIndexDotHtml = function (url) {
+				 	if (url.substr(-10, 10) == 'index.html') return url.substr(0, url.length - 10);
+				 	else return url;
+				 }
+                 this.page.url = MenciRemoveIndexDotHtml('https://blog.menci.moe/noi2003-editor/');
+                 
+                 this.page.identifier = MenciRemoveIndexDotHtml('noi2003-editor/');
+                                  
+             };
+            (function() {
+                var d = document, s = d.createElement('script');
+                var disqus_shortname = 'menci';
+                s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+
+                s.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        </script>
+    
+
+
+    <script type="text/javascript">
+        (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+                (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+            e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+        })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+        _st('install','L51x_1_hCboFSsSLLGGK','2.0.0');
+    </script>
+
+
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/KaTeX/0.6.0/katex.min.js"></script>
+<!--script type="text/javascript" src="/assets/js/auto-render.min.js"></script-->
+<script>
+$(function() {
+	// renderKatexMathjaxFallback($('body')[0]);
+	renderMathInElement($('body')[0]);
+});
+</script>
+
+</html>
