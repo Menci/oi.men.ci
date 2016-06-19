@@ -1,7 +1,7 @@
 title: FFT 学习笔记
 categories: OI
 tags: 
-  - 快速傅里叶变换
+  - FFT
   - 数学
   - 学习笔记
   - 算法模板

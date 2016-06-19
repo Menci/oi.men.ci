@@ -78,7 +78,7 @@ date: 2016-01-18 21:08:05
 </tr>
 
 <tr>
-<td>[Rapiz](http://www.cnblogs.com/rapiz/)</td>
+<td>[Rapiz](https://www.zybuluo.com/rapiz/note/367932)</td>
 <td><span>郑州一中</span></td>
 </tr>
 
@@ -89,6 +89,11 @@ date: 2016-01-18 21:08:05
 
 <tr>
 <td>[Fancy](http://fancypei.github.io/)</td>
+<td><span>郑州外国语</span></td>
+</tr>
+
+<tr>
+<td>[Franky](http://www.cnblogs.com/Franky-ln/)</td>
 <td><span>郑州外国语</span></td>
 </tr>
 
@@ -155,6 +160,11 @@ date: 2016-01-18 21:08:05
 <tr>
 <td>[frank_c1](http://www.acyume.com/)</td>
 <td><span>学军中学</span></td>
+</tr>
+
+<tr>
+<td>[Krydom](http://krydom.com/)</td>
+<td><span>常州一中</span></td>
 </tr>
 
 </tbody>
