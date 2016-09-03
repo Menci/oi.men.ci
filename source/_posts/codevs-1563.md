@@ -2,6 +2,7 @@ title: 「CodeVS 1563」奶牛的交通 - 网络流
 categories: OI
 tags: 
   - CodeVS
+  - USACO
   - 网络流
   - Dinic
   - 图论

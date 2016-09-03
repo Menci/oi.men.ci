@@ -2,6 +2,8 @@ title: 「NOI2015」程序自动分析 - 离散化 + 并查集
 categories: OI
 tags: 
   - NOI
+  - BZOJ
+  - CodeVS
   - 离散化
   - 并查集
   - 哈希

@@ -88,6 +88,11 @@ date: 2016-01-18 21:08:05
 </tr>
 
 <tr>
+<td>[Platypus](http://platypuspro.github.io/)</td>
+<td><span>郑州外国语</span></td>
+</tr>
+
+<tr>
 <td>[Fancy](http://fancypei.github.io/)</td>
 <td><span>郑州外国语</span></td>
 </tr>
