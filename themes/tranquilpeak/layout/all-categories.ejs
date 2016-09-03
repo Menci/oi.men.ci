@@ -1,0 +1,121 @@
+<style> .postShorten-meta { border-bottom: none !important; } </style>
+<%
+/**
+ * Display all categories and posts of a category
+ * @param category
+ * @returns {string}
+ */
+function displayCategoriesAndPosts(category) {
+    // get its posts
+    var posts = category.posts;
+    // get its child categories
+    var childCategories = site.categories.find({'parent': category._id});
+    // init its parents
+    var boxCSSClass = '';
+    if (category.parents === undefined) {
+        category.parents = [];
+        boxCSSClass = 'box';
+    }
+    // create post content
+    var html = '';
+    html += '<div id="posts-list-' + category.name + '" class="archive ' + boxCSSClass + '" ' +
+        'data-category="' + category.name.toLowerCase() + '" ' +
+        'data-parent-categories="' + category.parents.join(',') + '">';
+    // add category title
+    html += '<h4 class="archive-title text-xlarge">';
+    html += '<a class="link-unstyled" href="' + url_for(category.path) + '">';
+    html += category.name + ' (' + category.length + ')';
+    html += '</a>';
+    html += '</h4>';
+    html += '<ul class="archive-posts">';
+    // create html for its posts
+    posts.forEach(function(post) {
+        html += '<li class="archive-post">';
+        html += '<a class="archive-post-title" href="' + url_for(post.path) + '">';
+        html += post.title || '(' + __('post.no_title') + ')';
+        html += '</a>';
+        html += '<span class="archive-post-date">';
+        html += ' - ' + post.date.locale(page.lang).format(__('date_format'));
+        html += '</span>';
+        html += '</li>';
+    });
+    if (childCategories.length > 0) {
+        // recursive iteration on its child categories
+        childCategories.forEach(function(childCategory) {
+            // clone parents of current category to its child category
+            childCategory.parents = category.parents.slice();
+            // add current category to the parent of current child category
+            childCategory.parents.push(category.name.toLowerCase());
+            html += displayCategoriesAndPosts(childCategory);
+        });
+    }
+    html += '</ul>';
+    html += '</div>';
+    return html;
+}
+
+/**
+ * Display all categories of a category
+ * @param category
+ * @returns {string}
+ */
+function displayCategories(category) {
+    // get all its child categories
+    var childCategories = site.categories.find({'parent': category._id});
+    // init parents
+    if (category.parents === undefined) {
+        category.parents = [];
+    }
+    // create category content
+    var html = '';
+    html += '<div>';
+    html += '<a href="#posts-list-' + category.name + '" ' +
+        'class="category-anchor" ' +
+        'data-category="' + category.name.toLowerCase() + '" ' +
+        'data-parent-categories="' + category.parents.join(',') + '">';
+    if (category.parent) {
+        html += ' / ';
+    }
+    html += category.name;
+    html += '</a>';
+    if (childCategories.length > 0) {
+        html += '<ul style="margin-bottom:0;">';
+        // recursive iteration on its child categories
+        childCategories.forEach(function(childCategory) {
+            // clone parents of current category to its child category
+            childCategory.parents = category.parents.slice();
+            // add current category to the parent of current child category
+            childCategory.parents.push(category.name.toLowerCase());
+            html += displayCategories(childCategory);
+        });
+        html += '</ul>';
+    }
+    html += '</div>';
+    return html;
+}
+%>
+<div id="categories-archives" class="main-content-wrap">
+    <form id="filter-form" action="##">
+        <input name="category" type="text" class="form-control input--xlarge"
+               placeholder="<%= __('global.search_category')  %>" autofocus="autofocus">
+    </form>
+    <h5 class="archive-result text-color-base text-xlarge"
+        data-message-zero="<%= __('global.categories_found.zero') %>"
+        data-message-one="<%= __('global.categories_found.one') %>"
+        data-message-other="<%= __('global.categories_found.other') %>"></h5>
+
+        <section class="boxes">
+        <% site.categories.sort('name').each(function(category) { %>
+            <% if (!category.parent) { %>
+                <%- displayCategories(category) %>
+            <% } %>
+        <% }); %>
+    </section>
+    <section class="boxes">
+        <% site.categories.sort('name').each(function(category) { %>
+            <% if (!category.parent) { %>
+                    <%- displayCategoriesAndPosts(category) %>
+            <% } %>
+        <% }); %>
+    </section>
+</div>

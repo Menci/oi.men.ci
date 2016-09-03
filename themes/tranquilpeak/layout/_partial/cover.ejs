@@ -1,0 +1,12 @@
+<%
+    var coverImageUrl = null;
+
+    // Generate URL of cover image
+    if (is_remote_url(theme.cover_image)) {
+        coverImageUrl = theme.cover_image;
+    }
+    else {
+        coverImageUrl = url_for(theme.image_dir + '/' + theme.cover_image);
+    }
+%>
+<div id="cover" style="background-image: url('<%= coverImageUrl %>'); background-position-y: 50%; "></div>

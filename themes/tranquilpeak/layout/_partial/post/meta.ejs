@@ -1,0 +1,19 @@
+<div class="<%= (classes ? classes.join(' ') : '') %>" style="border-bottom: 1px solid #eef2f8;">
+    <time itemprop="datePublished" content="<%= post.date %>">
+	<% if (post.lang) { %>
+		    <%= post.date.locale(post.lang).format(__('date_format')) %>
+    	<% } else { %>
+		    <%= post.date.locale(page.lang).format(__('date_format')) %>
+    	<% } %>
+    </time>
+    <% if ((post.categories) && (post.categories.length > 0)) { %>
+        <span><%= __('post.categorized_in')  %> </span>
+        <%- partial('category', {categories: post.categories})%>
+    <% } %>
+	<% if ((post.tags) && (post.tags.length > 0)) { %>
+		<div class="post-footer-tags" style="margin-top: 10px; margin-left: 10px; display: inline-block; border-bottom: none; ">
+			<!--span class="text-color-light text-small"><%= __('post.tagged_in') %></span><br/-->
+			<%- partial('tag', {tags: post.tags})%>
+		</div>
+	<% } %>
+</div>

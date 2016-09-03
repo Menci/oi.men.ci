@@ -1,0 +1,42 @@
+<% if (theme.image_gallery &&
+    ((post.gallery && post.gallery.length) || (post.photos && post.photos.length))) { %>
+    <%
+        var photos = post.gallery || post.photos;
+        var imageGalleryClass;
+        // change style of the gallery
+        if (photos.length > 2) {
+            imageGalleryClass = 'image-gallery-photos--thumbnail';
+        }
+    %>
+    <div class="image-gallery">
+        <div class="image-gallery-metabar">
+            <span><%= 'Gallery : ' + photos.length + ' images' %></span>
+        </div>
+        <div class="image-gallery-photos <%= imageGalleryClass %>">
+            <% photos.forEach(function(photo) { %>
+            <%
+                var rPhoto = /([\w:\-\/._#]+)(?:\s+([\w:\-\/._#]+))*(?:\s*["|'](.+)["|'])*/;
+                var match = photo.match(rPhoto);
+                photo = {
+                    title: match[3] || '',
+                    original: resolve_asset_url(page.path, match[1])
+                };
+                if (match[2]) {
+                    photo.thumbnail = resolve_asset_url(page.path, match[2]);
+                }
+                /* add anchor otherwise FancyBox doesn't recognize the image
+                if there is no extension at the end */
+                if (!/.+\.[a-zA-Z0-9]{3,4}$/.test(photo.original)) {
+                    photo.original += "#.jpg";
+                }
+            %>
+            <div class="photo-box">
+                <a class="photo-box-inner fancybox" data-fancybox-group="<%= 'gallery-' + post._id %>"
+                   title="<%= photo.title %>" href="<%= (photo.original || photo.thumbnail) %>">
+                    <img class="photo" src="<%= (photo.thumbnail || photo.original) %>" itemprop="image">
+                </a>
+            </div>
+            <% }) %>
+        </div>
+    </div>
+<% } %>

@@ -1,0 +1,157 @@
+<%
+    var title = '';
+    var title_suffix = ' - ' + config.title;
+    var fb_admin_ids = [];
+    var keywords = '';
+    var photos = [];
+
+    /**
+     * Separate fb admin ids
+     */
+    (function() {
+        if (theme.fb_admin_ids) {
+            fb_admin_ids = String(theme.fb_admin_ids).split(',');
+        }
+    })();
+
+    /**
+     * Generate page title
+     */
+    (function() {
+        if (is_home()) {
+            title += config.title;
+        }
+        else if (is_archive()){
+            title += __('global.archives');
+
+            if (is_month()) {
+                title += ': ' + page.year + '/' + page.month;
+            }
+            else if (is_year()) {
+                title += ': ' + page.year;
+            }
+
+            title += title_suffix;
+        }
+        else if (is_tag()) {
+            if (page.tag) {
+                title += __('global.tag') + ': ' + page.tag;
+            }
+            else {
+                title += __('global.tags');
+            }
+
+            title += title_suffix;
+        }
+        else if (is_category()) {
+            if (page.category) {
+                title += __('global.category') + ': ' + page.category;
+            }
+            else {
+                title += __('global.categories');
+            }
+
+            title += title_suffix;
+        }
+        else {
+            title += page.title + title_suffix;
+        }
+    })();
+
+    /**
+     * Get global and page keywords
+     */
+    (function() {
+        if (config.keywords) {
+            keywords += config.keywords;
+            keywords += ',';
+        }
+        if (page.keywords) {
+            keywords += page.keywords;
+        }
+    })();
+
+    /**
+     * Extract original url of page photos and store it
+     * to add them in open graph and swiftype meta tag
+     */
+    (function() {
+        /**
+         * Extract original url of a photo and store it
+         */
+        function processImage(img) {
+            var rPhoto = /([\w:\-\/._#]+)(?:\s+([\w:\-\/._#]+))*(?:\s*["|'](.+)["|'])*/;
+            match = img.match(rPhoto);
+            photos.push(resolve_asset_url(page.path, match[1]));
+        }
+
+        if (page.gallery && page.gallery.length) {
+            page.gallery.forEach(function(photo) {
+                processImage(photo)
+            });
+        }
+        else if (page.photos && page.photos.length) {
+            page.photos.forEach(function(photo) {
+                processImage(photo);
+            });
+        }
+    })();
+%>
+<head>
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="<%= config.title %>">
+    <title><%= title %></title>
+    <meta name="author" content="<%= config.author %>">
+    <% if (keywords) { %>
+        <meta name="keywords" content="<%= keywords %>">
+    <% } %>
+    <% if (theme.favicon) { %>
+        <link rel="icon" href="<%= resolve_asset_url(theme.image_dir, theme.favicon) %>">
+    <% } %>
+    <% if ((config.feed) && (config.feed.path.length)) { %>
+        <link rel="alternate" type="application/atom+xml" title="RSS" href="<%- url_for(config.feed.path) %>">
+    <% } %>
+    <%- open_graph({
+        type: 'blog',
+        twitter_id: theme.author.twitter,
+        fb_app_id: theme.fb_app_id
+    }) %>
+    <% if (theme.author.google_plus) { %>
+        <meta rel="publisher" content="https://plus.google.com/<%= theme.author.google_plus %>"/>
+    <% } %>
+    <% if (typeof fb_admin_ids !== 'undefined') { %>
+        <% fb_admin_ids.forEach(function(fb_admin_id) { %>
+            <meta property="fb:admins" content="<%= fb_admin_id %>" />
+        <% }) %>
+    <% } %>
+    <% if (theme.gravatar_email) { %>
+        <meta property="og:image" content="<%- gravatar(theme.gravatar_email, 640) %>"/>
+    <% } else if (theme.author.picture) { %>
+        <meta property="og:image" content="<%= resolve_asset_url(theme.image_dir, theme.author.picture) %>"/>
+    <% } %>
+    <% if (page.thumbnailImage && page.thumbnailImage.length) { %>
+        <meta property="og:image" content="<%= resolve_asset_url(page.path, page.thumbnailImage) %>"/>
+        <meta class="swiftype" name="image" data-type="enum" content="<%= resolve_asset_url(page.path, page.thumbnailImage) %>" />
+    <% } %>
+    <% if (page.coverImage && page.coverImage.length) { %>
+        <meta property="og:image" content="<%= resolve_asset_url(page.path, page.coverImage) %>"/>
+        <meta class="swiftype" name="image" data-type="enum" content="<%= resolve_asset_url(page.path, page.coverImage) %>" />
+    <% } %>
+    <% if (photos && photos.length) { %>
+        <% photos.forEach(function(photo) { %>
+            <meta property="og:image" content="<%= photo %>" />
+            <meta class="swiftype" name="image" data-type="enum" content="<%= photo %>" />
+        <% }) %>
+    <% } %>
+    <!--STYLES-->
+    <link rel="stylesheet" href="//dn-menci.qbox.me/assets/css/style-th9sp66a4xbztt1ow6a7bymzp3cjvrjeyazbx8kzdbti5f3eqopgrb81iqy4.min.css">
+    <!--STYLES END-->
+	<style>.figure img { margin: auto; }</style>
+	<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/KaTeX/0.6.0/katex.min.css">
+	<link href='https://fonts.googleapis.com/css?family=Poiret+One' rel='stylesheet' type='text/css'>
+	<meta name="google-site-verification" content="uqP_HUHO_97L0RXZDZW-emp8HDuILtCHKQ5vgw-eNvM" />
+    <%- partial('google-analytics') %>
+    <%- partial('baidu-analytics') %>
+	<script type="text/javascript" src="//dn-menci.qbox.me/assets/js/APlayer.min.js"></script>
+</head>
