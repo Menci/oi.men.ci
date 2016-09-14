@@ -15,7 +15,7 @@ date: 2016-09-08 19:40:00
 <!-- more -->
 
 ### 链接
-[BZOJ 1123](http://www.lydsy.com/JudgeOnline/problem.php?id=1123)  
+[BZOJ 4651](http://www.lydsy.com/JudgeOnline/problem.php?id=4651)  
 [UOJ #220](http://uoj.ac/problem/220)
 
 ### 题解

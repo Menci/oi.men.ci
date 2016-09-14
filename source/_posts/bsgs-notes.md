@@ -105,7 +105,7 @@ $$ a ^ x \equiv b \pmod p $$
 
 $$ a ^ x = b + kp $$
 
-另 $ d = \gcd(a,\ p)，$ 若 $ d \mid b $，则有
+令 $ d = \gcd(a,\ p) $，若 $ d \mid b $，则有
 
 $$ a ^ {x - 1} \frac{a}{d} = \frac{b}{d} + k \frac{p}{d} $$
 

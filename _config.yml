@@ -3,16 +3,16 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: Menci
+title: Menci's Blog
 subtitle: 眉眼如初，岁月如故
 description:
 author: Menci
-language: zh-cn
+language: zh-CN
 timezone:
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: https://men.ci
+url: https://oi.men.ci
 root: /
 permalink: :title/
 permalink_defaults:
@@ -63,7 +63,7 @@ pagination_dir: page
 # Extensions
 ## Plugins: http://hexo.io/plugins/
 ## Themes: http://hexo.io/themes/
-theme: tranquilpeak
+theme: icarus
 
 # Deployment
 ## Docs: http://hexo.io/docs/deployment.html
