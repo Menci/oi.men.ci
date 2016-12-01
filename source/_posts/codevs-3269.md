@@ -1,9 +1,9 @@
-title: 「CodeVS 3269」混合背包 - 背包DP
+title: 「CodeVS 3269」混合背包 - 背包 DP
 categories: OI
 tags: 
   - CodeVS
   - DP
-  - 背包DP
+  - 背包 DP
 permalink: codevs-3269
 id: 3
 updated: '2016-01-19 21:08:13'

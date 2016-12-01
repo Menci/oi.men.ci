@@ -1,4 +1,4 @@
-title: 「HNOI2008」玩具装箱 - 斜率优化DP
+title: 「HNOI2008」玩具装箱 - 斜率优化 DP
 categories: OI
 tags: 
   - BZOJ

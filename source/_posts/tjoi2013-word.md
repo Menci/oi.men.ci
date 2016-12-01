@@ -5,7 +5,7 @@ tags:
   - TJOI
   - 字符串
   - AC 自动机
-permalink: tjoi2015-word
+permalink: tjoi2013-word
 date: 2016-09-12 07:07:00
 ---
 

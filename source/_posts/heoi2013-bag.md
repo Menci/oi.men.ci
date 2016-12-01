@@ -1,10 +1,10 @@
-title: 「HEOI2013」Eden 的新背包问题 - 背包DP
+title: 「HEOI2013」Eden 的新背包问题 - 背包 DP
 categories: OI
 tags: 
   - BZOJ
   - HEOI
   - DP
-  - 背包DP
+  - 背包 DP
 permalink: heoi2013-bag
 date: 2016-07-11 23:10:00
 ---

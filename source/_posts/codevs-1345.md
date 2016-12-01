@@ -1,10 +1,10 @@
-title: 「CodeVS 1345」饥饿的奶牛 - 线性DP
+title: 「CodeVS 1345」饥饿的奶牛 - 线性 DP
 categories: OI
 tags: 
   - CodeVS
   - USACO
   - DP
-  - 线性DP
+  - 线性 DP
 permalink: codevs-1345
 id: 21
 updated: '2016-01-19 21:04:02'

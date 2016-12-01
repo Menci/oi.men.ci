@@ -1,11 +1,11 @@
-title: 「SCOI2015」小凸玩密室 - 树形DP
+title: 「SCOI2015」小凸玩密室 - 树形 DP
 categories: OI
 tags: 
   - BZOJ
   - SCOI
   - 安徽集训
   - DP
-  - 树形DP
+  - 树形 DP
 permalink: scoi2015-light
 date: 2016-03-23 23:16:05
 ---

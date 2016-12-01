@@ -1,11 +1,6 @@
 title: CTSC2016 & APIO2016 行纪
 categories: 
   - Diary
-  - OI
-tags: 
-  - 游记
-  - APIO
-  - CTSC
 permalink: ctsc-apio-2016
 date: 2016-05-09 18:18:13
 ---

@@ -176,6 +176,9 @@ date: 2016-01-18 21:08:05
 
 </table>
 
+# LYOI 2016
+[Edge](http://blog.u-pt.pw) [ilern](http://ilern.coding.me/428/) [yqy](https://yqy.moe) [Sulfur6](http://sulfur6.top/) [Roller](http://roller.coding.me/heyheyhey/) [x_shuai](http://x_shuai.leanote.com/) [Gavin](http://gavin_blog.leanote.com/) [Grape](http://bbs.u-pt.pw)
+
 # 其它
 
 [盒子の自留地](http://www.18tilab.com/)

@@ -1,4 +1,4 @@
-title: 「COGS 731」最长递增子序列 - 线性DP + 网络流
+title: 「COGS 731」最长递增子序列 - 线性 DP + 网络流
 categories: OI
 tags: 
   - COGS

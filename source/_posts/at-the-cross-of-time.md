@@ -1,7 +1,6 @@
 title: 在时光的交叉路口 —— 写在 NOI2016 之后
 categories: 
   - Diary
-  - OI
 permalink: at-the-cross-of-time
 date: 2016-08-31 02:42:00
 ---

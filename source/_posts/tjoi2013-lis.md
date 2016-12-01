@@ -6,7 +6,7 @@ tags:
   - 离线
   - Splay
   - 树状数组
-permalink: tjoi2015-lis
+permalink: tjoi2013-lis
 date: 2016-04-03 22:49:33
 ---
 

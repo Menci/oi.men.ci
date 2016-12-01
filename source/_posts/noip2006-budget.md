@@ -1,13 +1,13 @@
-title: 「NOIP2006」金明的预算方案 - 背包DP + 树形DP
+title: 「NOIP2006」金明的预算方案 - 背包 DP + 树形 DP
 categories: OI
 tags: 
   - CodeVS
   - DP
   - Tyvj
   - Vijos
-  - 树形DP
+  - 树形 DP
   - 洛谷
-  - 背包DP
+  - 背包 DP
 permalink: noip2006-budget
 id: 25
 updated: '2016-01-19 21:02:58'

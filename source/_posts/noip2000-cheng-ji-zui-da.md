@@ -1,10 +1,10 @@
-title: 「NOIP2000」乘积最大 - 划分DP
+title: 「NOIP2000」乘积最大 - 划分 DP
 categories: OI
 tags: 
   - CodeVS
   - DP
   - NOIP
-  - 划分DP
+  - 划分 DP
 permalink: noip2000-cheng-ji-zui-da
 id: 16
 updated: '2016-01-19 21:05:38'

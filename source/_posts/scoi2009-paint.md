@@ -1,10 +1,10 @@
-title: 「SCOI2009」粉刷匠 - 背包DP
+title: 「SCOI2009」粉刷匠 - 背包 DP
 categories: OI
 tags: 
   - BZOJ
   - SCOI
   - DP
-  - 背包DP
+  - 背包 DP
 permalink: scoi2009-paint
 date: 2016-07-11 22:59:00
 ---

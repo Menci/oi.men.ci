@@ -1,11 +1,11 @@
-title: 「NOI2015」寿司晚宴 - 状压DP
+title: 「NOI2015」寿司晚宴 - 状压 DP
 categories: OI
 tags: 
   - NOI
   - BZOJ
   - DP
-  - 状压DP
-  - 背包DP
+  - 状压 DP
+  - 背包 DP
 permalink: noi2015-dinner
 date: 2016-07-01 13:23:00
 ---

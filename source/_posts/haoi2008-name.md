@@ -1,10 +1,10 @@
-title: 「HAOI2008」玩具取名 - 区间DP
+title: 「HAOI2008」玩具取名 - 区间 DP
 categories: OI
 tags: 
   - BZOJ
   - HAOI
   - DP
-  - 区间DP
+  - 区间 DP
 permalink: haoi2008-name
 date: 2016-07-06 11:37:00
 ---

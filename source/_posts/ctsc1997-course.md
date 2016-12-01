@@ -1,10 +1,10 @@
-title: 「CTSC1997」选课 - 树形DP
+title: 「CTSC1997」选课 - 树形 DP
 categories: OI
 tags: 
   - CodeVS
   - CTSC
   - DP
-  - 树形DP
+  - 树形 DP
 permalink: ctsc1997-course
 id: 15
 updated: '2016-01-19 21:05:52'

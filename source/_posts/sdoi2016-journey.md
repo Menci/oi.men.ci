@@ -1,4 +1,4 @@
-title: 「SDOI2016」征途 - 斜率优化DP
+title: 「SDOI2016」征途 - 斜率优化 DP
 date: 2016-04-17 22:46:04
 categories: OI
 tags:

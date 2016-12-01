@@ -1,4 +1,4 @@
-title: 「APIO2010」特别行动队 - 斜率优化DP
+title: 「APIO2010」特别行动队 - 斜率优化 DP
 categories: OI
 tags: 
   - BZOJ

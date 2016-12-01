@@ -1,10 +1,10 @@
-title: 「CQOI2016」手机号码 - 数位DP
+title: 「CQOI2016」手机号码 - 数位 DP
 date: 2016-04-21 23:31:24
 categories: OI
 tags:
   - CQOI
   - BZOJ
-  - 数位DP
+  - 数位 DP
   - DP
 permalink: cqoi2016-number
 ---

@@ -1,10 +1,10 @@
-title: 「NOIP2003」数字游戏 - 划分DP
+title: 「NOIP2003」数字游戏 - 划分 DP
 categories: OI
 tags: 
   - CodeVS
   - DP
   - NOIP
-  - 划分DP
+  - 划分 DP
   - 洛谷
   - Tyvj
 permalink: noip2003-game

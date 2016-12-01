@@ -1,10 +1,10 @@
-title: 「CodeVS 2598」编辑距离问题 - 线性DP
+title: 「CodeVS 2598」编辑距离问题 - 线性 DP
 categories: OI
 tags: 
   - CodeVS
   - DP
   - 字符串
-  - 线性DP
+  - 线性 DP
 permalink: codevs-2598
 id: 17
 updated: '2016-01-19 21:05:21'

@@ -1,11 +1,6 @@
 title: SDOI2016 Round1 行纪
 categories: 
   - Diary
-  - OI
-tags: 
-  - 游记
-  - SDOI
-  - 省选
 permalink: sdoi2016-round1
 date: 2016-04-09 21:59:32
 ---

@@ -1,10 +1,10 @@
-title: 「CodeVS 3269」混合背包 - 背包DP + 单调队列
+title: 「CodeVS 3269」混合背包 - 背包 DP + 单调队列
 categories: OI
 tags: 
   - CodeVS
   - DP
   - 单调队列
-  - 背包DP
+  - 背包 DP
 permalink: codevs-3269-monotone-queue
 id: 23
 updated: '2016-01-19 21:03:26'

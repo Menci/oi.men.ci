@@ -1,4 +1,4 @@
-title: 「ZJOI2007」仓库建设 - 斜率优化DP
+title: 「ZJOI2007」仓库建设 - 斜率优化 DP
 categories: OI
 tags: 
   - BZOJ

@@ -1,11 +1,11 @@
-title: 「NOIP2006」能量项链 - 区间DP
+title: 「NOIP2006」能量项链 - 区间 DP
 categories: OI
 tags: 
   - CodeVS
   - DP
   - NOIP
   - Tyvj
-  - 区间DP
+  - 区间 DP
 permalink: noip2006-energy
 id: 19
 updated: '2016-01-19 21:04:41'

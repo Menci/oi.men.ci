@@ -1,10 +1,10 @@
-title: 「JSOI2009」魔兽地图 - 背包DP
+title: 「JSOI2008」魔兽地图 - 背包 DP
 categories: OI
 tags: 
   - BZOJ
   - JSOI
   - DP
-  - 背包DP
+  - 背包 DP
 permalink: jsoi2008-dotr
 date: 2016-07-11 23:10:00
 ---

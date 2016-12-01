@@ -7,7 +7,7 @@ tags:
   - 并查集
   - 主席树
   - 启发式合并
-  - LCA
+  - 最近公共祖先
 permalink: sdoi2013-rforest
 ---
 

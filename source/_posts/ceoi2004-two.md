@@ -1,4 +1,4 @@
-title: 「CEOI2004」锯木厂选址 - 斜率优化DP
+title: 「CEOI2004」锯木厂选址 - 斜率优化 DP
 categories: OI
 tags: 
   - COGS

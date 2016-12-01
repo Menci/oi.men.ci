@@ -1,10 +1,10 @@
-title: 「HNOI2010」合唱队 - 区间DP
+title: 「HNOI2010」合唱队 - 区间 DP
 categories: OI
 tags: 
   - BZOJ
   - HNOI
   - DP
-  - 区间DP
+  - 区间 DP
 permalink: hnoi2010-chorus
 date: 2016-07-06 12:08:00
 ---

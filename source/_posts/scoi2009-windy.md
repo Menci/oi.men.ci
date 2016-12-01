@@ -1,9 +1,9 @@
-title: 「SCOI2009」windy 数 - 数位DP
+title: 「SCOI2009」windy 数 - 数位 DP
 categories: OI
 tags: 
   - BZOJ
   - SCOI
-  - 数位DP
+  - 数位 DP
   - DP
 permalink: scoi2009-windy
 date: 2016-05-12 17:25:00

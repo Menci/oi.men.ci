@@ -72,4 +72,6 @@ deploy:
   repo: ssh://git@ip1.menci.moe:528/~/blog.git
   branch: master
 
-marked: {smartypants: false}
+moemark: 
+  smartypants: false
+  codeTags: false

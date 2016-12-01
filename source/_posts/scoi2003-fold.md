@@ -1,10 +1,10 @@
-title: 「SCOI2003」字符串折叠 - 区间DP
+title: 「SCOI2003」字符串折叠 - 区间 DP
 categories: OI
 tags: 
   - BZOJ
   - SCOI
   - DP
-  - 区间DP
+  - 区间 DP
 permalink: scoi2003-fold
 date: 2016-07-06 11:54:00
 ---
