@@ -69,7 +69,7 @@ theme: icarus
 ## Docs: http://hexo.io/docs/deployment.html
 deploy:
   type: git
-  repo: ssh://git@ip1.menci.moe:528/~/blog.git
+  repo: ssh://Menci@ip1.menci.moe:233/~/blog.git
   branch: master
 
 moemark: 
