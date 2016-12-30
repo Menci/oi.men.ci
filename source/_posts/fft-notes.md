@@ -31,7 +31,7 @@ $$
 $$
 \begin{align*}
 y_i &= A(x_i) \\
-&= \sum\limits_{j = 0} ^ {n - 1} a_j x_i
+&= \sum\limits_{j = 0} ^ {n - 1} a_j x_i ^ j
 \end{align*}
 $$
 
@@ -51,13 +51,13 @@ $$
 ##### 多项式乘法
 我们定义两个多项式 $ A(x) = \sum\limits_{i = 0} ^ {n - 1} a_i x ^ i $ 与 $ B(x) = \sum\limits_{i = 0} ^ {n - 1} b_i x ^ i $ 相乘的结果为 $ C(x) $（假设两个多项式次数相同，若不同可在后面补零）。
 
-$$ C(x) = A(x) \times B(x) = \sum\limits_{k = 0} ^ {2n - 2} (\sum\limits_{k = i + j} a_i b_j) x_k $$
+$$ C(x) = A(x) \times B(x) = \sum\limits_{k = 0} ^ {2n - 2} (\sum\limits_{k = i + j} a_i b_j) x ^ k $$
 
 两个 $ n - 1 $ 次多项式相乘，得到的是一个 $ 2n - 2 $ 次多项式，时间复杂度为 $ O(n ^ 2) $。
 
 如果使用两个多项式在 $ 2n - 1 $ 个点处取得的点值表示，那么
 
-$$ {y_3}_i = (\sum\limits_{j = 0} ^ {2n - 1} a_j x_i) \times (\sum\limits_{j = 0} ^ {2n - 1} b_j x_i) = {y_1}_i \times {y_2}_i $$
+$$ {y_3}_i = (\sum\limits_{j = 0} ^ {2n - 1} a_j x_i ^ j) \times (\sum\limits_{j = 0} ^ {2n - 1} b_j x_i ^ j) = {y_1}_i \times {y_2}_i $$
 
 时间复杂度为 $ O(n) $。
 

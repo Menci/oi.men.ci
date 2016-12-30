@@ -4,8 +4,8 @@
 
 # Site
 title: Menci's Blog
-subtitle: 眉眼如初，岁月如故
-description:
+subtitle: "眉眼如初，岁月如故"
+description: ""
 author: Menci
 language: zh-CN
 timezone:
@@ -63,7 +63,8 @@ pagination_dir: page
 # Extensions
 ## Plugins: http://hexo.io/plugins/
 ## Themes: http://hexo.io/themes/
-theme: icarus
+theme: vno
+disqus_shortname: menci
 
 # Deployment
 ## Docs: http://hexo.io/docs/deployment.html

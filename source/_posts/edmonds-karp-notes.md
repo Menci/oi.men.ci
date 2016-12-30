@@ -6,7 +6,7 @@ tags:
   - 费用流
   - Edmonds-Karp
   - 学习笔记
-  - 算法模板  
+  - 算法模板
 permalink: edmonds-karp-notes
 date: 2016-02-19 17:04:38
 ---
@@ -16,55 +16,72 @@ date: 2016-02-19 17:04:38
 <!-- more -->
 
 ### 定义
-费用（`cost`）：单位流量流过一条边需要支付的费用，算法的目标是使总流量最大的前提下总费用最小。
+费用（$ \mathrm{cost} $）：单位流量流过一条边需要支付的费用，算法的目标是使总流量最大的前提下总费用最小。
 
-其他的定义和 Dinic 中基本相同，但 Edmonds-Karp 中没有『层次』和『层次图』的概念。
+其他的定义和 Dinic 中基本相同，但 Edmonds-Karp 中没有「层次」和「层次图」的概念。
 
 Edmonds-Karp 的反向边的费用是原边的费用相反数。
 
 ### 算法
-1. 在残量网络中以『费用』为距离，沿着未满流边找出一条从源点到汇点的最短路，并进行增广。
-2. 增广时将总费用加上**汇点的距离** × **增广流量**。
+1. 在残量网络中以「费用」为距离，沿着未满流边找出一条从源点到汇点的最短路，并进行增广。
+2. 增广时将总费用加上**汇点的距离** $ \times $ **增广流量**。
 3. 无法找到增广路时算法结束，此时已找出网络的最小费用最大流。
 
-找最短路时，一般使用 Bellman-Ford 算法，因为网络中一般都会存在负权边，而不可能有负环——当有负环时，最小费用最大流不存在。
+找最短路时，一般使用 Bellman-Ford 算法，因为网络中一般都会存在负权边，而不可能有负环 —— 当有负环时，最小费用最大流不存在。
 
 Edmonds-Karp 基于一个事实：如果当前费用是在当前流量下的最小费用，那么以最小费用增广之后的费用也为增广后的流量下的最小费用。不断增广找到的就是最小费用最大流。
 
 ### 代码实现
 ```cpp
+#include <cstdio>
+#include <climits>
+#include <algorithm>
+#include <queue>
+
+const int MAXN = 400;
+
 struct Node {
-	Edge *firstEdge, *inEdge;
+	struct Edge *firstEdge, *inEdge;
 	int flow, dist;
 	bool inQueue;
-} nodes[MAXN];
+} N[MAXN + 1];
 
 struct Edge {
 	Node *from, *to;
 	int capacity, flow, cost;
 	Edge *next, *reversedEdge;
 
-	Edge(Node *from, Node *to, int capacity, int cost) : from(from), to(to), capacity(capacity), cost(cost), flow(0), next(from->firstEdge) {}
+	Edge(Node *from, Node *to, int capacity, int cost) : from(from), to(to), capacity(capacity), flow(0), cost(cost), next(from->firstEdge) {}
 };
 
-struct EdmondsKarp {
-	bool bellmanford(Node *s, Node *t, int n, int &flow, int &cost) {
-		for (int i = 0; i < n; i++) {
-			nodes[i].dist = INT_MAX;
-			nodes[i].inEdge = NULL;
-			nodes[i].flow = 0;
-			nodes[i].inQueue = false;
+inline void addEdge(int from, int to, int capacity, int cost) {
+	N[from].firstEdge = new Edge(&N[from], &N[to], capacity, cost);
+	N[to].firstEdge = new Edge(&N[to], &N[from], 0, -cost);
+
+	N[from].firstEdge->reversedEdge = N[to].firstEdge;
+	N[to].firstEdge->reversedEdge = N[from].firstEdge;
+}
+
+inline void edmondskarp(int s, int t, int n, int &flow, int &cost) {
+	flow = cost = 0;
+	while (1) {
+		for (int i = 1; i <= n; i++) {
+			N[i].inEdge = NULL;
+			N[i].flow = 0;
+			N[i].dist = INT_MAX;
+			N[i].inQueue = false;
 		}
 
-		s->flow = INT_MAX;
-		s->dist = 0;
-
 		std::queue<Node *> q;
-		q.push(s);
-		
+		q.push(&N[s]);
+
+		N[s].flow = INT_MAX;
+		N[s].dist = 0;
+
 		while (!q.empty()) {
 			Node *v = q.front();
 			q.pop();
+
 			v->inQueue = false;
 
 			for (Edge *e = v->firstEdge; e; e = e->next) {
@@ -80,28 +97,32 @@ struct EdmondsKarp {
 			}
 		}
 
-		if (t->dist == INT_MAX) return false;
+		if (N[t].dist == INT_MAX) break;
 
-		for (Node *v = t; v != s; v = v->inEdge->from) {
-			v->inEdge->flow += t->flow;
-			v->inEdge->reversedEdge->flow -= t->flow;
+		for (Edge *e = N[t].inEdge; e; e = e->from->inEdge) {
+			e->flow += N[t].flow;
+			e->reversedEdge->flow -= N[t].flow;
 		}
 
-		cost += t->dist * t->flow;
-		flow += t->flow;
-		return true;
+		flow += N[t].flow;
+		cost += N[t].dist * N[t].flow;
+	}
+}
+
+int main() {
+	int n, m;
+	scanf("%d %d", &n, &m);
+	while (m--) {
+		int u, v, cap, cost;
+		scanf("%d %d %d %d", &u, &v, &cap, &cost);
+		addEdge(u, v, cap, cost);
 	}
 
-	void operator()(int s, int t, int n, int &flow, int &cost) {
-		flow = cost = 0;
-		while (bellmanford(&nodes[s], &nodes[t], n, flow, cost));
-	}
-} edmondskarp;
+	int flow, cost;
+	edmondskarp(1, n, n, flow, cost);
 
-inline void addEdge(int from, int to, int capacity, int cost) {
-	nodes[from].firstEdge = new Edge(&nodes[from], &nodes[to], capacity, cost);
-	nodes[to].firstEdge = new Edge(&nodes[to], &nodes[from], 0, -cost);
+	printf("%d %d\n", flow, cost);
 
-	nodes[from].firstEdge->reversedEdge = nodes[to].firstEdge, nodes[to].firstEdge->reversedEdge = nodes[from].firstEdge;
+	return 0;
 }
 ```

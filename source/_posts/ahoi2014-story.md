@@ -17,6 +17,9 @@ date: 2016-04-08 17:57:21
 
 <!-- more -->
 
+### 链接
+[BZOJ 3876](http://www.lydsy.com/JudgeOnline/problem.php?id=3876)
+
 ### 题解
 题目是一个这样的模型：给出一个带权 DAG，从每个点均可回到 1 号点且不需要花费，求从 1 号点出发遍历整个 DAG 的最小花费。
 

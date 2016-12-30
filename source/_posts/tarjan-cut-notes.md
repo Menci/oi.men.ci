@@ -40,6 +40,112 @@ $ \mathrm{low}(u) $ 表示由节点 $ u $ 开始搜索所能到达的点中，�
 $ \mathrm{low}(v) \geq \mathrm{dfn}(u) $ 的意义是，$ v $ 向上无法到达 $ u $ 的父节点。
 
 ### 模板
+递归（CodeVS 5524）：
+
+更新于 2016 年 12 月 29 日。
+
+![zyz 大佬的评价](tarjan-cut-notes/zyz.png)
+
+```c++
+#include <cstdio>
+#include <algorithm>
+
+const int MAXN = 20000;
+
+struct Node
+{
+	struct Edge *firstEdge;
+	Node *fa;
+	int dfn, low;
+	bool vis, isCut;
+} N[MAXN + 1];
+
+struct Edge
+{
+	Node *from, *to;
+	Edge *next;
+
+	Edge(Node *from, Node *to) : from(from), to(to), next(from->firstEdge) {}
+};
+
+inline void addEdge(int s, int t)
+{
+	N[s].firstEdge = new Edge(&N[s], &N[t]);
+	N[t].firstEdge = new Edge(&N[t], &N[s]);
+}
+
+inline int tarjan(Node *v)
+{
+	static int ts = 0;
+	v->dfn = v->low = ++ts;
+	v->vis = true;
+
+	int res = 0, childCnt = 0;
+	for (Edge *e = v->firstEdge; e; e = e->next)
+	{
+		if (!e->to->vis)
+		{
+			e->to->fa = v;
+			res += tarjan(e->to);
+			v->low = std::min(v->low, e->to->low);
+
+			if (v->fa)
+			{
+				// 某个子节点能到达的最高点不高于 v
+				if (e->to->low >= v->dfn) v->isCut = true;
+			}
+			else
+			{
+				// 不是搜索树的根
+				// 有两个以上的子树
+				if (++childCnt == 2) v->isCut = true;
+			}
+		}
+		else
+		{
+			// 无向图 DFS 树没有横叉边，所有非树边均为返祖边
+			v->low = std::min(v->low, e->to->dfn);
+		}
+	}
+
+	if (v->isCut) res++;
+
+	return res;
+}
+
+int main()
+{
+	int n, m;
+	scanf("%d %d", &n, &m);
+	while (m--)
+	{
+		int u, v;
+		scanf("%d %d", &u, &v);
+		addEdge(u, v);
+	}
+
+	int ans = 0;
+	for (int i = 1; i <= n; i++)
+	{
+		if (!N[i].vis) ans += tarjan(&N[i]);
+	}
+
+	printf("%d\n", ans);
+
+	for (int i = 1; i <= n; i++)
+	{
+		for (Edge *&e = N[i].firstEdge, *next; e; next = e->next, delete e, e = next);
+		N[i].vis = N[i].isCut = false;
+		N[i].dfn = N[i].low = 0;
+		N[i].fa = NULL;
+	}
+
+	return 0;
+}
+```
+
+非递归：
+
 ```c++
 struct Node {
 	struct Edge *e, *c;

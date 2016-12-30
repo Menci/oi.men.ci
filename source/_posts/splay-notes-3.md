@@ -5,12 +5,13 @@ tags:
   - 高级数据结构
   - 学习笔记
   - 数据结构
-  - 算法模板
 permalink: splay-notes-3
 date: 2016-01-19 20:02:00
 ---
 
 在《Splay 学习笔记（一）》中，我们学会了利用 Splay 来维护二叉排序树，现在让我们来把我们的 Splay 变得更加优美。
+
+模板请见[《Splay 模板 + 详细注释》](/splay-template)。
 
 <!-- more -->
 

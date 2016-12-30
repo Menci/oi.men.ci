@@ -60,21 +60,29 @@ AC 自动机是一种多模式串匹配算法，可以用来在文本串中匹�
 ### 模板
 统计每个模式串的出现次数。
 
-```c++
-const int CHARSET_SIZE = 'z' - 'a' + 1;
-const char BASE_CHAR = 'a';
+更新于 2016 年 12 月 27 日。
 
-struct Trie {
-	struct Node {
+![zyz 大佬的评价](acam-notes/zyz.png)
+
+```c++
+const int CHARSET_SIZE = 'z' - 'a' + 1; // 字符集大小
+const char BASE_CHAR = 'a'; // 最小的字符
+
+struct Trie
+{
+	struct Node
+	{
 		Node *c[CHARSET_SIZE], *next, *fail;
 		bool isWord;
 		int ans;
 
-		Node(const bool isWord = false) : next(NULL), fail(NULL), isWord(isWord) {
+		Node(bool isWord = false) : next(NULL), fail(NULL), isWord(isWord)
+		{
 			for (int i = 0; i < CHARSET_SIZE; i++) c[i] = NULL;
 		}
 
-		void apply() {
+		void apply()
+		{
 			ans++;
 			if (next) next->apply();
 		}
@@ -82,9 +90,13 @@ struct Trie {
 
 	Trie() : root(new Node()) {}
 
-	Node *insert(const char *begin, const char *end) {
+	Node *insert(const char *begin, const char *end)
+	{
+		// 插入过程类似 Splay
 		Node **v = &root;
-		for (const char *p = begin; p != end; p++) {
+		for (const char *p = begin; p != end; p++)
+		{
+			// 向下找到对应节点的位置
 			if (!*v) *v = new Node;
 			v = &(*v)->c[*p];
 		}
@@ -93,36 +105,55 @@ struct Trie {
 		return *v;
 	}
 
-	void build() {
+	void build()
+	{
 		std::queue<Node *> q;
 		q.push(root);
-		root->fail = root;
+		root->fail = root; // 边界
 		root->next = NULL;
-		while (!q.empty()) {
+		while (!q.empty())
+		{
 			Node *v = q.front();
 			q.pop();
 
-			for (int i = 0; i < CHARSET_SIZE; i++) {
+			for (int i = 0; i < CHARSET_SIZE; i++)
+			{
+				// 使用引用减少代码量
 				Node *&c = v->c[i];
-				if (!c) {
-                    c = v->fail->c[i] ? v->fail->c[i] : root;
+
+				// 补全为 Trie 图
+				if (!c)
+				{
+					// 如果 v == root，则 v->fail == root，c 和 v->fail->c[i] 是同一个变量
+                    c = v == root ? root : v->fail->c[i];
                     continue;
                 }
 				Node *u = v->fail;
-				while (u != root && !u->c[i]) u = u->fail;
+
+				// 类似 KMP 的方法，求失配指针
+				// while (u != root && !u->c[i]) u = u->fail; // 补全为 Trie 图，此行可省略
+
+				// 如果 v == root，则失配后一定回到根节点
 				c->fail = v != root && u->c[i] ? u->c[i] : root;
+
+				// 沿着 fail 指针能走到的第一个单词节点
 				c->next = c->fail->isWord ? c->fail : c->fail->next;
 				q.push(c);
 			}
 		}
 	}
 
-	void exec(const char *begin, const char *end) {
+	void exec(const char *begin, const char *end)
+	{
 		Node *v = root;
-		for (const char *p = begin; p != end; p++) {
+		for (const char *p = begin; p != end; p++)
+		{
+			// 状态转移
 			v = v->c[*p];
+
+			// 统计答案
 			if (v->isWord) v->apply();
-			else if (v->next) v->next->apply();
+			else if (v->next) v->next->apply(); // 注意是 else if
 		}
 	}
 };

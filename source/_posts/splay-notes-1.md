@@ -7,12 +7,12 @@ tags:
   - 数据结构
   - 高级数据结构
 permalink: splay-notes-1
-id: 6
-updated: '2016-01-19 21:07:47'
 date: 2015-12-20 05:36:24
 ---
 
 上周周四开始学 Splay，一边看《高级数据结构》，一边看 FireStorm 的《[Splay学习笔记](http://blog.csdn.net/farestorm/article/details/49153565)》，现在终于弄明白最基础的一部分了。
+
+模板请见[《Splay 模板 + 详细注释》](/splay-template)。
 
 <!-- more -->
 
