@@ -123,7 +123,7 @@ fail  | 0 | 0 | 0 | 0 | 1 | 2 | 0 | 1
 ### 完整代码（POJ 3461）
 更新于 2016 年 12 月 26 日。
 
-![zyz 大佬的评价](kmp-notes/zyz.png)
+![zyz 大佬的评价](images/zyz.png)
 
 ```cpp
 #include <cstdio>

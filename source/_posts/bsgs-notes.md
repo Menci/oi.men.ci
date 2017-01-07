@@ -10,6 +10,8 @@ permalink: bsgs-notes
 date: 2016-06-13 11:52:00
 ---
 
+![zyz 大佬的评价](images/zyz.png)
+
 对于给定的 $ a $、$ b $、$ p $ 存在一个 $ x $，使得
 
 $$ a ^ x \equiv b \pmod p $$
@@ -61,31 +63,35 @@ $$
 
 #### 模板
 ```c++
-template <typename T>
-inline void exgcd(const T a, const T b, T &g, T &x, T &y) {
+inline void exgcd(long long a, long long b, long long &g, long long &x, long long &y)
+{
 	if (!b) g = a, x = 1, y = 0;
 	else exgcd(b, a % b, g, y, x), y -= x * (a / b);
 }
 
-template <typename T>
-inline T inv(const T x, const T p) {
-	T g, r, y;
+inline long long inv(long long x, long long p)
+{
+	long long g, r, y;
 	exgcd(x, p, g, r, y);
 	return (r % p + p) % p;
 }
 
-template <typename T>
-inline T bsgs(const T a, const T b, const T p) {
-	std::tr1::unordered_map<T, T> map;
+inline long long bsgs(long long a, long long b, long long p)
+{
+	if (a == 0) return b == 0 ? 1 : -1;
 
-	T m = ceil(sqrt(static_cast<double>(p))), t = 1;
-	for (int i = 0; i < m; i++) {
+	std::map<long long, long long> map;
+
+	long long m = ceil(sqrt(p)), t = 1;
+	for (int i = 0; i < m; i++)
+	{
 		if (!map.count(t)) map[t] = i;
 		t = t * a % p;
 	}
 
-	T k = inv(t, p), w = b;
-	for (int i = 0; i < m; i++) {
+	long long k = inv(t, p), w = b;
+	for (int i = 0; i < m; i++)
+	{
 		if (map.count(w)) return i * m + map[w];
 		w = w * k % p;
 	}
@@ -121,18 +127,19 @@ $$ a ^ {x - 1} \equiv \frac{b}{d} \times (\frac{a}{d}) ^ {-1} \pmod { \frac{p}{d
 
 #### 模板
 ```c++
-template <typename T>
-inline T exbsgs(const T a, const T b, const T p) {
-	T _b = b, _p = p, t, c = 0;
-	while ((t = std::__gcd(a, _p)) != 1) {
-		if (_b == 1) return c;
-		if (_b % t != 0) return -1;
-		_p /= t;
-		_b = _b / t * inv(a / t, _p) % _p;
+inline long long exbsgs(long long a, long long b, long long p)
+{
+	long long t, c = 0;
+	while ((t = std::__gcd(a, p)) != 1)
+	{
+		if (b == 1) return c;
+		if (b % t != 0) return -1;
+		p /= t;
+		b = b / t * inv(a / t, p) % p;
 		c++;
 	}
 
-	T r = bsgs(a, _b, _p);
+	long long r = bsgs(a, b, p);
 	if (r == -1) return -1;
 	else return r + c;
 }

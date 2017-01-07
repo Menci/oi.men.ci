@@ -44,7 +44,7 @@ $ \mathrm{low}(v) \geq \mathrm{dfn}(u) $ 的意义是，$ v $ 向上无法到达
 
 更新于 2016 年 12 月 29 日。
 
-![zyz 大佬的评价](tarjan-cut-notes/zyz.png)
+![zyz 大佬的评价](images/zyz.png)
 
 ```c++
 #include <cstdio>

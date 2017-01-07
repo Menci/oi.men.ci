@@ -13,9 +13,7 @@ date: 2016-12-23 20:13:00
 
 插入、查询、删除、前趋、后继、排名、选择。
 
-![zyz 大佬的评价](splay-template/zyz.png)
-
-<!-- 因为是写给 Ahhhh 和 Rachel 的啊 (´・н・‘) -->
+![zyz 大佬的评价](images/zyz.png)
 
 <!-- more -->
 

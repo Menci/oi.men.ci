@@ -26,7 +26,7 @@ AC 自动机是一种多模式串匹配算法，可以用来在文本串中匹�
 现在将问题转化为，在一棵 Trie 上，求一个节点 $ j $，使得从根到 $ j $ 的路径组成的串是从根到 $ i $ 的路径组成串的**后缀**。
 
 ### 构造
-![AC 自动机](/home/Menci/Hexo/source/_posts/acam-notes/acam.svg?3)
+![AC 自动机](acam-notes/acam.svg)
 
 设 $ i $ 父节点为 $ i' $，$ i $ 的入边上的字母为 $ c $。
 
@@ -42,7 +42,7 @@ AC 自动机是一种多模式串匹配算法，可以用来在文本串中匹�
 如果状态转移到一个单词节点上，则代表这个单词被匹配到。但有时会出现，一个节点 $ i $ 不是单词，$ \mathrm{fail}(i) $ 是单词。
 
 如下图，`a` 和 `bac` 组成的 AC 自动机（一些失配边已略去）。
-![AC 自动机](/home/Menci/Hexo/source/_posts/acam-notes/acam2.svg)
+![AC 自动机](acam-notes/acam2.svg)
 
 节点 3 可以通过失配边连向 1，如果输入 `ba` 则会到达节点 3，节点 1 处的单词则被忽略。为了解决这一问题，我们引入另一个指针 —— 后缀链接，$ \mathrm{next}(i) $ 表示从节点 $ i $ 沿着失配边转移，能到达的第一个单词节点，如上图 $ \mathrm{next}(3) = 1 $。
 
@@ -62,7 +62,7 @@ AC 自动机是一种多模式串匹配算法，可以用来在文本串中匹�
 
 更新于 2016 年 12 月 27 日。
 
-![zyz 大佬的评价](acam-notes/zyz.png)
+![zyz 大佬的评价](images/zyz.png)
 
 ```c++
 const int CHARSET_SIZE = 'z' - 'a' + 1; // 字符集大小

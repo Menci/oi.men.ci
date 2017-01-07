@@ -5,9 +5,7 @@ permalink: at-the-cross-of-time
 date: 2016-08-31 02:42:00
 ---
 
-<div style="width: 100%; text-align: center; ">
-<div id="aplayer" class="aplayer" style="width: 100%; max-width: 550px; text-align: left; display: inline-block; background: #fff; "></div>
-</div>
+<div style="width: 100%; text-align: center; "><div id="aplayer" class="aplayer" style="width: 100%; max-width: 550px; text-align: left; display: inline-block; background: #fff; "></div></div>
 <style>
 .post .post-content .aplayer {
 	margin-top: 20px;
@@ -24,8 +22,8 @@ var ap = new APlayer({
     music: {
         title: '夢追人',
         author: 'KOKIA',
-        url: 'https://dn-menci.qbox.me/music/mzr.ogg',
-        pic: 'https://dn-menci.qbox.me/music/mzr.jpg',
+        url: 'https://dn-menci.qbox.me/music/mzr/mzr.ogg',
+        pic: 'https://dn-menci.qbox.me/music/mzr/mzr.jpg',
         lrc: '/at-the-cross-of-time/mzr.lrc'
     }
 });

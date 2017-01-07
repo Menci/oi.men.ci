@@ -10,7 +10,7 @@ date: 2016-12-30 09:18:00
 
 RMQ 稀疏表（Sparse Table）的模板。
 
-![zyz 大佬的评价](rmq-template/zyz.png)
+![zyz 大佬的评价](images/zyz.png)
 
 <!-- more -->
 
