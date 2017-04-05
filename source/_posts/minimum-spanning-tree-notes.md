@@ -3,7 +3,6 @@ categories: OI
 tags: 
   - Kruskal
   - POJ
-  - Prim
   - 倍增
   - 图论
   - 学习笔记
@@ -14,9 +13,7 @@ permalink: minimum-spanning-tree-notes
 date: 2016-01-02 06:08:50
 ---
 
-最近回顾了一下图论中的最小生成树算法，又学习了神奇（个卵）的“次小生成树”的算法。
-
-总体来说，图论里面的东西还是挺灵活的嘛 ~
+最近回顾了一下图论中的最小生成树算法，又学习了“次小生成树”的算法。
 
 <!-- more -->
 
@@ -74,81 +71,6 @@ inline int kruskal() {
 
 			if (count == n - 1) {
 				break;
-			}
-		}
-	}
-
-	return sum;
-}
-```
-
-#### Prim 算法
-Prim 算法相对于 Kruskal 算法而言有一定难度，它把所有的点分为两个集合：在最小生成树中和不在最小生成树中，每次找到一条连接两个集合的**权值最小**的边，将它添加到最小生成树中。
-
-对于 Prim 算法，可以考虑类似于 Dijkstra 单源最短路算法的堆优化，即设置一个优先队列，初始时将从源点（可任取）出发的边加进优先队列中，每次从优先队列中不断弹出权值最小的边，直至得到一条边连接两个集合，则将这条边添加到最小生成树中，然后将这条边的出点的所有出边加入优先队列中。
-
-图结构需要以邻接表储存。
-
-使用优先队列的时间复杂度为 $O(m{\log}n)$（其中 `n` 为结点数，`m` 为边数）。  
-不使用任何优化的时间复杂度为 $O(n^2)$（其中 `n` 为结点数）。
-
-据说适用于稠密图。
-
-```C++
-struct Node {
-	Edge *edges;
-	bool visited;
-} nodes[MAXN];
-
-struct Edge {
-	Node *from, *to;
-	int w;
-	Edge *next;
-	bool used;
-
-	Edge(Node *from, Node *to, int w) : from(from), to(to), w(w), next(from->edges), used(false) {}
-
-	struct Compare {
-		bool operator()(Edge *a, Edge *b) const {
-			return a->w > b->w;
-		}
-	};
-};
-
-inline void addEdge(int u, int v, int w) {
-	nodes[u].edges = new Edge(&nodes[u], &nodes[v], w);
-	nodes[v].edges = new Edge(&nodes[v], &nodes[u], w);
-}
-
-inline int prim() {
-	std::priority_queue<Edge *, vector<Edge *>, Edge::Compare> q;
-	int sum = 0;
-	Node *node = &nodes[0];
-	node->visited = true;
-	for (Edge *edge = node->edges; edge; edge = edge->next) {
-		q.push(edge);
-	}
-
-	int count = 0;
-	while (!q.empty()) {
-		Edge *minEdge = q.top();
-		q.pop();
-		if (minEdge->to->visited) {
-			continue;
-		}
-
-		sum += minEdge->w;
-		minEdge->used = true;
-		minEdge->to->visited = true;
-		count++;
-
-		if (count == n - 1) {
-			break;
-		}
-
-		for (Edge *edge = minEdge->to->edges; edge; edge = edge->next) {
-			if (!edge->to->visited) {
-				q.push(edge);
 			}
 		}
 	}

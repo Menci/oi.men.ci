@@ -5,7 +5,7 @@ tags:
   - DFS
   - 算法模板
   - Tarjan
-  - 强联通分量
+  - 强连通分量
   - 树链剖分
 permalink: non-recursion-dfs-with-stack
 date: 2016-04-08 14:30:21
@@ -72,7 +72,7 @@ void dfs(Iterator start) {
 }
 ```
 
-### Tarjan 强联通分量模板
+### Tarjan 强连通分量模板
 ```c++
 struct Node {
     Edge *firstEdge, *currentEdge, *inEdge;

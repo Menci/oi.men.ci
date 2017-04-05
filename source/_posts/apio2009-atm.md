@@ -1,9 +1,9 @@
-title: 「APIO2009」抢掠计划 - 强联通分量
+title: 「APIO2009」抢掠计划 - 强连通分量
 categories: OI
 tags: 
   - BZOJ
   - APIO
-  - 强联通分量
+  - 强连通分量
   - Tarjan
   - 缩点
   - DAG
@@ -24,7 +24,7 @@ date: 2016-03-10 19:57:45
 [BZOJ 1179](http://www.lydsy.com/JudgeOnline/problem.php?id=1179)
 
 ### 题解
-Tarjan 求强联通分量，一个强联通分量中的点肯定可以同时被抢走。缩点后图转化为 DAG，求出 DAG 上的最长路即为答案。
+Tarjan 求强连通分量，一个强连通分量中的点肯定可以同时被抢走。缩点后图转化为 DAG，求出 DAG 上的最长路即为答案。
 
 ### 代码
 ```cpp

@@ -6,12 +6,14 @@ tags:
   - 数据结构
   - 算法模板
 permalink: splay-template
-date: 2016-12-23 20:13:00
+date: 2016-01-11 10:52:00
 ---
 
 普通平衡树的模板。
 
 插入、查询、删除、前趋、后继、排名、选择。
+
+更新于 2016 年 1 月 11 日：`insert` 有锅，根节点处重复插入时没有使 `size` 增加。
 
 ![zyz 大佬的评价](images/zyz.png)
 
@@ -169,6 +171,7 @@ struct Splay
 		if (*v != NULL)
 		{
 			(*v)->cnt++;
+			(*v)->size++; // 锅
 		}
 		else
 		{

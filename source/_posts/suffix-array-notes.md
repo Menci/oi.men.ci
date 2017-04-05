@@ -87,76 +87,86 @@ $$
 如果使用快速排序来实现双关键字排序，总时间复杂度为 $ O(n \log n \log n) $，实现难度比 Hash 的方法要低，并且更稳定。而考虑到每个关键字均为 $ [-1, n) $ 的整数，我们可以使用 $ O(n) $ 的基数排序，来将总时间复杂度将为 $ O(n \log n) $。
 
 ##### 代码
-
 首先，将原数据进行离散化，保证每个元素的值在 $ [0, n) $ 内。
 
 ```c++
-static int set[MAXN];
-std::copy(a, a + n, set);
-std::sort(set, set + n);
-int *end = std::unique(set, set + n);
-for (int i = 0; i < n; i++) a[i] = std::lower_bound(set, end, a[i]) - set;
+static int set[MAXN + 1], a[MAXN + 1];
+std::copy(s + 1, s + n + 1, set + 1);
+std::sort(set + 1, set + n + 1);
+int *end = std::unique(set + 1, set + n + 1);
+for (int i = 1; i <= n; i++) a[i] = std::lower_bound(set + 1, end, s[i]) - set;
 ```
 
-`fir` 和 `sec` 分别表示第一关键字和第二关键字，`buc` 表示基数排序所用的桶。关键字的取值范围为 $ [-1, n) $，需要用到负数下标。
+`fir` 和 `sec` 分别表示第一关键字和第二关键字，`buc` 表示基数排序所用的桶。关键字的取值范围为 $ [0, n] $。
 
 ```c++
-static int fir[MAXN], sec[MAXN], tmp[MAXN], _buc[MAXN + 1], *buc = _buc + 1;
+static int fir[MAXN + 1], sec[MAXN + 1], tmp[MAXN + 1], buc[MAXN + 1];
 ```
 
 对每个单独的字符进行排序，得到它们的排名。
 
 ```c++
-for (int i = 0; i < n; i++) buc[a[i]]++;
-for (int i = 0; i < n; i++) buc[i] += buc[i - 1];
-for (int i = 0; i < n; i++) rk[i] = buc[a[i] - 1];
+for (int i = 1; i <= n; i++) buc[a[i]]++;
+for (int i = 1; i <= n; i++) buc[i] += buc[i - 1];
+for (int i = 1; i <= n; i++) rk[i] = buc[a[i] - 1] + 1;
 ```
 
 进行 $ O(\log n) $ 次迭代（下文代码均为循环内操作）。
 
 ```c++
-for (int t = 1; t < n; t <<= 1)
+for (int t = 1; t <= n; t *= 2)
 ```
 
 设置每个位置的第一、第二关键字。
 
 ```c++
-for (int i = 0; i < n; i++) fir[i] = rk[i];
-for (int i = 0; i < n; i++) sec[i] = (i + t >= n) ? -1 : fir[i + t];
+for (int i = 1; i <= n; i++) fir[i] = rk[i];
+for (int i = 1; i <= n; i++) sec[i] = i + t > n ? 0 : rk[i + t];
 ```
 
 对第二关键字进行排序，$ {\rm tmp}[i] $ 存储第 $ i $ **大**的第二关键字的所在位置。
 
+注意 `--buc[sec[i]]` 得到的是一个 $ [0, n) $ 的值，$ n $ 减去它可以得到一个 $ [1, n] $ 的值。
+
 ```c++
-std::fill(buc - 1, buc + n, 0);
-for (int i = 0; i < n; i++) buc[sec[i]]++;
-for (int i = 0; i < n; i++) buc[i] += buc[i - 1];
-for (int i = 0; i < n; i++) tmp[n - buc[sec[i]]--] = i;
+std::fill(buc, buc + n + 1, 0);
+for (int i = 1; i <= n; i++) buc[sec[i]]++;
+for (int i = 1; i <= n; i++) buc[i] += buc[i - 1];
+for (int i = 1; i <= n; i++) tmp[n - --buc[sec[i]]] = i;
 ```
 
 对第一关键字进行排序，按照 $ {\rm tmp}[] $ 中的顺序依次领取排名，在 $ {\rm tmp}[] $ 中靠前的位置将较早领取排名，而较早领取到的排名较大。
 
+注意 `buc[fir[i]]--` 是一个 $ [1, n] $ 的值。
+
 ```c++
-std::fill(buc - 1, buc + n, 0);
-for (int i = 0; i < n; i++) buc[fir[i]]++;
-for (int i = 0; i < n; i++) buc[i] += buc[i - 1];
-for (int j = 0, i; j < n; j++) i = tmp[j], sa[--buc[fir[i]]] = i;
+std::fill(buc, buc + n + 1, 0);
+for (int i = 1; i <= n; i++) buc[fir[i]]++;
+for (int i = 1; i <= n; i++) buc[i] += buc[i - 1];
+for (int j = 1, i; j <= n; j++) i = tmp[j], sa[buc[fir[i]]--] = i;
 ```
 
 按照后缀数组 $ {\rm SA}[] $ 中的顺序求出名次数组 $ {\rm rank}[] $，因为中间过程中排名会有并列，所以要分情况讨论：
 
-1. 没有前一名，当前位置的排名为 $ 0 $；
+1. 没有前一名，当前位置的排名为 $ 1 $；
 2. 当前位置和前一名位置的第一、第二关键字均相等，当前位置的排名与前一位置的排名相等；
 3. 当前位置和前一名位置的第一或第二关键字不相等，当前位置的排名为前一位置的排名 $ + 1 $；
 
+如果没有并列排名，说明已经排好序，可以提前跳出。
+
 ```c++
-for (int j = 0, i, last = -1; j < n; j++) {
-	i = sa[j];
-	if (last == -1) rk[i] = 0;
-	else if (fir[i] == fir[last] && sec[i] == sec[last]) rk[i] = rk[last];
-	else rk[i] = rk[last] + 1;
-	last = i;
+bool unique = true;
+for (int j = 1, i, last = 0; j <= n; j++)
+{
+    i = sa[j];
+    if (!last) rk[i] = 1;
+    else if (fir[i] == fir[last] && sec[i] == sec[last]) rk[i] = rk[last], unique = false;
+    else rk[i] = rk[last] + 1;
+
+    last = i;
 }
+
+if (unique) break;
 ```
 
 由于倍增算法时间复杂度较为优秀，并且实现难度不高，在实践中较为常用。另外，后缀数组也有线性的构造方法，例如 DC3，但其实现难度较高，实际应用不如倍增算法广。
@@ -206,14 +216,16 @@ $$ h(i) \geq h(i - 1) - 1 $$
 相对于前面 $ O(n \log n) $ 的过程，线性的复杂度已经不会成为瓶颈。
 
 ```c++
-for (int i = 0, k = 0; i < n; i++) {
-	if (rk[i] == 0) k = 0;
-	else {
-		if (k > 0) k--;
-		int j = sa[rk[i] - 1];
-		while (i + k < n && j + k < n && a[i + k] == a[j + k]) k++;
-	}
-	ht[rk[i]] = k;
+for (int i = 1, k = 0; i <= n; i++)
+{
+    if (rk[i] == 1) k = 0;
+    else
+    {
+        if (k > 0) k--;
+        int j = sa[rk[i] - 1];
+        while (i + k <= n && j + k <= n && a[i + k] == a[j + k]) k++;
+    }
+    ht[rk[i]] = k;
 }
 ```
 
@@ -228,15 +240,16 @@ for (int i = 0, k = 0; i < n; i++) {
 
 问题转化为区间最值查询（Range Minimum/Maximum Query，RMQ）问题，可以使用稀疏表（Sparse Table，ST）算法解决。该算法在 $ O(n \log n) $ 的时间内预处理，并在 $ O(1) $ 的时间内完成每个询问。
 
+<!--
 #### 代码
 代码中 $ {\rm st}[i][t] $ 表示起始位置在 $ [i, i + 2 ^ t] $ 之间的所有相邻后缀的最长公共前缀长度的最小值，即 $ {\rm LCP}(i, i + 2 ^ t) $。
 
 ```c++
 inline void sparseTable() {
-	for (int i = 0; i < n - 1; i++) st[i][0] = ht[i + 1];
+	for (int i = 1; i <= n - 1; i++) st[i][0] = ht[i + 1];
 	for (int t = 1; (1 << t) < n; t++) {
-		for (int i = 0, j = (1 << t); i < n; i++) {
-			if (i + j >= n) break;
+		for (int i = 1, j = (1 << t); i <= n; i++) {
+			if (i + j > n) break;
 			st[i][t] = std::min(st[i][t - 1], st[i + (1 << (t - 1))][t - 1]);
 		}
 	}
@@ -251,52 +264,60 @@ inline int lcp(int a, int b) {
 	}
 }
 ```
+-->
 
 ### 模板
 ```c++
-int n, a[MAXN], sa[MAXN], rk[MAXN], ht[MAXN], st[MAXN][MAXLOGN + 1];
+inline void suffixArray()
+{
+	static int set[MAXN + 1], a[MAXN + 1];
+	std::copy(s + 1, s + n + 1, set + 1);
+	std::sort(set + 1, set + n + 1);
+	int *end = std::unique(set + 1, set + n + 1);
+	for (int i = 1; i <= n; i++) a[i] = std::lower_bound(set + 1, end, s[i]) - set;
 
-inline void suffixArray() {
-	static int set[MAXN];
-	std::copy(a, a + n, set);
-	std::sort(set, set + n);
-	int *end = std::unique(set, set + n);
-	for (int i = 0; i < n; i++) a[i] = std::lower_bound(set, end, a[i]) - set;
+	static int fir[MAXN + 1], sec[MAXN + 1], tmp[MAXN + 1], buc[MAXN + 1];
+	for (int i = 1; i <= n; i++) buc[a[i]]++;
+	for (int i = 1; i <= n; i++) buc[i] += buc[i - 1];
+	for (int i = 1; i <= n; i++) rk[i] = buc[a[i] - 1] + 1;
 
-	static int fir[MAXN], sec[MAXN], tmp[MAXN], _buc[MAXN + 1], *buc = _buc + 1;
+	for (int t = 1; t <= n; t *= 2)
+	{
+		for (int i = 1; i <= n; i++) fir[i] = rk[i];
+		for (int i = 1; i <= n; i++) sec[i] = i + t > n ? 0 : rk[i + t];
 
-	for (int i = 0; i < n; i++) buc[a[i]]++;
-	for (int i = 0; i < n; i++) buc[i] += buc[i - 1];
-	for (int i = 0; i < n; i++) rk[i] = buc[a[i] - 1];
+		std::fill(buc, buc + n + 1, 0);
+		for (int i = 1; i <= n; i++) buc[sec[i]]++;
+		for (int i = 1; i <= n; i++) buc[i] += buc[i - 1];
+		for (int i = 1; i <= n; i++) tmp[n - --buc[sec[i]]] = i;
 
-	for (int t = 1; t < n; t <<= 1) {
-		for (int i = 0; i < n; i++) fir[i] = rk[i];
-		for (int i = 0; i < n; i++) sec[i] = (i + t >= n) ? -1 : fir[i + t];
+		std::fill(buc, buc + n + 1, 0);
+		for (int i = 1; i <= n; i++) buc[fir[i]]++;
+		for (int i = 1; i <= n; i++) buc[i] += buc[i - 1];
+		for (int j = 1, i; j <= n; j++) i = tmp[j], sa[buc[fir[i]]--] = i;
 
-		std::fill(buc - 1, buc + n, 0);
-		for (int i = 0; i < n; i++) buc[sec[i]]++;
-		for (int i = 0; i < n; i++) buc[i] += buc[i - 1];
-		for (int i = 0; i < n; i++) tmp[n - buc[sec[i]]--] = i;
-
-		std::fill(buc - 1, buc + n, 0);
-		for (int i = 0; i < n; i++) buc[fir[i]]++;
-		for (int i = 0; i < n; i++) buc[i] += buc[i - 1];
-		for (int j = 0, i; j < n; j++) i = tmp[j], sa[--buc[fir[i]]] = i;
-		for (int j = 0, i, last = -1; j < n; j++) {
+		bool unique = true;
+		for (int j = 1, i, last = 0; j <= n; j++)
+		{
 			i = sa[j];
-			if (last == -1) rk[i] = 0;
-			else if (fir[i] == fir[last] && sec[i] == sec[last]) rk[i] = rk[last];
+			if (!last) rk[i] = 1;
+			else if (fir[i] == fir[last] && sec[i] == sec[last]) rk[i] = rk[last], unique = false;
 			else rk[i] = rk[last] + 1;
+
 			last = i;
 		}
+
+		if (unique) break;
 	}
 
-	for (int i = 0, k = 0; i < n; i++) {
-		if (rk[i] == 0) k = 0;
-		else {
+	for (int i = 1, k = 0; i <= n; i++)
+	{
+		if (rk[i] == 1) k = 0;
+		else
+		{
 			if (k > 0) k--;
 			int j = sa[rk[i] - 1];
-			while (i + k < n && j + k < n && a[i + k] == a[j + k]) k++;
+			while (i + k <= n && j + k <= n && a[i + k] == a[j + k]) k++;
 		}
 		ht[rk[i]] = k;
 	}

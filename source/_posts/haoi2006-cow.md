@@ -1,9 +1,9 @@
-title: 「HAOI2006」受欢迎的牛 - 强联通分量
+title: 「HAOI2006」受欢迎的牛 - 强连通分量
 categories: OI
 tags: 
   - BZOJ
   - HAOI
-  - 强联通分量
+  - 强连通分量
   - Tarjan
   - 缩点
 permalink: haoi2006-cow
@@ -18,7 +18,7 @@ date: 2016-03-04 21:28:17
 [BZOJ 1051](http://www.lydsy.com/JudgeOnline/problem.php?id=1051)
 
 ### 题解
-求出强联通分量，缩点，然后判断是不是只有一个出度为零的点，如果是输出它的大小。
+求出强连通分量，缩点，然后判断是不是只有一个出度为零的点，如果是输出它的大小。
 
 ### 代码
 ```cpp

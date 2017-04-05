@@ -24,7 +24,7 @@ var ap = new APlayer({
         author: 'KOKIA',
         url: 'https://dn-menci.qbox.me/music/mzr/mzr.ogg',
         pic: 'https://dn-menci.qbox.me/music/mzr/mzr.jpg',
-        lrc: '/at-the-cross-of-time/mzr.lrc'
+        lrc: '/music/mzr/mzr.lrc'
     }
 });
 </script>

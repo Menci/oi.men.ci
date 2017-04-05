@@ -7,8 +7,6 @@ tags:
   - 数据结构
   - 高级数据结构
 permalink: splay-notes-2
-id: 7
-updated: '2016-01-19 21:07:35'
 date: 2015-12-23 05:44:41
 ---
 

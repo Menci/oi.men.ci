@@ -179,8 +179,8 @@ $$
 \begin{align*}
 c_k &= \sum\limits_{i = 0} ^ {n - 1} y_i (\omega_n ^ {-k}) ^ i \\
 &= \sum\limits_{i = 0} ^ {n - 1} (\sum\limits_{j = 0} ^ {n - 1} a_j (\omega_n ^ i) ^ j) (\omega_n ^ {-k}) ^ i \\
-&= \sum\limits_{i = 0} ^ {n - 1} (\sum\limits_{j = 0} ^ {n - 1} a_j (\omega_n ^ j) ^ i (\omega_n ^ {-k}) ^ i) \\
 &= \sum\limits_{i = 0} ^ {n - 1} (\sum\limits_{j = 0} ^ {n - 1} a_j (\omega_n ^ j) ^ i) (\omega_n ^ {-k}) ^ i \\
+&= \sum\limits_{i = 0} ^ {n - 1} (\sum\limits_{j = 0} ^ {n - 1} a_j (\omega_n ^ j) ^ i (\omega_n ^ {-k}) ^ i) \\
 &= \sum\limits_{i = 0} ^ {n - 1} \sum\limits_{j = 0} ^ {n - 1} a_j (\omega_n ^ {j - k}) ^ i \\
 &= \sum\limits_{j = 0} ^ {n - 1} a_j (\sum\limits_{i = 0} ^ {n - 1} (\omega_n ^ {j - k}) ^ i)
 \end{align*}

@@ -15,13 +15,13 @@ date: 2016-04-08 13:14:55
 <!-- more -->
 
 ### 欧拉函数
-欧拉函数 $ \phi(n) $ 的定义为：小于 $ n $ 的正整数中与 $ n $ 互质的数的个数，$ \phi(1) = 1 $。
+欧拉函数 $ \varphi(n) $ 的定义为：小于 $ n $ 的正整数中与 $ n $ 互质的数的个数，$ \varphi(1) = 1 $。
 
-当 $ n $ 为质数时，根据定义，显然有 $ \phi(n) = n - 1 $。
+当 $ n $ 为质数时，根据定义，显然有 $ \varphi(n) = n - 1 $。
 
 设 $ n = p_1 ^ {k_1} \times p_2 ^ {k_2} \times … \times p_N ^ {k_N} $，其中 $ p_i $ 为素数，则有
 
-$$ \phi(n) = n \prod\limits_{i = 1} ^ {n} \frac{p_i - 1}{p_i} $$
+$$ \varphi(n) = n \prod\limits_{i = 1} ^ {n} \frac{p_i - 1}{p_i} $$
 
 设 $ p_1 $ 为 $ n $ 最小质因子，$ n' = \frac{n}{p_1} $，在线性筛中，$ n $ 通过 $ n' \times p_1 $ 被筛掉。
 
@@ -29,9 +29,9 @@ $$ \phi(n) = n \prod\limits_{i = 1} ^ {n} \frac{p_i - 1}{p_i} $$
 
 $$
 \begin{align}
-\phi(n) &= n \prod\limits_{i = 1} ^ {n} \frac{p_i - 1}{p_i} \\
+\varphi(n) &= n \prod\limits_{i = 1} ^ {n} \frac{p_i - 1}{p_i} \\
 &= p_1 \times n' \prod\limits_{i = 1} ^ {n} \frac{p_i - 1}{p_i} \\
-&= p_1 \times \phi(n') \\
+&= p_1 \times \varphi(n') \\
 \end{align}
 $$
 
@@ -39,8 +39,8 @@ $$
 
 $$
 \begin{align}
-\phi(n) &= \phi(n') \times \phi(p_1) \\
-&= (p_1 - 1) \times \phi(n')
+\varphi(n) &= \varphi(n') \times \varphi(p_1) \\
+&= (p_1 - 1) \times \varphi(n')
 \end{align}
 $$
 
@@ -54,7 +54,7 @@ $$
 \begin{cases}
 1 & n = 1 \\
 (-1) ^ N & \prod\limits_{i = 1} ^ {N} k_i = 1 \\
-0 & k_i \gt 1 \\
+0 & k_i \gt 1
 \end{cases}
 $$
 
@@ -88,26 +88,35 @@ $$ \mu(n) = 0 $$
 ```c++
 bool isNotPrime[MAXN + 1];
 int mu[MAXN + 1], phi[MAXN + 1], primes[MAXN + 1], cnt;
-inline void euler() {
+inline void euler()
+{
 	isNotPrime[0] = isNotPrime[1] = true;
 	mu[1] = 1;
 	phi[1] = 1;
-	for (int i = 2; i <= MAXN; i++) {
-		if (!isNotPrime[i]) {
-			primes[cnt++] = i;
+	for (int i = 2; i <= MAXN; i++)
+	{
+		if (!isNotPrime[i])
+		{
+			primes[++cnt] = i;
 			mu[i] = -1;
 			phi[i] = i - 1;
 		}
 
-		for (int j = 0; j < cnt; j++) {
+		for (int j = 1; j <= cnt; j++)
+		{
 			int t = i * primes[j];
 			if (t > MAXN) break;
+			
 			isNotPrime[t] = true;
-			if (i % primes[j] == 0) {
+
+			if (i % primes[j] == 0)
+			{
 				mu[t] = 0;
 				phi[t] = phi[i] * primes[j];
 				break;
-			} else {
+			}
+			else
+			{
 				mu[t] = -mu[i];
 				phi[t] = phi[i] * (primes[j] - 1);
 			}
