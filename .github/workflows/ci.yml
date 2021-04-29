@@ -1,0 +1,24 @@
+name: CI
+
+on:
+- push
+- pull_request
+
+env:
+  CI: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Check out
+      uses: actions/checkout@v2
+    - name: Set up Node
+      uses: actions/setup-node@v2
+      with:
+        node-version: 16.x
+        check-latest: true
+    - name: Install pygments
+      run: sudo apt-get update && sudo apt-get install -y python3-pygments
+    - name: Build
+      run: node_modules/.bin/hexo g
