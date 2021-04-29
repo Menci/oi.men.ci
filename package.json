@@ -1,0 +1,32 @@
+{
+  "name": "hexo-site",
+  "version": "0.0.0",
+  "private": true,
+  "hexo": {
+    "version": "3.9.0"
+  },
+  "dependencies": {
+    "hexo": "^3.1.0",
+    "hexo-asset-image": "git+https://github.com/CodeFalling/hexo-asset-image.git",
+    "hexo-deployer-git": "^0.1.0",
+    "hexo-generator-archive": "^0.1.2",
+    "hexo-generator-category": "^0.1.2",
+    "hexo-generator-index": "^0.1.2",
+    "hexo-generator-searchdb": "^1.0.8",
+    "hexo-generator-sitemap": "^1.1.2",
+    "hexo-generator-tag": "^0.1.1",
+    "hexo-katex": "0.0.4",
+    "hexo-migrator-ghost": "0.0.1",
+    "hexo-renderer-ejs": "^0.1.0",
+    "hexo-renderer-stylus": "^0.3.0",
+    "hexo-renderer-syzoj-renderer": "^1.0.1",
+    "hexo-generator-feed": "^1.1.0",
+    "hexo-util": "^0.1.7",
+    "hexo-server": "^0.1.2"
+  },
+  "//": {
+    "hexo-renderer-moemark-pygments": "^0.4.4",
+    "hexo-generator-json-content": "^2.2.0",
+    "hexo-renderer-pandoc": "^0.1.0"
+  }
+}

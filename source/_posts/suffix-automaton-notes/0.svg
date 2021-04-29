@@ -1,0 +1,460 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="165.82697mm"
+   height="69.356773mm"
+   viewBox="0 0 587.57586 245.75235"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.91 r13725"
+   sodipodi:docname="0.svg">
+  <defs
+     id="defs4">
+    <marker
+       inkscape:isstock="true"
+       style="overflow:visible"
+       id="marker5705"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="Arrow1Mend">
+      <path
+         transform="matrix(-0.4,0,0,-0.4,-4,0)"
+         style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1pt;stroke-opacity:1"
+         d="M 0,0 5,-5 -12.5,0 5,5 0,0 Z"
+         id="path5707"
+         inkscape:connector-curvature="0" />
+    </marker>
+    <marker
+       inkscape:isstock="true"
+       style="overflow:visible"
+       id="marker5623"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="Arrow1Mend">
+      <path
+         transform="matrix(-0.4,0,0,-0.4,-4,0)"
+         style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1pt;stroke-opacity:1"
+         d="M 0,0 5,-5 -12.5,0 5,5 0,0 Z"
+         id="path5625"
+         inkscape:connector-curvature="0" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow1Mend"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="marker5367"
+       style="overflow:visible"
+       inkscape:isstock="true"
+       inkscape:collect="always">
+      <path
+         id="path5369"
+         d="M 0,0 5,-5 -12.5,0 5,5 0,0 Z"
+         style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1pt;stroke-opacity:1"
+         transform="matrix(-0.4,0,0,-0.4,-4,0)"
+         inkscape:connector-curvature="0" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow1Mend"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="marker5297"
+       style="overflow:visible"
+       inkscape:isstock="true">
+      <path
+         id="path5299"
+         d="M 0,0 5,-5 -12.5,0 5,5 0,0 Z"
+         style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1pt;stroke-opacity:1"
+         transform="matrix(-0.4,0,0,-0.4,-4,0)"
+         inkscape:connector-curvature="0" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow1Mend"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="marker5233"
+       style="overflow:visible"
+       inkscape:isstock="true">
+      <path
+         id="path5235"
+         d="M 0,0 5,-5 -12.5,0 5,5 0,0 Z"
+         style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1pt;stroke-opacity:1"
+         transform="matrix(-0.4,0,0,-0.4,-4,0)"
+         inkscape:connector-curvature="0" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow1Mend"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="marker5175"
+       style="overflow:visible"
+       inkscape:isstock="true">
+      <path
+         id="path5177"
+         d="M 0,0 5,-5 -12.5,0 5,5 0,0 Z"
+         style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1pt;stroke-opacity:1"
+         transform="matrix(-0.4,0,0,-0.4,-4,0)"
+         inkscape:connector-curvature="0" />
+    </marker>
+    <marker
+       inkscape:isstock="true"
+       style="overflow:visible"
+       id="marker5103"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="Arrow1Mend"
+       inkscape:collect="always">
+      <path
+         transform="matrix(-0.4,0,0,-0.4,-4,0)"
+         style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1pt;stroke-opacity:1"
+         d="M 0,0 5,-5 -12.5,0 5,5 0,0 Z"
+         id="path5105"
+         inkscape:connector-curvature="0" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow1Mend"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="marker4737"
+       style="overflow:visible"
+       inkscape:isstock="true"
+       inkscape:collect="always">
+      <path
+         id="path4739"
+         d="M 0,0 5,-5 -12.5,0 5,5 0,0 Z"
+         style="fill:#b6b6b6;fill-opacity:1;fill-rule:evenodd;stroke:#b6b6b6;stroke-width:1pt;stroke-opacity:1"
+         transform="matrix(-0.4,0,0,-0.4,-4,0)"
+         inkscape:connector-curvature="0" />
+    </marker>
+    <marker
+       inkscape:isstock="true"
+       style="overflow:visible"
+       id="marker4685"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="Arrow1Mend">
+      <path
+         transform="matrix(-0.4,0,0,-0.4,-4,0)"
+         style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1pt;stroke-opacity:1"
+         d="M 0,0 5,-5 -12.5,0 5,5 0,0 Z"
+         id="path4687"
+         inkscape:connector-curvature="0" />
+    </marker>
+    <marker
+       inkscape:isstock="true"
+       style="overflow:visible"
+       id="marker4595"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="Arrow1Mend"
+       inkscape:collect="always">
+      <path
+         transform="matrix(-0.4,0,0,-0.4,-4,0)"
+         style="fill:#b6b6b6;fill-opacity:1;fill-rule:evenodd;stroke:#b6b6b6;stroke-width:1pt;stroke-opacity:1"
+         d="M 0,0 5,-5 -12.5,0 5,5 0,0 Z"
+         id="path4597"
+         inkscape:connector-curvature="0" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow1Mend"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="marker4557"
+       style="overflow:visible"
+       inkscape:isstock="true"
+       inkscape:collect="always">
+      <path
+         id="path4559"
+         d="M 0,0 5,-5 -12.5,0 5,5 0,0 Z"
+         style="fill:#b6b6b6;fill-opacity:1;fill-rule:evenodd;stroke:#b6b6b6;stroke-width:1pt;stroke-opacity:1"
+         transform="matrix(-0.4,0,0,-0.4,-4,0)"
+         inkscape:connector-curvature="0" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow1Mend"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="Arrow1Mend"
+       style="overflow:visible"
+       inkscape:isstock="true">
+      <path
+         id="path4254"
+         d="M 0,0 5,-5 -12.5,0 5,5 0,0 Z"
+         style="fill:#b6b6b6;fill-opacity:1;fill-rule:evenodd;stroke:#b6b6b6;stroke-width:1pt;stroke-opacity:1"
+         transform="matrix(-0.4,0,0,-0.4,-4,0)"
+         inkscape:connector-curvature="0" />
+    </marker>
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="1.979899"
+     inkscape:cx="185.21229"
+     inkscape:cy="102.30644"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:snap-bbox="true"
+     inkscape:bbox-paths="true"
+     inkscape:bbox-nodes="true"
+     inkscape:snap-bbox-edge-midpoints="true"
+     inkscape:snap-intersection-paths="true"
+     inkscape:object-paths="true"
+     inkscape:snap-bbox-midpoints="true"
+     inkscape:object-nodes="true"
+     inkscape:snap-smooth-nodes="true"
+     inkscape:snap-midpoints="true"
+     inkscape:snap-object-midpoints="true"
+     inkscape:snap-center="true"
+     inkscape:snap-text-baseline="true"
+     inkscape:snap-page="true"
+     showguides="true"
+     inkscape:guide-bbox="true"
+     inkscape:window-width="1920"
+     inkscape:window-height="1004"
+     inkscape:window-x="0"
+     inkscape:window-y="36"
+     inkscape:window-maximized="1"
+     fit-margin-top="5"
+     fit-margin-left="5"
+     fit-margin-right="5"
+     fit-margin-bottom="5" />
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-150.35489,-479.85997)">
+    <path
+       style="opacity:1;fill:none;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       d="m 217.85714,667.71936 a 24.642857,24.642857 0 0 1 -24.64286,24.64286 24.642857,24.642857 0 0 1 -24.64286,-24.64286 24.642857,24.642857 0 0 1 24.64286,-24.64286 24.642857,24.642857 0 0 1 24.64286,24.64286 z"
+       id="path4136" />
+    <path
+       style="opacity:1;fill:none;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       d="m 217.85714,522.71936 a 24.642857,24.642857 0 0 1 -24.64286,24.64286 24.642857,24.642857 0 0 1 -24.64286,-24.64286 24.642857,24.642857 0 0 1 24.64286,-24.64286 24.642857,24.642857 0 0 1 24.64286,24.64286 z"
+       id="path4136-3" />
+    <path
+       style="opacity:1;fill:none;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       d="m 317.42856,667.71936 a 24.642857,24.642857 0 0 1 -24.64285,24.64286 24.642857,24.642857 0 0 1 -24.64286,-24.64286 24.642857,24.642857 0 0 1 24.64286,-24.64286 24.642857,24.642857 0 0 1 24.64285,24.64286 z"
+       id="path4136-6" />
+    <path
+       transform="translate(7.6293945e-6,0)"
+       style="opacity:1;fill:none;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       d="m 417.99997,667.71936 a 24.642857,24.642857 0 0 1 -24.64285,24.64286 24.642857,24.642857 0 0 1 -24.64286,-24.64286 24.642857,24.642857 0 0 1 24.64286,-24.64286 24.642857,24.642857 0 0 1 24.64285,24.64286 z"
+       id="path4136-5" />
+    <path
+       style="opacity:1;fill:none;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       d="m 417.99994,522.71936 a 24.642857,24.642857 0 0 1 -24.64285,24.64286 24.642857,24.642857 0 0 1 -24.64286,-24.64286 24.642857,24.642857 0 0 1 24.64286,-24.64286 24.642857,24.642857 0 0 1 24.64285,24.64286 z"
+       id="path4136-35" />
+    <path
+       style="opacity:1;fill:none;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       d="m 518.57138,667.71936 a 24.642857,24.642857 0 0 1 -24.64285,24.64286 24.642857,24.642857 0 0 1 -24.64286,-24.64286 24.642857,24.642857 0 0 1 24.64286,-24.64286 24.642857,24.642857 0 0 1 24.64285,24.64286 z"
+       id="path4136-62" />
+    <path
+       style="opacity:1;fill:none;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       d="m 619.1428,667.71936 a 24.642857,24.642857 0 0 1 -24.64286,24.64286 24.642857,24.642857 0 0 1 -24.64286,-24.64286 24.642857,24.642857 0 0 1 24.64286,-24.64286 24.642857,24.642857 0 0 1 24.64286,24.64286 z"
+       id="path4136-1" />
+    <path
+       style="opacity:1;fill:none;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       d="m 719.71421,667.71936 a 24.642857,24.642857 0 0 1 -24.64286,24.64286 24.642857,24.642857 0 0 1 -24.64286,-24.64286 24.642857,24.642857 0 0 1 24.64286,-24.64286 24.642857,24.642857 0 0 1 24.64286,24.64286 z"
+       id="path4136-1-7" />
+    <path
+       style="fill:#b6b6b6;fill-rule:evenodd;stroke:#b6b6b6;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#Arrow1Mend);fill-opacity:1"
+       d="m 193.21428,642.5765 0,-95.21428"
+       id="path4239" />
+    <path
+       style="fill:#b6b6b6;fill-rule:evenodd;stroke:#b6b6b6;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#marker4557);fill-opacity:1"
+       d="M 278.8359,647.40508 207.16409,543.03365"
+       id="path4555" />
+    <path
+       style="fill:#b6b6b6;fill-rule:evenodd;stroke:#b6b6b6;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#marker4737);fill-opacity:1"
+       d="m 393.35712,643.0765 -3e-5,-95.71428"
+       id="path4585" />
+    <path
+       style="fill:#b6b6b6;fill-rule:evenodd;stroke:#b6b6b6;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#marker4595);fill-opacity:1"
+       d="M 479.88419,647.47078 407.40142,542.96794"
+       id="path4587" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#marker5103)"
+       d="m 268.14285,667.71936 -50.28571,0"
+       id="path5095" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#marker5367)"
+       d="m 368.71427,667.71936 -51.28571,0"
+       id="path5161" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#marker5175)"
+       d="m 469.28567,667.71936 -51.28569,0"
+       id="path5163" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#marker5233)"
+       d="m 569.85708,667.71936 -51.2857,0"
+       id="path5165" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#marker5297)"
+       d="m 670.42849,667.71936 -51.28569,0"
+       id="path5167" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#marker5705)"
+       d="m 368.71423,522.71936 -150.85709,0"
+       id="path5611" />
+    <g
+       style="font-style:normal;font-weight:normal;font-size:40px;line-height:1000%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       id="text5498-94">
+      <path
+         d="m 180.18485,701.52077 q -1.38,0 -1.38,0.975 0,0.195 0.03,0.255 0.135,0.36 0.465,0.525 0.33,0.15 1.02,0.285 0.855,0.15 1.17,0.33 0.945,0.45 1.215,1.485 0.015,0.09 0.015,0.36 0,0.585 -0.21,1.035 -0.585,1.11 -2.205,1.11 -0.9,0 -1.56,-0.54 l -0.12,0.105 -0.135,0.135 q -0.09,0.09 -0.18,0.165 l -0.165,0.15 -0.12,0 q -0.105,0 -0.195,-0.09 l 0,-1.185 q 0,-0.975 0,-1.125 0.015,-0.15 0.075,-0.18 0.03,-0.015 0.24,-0.015 0.195,0 0.225,0.03 0.045,0.03 0.09,0.21 0.12,0.57 0.39,1.035 0.525,0.765 1.455,0.765 1.455,0 1.455,-1.17 0,-0.435 -0.27,-0.705 -0.24,-0.285 -0.63,-0.405 -0.255,-0.06 -0.72,-0.165 -0.84,-0.165 -1.14,-0.315 -0.99,-0.465 -1.155,-1.395 -0.015,-0.06 -0.015,-0.225 0,-1.725 2.115,-1.935 0.06,-0.03 0.36,0 0.6,0 1.05,0.225 l 0.225,0.12 0.135,-0.105 q 0.195,-0.165 0.33,-0.255 l 0.12,0 q 0.105,0 0.195,0.09 l 0,1.98 -0.09,0.09 -0.42,0 q -0.09,-0.09 -0.09,-0.18 0,-0.69 -0.42,-1.08 -0.42,-0.39 -1.155,-0.39 z"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:15px;font-family:KaTeX_Main;-inkscape-font-specification:KaTeX_Main"
+         id="path13236" />
+      <path
+         d="m 185.36004,698.73077 0,-0.225 0.6,0 0,2.76 2.025,0 0,0.69 -2.025,0 0,2.16 q 0.015,1.875 0.015,2.13 0.015,0.24 0.105,0.465 0.21,0.585 0.735,0.585 0.66,0 0.81,-1.065 0.015,-0.12 0.015,-0.69 l 0,-0.525 0.6,0 0,0.525 q 0,0.69 -0.075,0.99 -0.165,0.6 -0.57,0.975 -0.39,0.375 -1.035,0.375 -0.81,0 -1.29,-0.435 -0.48,-0.45 -0.555,-1.215 -0.015,-0.105 -0.015,-2.22 l 0,-2.055 -1.185,0 0,-0.555 0.135,0 q 0.555,-0.045 0.945,-0.48 0.69,-0.72 0.765,-2.19 z"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:15px;font-family:KaTeX_Main;-inkscape-font-specification:KaTeX_Main"
+         id="path13238" />
+      <path
+         d="m 191.39015,702.91577 q -0.225,0.24 -0.57,0.24 -0.345,0 -0.57,-0.24 -0.225,-0.24 -0.225,-0.57 0,-0.21 0.12,-0.48 0.195,-0.405 0.78,-0.63 0.585,-0.225 1.425,-0.225 0.99,0 1.71,0.45 0.735,0.45 0.96,1.17 0.075,0.21 0.075,0.48 0.015,0.255 0.015,1.71 0,1.47 0,1.725 0.015,0.24 0.09,0.375 0.09,0.21 0.3,0.21 0.195,0 0.285,-0.21 0.09,-0.18 0.09,-0.825 l 0,-0.54 0.6,0 0,0.585 q -0.015,0.6 -0.045,0.705 -0.135,0.42 -0.495,0.705 -0.36,0.27 -0.855,0.27 -0.375,0 -0.675,-0.255 -0.285,-0.27 -0.39,-0.645 l 0,-0.06 q -0.045,0.045 -0.18,0.21 -0.135,0.15 -0.195,0.21 -0.735,0.615 -1.71,0.615 -0.78,0 -1.395,-0.33 -0.615,-0.33 -0.825,-0.87 -0.12,-0.285 -0.12,-0.57 0,-0.705 0.585,-1.29 0.345,-0.345 0.855,-0.57 1.02,-0.465 2.61,-0.555 l 0.21,0 0,-0.33 q 0,-0.51 -0.09,-0.75 -0.15,-0.495 -0.525,-0.78 -0.375,-0.285 -0.93,-0.285 -1.005,0 -1.005,0.12 0.33,0.225 0.33,0.66 0,0.33 -0.24,0.57 z m 2.46,2.19 q 0,-0.87 -0.015,-0.87 -0.045,0 -0.075,0.015 -2.055,0.135 -2.625,1.215 -0.165,0.3 -0.165,0.675 0,0.51 0.36,0.855 0.36,0.345 0.885,0.345 0.6,0 1.02,-0.36 0.435,-0.36 0.57,-0.885 0.03,-0.105 0.045,-0.99 z"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:15px;font-family:KaTeX_Main;-inkscape-font-specification:KaTeX_Main"
+         id="path13240" />
+      <path
+         d="m 197.12015,707.04077 0.21,0 q 0.585,0 0.705,-0.21 l 0,-0.12 q 0,-0.135 0,-0.345 0.015,-0.21 0.015,-0.465 0,-0.27 0,-0.585 0,-0.33 0,-0.63 0,-0.465 0,-0.99 0,-0.54 0,-0.885 l -0.015,-0.345 q -0.045,-0.285 -0.225,-0.375 -0.165,-0.105 -0.66,-0.135 l -0.27,0 0,-0.345 q 0,-0.345 0.03,-0.345 l 0.15,-0.015 q 0.15,-0.015 0.42,-0.03 0.27,-0.015 0.54,-0.03 0.24,-0.015 0.525,-0.03 0.285,-0.03 0.435,-0.045 0.15,-0.015 0.165,-0.015 l 0.045,0 0,1.035 q 0.285,-0.48 0.63,-0.75 0.345,-0.27 0.915,-0.27 0.42,0 0.72,0.165 0.585,0.3 0.585,0.855 0,0.33 -0.225,0.555 -0.225,0.21 -0.54,0.21 -0.315,0 -0.54,-0.21 -0.21,-0.21 -0.21,-0.54 0,-0.255 0.12,-0.42 0.03,-0.06 0.03,-0.075 -0.03,-0.03 -0.345,0.06 -0.24,0.12 -0.36,0.225 -0.6,0.57 -0.69,1.89 l 0,0.585 q -0.015,0.585 -0.015,1.005 0,0.195 0,0.42 0,0.21 0,0.375 0.015,0.165 0.015,0.3 0,0.135 0,0.225 l 0,0.075 q 0.06,0.12 0.18,0.15 0.15,0.06 0.795,0.075 l 0.465,0 0,0.69 -0.135,0 q -0.27,-0.045 -1.905,-0.045 -1.47,0 -1.68,0.045 l -0.12,0 0,-0.69 0.24,0 z"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:15px;font-family:KaTeX_Main;-inkscape-font-specification:KaTeX_Main"
+         id="path13242" />
+      <path
+         d="m 204.57513,698.73077 0,-0.225 0.6,0 0,2.76 2.025,0 0,0.69 -2.025,0 0,2.16 q 0.015,1.875 0.015,2.13 0.015,0.24 0.105,0.465 0.21,0.585 0.735,0.585 0.66,0 0.81,-1.065 0.015,-0.12 0.015,-0.69 l 0,-0.525 0.6,0 0,0.525 q 0,0.69 -0.075,0.99 -0.165,0.6 -0.57,0.975 -0.39,0.375 -1.035,0.375 -0.81,0 -1.29,-0.435 -0.48,-0.45 -0.555,-1.215 -0.015,-0.105 -0.015,-2.22 l 0,-2.055 -1.185,0 0,-0.555 0.135,0 q 0.555,-0.045 0.945,-0.48 0.69,-0.72 0.765,-2.19 z"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:15px;font-family:KaTeX_Main;-inkscape-font-specification:KaTeX_Main"
+         id="path13244" />
+    </g>
+    <g
+       style="font-style:normal;font-weight:normal;font-size:40px;line-height:1000%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       id="text5498-94-0">
+      <path
+         d="m 685.1795,707.04077 0.21,0 q 0.585,0 0.705,-0.21 l 0,-0.12 q 0,-0.135 0,-0.345 0,-0.21 0,-0.495 0.015,-0.285 0.015,-0.645 0,-0.375 0,-0.75 0,-0.39 0,-0.825 0,-0.45 0,-0.855 0,-0.555 0,-1.17 0,-0.63 0,-1.125 0,-0.495 -0.015,-0.9 0,-0.42 0,-0.66 0,-0.24 0,-0.255 -0.045,-0.285 -0.225,-0.375 -0.165,-0.105 -0.66,-0.135 l -0.27,0 0,-0.345 q 0,-0.345 0.03,-0.345 l 0.15,-0.015 q 0.15,-0.015 0.435,-0.03 0.285,-0.015 0.555,-0.03 0.255,-0.015 0.555,-0.03 0.3,-0.03 0.45,-0.045 0.15,-0.015 0.165,-0.015 l 0.045,0 0,4.725 q 0,4.755 0.015,4.785 0.06,0.12 0.18,0.165 0.315,0.045 0.735,0.045 l 0.24,0 0,0.69 -0.12,0 q -0.27,-0.045 -1.65,-0.045 -1.47,0 -1.665,0.045 l -0.12,0 0,-0.69 0.24,0 z"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:15px;font-family:KaTeX_Main;-inkscape-font-specification:KaTeX_Main"
+         id="path13247" />
+      <path
+         d="m 691.02973,702.91577 q -0.225,0.24 -0.57,0.24 -0.345,0 -0.57,-0.24 -0.225,-0.24 -0.225,-0.57 0,-0.21 0.12,-0.48 0.195,-0.405 0.78,-0.63 0.585,-0.225 1.425,-0.225 0.99,0 1.71,0.45 0.735,0.45 0.96,1.17 0.075,0.21 0.075,0.48 0.015,0.255 0.015,1.71 0,1.47 0,1.725 0.015,0.24 0.09,0.375 0.09,0.21 0.3,0.21 0.195,0 0.285,-0.21 0.09,-0.18 0.09,-0.825 l 0,-0.54 0.6,0 0,0.585 q -0.015,0.6 -0.045,0.705 -0.135,0.42 -0.495,0.705 -0.36,0.27 -0.855,0.27 -0.375,0 -0.675,-0.255 -0.285,-0.27 -0.39,-0.645 l 0,-0.06 q -0.045,0.045 -0.18,0.21 -0.135,0.15 -0.195,0.21 -0.735,0.615 -1.71,0.615 -0.78,0 -1.395,-0.33 -0.615,-0.33 -0.825,-0.87 -0.12,-0.285 -0.12,-0.57 0,-0.705 0.585,-1.29 0.345,-0.345 0.855,-0.57 1.02,-0.465 2.61,-0.555 l 0.21,0 0,-0.33 q 0,-0.51 -0.09,-0.75 -0.15,-0.495 -0.525,-0.78 -0.375,-0.285 -0.93,-0.285 -1.005,0 -1.005,0.12 0.33,0.225 0.33,0.66 0,0.33 -0.24,0.57 z m 2.46,2.19 q 0,-0.87 -0.015,-0.87 -0.045,0 -0.075,0.015 -2.055,0.135 -2.625,1.215 -0.165,0.3 -0.165,0.675 0,0.51 0.36,0.855 0.36,0.345 0.885,0.345 0.6,0 1.02,-0.36 0.435,-0.36 0.57,-0.885 0.03,-0.105 0.045,-0.99 z"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:15px;font-family:KaTeX_Main;-inkscape-font-specification:KaTeX_Main"
+         id="path13249" />
+      <path
+         d="m 699.06973,701.52077 q -1.38,0 -1.38,0.975 0,0.195 0.03,0.255 0.135,0.36 0.465,0.525 0.33,0.15 1.02,0.285 0.855,0.15 1.17,0.33 0.945,0.45 1.215,1.485 0.015,0.09 0.015,0.36 0,0.585 -0.21,1.035 -0.585,1.11 -2.205,1.11 -0.9,0 -1.56,-0.54 l -0.12,0.105 -0.135,0.135 q -0.09,0.09 -0.18,0.165 l -0.165,0.15 -0.12,0 q -0.105,0 -0.195,-0.09 l 0,-1.185 q 0,-0.975 0,-1.125 0.015,-0.15 0.075,-0.18 0.03,-0.015 0.24,-0.015 0.195,0 0.225,0.03 0.045,0.03 0.09,0.21 0.12,0.57 0.39,1.035 0.525,0.765 1.455,0.765 1.455,0 1.455,-1.17 0,-0.435 -0.27,-0.705 -0.24,-0.285 -0.63,-0.405 -0.255,-0.06 -0.72,-0.165 -0.84,-0.165 -1.14,-0.315 -0.99,-0.465 -1.155,-1.395 -0.015,-0.06 -0.015,-0.225 0,-1.725 2.115,-1.935 0.06,-0.03 0.36,0 0.6,0 1.05,0.225 l 0.225,0.12 0.135,-0.105 q 0.195,-0.165 0.33,-0.255 l 0.12,0 q 0.105,0 0.195,0.09 l 0,1.98 -0.09,0.09 -0.42,0 q -0.09,-0.09 -0.09,-0.18 0,-0.69 -0.42,-1.08 -0.42,-0.39 -1.155,-0.39 z"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:15px;font-family:KaTeX_Main;-inkscape-font-specification:KaTeX_Main"
+         id="path13251" />
+      <path
+         d="m 704.24491,698.73077 0,-0.225 0.6,0 0,2.76 2.025,0 0,0.69 -2.025,0 0,2.16 q 0.015,1.875 0.015,2.13 0.015,0.24 0.105,0.465 0.21,0.585 0.735,0.585 0.66,0 0.81,-1.065 0.015,-0.12 0.015,-0.69 l 0,-0.525 0.6,0 0,0.525 q 0,0.69 -0.075,0.99 -0.165,0.6 -0.57,0.975 -0.39,0.375 -1.035,0.375 -0.81,0 -1.29,-0.435 -0.48,-0.45 -0.555,-1.215 -0.015,-0.105 -0.015,-2.22 l 0,-2.055 -1.185,0 0,-0.555 0.135,0 q 0.555,-0.045 0.945,-0.48 0.69,-0.72 0.765,-2.19 z"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:15px;font-family:KaTeX_Main;-inkscape-font-specification:KaTeX_Main"
+         id="path13253" />
+    </g>
+    <g
+       style="font-style:normal;font-weight:normal;font-size:40px;line-height:1000%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       id="text5498-9-3-5">
+      <path
+         d="m 396.55709,515.79939 q 0.3,-0.02 0.68,-0.04 0.38,-0.04 0.56,-0.06 0.2,-0.02 0.22,-0.02 0.24,0 0.24,0.16 0,0.14 -1.48,6.06 -1.46,5.9 -1.48,6 -0.02,0.1 -0.02,0.3 0,0.84 0.56,0.84 0.18,-0.02 0.4,-0.18 0.42,-0.4 0.82,-1.92 0.12,-0.4 0.2,-0.42 0.04,-0.02 0.2,-0.02 l 0.08,0 q 0.38,0 0.38,0.16 0,0.08 -0.06,0.32 -0.44,1.68 -1.08,2.32 -0.26,0.26 -0.64,0.42 -0.16,0.04 -0.48,0.04 -1.26,0 -1.76,-0.98 -0.1,-0.26 -0.1,-0.24 -0.02,-0.02 -0.08,0.02 -0.04,0.04 -0.08,0.08 -0.96,0.9 -1.9,1.1 -0.12,0.02 -0.5,0.02 -1.32,0 -2.18,-1.1 -0.6,-0.88 -0.6,-2.24 0,-1.86 1.36,-3.68 1.24,-1.52 2.76,-1.9 0.42,-0.12 0.82,-0.12 1.1,0 1.68,0.84 0.1,0.12 0.1,0.08 0.02,-0.08 0.54,-2.18 0.54,-2.12 0.56,-2.22 0,-0.24 -0.12,-0.32 -0.22,-0.08 -0.8,-0.1 l -0.42,0 q -0.12,-0.12 -0.14,-0.16 0,-0.04 0.06,-0.38 0.1,-0.38 0.26,-0.38 0.02,0 0.2,-0.02 0.2,-0.02 0.54,-0.04 0.36,-0.02 0.7,-0.04 z m -1.72,7.24 q -0.44,-1.58 -1.5,-1.58 -0.8,0 -1.42,0.68 -0.6,0.68 -0.92,1.56 -0.58,1.58 -0.82,3.28 0,0.06 -0.02,0.22 0,0.16 0,0.24 0,0.72 0.3,1.16 0.32,0.44 0.92,0.44 1.06,0 2.22,-1.44 l 0.16,-0.22 q 0.18,-0.72 0.54,-2.16 0.36,-1.46 0.54,-2.18 z"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:20px;font-family:KaTeX_Math;-inkscape-font-specification:KaTeX_Math"
+         id="path13256" />
+    </g>
+    <g
+       style="font-style:normal;font-weight:normal;font-size:40px;line-height:1000%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       id="text5498-6-3">
+      <path
+         d="m 190.86974,672.25937 q -1.28,0 -2.04,-0.64 -0.74,-0.66 -0.74,-1.92 0,-0.36 0.04,-0.68 0.18,-0.96 0.94,-2.94 l 0.32,-0.96 q 0.12,-0.36 0.12,-0.68 0,-0.5 -0.38,-0.5 -0.14,0 -0.32,0.06 -1.02,0.36 -1.54,2.3 0,0.02 -0.02,0.08 -0.02,0.04 -0.04,0.06 0,0 -0.02,0.02 -0.02,0.02 -0.08,0.02 -0.04,0 -0.08,0 -0.04,0 -0.16,0 l -0.28,0 q -0.12,-0.12 -0.12,-0.18 0,-0.06 0.06,-0.3 0.48,-1.58 1.48,-2.36 0.54,-0.42 1.24,-0.42 0.78,0 1.28,0.44 0.5,0.44 0.5,1.16 0,0.34 -0.06,0.52 0,0.14 -0.3,0.88 -0.92,2.5 -0.98,3.56 0,0.54 0.1,0.88 0.26,0.86 1.26,0.86 0.54,0 0.96,-0.32 1.24,-0.82 2.06,-3.78 0.16,-0.56 0.16,-0.92 0,-0.88 -0.78,-1.58 -0.26,-0.24 -0.26,-0.54 0,-0.46 0.36,-0.82 0.38,-0.38 0.84,-0.38 0.48,0 0.74,0.46 0.26,0.44 0.26,1.06 0,0.7 -0.4,2.3 -0.38,1.54 -0.96,2.68 -1.26,2.58 -3.16,2.58 z"
+         style="font-size:20px"
+         id="path13259" />
+      <path
+         d="m 199.24633,666.40499 q -0.20625,-0.20625 -0.58125,-0.23437 -0.65625,0 -1.09688,0.5625 -0.44062,0.60937 -0.44062,1.89375 l 0.009,0.0375 0.075,-0.12188 q 0.38438,-0.5625 1.04063,-0.5625 0.43125,0 0.75937,0.17813 0.225,0.13125 0.45,0.38437 0.225,0.24375 0.36563,0.525 0.19687,0.45938 0.19687,1.00313 l 0,0.16875 q 0,0.21562 -0.0469,0.40312 -0.1125,0.55313 -0.58125,1.04063 -0.40313,0.42187 -0.9,0.525 -0.15,0.0375 -0.375,0.0375 -0.17813,0 -0.31875,-0.0281 -0.69375,-0.13125 -1.10625,-0.75 -0.55313,-0.87187 -0.55313,-2.3625 0,-1.0125 0.35625,-1.77187 0.35625,-0.75938 0.99375,-1.18125 0.50625,-0.35625 1.09688,-0.35625 0.54375,0 0.87187,0.29062 0.3375,0.29063 0.3375,0.79688 0,0.23437 -0.14062,0.375 -0.13125,0.14062 -0.35625,0.14062 -0.225,0 -0.36563,-0.13125 -0.13125,-0.13125 -0.13125,-0.36562 0,-0.42188 0.44063,-0.49688 z m -0.4125,2.25 q -0.2625,-0.3375 -0.675,-0.3375 -0.34688,0 -0.5625,0.21563 -0.45938,0.45937 -0.45938,1.48125 0,0.83437 0.1125,1.15312 0.0937,0.28125 0.31875,0.47813 0.225,0.19687 0.53438,0.19687 0.47812,0 0.73125,-0.35625 0.14062,-0.19687 0.17812,-0.46875 0.0375,-0.27187 0.0375,-0.7875 l 0,-0.15 0,-0.15 q 0,-0.53437 -0.0375,-0.80625 -0.0375,-0.27187 -0.17812,-0.46875 z"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:9.375px;font-family:KaTeX_Main;-inkscape-font-specification:KaTeX_Main"
+         id="path13261" />
+    </g>
+    <g
+       style="font-style:normal;font-weight:normal;font-size:40px;line-height:1000%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       id="text5498-6-3-3">
+      <path
+         d="m 290.40835,672.25937 q -1.28,0 -2.04,-0.64 -0.74,-0.66 -0.74,-1.92 0,-0.36 0.04,-0.68 0.18,-0.96 0.94,-2.94 l 0.32,-0.96 q 0.12,-0.36 0.12,-0.68 0,-0.5 -0.38,-0.5 -0.14,0 -0.32,0.06 -1.02,0.36 -1.54,2.3 0,0.02 -0.02,0.08 -0.02,0.04 -0.04,0.06 0,0 -0.02,0.02 -0.02,0.02 -0.08,0.02 -0.04,0 -0.08,0 -0.04,0 -0.16,0 l -0.28,0 q -0.12,-0.12 -0.12,-0.18 0,-0.06 0.06,-0.3 0.48,-1.58 1.48,-2.36 0.54,-0.42 1.24,-0.42 0.78,0 1.28,0.44 0.5,0.44 0.5,1.16 0,0.34 -0.06,0.52 0,0.14 -0.3,0.88 -0.92,2.5 -0.98,3.56 0,0.54 0.1,0.88 0.26,0.86 1.26,0.86 0.54,0 0.96,-0.32 1.24,-0.82 2.06,-3.78 0.16,-0.56 0.16,-0.92 0,-0.88 -0.78,-1.58 -0.26,-0.24 -0.26,-0.54 0,-0.46 0.36,-0.82 0.38,-0.38 0.84,-0.38 0.48,0 0.74,0.46 0.26,0.44 0.26,1.06 0,0.7 -0.4,2.3 -0.38,1.54 -0.96,2.68 -1.26,2.58 -3.16,2.58 z"
+         style="font-size:20px"
+         id="path13264" />
+      <path
+         d="m 296.29118,670.03312 q 0.225,0 0.375,0.15937 0.15938,0.15 0.15938,0.38438 0,0.21562 -0.15938,0.36562 -0.15937,0.15 -0.35625,0.15 l -0.0656,0 0.0281,0.0469 q 0.14063,0.3 0.43125,0.49687 0.29063,0.19688 0.68438,0.19688 0.66562,0 0.95625,-0.5625 0.17812,-0.34688 0.17812,-1.2 0,-0.96563 -0.25312,-1.30313 -0.24375,-0.30937 -0.6,-0.30937 -0.73125,0 -1.10625,0.6375 -0.0375,0.0656 -0.075,0.0844 -0.0281,0.009 -0.13125,0.009 -0.15938,0 -0.17813,-0.0563 -0.0188,-0.0375 -0.0188,-1.64063 0,-0.28125 -0.009,-0.66562 0,-0.38438 0,-0.4875 0,-0.525 0.0563,-0.525 0.0187,-0.0188 0.0375,-0.0188 l 0.16875,0.0562 q 0.60937,0.24375 1.24687,0.24375 0.66563,0 1.275,-0.2625 0.075,-0.0375 0.12188,-0.0375 0.075,0 0.075,0.16875 l 0,0.12187 q -0.75938,0.90938 -1.92188,0.90938 -0.29062,0 -0.525,-0.0562 l -0.0937,-0.0188 0,1.6125 q 0.53438,-0.43125 1.09688,-0.43125 0.17812,0 0.38437,0.0469 0.62813,0.15938 1.02188,0.7125 0.40312,0.55313 0.40312,1.29375 0,0.85313 -0.6,1.47188 -0.59062,0.61875 -1.4625,0.61875 -0.59062,0 -1.00312,-0.32813 -0.17813,-0.1125 -0.30938,-0.30937 -0.28125,-0.3375 -0.35625,-0.83438 0,-0.0281 -0.009,-0.0844 0,-0.0656 0,-0.0937 0,-0.2625 0.15,-0.4125 0.15,-0.15 0.38437,-0.15 z"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:9.375px;font-family:KaTeX_Main;-inkscape-font-specification:KaTeX_Main"
+         id="path13266" />
+    </g>
+    <g
+       style="font-style:normal;font-weight:normal;font-size:40px;line-height:1000%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       id="text5498-6-3-9">
+      <path
+         d="m 390.97976,672.25937 q -1.28,0 -2.04,-0.64 -0.74,-0.66 -0.74,-1.92 0,-0.36 0.04,-0.68 0.18,-0.96 0.94,-2.94 l 0.32,-0.96 q 0.12,-0.36 0.12,-0.68 0,-0.5 -0.38,-0.5 -0.14,0 -0.32,0.06 -1.02,0.36 -1.54,2.3 0,0.02 -0.02,0.08 -0.02,0.04 -0.04,0.06 0,0 -0.02,0.02 -0.02,0.02 -0.08,0.02 -0.04,0 -0.08,0 -0.04,0 -0.16,0 l -0.28,0 q -0.12,-0.12 -0.12,-0.18 0,-0.06 0.06,-0.3 0.48,-1.58 1.48,-2.36 0.54,-0.42 1.24,-0.42 0.78,0 1.28,0.44 0.5,0.44 0.5,1.16 0,0.34 -0.06,0.52 0,0.14 -0.3,0.88 -0.92,2.5 -0.98,3.56 0,0.54 0.1,0.88 0.26,0.86 1.26,0.86 0.54,0 0.96,-0.32 1.24,-0.82 2.06,-3.78 0.16,-0.56 0.16,-0.92 0,-0.88 -0.78,-1.58 -0.26,-0.24 -0.26,-0.54 0,-0.46 0.36,-0.82 0.38,-0.38 0.84,-0.38 0.48,0 0.74,0.46 0.26,0.44 0.26,1.06 0,0.7 -0.4,2.3 -0.38,1.54 -0.96,2.68 -1.26,2.58 -3.16,2.58 z"
+         style="font-size:20px"
+         id="path13269" />
+      <path
+         d="m 400.19072,672.03937 q -0.13125,-0.0281 -1.20938,-0.0281 -1.125,0 -1.25625,0.0281 l -0.0844,0 0,-0.43125 0.29062,0 q 0.40313,-0.009 0.49688,-0.0469 0.075,-0.0187 0.1125,-0.0937 0.009,-0.0187 0.009,-0.50625 l 0,-0.46875 -2.42812,0 0,-0.43125 1.41562,-2.16562 q 1.43438,-2.175 1.45313,-2.18438 0.0188,-0.0187 0.19687,-0.0187 l 0.16875,0 0.0563,0.0562 0,4.3125 0.8625,0 0,0.43125 -0.8625,0 0,0.47813 q 0,0.38437 0,0.45 0.009,0.0656 0.0562,0.1125 0.075,0.0656 0.53438,0.075 l 0.27187,0 0,0.43125 -0.0844,0 z m -1.58438,-1.97813 0,-3.13125 -2.05312,3.12188 1.02187,0.009 1.03125,0 z"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:9.375px;font-family:KaTeX_Main;-inkscape-font-specification:KaTeX_Main"
+         id="path13271" />
+    </g>
+    <g
+       style="font-style:normal;font-weight:normal;font-size:40px;line-height:1000%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       id="text5498-6-3-9-0">
+      <path
+         d="m 491.48086,672.25937 q -1.28,0 -2.04,-0.64 -0.74,-0.66 -0.74,-1.92 0,-0.36 0.04,-0.68 0.18,-0.96 0.94,-2.94 l 0.32,-0.96 q 0.12,-0.36 0.12,-0.68 0,-0.5 -0.38,-0.5 -0.14,0 -0.32,0.06 -1.02,0.36 -1.54,2.3 0,0.02 -0.02,0.08 -0.02,0.04 -0.04,0.06 0,0 -0.02,0.02 -0.02,0.02 -0.08,0.02 -0.04,0 -0.08,0 -0.04,0 -0.16,0 l -0.28,0 q -0.12,-0.12 -0.12,-0.18 0,-0.06 0.06,-0.3 0.48,-1.58 1.48,-2.36 0.54,-0.42 1.24,-0.42 0.78,0 1.28,0.44 0.5,0.44 0.5,1.16 0,0.34 -0.06,0.52 0,0.14 -0.3,0.88 -0.92,2.5 -0.98,3.56 0,0.54 0.1,0.88 0.26,0.86 1.26,0.86 0.54,0 0.96,-0.32 1.24,-0.82 2.06,-3.78 0.16,-0.56 0.16,-0.92 0,-0.88 -0.78,-1.58 -0.26,-0.24 -0.26,-0.54 0,-0.46 0.36,-0.82 0.38,-0.38 0.84,-0.38 0.48,0 0.74,0.46 0.26,0.44 0.26,1.06 0,0.7 -0.4,2.3 -0.38,1.54 -0.96,2.68 -1.26,2.58 -3.16,2.58 z"
+         style="font-size:20px"
+         id="path13274" />
+      <path
+         d="m 497.55119,667.69874 q -0.25312,0 -0.40312,-0.15937 -0.14063,-0.15938 -0.14063,-0.4125 0,-0.53438 0.42188,-0.89063 0.42187,-0.36562 0.975,-0.43125 l 0.14062,0 q 0.32813,0 0.4125,0.009 0.30938,0.0469 0.62813,0.19687 0.61875,0.30938 0.77812,0.88125 0.0281,0.0937 0.0281,0.25313 0,0.55312 -0.34688,0.99375 -0.3375,0.43125 -0.85312,0.61875 -0.0469,0.0188 0,0.0281 0.0188,0.009 0.0937,0.0281 0.57187,0.15937 0.96562,0.6 0.39375,0.43125 0.39375,0.98437 0,0.38438 -0.17812,0.74063 -0.225,0.47812 -0.74063,0.79687 -0.50625,0.30938 -1.13437,0.30938 -0.61875,0 -1.09688,-0.2625 -0.47812,-0.2625 -0.64687,-0.70313 -0.0937,-0.19687 -0.0937,-0.45937 0,-0.2625 0.16875,-0.42188 0.17812,-0.16875 0.42187,-0.16875 0.2625,0 0.43125,0.16875 0.16875,0.16875 0.16875,0.42188 0,0.21562 -0.12187,0.375 -0.12188,0.15937 -0.32813,0.20625 l -0.0656,0.0187 q 0.50625,0.42187 1.1625,0.42187 0.51562,0 0.77812,-0.49687 0.15938,-0.30938 0.15938,-0.94688 l 0,-0.1875 q 0,-0.89062 -0.6,-1.19062 -0.14063,-0.0562 -0.57188,-0.0656 l -0.39375,-0.009 -0.0281,-0.0187 q -0.0188,-0.0281 -0.0188,-0.15 0,-0.1125 0.0281,-0.14063 0.0281,-0.0281 0.0469,-0.0281 0.2625,0 0.54375,-0.0469 0.4125,-0.0562 0.62812,-0.45937 0.21563,-0.4125 0.21563,-0.98438 0,-0.60937 -0.32813,-0.81562 -0.19687,-0.13125 -0.44062,-0.13125 -0.46875,0 -0.825,0.25312 -0.0375,0.0188 -0.0844,0.0656 -0.0469,0.0375 -0.075,0.075 l -0.0281,0.0375 q 0.0281,0.009 0.0656,0.0188 0.1875,0.0187 0.30938,0.17812 0.13125,0.15938 0.13125,0.36563 0,0.225 -0.15938,0.38437 -0.15,0.15 -0.39375,0.15 z"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:9.375px;font-family:KaTeX_Main;-inkscape-font-specification:KaTeX_Main"
+         id="path13276" />
+    </g>
+    <g
+       style="font-style:normal;font-weight:normal;font-size:40px;line-height:1000%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       id="text5498-6-3-9-06">
+      <path
+         d="m 592.0523,672.25937 q -1.28,0 -2.04,-0.64 -0.74,-0.66 -0.74,-1.92 0,-0.36 0.04,-0.68 0.18,-0.96 0.94,-2.94 l 0.32,-0.96 q 0.12,-0.36 0.12,-0.68 0,-0.5 -0.38,-0.5 -0.14,0 -0.32,0.06 -1.02,0.36 -1.54,2.3 0,0.02 -0.02,0.08 -0.02,0.04 -0.04,0.06 0,0 -0.02,0.02 -0.02,0.02 -0.08,0.02 -0.04,0 -0.08,0 -0.04,0 -0.16,0 l -0.28,0 q -0.12,-0.12 -0.12,-0.18 0,-0.06 0.06,-0.3 0.48,-1.58 1.48,-2.36 0.54,-0.42 1.24,-0.42 0.78,0 1.28,0.44 0.5,0.44 0.5,1.16 0,0.34 -0.06,0.52 0,0.14 -0.3,0.88 -0.92,2.5 -0.98,3.56 0,0.54 0.1,0.88 0.26,0.86 1.26,0.86 0.54,0 0.96,-0.32 1.24,-0.82 2.06,-3.78 0.16,-0.56 0.16,-0.92 0,-0.88 -0.78,-1.58 -0.26,-0.24 -0.26,-0.54 0,-0.46 0.36,-0.82 0.38,-0.38 0.84,-0.38 0.48,0 0.74,0.46 0.26,0.44 0.26,1.06 0,0.7 -0.4,2.3 -0.38,1.54 -0.96,2.68 -1.26,2.58 -3.16,2.58 z"
+         style="font-size:20px"
+         id="path13279" />
+      <path
+         d="m 597.96326,668.01749 q -0.2625,0 -0.4125,-0.16875 -0.15,-0.16875 -0.15,-0.4125 0,-0.675 0.50625,-1.15312 0.51562,-0.4875 1.22812,-0.4875 0.80625,0 1.33125,0.44062 0.53438,0.43125 0.65625,1.13438 0.0188,0.16875 0.0188,0.30937 0,0.54375 -0.32812,1.02188 -0.2625,0.39375 -1.05938,1.07812 -0.3375,0.29063 -0.9375,0.8625 l -0.55312,0.525 0.7125,0.009 q 1.47187,0 1.56562,-0.0469 0.0375,-0.009 0.0937,-0.19687 0.0375,-0.10313 0.13125,-0.6375 l 0,-0.0281 0.375,0 0,0.0281 -0.2625,1.71562 0,0.0281 -3.47812,0 0,-0.17813 q 0,-0.1875 0.0187,-0.21562 0.009,-0.009 0.7875,-0.89063 1.02187,-1.13437 1.3125,-1.5 0.62812,-0.85312 0.62812,-1.56562 0,-0.61875 -0.32812,-1.03125 -0.31875,-0.42188 -0.9,-0.42188 -0.54375,0 -0.88125,0.4875 -0.0188,0.0375 -0.0563,0.10313 -0.0281,0.0469 -0.0281,0.0562 0,0.009 0.0469,0.009 0.23437,0 0.375,0.16875 0.15,0.16875 0.15,0.39375 0,0.23438 -0.15938,0.40313 -0.15,0.15937 -0.40312,0.15937 z"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:9.375px;font-family:KaTeX_Main;-inkscape-font-specification:KaTeX_Main"
+         id="path13281" />
+    </g>
+    <g
+       style="font-style:normal;font-weight:normal;font-size:40px;line-height:1000%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       id="text5498-6-3-9-8">
+      <path
+         d="m 692.62371,672.25937 q -1.28,0 -2.04,-0.64 -0.74,-0.66 -0.74,-1.92 0,-0.36 0.04,-0.68 0.18,-0.96 0.94,-2.94 l 0.32,-0.96 q 0.12,-0.36 0.12,-0.68 0,-0.5 -0.38,-0.5 -0.14,0 -0.32,0.06 -1.02,0.36 -1.54,2.3 0,0.02 -0.02,0.08 -0.02,0.04 -0.04,0.06 0,0 -0.02,0.02 -0.02,0.02 -0.08,0.02 -0.04,0 -0.08,0 -0.04,0 -0.16,0 l -0.28,0 q -0.12,-0.12 -0.12,-0.18 0,-0.06 0.06,-0.3 0.48,-1.58 1.48,-2.36 0.54,-0.42 1.24,-0.42 0.78,0 1.28,0.44 0.5,0.44 0.5,1.16 0,0.34 -0.06,0.52 0,0.14 -0.3,0.88 -0.92,2.5 -0.98,3.56 0,0.54 0.1,0.88 0.26,0.86 1.26,0.86 0.54,0 0.96,-0.32 1.24,-0.82 2.06,-3.78 0.16,-0.56 0.16,-0.92 0,-0.88 -0.78,-1.58 -0.26,-0.24 -0.26,-0.54 0,-0.46 0.36,-0.82 0.38,-0.38 0.84,-0.38 0.48,0 0.74,0.46 0.26,0.44 0.26,1.06 0,0.7 -0.4,2.3 -0.38,1.54 -0.96,2.68 -1.26,2.58 -3.16,2.58 z"
+         style="font-size:20px"
+         id="path13284" />
+      <path
+         d="m 701.40342,672.03937 q -0.15938,-0.0281 -1.49063,-0.0281 -1.3125,0 -1.47187,0.0281 l -0.1125,0 0,-0.43125 0.24375,0 q 0.54375,0 0.70312,-0.0281 0.075,-0.009 0.225,-0.1125 l 0,-4.84687 q -0.0187,0 -0.075,0.0281 -0.43125,0.16875 -0.96562,0.17813 l -0.17813,0 0,-0.43125 0.17813,0 q 0.7875,-0.0281 1.3125,-0.35625 0.16875,-0.0937 0.29062,-0.21563 0.0188,-0.0281 0.1125,-0.0281 0.0937,0 0.15938,0.0562 l 0,2.80312 0.009,2.8125 q 0.14063,0.14063 0.60938,0.14063 l 0.30937,0 0.24375,0 0,0.43125 -0.10312,0 z"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:9.375px;font-family:KaTeX_Main;-inkscape-font-specification:KaTeX_Main"
+         id="path13286" />
+    </g>
+  </g>
+</svg>

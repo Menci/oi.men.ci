@@ -1,0 +1,35 @@
+{
+  "name": "object-deep-assign",
+  "version": "0.1.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "lint": "standard -fix",
+    "test": "jest test --watch"
+  },
+  "files": [
+    "index.js"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/uojo/object-deep-assign"
+  },
+  "keywords": [
+    "assign",
+    "extend",
+    "deep"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/uojo/object-deep-assign/issues"
+  },
+  "homepage": "https://github.com/uojo/object-deep-assign",
+  "devDependencies": {
+    "jest": "^23.4.1",
+    "standard": "^11.0.1"
+  },
+  "dependencies": {},
+  "standard": {
+    "ignore": []
+  }
+}
