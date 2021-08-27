@@ -70,9 +70,6 @@ disqus_shortname: menci
 ## Docs: http://hexo.io/docs/deployment.html
 deploy:
   - type: git
-    repo: ssh://Menci@ggs.menci.moe/~/blog.git
-    branch: master
-  - type: git
     repo: ssh://git@github.com/Menci/oi.men.ci.git
     branch: website
 
