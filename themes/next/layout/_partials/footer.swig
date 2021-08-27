@@ -21,7 +21,7 @@
   {% endif %}
 </div>
 
-运行于 <a class="theme-link" href="https://clientarea.gigsgigscloud.com/?affid=1801">GigsGigsCloud</a> 云平台
+自豪地运行于 <a class="theme-link" href="https://azure.microsoft.com">Azure</a> 云平台
 
   <span class="post-meta-divider">|</span>
 
