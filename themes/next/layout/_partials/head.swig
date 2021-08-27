@@ -70,7 +70,6 @@
 
 <link href="https://menci-oi.upyun.menci.memset0.cn/css/main.css?v={{ theme.version }}" rel="stylesheet" type="text/css" />
 <link href="https://menci-oi.upyun.menci.memset0.cn/css/tomorrow.css" rel="stylesheet" type="text/css" />
-<link href="https://menci-oi.upyun.menci.memset0.cn/css/math.css" rel="stylesheet" type="text/css" />
 
 {% if page.keywords %}
   <meta name="keywords" content="{{ page.keywords }}" />
