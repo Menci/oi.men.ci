@@ -80,9 +80,11 @@ var highlight = exports.highlight = function () {
 
           case 17:
             _context.next = 19;
-            return _pygmentsPromise2.default.pygmentize(code, (0, _objectAssignDeep2.default)({
-              lexer: language
-            }, options.pygments));
+            return queue.add(function () {
+              return _pygmentsPromise2.default.pygmentize(code, (0, _objectAssignDeep2.default)({
+                lexer: language
+              }, options.pygments));
+            });
 
           case 19:
             result = _context.sent;
@@ -153,6 +155,10 @@ var _objectAssignDeep = require('object-assign-deep');
 
 var _objectAssignDeep2 = _interopRequireDefault(_objectAssignDeep);
 
+var _promiseQueue = require('promise-queue');
+
+var _promiseQueue2 = _interopRequireDefault(_promiseQueue);
+
 var _asyncRenderer = require('./async-renderer');
 
 var _asyncRenderer2 = _interopRequireDefault(_asyncRenderer);
@@ -166,6 +172,8 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
+
+var queue = new _promiseQueue2.default(5);
 
 var HighlightRenderer = function (_AsyncRenderer) {
   _inherits(HighlightRenderer, _AsyncRenderer);

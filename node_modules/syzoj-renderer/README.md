@@ -64,7 +64,3 @@ Return highlighted code in HTML. Won't throw.
     * Complex maths like `$ \sum\limits_{i=0}^na_i $` won't be broken by Markdown.
     * To ensure each document's math rendering state isolated, `\require` is disabled.
     * Maths that failed to render would result in displaying error message.
-
-# License
-
-[AGPL-3.0](LICENSE). Contact me if you *really* want this to be MIT license.

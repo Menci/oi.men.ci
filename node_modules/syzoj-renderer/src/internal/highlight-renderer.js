@@ -2,8 +2,11 @@ import Pygments from 'pygments-promise';
 import EscapeHTML from 'escape-html';
 import ObjectHash from 'object-hash';
 import ObjectAssignDeep from 'object-assign-deep';
+import Queue from "promise-queue";
 
 import AsyncRenderer from './async-renderer';
+
+const queue = new Queue(5);
 
 export async function highlight(code, language, cache, options) {
   let cacheKey;
@@ -39,9 +42,9 @@ export async function highlight(code, language, cache, options) {
     if (typeof options.highlighter === 'function') {
       result = await options.highlighter(code, language);
     } else {
-      result = await Pygments.pygmentize(code, ObjectAssignDeep({
+      result = await queue.add(() => Pygments.pygmentize(code, ObjectAssignDeep({
         lexer: language
-      }, options.pygments));
+      }, options.pygments)));
     }
   } catch (e) {}
 
