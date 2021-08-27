@@ -68,7 +68,7 @@ export default class MathRenderer extends AsyncRenderer {
         result = formatErrorMessage(errorMessage);
       }
 
-      if (task.task.displayMode) result = `<p style="text-align: center; ">${result}</p>`
+      if (task.task.displayMode) result = `<p><span style="margin-left: 50%; transform: translateX(-50%); display: inline-block; ">${result}</span></p>`
       this.callbackAddReplace(task.uuid, result);
     }
   }

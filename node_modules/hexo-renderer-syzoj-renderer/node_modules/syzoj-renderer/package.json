@@ -1,6 +1,6 @@
 {
   "name": "syzoj-renderer",
-  "version": "1.2.0",
+  "version": "1.2.2",
   "description": "SYZOJ's renderer for markdown, math and highlight",
   "scripts": {
     "build": "rm -rf ./dist; babel -d ./dist ./src; cp ./src/*.css ./dist/",

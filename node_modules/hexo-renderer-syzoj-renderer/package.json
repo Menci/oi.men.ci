@@ -1,6 +1,6 @@
 {
   "name": "hexo-renderer-syzoj-renderer",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "description": "Render Hexo's markdown documents with syzoj-renderer",
   "main": "index.js",
   "repository": "git@github.com:Menci/hexo-renderer-syzoj-renderer.git",
@@ -10,6 +10,6 @@
     "hexo-util": "^0.6.3",
     "jsdom": "^17.0.0",
     "object-deep-assign": "^0.1.0",
-    "syzoj-renderer": "^1.2.0"
+    "syzoj-renderer": "^1.2.2"
   }
 }
