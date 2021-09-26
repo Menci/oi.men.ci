@@ -131,7 +131,7 @@ social_icons:
 # Sidebar Avatar
 # in theme directory(source/images): /images/avatar.jpg
 # in site  directory(source/uploads): /uploads/avatar.jpg
-avatar: https://menci-oi.upyun.menci.memset0.cn/images/avatar.png
+avatar: https://oi-blog.cdn.menci.xyz/images/avatar.png
 
 # Table Of Contents in the Sidebar
 toc:

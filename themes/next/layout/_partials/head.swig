@@ -2,7 +2,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 <meta name="theme-color" content="{{ theme.android_chrome_color }}">
-
+<meta name="referrer" content="strict-origin-when-cross-origin">
 
 {% if theme.pace %}
   {% set pace_css_uri = url_for(theme.vendors._internal + '/pace/'+ theme.pace_theme +'.min.css?v=1.0.2') %}
@@ -68,8 +68,8 @@
 {% endif %}
 <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
 
-<link href="https://menci-oi.upyun.menci.memset0.cn/css/main.css?v={{ theme.version }}" rel="stylesheet" type="text/css" />
-<link href="https://menci-oi.upyun.menci.memset0.cn/css/tomorrow.css" rel="stylesheet" type="text/css" />
+<link href="https://oi-blog.cdn.menci.xyz/css/main.css?v={{ theme.version }}" rel="stylesheet" type="text/css" />
+<link href="https://oi-blog.cdn.menci.xyz/css/tomorrow.css" rel="stylesheet" type="text/css" />
 
 {% if page.keywords %}
   <meta name="keywords" content="{{ page.keywords }}" />
