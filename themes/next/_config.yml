@@ -1,6 +1,6 @@
 
 # Put your favicon.ico into `hexo-site/source/` directory.
-favicon: /favicon.ico
+favicon: //oi-blog.cdn.menci.xyz/images/avatar.png
 
 # Set default keywords (Use a comma to separate)
 keywords: "Hexo, NexT"
