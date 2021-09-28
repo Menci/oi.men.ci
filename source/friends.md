@@ -45,6 +45,7 @@ date: 2016-01-18 21:08:05
 | [lkMiles](http://lkmiles.lofter.com/) | 成都七中 |
 | [wxh010910](http://blog.csdn.net/wxh010910) | 成都七中 |
 | [ksyx](http://x.longdows.cn/) | 柳州十五中 |
+| [宝硕](https://oi.baoshuo.ren) | 石家庄二中实验学校 |
 
 # LYOI
 [Edge](http://blog.u-pt.pw) [ilern](http://ilern.cf/) [yqy](https://yqy.moe) [Sulfur6](http://sulfur6.top/) [Roller](http://roller.coding.me/heyheyhey/) [x_shuai](http://x_shuai.leanote.com/) [Gavin](http://gavin_blog.leanote.com/) [Ahhhh](http://blog.csdn.net/lyx_2016)
