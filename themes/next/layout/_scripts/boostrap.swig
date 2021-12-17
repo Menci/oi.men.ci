@@ -5,5 +5,5 @@
 %}
 
 {% for bs in boot_scripts %}
-  <script type="text/javascript" src="https://oi-blog.cdn.menci.xyz/js/{{ bs }}?v={{ theme.version }}"></script>
+  <script type="text/javascript" src="https://cdn.menci.xyz/menci-oi-blog/js/{{ bs }}?v={{ theme.version }}"></script>
 {% endfor %}

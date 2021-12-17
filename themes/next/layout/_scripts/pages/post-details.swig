@@ -1,2 +1,2 @@
-<script type="text/javascript" src="https://oi-blog.cdn.menci.xyz/js/src/scrollspy.js?v={{ theme.version }}"></script>
-<script type="text/javascript" src="https://oi-blog.cdn.menci.xyz/js/src/post-details.js?v={{ theme.version }}"></script>
+<script type="text/javascript" src="https://cdn.menci.xyz/menci-oi-blog/js/src/scrollspy.js?v={{ theme.version }}"></script>
+<script type="text/javascript" src="https://cdn.menci.xyz/menci-oi-blog/js/src/post-details.js?v={{ theme.version }}"></script>

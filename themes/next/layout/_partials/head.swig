@@ -68,8 +68,8 @@
 {% endif %}
 <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
 
-<link href="https://oi-blog.cdn.menci.xyz/css/main.css?v={{ theme.version }}" rel="stylesheet" type="text/css" />
-<link href="https://oi-blog.cdn.menci.xyz/css/tomorrow.css" rel="stylesheet" type="text/css" />
+<link href="https://cdn.menci.xyz/menci-oi-blog/css/main.css?v={{ theme.version }}" rel="stylesheet" type="text/css" />
+<link href="https://cdn.menci.xyz/menci-oi-blog/css/tomorrow.css" rel="stylesheet" type="text/css" />
 
 {% if page.keywords %}
   <meta name="keywords" content="{{ page.keywords }}" />

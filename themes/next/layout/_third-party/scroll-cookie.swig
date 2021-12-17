@@ -1,4 +1,4 @@
 {% if theme.save_scroll %}
-  <script type="text/javascript" src="https://oi-blog.cdn.menci.xyz/js/src/js.cookie.js?v={{ theme.version }}"></script>
-  <script type="text/javascript" src="https://oi-blog.cdn.menci.xyz/js/src/scroll-cookie.js?v={{ theme.version }}"></script>
+  <script type="text/javascript" src="https://cdn.menci.xyz/menci-oi-blog/js/src/js.cookie.js?v={{ theme.version }}"></script>
+  <script type="text/javascript" src="https://cdn.menci.xyz/menci-oi-blog/js/src/scroll-cookie.js?v={{ theme.version }}"></script>
 {% endif %}

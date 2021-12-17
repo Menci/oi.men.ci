@@ -6,5 +6,5 @@
 %}
 
 {% for common in js_commons %}
-  <script type="text/javascript" src="https://oi-blog.cdn.menci.xyz/js/{{ common }}?v={{ theme.version }}"></script>
+  <script type="text/javascript" src="https://cdn.menci.xyz/menci-oi-blog/js/{{ common }}?v={{ theme.version }}"></script>
 {% endfor %}
