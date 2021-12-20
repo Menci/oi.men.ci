@@ -57,7 +57,7 @@
   {% if theme.vendors.fancybox_css %}
     {% set fancybox_css_uri = theme.vendors.fancybox_css %}
   {% endif %}
-  <link href="https://cdn.jsdelivr.net/npm/jquery.fancybox@2.1.5/source/jquery.fancybox.css" rel="stylesheet" type="text/css" />
+  <link href="https://lf26-cdn-tos.bytecdntp.com/cdn/expire-1-y/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet" type="text/css" />
 {% endif %}
 
 {% include "./head/external-fonts.swig" %}
@@ -66,7 +66,7 @@
 {% if theme.vendors.fontawesome %}
   {% set font_awesome_uri = theme.vendors.fontawesome %}
 {% endif %}
-<link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+<link href="https://lf6-cdn-tos.bytecdntp.com/cdn/expire-1-y/font-awesome/4.6.2/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
 
 <link href="https://cdn.menci.xyz/menci-oi-blog/css/main.css?v={{ theme.version }}" rel="stylesheet" type="text/css" />
 <link href="https://cdn.menci.xyz/menci-oi-blog/css/tomorrow.css" rel="stylesheet" type="text/css" />
@@ -133,8 +133,8 @@
     }
   };
 </script>
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.js"></script>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.css">
+<script type="text/javascript" src="https://lf26-cdn-tos.bytecdntp.com/cdn/expire-2-y/aplayer/1.10.1/APlayer.min.js"></script>
+<link rel="stylesheet" href="https://lf9-cdn-tos.bytecdntp.com/cdn/expire-2-y/aplayer/1.10.1/APlayer.min.css">
 
 {# Canonical, good for google search engine (SEO) : https://support.google.com/webmasters/answer/139066 #}
 {% if theme.canonical %}

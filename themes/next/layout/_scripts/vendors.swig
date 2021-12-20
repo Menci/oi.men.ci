@@ -7,17 +7,17 @@
 </script>
 
 {% set js_vendors = {} %}
-{% set js_vendors.jquery      = 'https://cdn.jsdelivr.net/npm/jquery@2.1.3/dist/jquery.min.js' %}
-{% set js_vendors.fastclick   = 'https://cdn.jsdelivr.net/npm/fastclick@1.0.6/lib/fastclick.min.js' %}
-{% set js_vendors.lazyload    = 'https://cdn.jsdelivr.net/npm/jquery-lazyload@1.9.7/jquery.lazyload.min.js' %}
-{% set js_vendors.velocity    = 'https://cdn.jsdelivr.net/npm/velocity-animate@1.4.3/velocity.min.js' %}
-{% set js_vendors.velocity_ui = 'https://cdn.jsdelivr.net/npm/velocity-animate@1.4.3/velocity.min.js' %}
+{% set js_vendors.jquery      = 'https://lf26-cdn-tos.bytecdntp.com/cdn/expire-1-y/jquery/2.1.3/jquery.min.js' %}
+{% set js_vendors.fastclick   = 'https://lf26-cdn-tos.bytecdntp.com/cdn/expire-1-y/fastclick/1.0.6/fastclick.min.js' %}
+{% set js_vendors.lazyload    = 'https://lf26-cdn-tos.bytecdntp.com/cdn/expire-1-y/jquery_lazyload/1.9.7/jquery.lazyload.min.js' %}
+{% set js_vendors.velocity    = 'https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-y/velocity/2.0.6/velocity.min.js' %}
+{% set js_vendors.velocity_ui = 'https://lf6-cdn-tos.bytecdntp.com/cdn/expire-1-y/velocity/2.0.6/velocity.ui.min.js' %}
 
 {% if theme.fancybox %}
-  {% set js_vendors.fancybox  = 'https://cdn.jsdelivr.net/npm/jquery.fancybox@2.1.5/source/jquery.fancybox.pack.min.js' %}
+  {% set js_vendors.fancybox  = 'https://lf6-cdn-tos.bytecdntp.com/cdn/expire-1-y/fancybox/2.1.5/jquery.fancybox.pack.js' %}
 {% endif %}
 {% if theme.canvas_nest %}
-  {% set js_vendors.canvas_nest  = 'https://cdn.jsdelivr.net/npm/canvas-nest.js@1.0.1/dist/canvas-nest.min.js' %}
+  {% set js_vendors.canvas_nest  = 'https://lf9-cdn-tos.bytecdntp.com/cdn/expire-1-y/canvas-nest.js/1.0.1/canvas-nest.min.js' %}
 {% endif %}
 
 {% if theme.three_waves %}
