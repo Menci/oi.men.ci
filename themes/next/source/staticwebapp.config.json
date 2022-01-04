@@ -6,5 +6,8 @@
         "cache-control": "public, max-age=86400, stale-while-revalidate=604800"
       }
     }
-  ]
+  ],
+  "globalHeaders": {
+    "cache-control": "public, max-age=60"
+  }
 }
