@@ -22,6 +22,7 @@ jobs:
     - name: Build
       run: node_modules/.bin/hexo g
     - name: Push to GitHub
+      id: commit-push
       if: ${{ github.event_name == 'push' }}
       run: |
         touch public/404.html
@@ -29,9 +30,36 @@ jobs:
         git config --global user.email $(git show -s --format='%ae' HEAD)
         sed -i "s#ssh://git@github.com#https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com#" _config.yml
         node_modules/.bin/hexo d
-    - name: Deploy to Azure
-      uses: Azure/static-web-apps-deploy@v1
+
+        cd .deploy_git
+        echo "::set-output commit-hash=$(git rev-parse HEAD)"
+    - name: Wait for Cloudflare Pages Deployment
       if: ${{ github.event_name == 'push' }}
+      uses: Menci/cf-pages-await@main
+      with:
+        accountEmail: ${{ secrets.CLOUDFLARE_ACCOUNT_EMAIL }}
+        apiKey: ${{ secrets.CLOUDFLARE_API_KEY }}
+        accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        project: menci-oi-blog
+        commitHash: ${{ steps.commit-push.outputs.commit-hash }}
+    - name: Deploy to Aliyun OSS
+      if: ${{ github.event_name == 'push' }}
+      uses: Menci/upload-to-oss@beta-v1
+      with:
+          access-key-id: ${{ secrets.ALIYUN_ACCESS_KEY_ID }}
+          access-key-secret: ${{ secrets.ALIYUN_ACCESS_KEY_SECRET }}
+          bucket: ${{ secrets.ALIYUN_OSS_BUCKET }}
+          endpoint: ${{ secrets.ALIYUN_OSS_ENDPOINT }}
+          local-path: public
+          remote-path: menci-oi-blog
+          headers: |
+            {
+              "Cache-Control": "public, max-age=60"
+            }
+          delay-html-file-upload: true
+    - name: Deploy to Azure
+      if: ${{ github.event_name == 'push' }}
+      uses: Azure/static-web-apps-deploy@v1
       with:
         azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN }}
         action: upload
