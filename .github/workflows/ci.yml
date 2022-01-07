@@ -21,6 +21,11 @@ jobs:
         check-latest: true
     - name: Build
       run: node_modules/.bin/hexo g
+    - name: Inject Service Worker
+      uses: Menci/service-worker-redirect-origin@main
+      with:
+        www-root: public
+        target-base-url: https://cdn-static.menci.xyz/menci-oi-blog/
     - name: Push to GitHub
       id: commit-push
       if: ${{ github.event_name == 'push' }}
