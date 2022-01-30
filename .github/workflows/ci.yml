@@ -49,7 +49,7 @@ jobs:
         commitHash: ${{ steps.commit-push.outputs.commit-hash }}
     - name: Deploy to Aliyun OSS
       if: ${{ github.event_name == 'push' }}
-      uses: Menci/upload-to-oss@beta-v1
+      uses: Menci/upload-to-oss@main
       with:
           access-key-id: ${{ secrets.ALIYUN_ACCESS_KEY_ID }}
           access-key-secret: ${{ secrets.ALIYUN_ACCESS_KEY_SECRET }}
@@ -58,9 +58,11 @@ jobs:
           local-path: public
           remote-path: menci-oi-blog
           headers: |
-            {
-              "Cache-Control": "public, max-age=60"
-            }
+            filename => (
+              {
+                "Cache-Control": `public, max-age=${filename.endsWith(".html") ? 60 : 604800}`
+              }
+            )
           delay-html-file-upload: true
     - name: Deploy to Azure
       if: ${{ github.event_name == 'push' }}
