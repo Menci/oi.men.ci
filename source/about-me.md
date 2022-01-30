@@ -11,6 +11,6 @@ date: '2021-04-30 15:57:00'
 
 Menci（读作 /ˈmenˌsɪ/，中文音译**萌次**/**门磁**），OIer & 软件开发者。
 
-现大三，就读于中国人民大学（Renmin University of China, RUC）信息学院图灵实验班。
+现大四，就读于中国人民大学（Renmin University of China, RUC）信息学院图灵实验班。
 
 希望能成为一个可爱的人。
