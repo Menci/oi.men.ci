@@ -1,0 +1,1286 @@
+<!DOCTYPE html><html class="theme-next pisces" lang="zh-Hans"><head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#febe85">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+  <meta name="google-site-verification" content="RXH_SaLcBbigHYdpVhhuYsBL1W0FZF1ud97hFesPAeo">
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="https://lf26-cdn-tos.bytecdntp.com/cdn/expire-1-y/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//cdn.menci.xyz/fonts/css?family=Lato:300,300italic,400,400italic,700,700italic&amp;subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="https://lf6-cdn-tos.bytecdntp.com/cdn/expire-1-y/font-awesome/4.6.2/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+<link href="https://cdn.menci.xyz/menci-oi-blog/css/main.css?v=5.1.2" rel="stylesheet" type="text/css">
+<link href="https://cdn.menci.xyz/menci-oi-blog/css/tomorrow.css" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="字符串,学习笔记,算法模板,CodeVS,KMP,">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="//cdn.menci.xyz/menci-oi-blog/images/avatar.png?v=5.1.2">
+
+
+
+
+
+
+<meta name="description" content="KMP（Knuth-Morris-Pratt）是算法竞赛中常用的字符串匹配算法之一，它可以有效地利用失配信息来使得匹配全过程中不回溯，从而在线性时间内完成匹配。">
+<meta name="keywords" content="字符串,学习笔记,算法模板,CodeVS,KMP">
+<meta property="og:type" content="article">
+<meta property="og:title" content="KMP 学习笔记">
+<meta property="og:url" content="https://oi.men.ci/kmp-notes/index.html">
+<meta property="og:site_name" content="Menci's OI Blog">
+<meta property="og:description" content="KMP（Knuth-Morris-Pratt）是算法竞赛中常用的字符串匹配算法之一，它可以有效地利用失配信息来使得匹配全过程中不回溯，从而在线性时间内完成匹配。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2022-01-30T20:50:03.494Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="KMP 学习笔记">
+<meta name="twitter:description" content="KMP（Knuth-Morris-Pratt）是算法竞赛中常用的字符串匹配算法之一，它可以有效地利用失配信息来使得匹配全过程中不回溯，从而在线性时间内完成匹配。">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.2',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: false,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+<script type="text/javascript" src="https://lf26-cdn-tos.bytecdntp.com/cdn/expire-2-y/aplayer/1.10.1/APlayer.min.js"></script>
+<link rel="stylesheet" href="https://lf9-cdn-tos.bytecdntp.com/cdn/expire-2-y/aplayer/1.10.1/APlayer.min.css">
+
+
+
+  <link rel="canonical" href="https://oi.men.ci/kmp-notes/">
+
+
+
+
+
+  <title>KMP 学习笔记 | Menci's OI Blog</title>
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-75865916-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Menci's OI Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">幻梦终醒，不悔华年</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about-me/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-友链">
+          <a href="/friends/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-users"></i> <br>
+            
+            友链
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://oi.men.ci/kmp-notes/">
+
+    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Menci">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://cdn.menci.xyz/menci-oi-blog/images/avatar.png">
+    </span>
+
+    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Menci's OI Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">KMP 学习笔记</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2015-12-30T04:19:36+00:00">
+                2015-12-30
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/oi/" itemprop="url" rel="index">
+                    <span itemprop="name">OI</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>KMP（Knuth-Morris-Pratt）是算法竞赛中常用的字符串匹配算法之一，它可以有效地利用失配信息来使得匹配全过程中不回溯，从而在线性时间内完成匹配。</p>
+<a id="more"></a>
+<h3 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h3>
+<p>设模式串 <code>pattern</code> 为 <code>"utqqutnu"</code>，目标串 <code>target</code> 为 <code>"utqlwutqqutnu</code>"，使用朴素算法进行匹配时（<code>"-"</code> 表示匹配成功，<code>"|"</code> 表示在此字符失配）：</p>
+<div class="highlight"><pre><code>utqqutlwutqqutnu
+------|
+utqqutnu
+</code></pre></div>
+<p>首先，将两串首部对齐，逐个字符匹配，可见在字符 <code>'l'</code> 处失配，按照朴素算法的思想，我们需要把模式串右移一个字符，然后再从模式串首部开始匹配，即：</p>
+<div class="highlight"><pre><code>utqqutlwutqqutnu
+ |
+ utqqutnu
+</code></pre></div>
+<p>这时发现从第一个字符起就不匹配，还要继续右移 ……</p>
+<p>但是，似乎有一种更好的策略：我们可以直接把模式串的开头对齐目标串的 <code>"ut"</code> 处，就可以一次跳过几个字符，并且模式串无需回溯：</p>
+<div class="highlight"><pre><code>utqqutlwutqqutnu
+    --|
+    utqqutnu
+</code></pre></div>
+<p>而接下来这次失配后，本来需要将模式串与 <code>'t'</code> 对齐，但事实上并不需要，将模式串直接与 <code>'l'</code> 对齐即可。</p>
+<div class="highlight"><pre><code>utqqutlwutqqutnu
+      |
+      utqqutnu
+</code></pre></div>
+<p>KMP 算法就是利用了失配后的<strong>部分匹配</strong>信息来选择模式串的移动方式，尽可能地避免无用的匹配。</p>
+<h3 id="失配信息的利用"><a href="#失配信息的利用" class="headerlink" title="失配信息的利用"></a>失配信息的利用</h3>
+<p>通过上述例子我们可以观察到，如果<strong>部分匹配</strong>的串有对称的<strong>前后缀</strong>，则我们可以直接将<strong>模式串</strong>中<strong>部分匹配串</strong>的前缀与<strong>目标串</strong>中<strong>部分匹配串</strong>的后缀对齐，如：</p>
+<div class="highlight"><pre><code>utqqutlwutqqutnu
+------|
+utqqutnu
+</code></pre></div>
+<p>例子中的部分匹配串为 <code>"utqqut"</code>，有对称的前后缀 <code>"ut"</code>，则可以直接将目标串的第二个 <code>"ut"</code> 与模式串的第一个 <code>"ut"</code> 对齐。</p>
+<p>再来看这个例子，模式串为 <code>"ttitty"</code>，目标串为 <code>"ttittitty"</code></p>
+<div class="highlight"><pre><code>ttittittypoi
+-----|
+ttitty
+</code></pre></div>
+<p>此时的部分匹配串为 <code>"ttitt"</code>，它有两个对称的前后缀，分别是 <code>"tt"</code> 和 <code>"t"</code>，我们会想，以 <code>"t"</code> 对齐，可以移动更长的距离，事实上呢？</p>
+<div class="highlight"><pre><code>ttittittypoi
+    -|
+    ttitty
+</code></pre></div>
+<p>在模式串第二个 <code>'t'</code> 处失配后，继续匹配，最终结果是匹配失败。</p>
+<p>然而，如果我们以 <code>"tt"</code> 对齐，则有：</p>
+<div class="highlight"><pre><code>ttittittypoi
+   ------
+   ttitty
+</code></pre></div>
+<p>结果是匹配成功。</p>
+<p>这个例子告诉我们，当部分匹配串有多个对称前后缀时，需要选择<strong>最长的</strong>，以保证匹配结果的正确。</p>
+<h3 id="失配信息的推导"><a href="#失配信息的推导" class="headerlink" title="失配信息的推导"></a>失配信息的推导</h3>
+<p>事实上，KMP 算法利用的<strong>失配信息</strong>是与目标串无关的，它仅与模式串有关，我们可以用递推的方法在线性的时间内求出模式串的**每个可能的部分匹配串（即所有前缀）**前缀的失配信息。</p>
+<p>我们定义 <code>fail</code> 数组是一个长度等于模式串长度的数组，它的第 <code>i</code> 个成员代表以模式串前 <code>i</code> 个字符作为部分匹配串时，部分匹配串的<strong>最长对称前后缀</strong>长度。</p>
+<div class="highlight"><pre><code>| 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8
+target| u | t | q | q | u | t | n | u
+fail  | 0 | 0 | 0 | 0 | 1 | 2 | 0 | 1
+</code></pre></div>
+<p>推导 <code>fail[i]</code> 的方法如下：</p>
+<ol>
+<li>如果 <code>fail[i - 1]</code> 不为 0，且第 <code>i</code> 个字符与第 <code>fail[i - 1] +　１</code> 个字符相同，则 <code>fail[i]</code> 即为 <code>fail[i - 1] + 1</code>；</li>
+<li>如果 <code>fail[i - 1]</code> 为 0，且第 <code>i</code> 个字符与首个字符相同，则 <code>fail[i] = 1</code>，否则 <code>fail[i] = 0</code>；</li>
+<li>难点：如果 <code>fail[i - 1]</code> 不为 0，且第 <code>i</code> 个字符与第 <code>fail[i - 1] +　１</code> 个字符<strong>不同</strong>，则继续对比第 <code>i</code> 个字符与 <code>fail[fail[i - 1]] + 1</code> 个字符，一直向前找直到匹配或者找到了 0。</li>
+</ol>
+<p>如模式串：<em>agct</em>agc<strong>a</strong>gct<em>agct</em></p>
+<p>加粗的 <code>'a'</code> 与最后一个 <code>'t'</code> 不匹配，此时向前找找到 <code>"agctagc"</code> 的最后一个 <code>'c'</code> 的<strong>对称位置的后一个字符</strong>，发现是 <code>'t'</code>，则找到前后的 <code>"agct"</code> 是一个对称的前后缀。</p>
+<h3 id="匹配"><a href="#匹配" class="headerlink" title="匹配"></a>匹配</h3>
+<p>有了 <code>fail</code> 数组，匹配就简单多了，只要根据以下三种情况对应处理即可：</p>
+<ol>
+<li>如果当前字符匹配，则继续匹配下一个字符；</li>
+<li>如果当前在<strong>模式串的首字符处</strong>不匹配，则直接将模式串右移一个字符；</li>
+<li>否则移动模式串，使<strong>模式串</strong>中<strong>部分匹配串</strong>的前缀与<strong>目标串</strong>中<strong>部分匹配串</strong>的后缀对齐。</li>
+</ol>
+<h3 id="完整代码（POJ-3461）"><a href="#完整代码（POJ-3461）" class="headerlink" title="完整代码（POJ 3461）"></a>完整代码（POJ 3461）</h3>
+<p>更新于 2016 年 12 月 26 日。</p>
+<div class="highlight"><pre><code><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;cstdio&gt;</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;cstring&gt;</span></span>
+
+<span class="token keyword">const</span> <span class="token keyword">int</span> MAXN <span class="token operator">=</span> <span class="token number">1000000</span><span class="token punctuation">;</span>
+
+<span class="token keyword">inline</span> <span class="token keyword">int</span> <span class="token function">kmp</span><span class="token punctuation">(</span><span class="token keyword">char</span> <span class="token operator">*</span>a<span class="token punctuation">,</span> <span class="token keyword">char</span> <span class="token operator">*</span>b<span class="token punctuation">)</span> <span class="token comment">// 在 a 中寻找 b</span>
+<span class="token punctuation">{</span>
+    <span class="token comment">// 求出字符串长度</span>
+    <span class="token keyword">int</span> na <span class="token operator">=</span> <span class="token function">strlen</span><span class="token punctuation">(</span>a <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">,</span> nb <span class="token operator">=</span> <span class="token function">strlen</span><span class="token punctuation">(</span>b <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">static</span> <span class="token keyword">int</span> fail<span class="token punctuation">[</span>MAXN <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+    fail<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">2</span><span class="token punctuation">;</span> i <span class="token operator">&lt;=</span> nb<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token comment">// 取上一位置的 fail 位置之后的字符，判断是否和该位相同</span>
+        <span class="token keyword">int</span> j <span class="token operator">=</span> fail<span class="token punctuation">[</span>i <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+        <span class="token comment">// 不断地向前找 fail 位置，直到找到 0 位置或可以匹配当前字符</span>
+        <span class="token keyword">while</span> <span class="token punctuation">(</span>j <span class="token operator">!=</span> <span class="token number">0</span> <span class="token operator">&amp;&amp;</span> b<span class="token punctuation">[</span>j <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">!=</span> b<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span> j <span class="token operator">=</span> fail<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+        <span class="token comment">// 如果能匹配，设置当前位置的 fail 位置</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>b<span class="token punctuation">[</span>j <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">==</span> b<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span> fail<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> j <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">;</span>
+        <span class="token keyword">else</span> fail<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> <span class="token comment">// 找不到匹配位置</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">int</span> res <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> <span class="token comment">// 匹配次数</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">,</span> j <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;=</span> na<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token comment">// 取上一位置的 fail 位置之后的字符，判断是否和要匹配的字符相同</span>
+        <span class="token keyword">while</span> <span class="token punctuation">(</span>j <span class="token operator">!=</span> <span class="token number">0</span> <span class="token operator">&amp;&amp;</span> b<span class="token punctuation">[</span>j <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">!=</span> a<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span> j <span class="token operator">=</span> fail<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+        <span class="token comment">// 这一位可以匹配上</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>b<span class="token punctuation">[</span>j <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">==</span> a<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span> j<span class="token operator">++</span><span class="token punctuation">;</span>
+
+        <span class="token comment">// 匹配成功</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>j <span class="token operator">==</span> nb<span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            res<span class="token operator">++</span><span class="token punctuation">;</span>
+            j <span class="token operator">=</span> fail<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token comment">// 为了能匹配重叠串</span>
+            <span class="token comment">// j = 0 // 如果不允许重叠匹配</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">return</span> res<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">int</span> T<span class="token punctuation">;</span>
+    <span class="token function">scanf</span><span class="token punctuation">(</span><span class="token string">"%d"</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span>T<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">while</span> <span class="token punctuation">(</span>T<span class="token operator">--</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword">static</span> <span class="token keyword">char</span> a<span class="token punctuation">[</span>MAXN <span class="token operator">+</span> <span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">,</span> b<span class="token punctuation">[</span>MAXN <span class="token operator">+</span> <span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+        <span class="token comment">// 下标从 1 开始</span>
+        <span class="token function">scanf</span><span class="token punctuation">(</span><span class="token string">"%s %s"</span><span class="token punctuation">,</span> a <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">,</span> b <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%d\n"</span><span class="token punctuation">,</span> <span class="token function">kmp</span><span class="token punctuation">(</span>b<span class="token punctuation">,</span> a<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></div>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tag/字符串/" rel="tag"># 字符串</a>
+          
+            <a href="/tag/学习笔记/" rel="tag"># 学习笔记</a>
+          
+            <a href="/tag/算法模板/" rel="tag"># 算法模板</a>
+          
+            <a href="/tag/codevs/" rel="tag"># CodeVS</a>
+          
+            <a href="/tag/kmp/" rel="tag"># KMP</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/tree-chain-split-notes/" rel="next" title="树链剖分学习笔记">
+                <i class="fa fa-chevron-left"></i> 树链剖分学习笔记
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/system-of-difference-constraints-notes/" rel="prev" title="差分约束系统学习笔记">
+                差分约束系统学习笔记 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+        <img class="site-author-image" itemprop="image" src="https://cdn.menci.xyz/menci-oi-blog/images/avatar.png" alt="Menci">
+        <p class="site-author-name" itemprop="name">Menci</p>
+         
+            <p class="site-description motion-element" itemprop="description"></p>
+        
+      </div>
+      <nav class="site-state motion-element">
+
+        
+          <div class="site-state-item site-state-posts">
+            <a href="/archives/">
+              <span class="site-state-item-count">355</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+        
+
+        
+          
+          
+          <div class="site-state-item site-state-categories">
+            <a href="/categories/index.html">
+              <span class="site-state-item-count">3</span>
+              <span class="site-state-item-name">分类</span>
+            </a>
+          </div>
+        
+
+        
+          
+          
+          <div class="site-state-item site-state-tags">
+            <a href="/tags/index.html">
+              <span class="site-state-item-count">225</span>
+              <span class="site-state-item-name">标签</span>
+            </a>
+          </div>
+        
+
+      </nav>
+
+      
+
+      <div class="links-of-author motion-element">
+        
+          
+            <span class="links-of-author-item">
+              <a href="https://github.com/Menci/" target="_blank" title="GitHub">
+                
+                  <i class="fa fa-fw fa-github"></i>
+                
+                  
+                    GitHub
+                  
+              </a>
+            </span>
+          
+            <span class="links-of-author-item">
+              <a href="http://wpa.qq.com/msgrd?V=3&amp;Uin=207988066" target="_blank" title="QQ">
+                
+                  <i class="fa fa-fw fa-qq"></i>
+                
+                  
+                    QQ
+                  
+              </a>
+            </span>
+          
+            <span class="links-of-author-item">
+              <a href="/atom.xml" target="_blank" title="RSS">
+                
+                  <i class="fa fa-fw fa-globe"></i>
+                
+                  
+                    RSS
+                  
+              </a>
+            </span>
+          
+            <span class="links-of-author-item">
+              <a href="mailto:huanghaorui301@gmail.com" target="_blank" title="E-Mail">
+                
+                  <i class="fa fa-fw fa-envelope"></i>
+                
+                  
+                    E-Mail
+                  
+              </a>
+            </span>
+          
+        
+      </div>
+
+      
+      
+
+      
+      
+
+      
+
+
+      
+      
+        <div class="post-toc" style="margin-top: 20px; ">
+
+          
+            
+          
+
+          
+            <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#原理"><span class="nav-number">1.</span> <span class="nav-text">原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#失配信息的利用"><span class="nav-number">2.</span> <span class="nav-text">失配信息的利用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#失配信息的推导"><span class="nav-number">3.</span> <span class="nav-text">失配信息的推导</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#匹配"><span class="nav-number">4.</span> <span class="nav-text">匹配</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#完整代码（POJ-3461）"><span class="nav-number">5.</span> <span class="nav-text">完整代码（POJ 3461）</span></a></li></ol></div>
+          
+
+        </div>
+      
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  ©  2015 — 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Menci</span>
+
+  
+</div>
+
+自豪地运行于 <a class="theme-link" href="https://azure.microsoft.com">Azure</a> 云平台
+
+  <span class="post-meta-divider">|</span>
+
+由 <a class="theme-link" href="https://console.upyun.com/register/?invite=SkrBWaCvN">Upyun</a> 提供 CDN 服务
+
+<br>
+
+
+  <div class="powered-by">由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+  <span class="post-meta-divider">|</span>
+
+  <div class="theme-info">主题 — <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.2</div>
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="https://lf26-cdn-tos.bytecdntp.com/cdn/expire-1-y/jquery/2.1.3/jquery.min.js"></script>
+
+  
+  <script type="text/javascript" src="https://lf26-cdn-tos.bytecdntp.com/cdn/expire-1-y/fastclick/1.0.6/fastclick.min.js"></script>
+
+  
+  <script type="text/javascript" src="https://lf26-cdn-tos.bytecdntp.com/cdn/expire-1-y/jquery_lazyload/1.9.7/jquery.lazyload.min.js"></script>
+
+  
+  <script type="text/javascript" src="https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-y/velocity/2.0.6/velocity.min.js"></script>
+
+  
+  <script type="text/javascript" src="https://lf6-cdn-tos.bytecdntp.com/cdn/expire-1-y/velocity/2.0.6/velocity.ui.min.js"></script>
+
+  
+  <script type="text/javascript" src="https://lf6-cdn-tos.bytecdntp.com/cdn/expire-1-y/fancybox/2.1.5/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="https://cdn.menci.xyz/menci-oi-blog/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="https://cdn.menci.xyz/menci-oi-blog/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="https://cdn.menci.xyz/menci-oi-blog/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="https://cdn.menci.xyz/menci-oi-blog/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="https://cdn.menci.xyz/menci-oi-blog/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="https://cdn.menci.xyz/menci-oi-blog/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="https://cdn.menci.xyz/menci-oi-blog/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+    
+
+    
+      <script type="text/javascript">
+        function MenciRemoveIndexDotHtml(url) {
+          if (url.substr(-10, 10) == 'index.html') return url.substr(0, url.length - 10);
+          else return url;
+        }
+
+        var disqus_config = function () {
+          this.page.url = MenciRemoveIndexDotHtml('https://oi.men.ci/kmp-notes/');
+        };
+
+        var d = document, s = d.createElement('script');
+        s.src = 'https://menci.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+<script>"serviceWorker"in navigator&&window.addEventListener("load",(function(){navigator.serviceWorker.register("/sw.js?t=https%3A%2F%2Fcdn-static.menci.xyz%2Fmenci-oi-blog%2F")}));</script></body></html>

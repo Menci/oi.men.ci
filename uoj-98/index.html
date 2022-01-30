@@ -1,0 +1,2118 @@
+<!DOCTYPE html><html class="theme-next pisces" lang="zh-Hans"><head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#febe85">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+  <meta name="google-site-verification" content="RXH_SaLcBbigHYdpVhhuYsBL1W0FZF1ud97hFesPAeo">
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="https://lf26-cdn-tos.bytecdntp.com/cdn/expire-1-y/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//cdn.menci.xyz/fonts/css?family=Lato:300,300italic,400,400italic,700,700italic&amp;subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="https://lf6-cdn-tos.bytecdntp.com/cdn/expire-1-y/font-awesome/4.6.2/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+<link href="https://cdn.menci.xyz/menci-oi-blog/css/main.css?v=5.1.2" rel="stylesheet" type="text/css">
+<link href="https://cdn.menci.xyz/menci-oi-blog/css/tomorrow.css" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="UOJ,Python,编译原理,集训队互测,">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="//cdn.menci.xyz/menci-oi-blog/images/avatar.png?v=5.1.2">
+
+
+
+
+
+
+<meta name="description" content="在 2111 年，第 128 届全国青少年信息学奥林匹克冬令营前夕，Z 君找到了 2015 年，第 32 届冬令营的题目来练习。 他打开了第三题「未来程序」这道题目： 「本题是一道提交答案题，一共 10 个测试点。 对于每个测试点，你会得到一段程序的源代码和这段程序的输入。你要运行这个程序，并保存这个程序的输出。 遗憾的是这些程序都效率极其低下，无法在比赛的 5 个小时内得到输出。」 Z 君想了一">
+<meta name="keywords" content="UOJ,Python,编译原理,集训队互测">
+<meta property="og:type" content="article">
+<meta property="og:title" content="「集训队互测 2015」未来程序 · 改 - 编译原理">
+<meta property="og:url" content="https://oi.men.ci/uoj-98/index.html">
+<meta property="og:site_name" content="Menci's OI Blog">
+<meta property="og:description" content="在 2111 年，第 128 届全国青少年信息学奥林匹克冬令营前夕，Z 君找到了 2015 年，第 32 届冬令营的题目来练习。 他打开了第三题「未来程序」这道题目： 「本题是一道提交答案题，一共 10 个测试点。 对于每个测试点，你会得到一段程序的源代码和这段程序的输入。你要运行这个程序，并保存这个程序的输出。 遗憾的是这些程序都效率极其低下，无法在比赛的 5 个小时内得到输出。」 Z 君想了一">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2022-01-30T20:50:03.510Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="「集训队互测 2015」未来程序 · 改 - 编译原理">
+<meta name="twitter:description" content="在 2111 年，第 128 届全国青少年信息学奥林匹克冬令营前夕，Z 君找到了 2015 年，第 32 届冬令营的题目来练习。 他打开了第三题「未来程序」这道题目： 「本题是一道提交答案题，一共 10 个测试点。 对于每个测试点，你会得到一段程序的源代码和这段程序的输入。你要运行这个程序，并保存这个程序的输出。 遗憾的是这些程序都效率极其低下，无法在比赛的 5 个小时内得到输出。」 Z 君想了一">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.2',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: false,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+<script type="text/javascript" src="https://lf26-cdn-tos.bytecdntp.com/cdn/expire-2-y/aplayer/1.10.1/APlayer.min.js"></script>
+<link rel="stylesheet" href="https://lf9-cdn-tos.bytecdntp.com/cdn/expire-2-y/aplayer/1.10.1/APlayer.min.css">
+
+
+
+  <link rel="canonical" href="https://oi.men.ci/uoj-98/">
+
+
+
+
+
+  <title>「集训队互测 2015」未来程序 · 改 - 编译原理 | Menci's OI Blog</title>
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-75865916-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Menci's OI Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">幻梦终醒，不悔华年</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about-me/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-友链">
+          <a href="/friends/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-users"></i> <br>
+            
+            友链
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://oi.men.ci/uoj-98/">
+
+    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Menci">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://cdn.menci.xyz/menci-oi-blog/images/avatar.png">
+    </span>
+
+    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Menci's OI Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">「集训队互测 2015」未来程序 · 改 - 编译原理</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-02-14T16:01:00+00:00">
+                2017-02-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/oi/" itemprop="url" rel="index">
+                    <span itemprop="name">OI</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>在 2111 年，第 128 届全国青少年信息学奥林匹克冬令营前夕，Z 君找到了 2015 年，第 32 届冬令营的题目来练习。</p>
+<p>他打开了第三题「未来程序」这道题目：</p>
+<p>「本题是一道提交答案题，一共 10 个测试点。</p>
+<p>对于每个测试点，你会得到一段程序的源代码和这段程序的输入。你要运行这个程序，并保存这个程序的输出。</p>
+<p>遗憾的是这些程序都效率极其低下，无法在比赛的 5 个小时内得到输出。」</p>
+<p>Z 君想了一下，决定用 2111 年的计算机来试着运行这个题目，但是问题来了，Z 君已经找不到 96 年前的那次比赛的测试数据了 ……</p>
+<p>没有给出输入数据的提交答案题就不成其「提交答案题」之名，为了解决这个问题，Z 君决定将这个题目改造成传统题。</p>
+<p>Z 君知道 96 年前的计算机的性能比现在差多了，所以这道题的测试数据中，输入数据的规模被设计成很小，从而，做这道题的选手只需要暴力模拟源代码的工作流程就可以通过它。</p>
+<p>现在这道题摆到了你的面前。</p>
+<p>本题是一道传统题，一共有 10 个测试点。</p>
+<p>对于每个测试点，你的程序会得到一段程序的源代码和这段程序的输入。你的程序需要运行这段程序，并输出这段程序的输出。</p>
+<a id="more"></a>
+<h3 id="链接"><a href="#链接" class="headerlink" title="链接"></a>链接</h3>
+<p><a href="http://uoj.ac/problem/98" target="_blank" rel="noopener">UOJ #98</a></p>
+<h3 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h3>
+<p>题目要求编写一个 C++（的子集）解释器，一个可行的思路是，将 C++ 代码编译为等价的 Python 代码，然后调用 <code>exec()</code> 执行 Python 代码；同时，Python 的字符串处理非常方便，对于这道题来说是一个不错的选择。</p>
+<p>先说 Parser。</p>
+<p>从顶层做起，顶层只可能是函数或者全局变量定义，并且一定以一个 <code>int</code> 开始。向后读，读到 <code>(</code>、<code>,</code> 或 <code>;</code> 停止，如果读到了 <code>(</code>，表示这是一个函数定义，接下来读到 <code>)</code> 停止，得到参数列表，以 <code>,</code> 分割并解析参数列表，然后读取并解析函数体即可；如果读到 <code>,</code>，表示这是一条全局变量定义，并且定义了多个全局变量，接下来继续读到 <code>;</code> 停止，可以读取出定义的所有的变量，以 <code>,</code> 分割并解析变量列表即可；如果读到 <code>;</code>，则表示是单条变量定义，直接解析即可。</p>
+<p>我们可以将函数体看作一个「复合语句」，接下来只需要考虑语句的解析即可。</p>
+<p>对于一个语句的分析，首先从头开始读到空白字符停止。</p>
+<ul>
+<li>如果读到了 <code>{</code>，则这是一个复合语句，向后读匹配的括号，读到 <code>}</code> 停止，即可得到整个复合语句，去除外层的花括号，继续递归处理里面的语句即可。</li>
+<li>如果读到了 <code>if</code>，读匹配括号取出判断条件，对于之后的部分递归处理一个语句，如果接下来是 <code>else</code>，则再递归处理一个语句。</li>
+<li>如果读到了 <code>while</code> 或者 <code>for</code>，读括号内部的内容，对于 <code>for</code>，可以直接用 <code>;</code> 分割三个语句，之后递归处理一个语句。</li>
+<li>如果读到了 <code>int</code>，则这是一个变量定义，读到 <code>;</code>，以 <code>,</code> 分割即可。</li>
+<li>否则，这是一个普通语句，读到 <code>;</code> 停止即可。</li>
+</ul>
+<p>注意到，给出的代码中没有字符串常量，所以读到某符号停止不会受到干扰。</p>
+<p>这样，我们就得到了一棵语句级别的 AST，接下来考虑表达式语法的处理。</p>
+<p>对于普通变量，这里的方法是，定义一个变量容器的类型，重载它的一些运算符。<code>=</code>、<code>&amp;&amp;</code>、<code>||</code>、<code>!</code> 四个运算符找不到对应优先级的可重载的 Python 运算符，前三个的解决方法是将其转化为函数调用，对于 <code>!</code>，可以替换为 <code>X **</code>，其中 <code>X</code> 是一个对象，我们定义 <code>X ** a</code> 的返回值为将 <code>a</code> 取反 —— 因为 <code>**</code> 运算符没有被用到，并且它的优先级类似于 <code>!</code>。对于 <code>cin</code>、<code>cout</code> 的 <code>&gt;&gt;</code> 和 <code>&lt;&lt;</code>，可以替换它们，在两边加上括号，如 <code>cin &gt;&gt; &lt;expr&gt; &gt;&gt; &lt;expr2&gt;</code> 替换为 <code>(cin) &gt;&gt; (&lt;expr&gt;) &gt;&gt; (&lt;expr2&gt;)</code>。</p>
+<p>数组，对于多维数组，我们可以计算其大小，并为其写一个寻址器，每一维的 <code>[]</code> 会返回下一维的寻址器，最后一维的 <code>[]</code> 返回变量的容器。这里还有一个小小的 Trick —— 对于没有访问到的数组，不实际为其分配空间，可以节省很多时间。</p>
+<p>再接下来，我们需要生成与 AST 等价的 Python 代码。</p>
+<p>具体的思路仍然是递归，对于一个复合语句，在需要增加一级缩进。变量的定义需要被生成为变量容器的构造。</p>
+<p>一个问题是变量的作用域，复合语句内部的变量会遮蔽外部的变量 —— 解决方法是给每次变量定义分配一个唯一的 ID，将所有语句变量名替换为 ID + 原变量名即可。</p>
+<p><code>for</code> 语句的处理，对于一个这样的 <code>for</code> 语句：</p>
+<div class="highlight"><pre><code><span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token punctuation">;</span> i <span class="token operator">&lt;</span> n<span class="token punctuation">;</span> i <span class="token operator">=</span> i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    s <span class="token operator">=</span> s <span class="token operator">+</span> i<span class="token punctuation">;</span>
+    cout <span class="token operator">&lt;&lt;</span> i <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></div>
+<p>转化为：</p>
+<div class="highlight"><pre><code><span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">int</span> i<span class="token punctuation">;</span>
+    <span class="token keyword">while</span> <span class="token punctuation">(</span>i <span class="token operator">&lt;</span> n<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        s <span class="token operator">=</span> s <span class="token operator">+</span> i<span class="token punctuation">;</span>
+        cout <span class="token operator">&lt;&lt;</span> i <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    i <span class="token operator">=</span> i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></div>
+<p>注意全局变量必须在每个函数开头声明 <code>global VAR</code>，如果某一个全局变量与参数重名，则不再声明这个全局变量。</p>
+<p>题目中的递归深度很大，可以通过 <code>sys.setrecursionlimit(1000000)</code> 增大 Python 的递归深度限制。</p>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3>
+<div class="highlight"><pre><code><span class="token comment">#!/usr/bin/python3</span>
+
+<span class="token comment"># 用于辅助代码执行的类与函数</span>
+<span class="token keyword">class</span> <span class="token class-name">IntegerVariable</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> x<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token builtin">isinstance</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span> IntegerVariable<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+            self<span class="token punctuation">.</span>val <span class="token operator">=</span> x<span class="token punctuation">.</span>val
+        <span class="token keyword">else</span><span class="token punctuation">:</span>
+            self<span class="token punctuation">.</span>val <span class="token operator">=</span> <span class="token builtin">int</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span>
+
+    <span class="token keyword">def</span> <span class="token function">__repr__</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">return</span> <span class="token builtin">repr</span><span class="token punctuation">(</span>self<span class="token punctuation">.</span>val<span class="token punctuation">)</span>
+
+    <span class="token keyword">def</span> <span class="token function">__add__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> x<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">not</span> <span class="token builtin">isinstance</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span> IntegerVariable<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+            x <span class="token operator">=</span> IntegerVariable<span class="token punctuation">(</span>x<span class="token punctuation">)</span>
+        <span class="token keyword">return</span> IntegerVariable<span class="token punctuation">(</span>self<span class="token punctuation">.</span>val <span class="token operator">+</span> x<span class="token punctuation">.</span>val<span class="token punctuation">)</span>
+
+    <span class="token keyword">def</span> <span class="token function">__radd__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> x<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">not</span> <span class="token builtin">isinstance</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span> IntegerVariable<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+            x <span class="token operator">=</span> IntegerVariable<span class="token punctuation">(</span>x<span class="token punctuation">)</span>
+        <span class="token keyword">return</span> IntegerVariable<span class="token punctuation">(</span>x<span class="token punctuation">.</span>val <span class="token operator">+</span> self<span class="token punctuation">.</span>val<span class="token punctuation">)</span>
+
+    <span class="token keyword">def</span> <span class="token function">__sub__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> x<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">not</span> <span class="token builtin">isinstance</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span> IntegerVariable<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+            x <span class="token operator">=</span> IntegerVariable<span class="token punctuation">(</span>x<span class="token punctuation">)</span>
+        <span class="token keyword">return</span> IntegerVariable<span class="token punctuation">(</span>self<span class="token punctuation">.</span>val <span class="token operator">-</span> x<span class="token punctuation">.</span>val<span class="token punctuation">)</span>
+
+    <span class="token keyword">def</span> <span class="token function">__rsub__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> x<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">not</span> <span class="token builtin">isinstance</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span> IntegerVariable<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+            x <span class="token operator">=</span> IntegerVariable<span class="token punctuation">(</span>x<span class="token punctuation">)</span>
+        <span class="token keyword">return</span> IntegerVariable<span class="token punctuation">(</span>x<span class="token punctuation">.</span>val <span class="token operator">-</span> self<span class="token punctuation">.</span>val<span class="token punctuation">)</span>
+
+    <span class="token keyword">def</span> <span class="token function">__mul__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> x<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">not</span> <span class="token builtin">isinstance</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span> IntegerVariable<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+            x <span class="token operator">=</span> IntegerVariable<span class="token punctuation">(</span>x<span class="token punctuation">)</span>
+        <span class="token keyword">return</span> IntegerVariable<span class="token punctuation">(</span>self<span class="token punctuation">.</span>val <span class="token operator">*</span> x<span class="token punctuation">.</span>val<span class="token punctuation">)</span>
+
+    <span class="token keyword">def</span> <span class="token function">__rmul__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> x<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">not</span> <span class="token builtin">isinstance</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span> IntegerVariable<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+            x <span class="token operator">=</span> IntegerVariable<span class="token punctuation">(</span>x<span class="token punctuation">)</span>
+        <span class="token keyword">return</span> IntegerVariable<span class="token punctuation">(</span>x<span class="token punctuation">.</span>val <span class="token operator">*</span> self<span class="token punctuation">.</span>val<span class="token punctuation">)</span>
+
+    <span class="token keyword">def</span> <span class="token function">__floordiv__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> x<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">not</span> <span class="token builtin">isinstance</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span> IntegerVariable<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+            x <span class="token operator">=</span> IntegerVariable<span class="token punctuation">(</span>x<span class="token punctuation">)</span>
+        <span class="token keyword">return</span> IntegerVariable<span class="token punctuation">(</span>self<span class="token punctuation">.</span>val <span class="token operator">//</span> x<span class="token punctuation">.</span>val<span class="token punctuation">)</span>
+
+    <span class="token keyword">def</span> <span class="token function">__rfloordiv__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> x<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">not</span> <span class="token builtin">isinstance</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span> IntegerVariable<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+            x <span class="token operator">=</span> IntegerVariable<span class="token punctuation">(</span>x<span class="token punctuation">)</span>
+        <span class="token keyword">return</span> IntegerVariable<span class="token punctuation">(</span>x<span class="token punctuation">.</span>val <span class="token operator">//</span> self<span class="token punctuation">.</span>val<span class="token punctuation">)</span>
+
+    <span class="token keyword">def</span> <span class="token function">__mod__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> x<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">not</span> <span class="token builtin">isinstance</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span> IntegerVariable<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+            x <span class="token operator">=</span> IntegerVariable<span class="token punctuation">(</span>x<span class="token punctuation">)</span>
+        <span class="token keyword">return</span> IntegerVariable<span class="token punctuation">(</span>self<span class="token punctuation">.</span>val <span class="token operator">%</span> x<span class="token punctuation">.</span>val<span class="token punctuation">)</span>
+
+    <span class="token keyword">def</span> <span class="token function">__rmod__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> x<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">not</span> <span class="token builtin">isinstance</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span> IntegerVariable<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+            x <span class="token operator">=</span> IntegerVariable<span class="token punctuation">(</span>x<span class="token punctuation">)</span>
+        <span class="token keyword">return</span> IntegerVariable<span class="token punctuation">(</span>x<span class="token punctuation">.</span>val <span class="token operator">%</span> self<span class="token punctuation">.</span>val<span class="token punctuation">)</span>
+
+    <span class="token keyword">def</span> <span class="token function">__lt__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> x<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">not</span> <span class="token builtin">isinstance</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span> IntegerVariable<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+            x <span class="token operator">=</span> IntegerVariable<span class="token punctuation">(</span>x<span class="token punctuation">)</span>
+        <span class="token keyword">return</span> IntegerVariable<span class="token punctuation">(</span>self<span class="token punctuation">.</span>val <span class="token operator">&lt;</span> x<span class="token punctuation">.</span>val<span class="token punctuation">)</span>
+
+    <span class="token keyword">def</span> <span class="token function">__le__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> x<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">not</span> <span class="token builtin">isinstance</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span> IntegerVariable<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+            x <span class="token operator">=</span> IntegerVariable<span class="token punctuation">(</span>x<span class="token punctuation">)</span>
+        <span class="token keyword">return</span> IntegerVariable<span class="token punctuation">(</span>self<span class="token punctuation">.</span>val <span class="token operator">&lt;=</span> x<span class="token punctuation">.</span>val<span class="token punctuation">)</span>
+
+    <span class="token keyword">def</span> <span class="token function">__eq__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> x<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">not</span> <span class="token builtin">isinstance</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span> IntegerVariable<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+            x <span class="token operator">=</span> IntegerVariable<span class="token punctuation">(</span>x<span class="token punctuation">)</span>
+        <span class="token keyword">return</span> IntegerVariable<span class="token punctuation">(</span>self<span class="token punctuation">.</span>val <span class="token operator">==</span> x<span class="token punctuation">.</span>val<span class="token punctuation">)</span>
+
+    <span class="token keyword">def</span> <span class="token function">__ne__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> x<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">not</span> <span class="token builtin">isinstance</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span> IntegerVariable<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+            x <span class="token operator">=</span> IntegerVariable<span class="token punctuation">(</span>x<span class="token punctuation">)</span>
+        <span class="token keyword">return</span> IntegerVariable<span class="token punctuation">(</span>self<span class="token punctuation">.</span>val <span class="token operator">!=</span> x<span class="token punctuation">.</span>val<span class="token punctuation">)</span>
+
+    <span class="token keyword">def</span> <span class="token function">__gt__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> x<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">not</span> <span class="token builtin">isinstance</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span> IntegerVariable<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+            x <span class="token operator">=</span> IntegerVariable<span class="token punctuation">(</span>x<span class="token punctuation">)</span>
+        <span class="token keyword">return</span> IntegerVariable<span class="token punctuation">(</span>self<span class="token punctuation">.</span>val <span class="token operator">&gt;</span> x<span class="token punctuation">.</span>val<span class="token punctuation">)</span>
+
+    <span class="token keyword">def</span> <span class="token function">__ge__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> x<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">not</span> <span class="token builtin">isinstance</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span> IntegerVariable<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+            x <span class="token operator">=</span> IntegerVariable<span class="token punctuation">(</span>x<span class="token punctuation">)</span>
+        <span class="token keyword">return</span> IntegerVariable<span class="token punctuation">(</span>self<span class="token punctuation">.</span>val <span class="token operator">&gt;=</span> x<span class="token punctuation">.</span>val<span class="token punctuation">)</span>
+
+    <span class="token keyword">def</span> <span class="token function">__xor__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> x<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">not</span> <span class="token builtin">isinstance</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span> IntegerVariable<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+            x <span class="token operator">=</span> IntegerVariable<span class="token punctuation">(</span>x<span class="token punctuation">)</span>
+        <span class="token keyword">return</span> IntegerVariable<span class="token punctuation">(</span>self<span class="token punctuation">.</span>val <span class="token operator">^</span> x<span class="token punctuation">.</span>val<span class="token punctuation">)</span>
+
+    <span class="token keyword">def</span> <span class="token function">__rxor__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> x<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">not</span> <span class="token builtin">isinstance</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span> IntegerVariable<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+            x <span class="token operator">=</span> IntegerVariable<span class="token punctuation">(</span>x<span class="token punctuation">)</span>
+        <span class="token keyword">return</span> IntegerVariable<span class="token punctuation">(</span>x<span class="token punctuation">.</span>val <span class="token operator">^</span> self<span class="token punctuation">.</span>val<span class="token punctuation">)</span>
+
+    <span class="token keyword">def</span> <span class="token function">assign_with</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> x<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">not</span> <span class="token builtin">isinstance</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span> IntegerVariable<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+            x <span class="token operator">=</span> IntegerVariable<span class="token punctuation">(</span>x<span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>val <span class="token operator">=</span> x<span class="token punctuation">.</span>val
+        <span class="token keyword">return</span> self
+
+<span class="token keyword">def</span> <span class="token function">logical_and</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span> y<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">not</span> <span class="token builtin">isinstance</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span> IntegerVariable<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+        x <span class="token operator">=</span> IntegerVariable<span class="token punctuation">(</span>x<span class="token punctuation">)</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">not</span> <span class="token builtin">isinstance</span><span class="token punctuation">(</span>y<span class="token punctuation">,</span> IntegerVariable<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+        y <span class="token operator">=</span> IntegerVariable<span class="token punctuation">(</span>y<span class="token punctuation">)</span>
+    <span class="token keyword">return</span> IntegerVariable<span class="token punctuation">(</span><span class="token punctuation">(</span>x<span class="token punctuation">.</span>val <span class="token operator">!=</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token keyword">and</span> <span class="token punctuation">(</span>y<span class="token punctuation">.</span>val <span class="token operator">!=</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+<span class="token keyword">def</span> <span class="token function">logical_or</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span> y<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">not</span> <span class="token builtin">isinstance</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span> IntegerVariable<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+        x <span class="token operator">=</span> IntegerVariable<span class="token punctuation">(</span>x<span class="token punctuation">)</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">not</span> <span class="token builtin">isinstance</span><span class="token punctuation">(</span>y<span class="token punctuation">,</span> IntegerVariable<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+        y <span class="token operator">=</span> IntegerVariable<span class="token punctuation">(</span>y<span class="token punctuation">)</span>
+    <span class="token keyword">return</span> IntegerVariable<span class="token punctuation">(</span><span class="token punctuation">(</span>x<span class="token punctuation">.</span>val <span class="token operator">!=</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token keyword">or</span> <span class="token punctuation">(</span>y<span class="token punctuation">.</span>val <span class="token operator">!=</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+<span class="token comment"># 将逻辑非（'!'）运算符转化为乘方（'**'）运算符</span>
+<span class="token keyword">class</span> <span class="token class-name">LogicalNotHelper</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">__pow__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> x<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">not</span> <span class="token builtin">isinstance</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span> IntegerVariable<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+            x <span class="token operator">=</span> IntegerVariable<span class="token punctuation">(</span><span class="token builtin">int</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token punctuation">)</span>
+        <span class="token keyword">return</span> IntegerVariable<span class="token punctuation">(</span><span class="token builtin">int</span><span class="token punctuation">(</span><span class="token keyword">not</span> x<span class="token punctuation">.</span>val<span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+logical_not <span class="token operator">=</span> LogicalNotHelper<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token keyword">class</span> <span class="token class-name">ArrayAccessProxy</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> l<span class="token punctuation">,</span> length<span class="token punctuation">,</span> lengths<span class="token punctuation">,</span> curr_dim<span class="token punctuation">,</span> curr_pos<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        self<span class="token punctuation">.</span>l <span class="token operator">=</span> l
+        self<span class="token punctuation">.</span>length <span class="token operator">=</span> length
+        self<span class="token punctuation">.</span>lengths <span class="token operator">=</span> lengths
+        self<span class="token punctuation">.</span>curr_dim <span class="token operator">=</span> curr_dim
+        self<span class="token punctuation">.</span>curr_pos <span class="token operator">=</span> curr_pos
+
+    <span class="token keyword">def</span> <span class="token function">__getitem__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> x<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        new_length <span class="token operator">=</span> self<span class="token punctuation">.</span>length <span class="token operator">//</span> self<span class="token punctuation">.</span>lengths<span class="token punctuation">[</span>self<span class="token punctuation">.</span>curr_dim<span class="token punctuation">]</span>
+        new_pos <span class="token operator">=</span> self<span class="token punctuation">.</span>curr_pos <span class="token operator">+</span> x <span class="token operator">*</span> new_length
+        <span class="token keyword">if</span> self<span class="token punctuation">.</span>curr_dim <span class="token operator">+</span> <span class="token number">1</span> <span class="token operator">==</span> <span class="token builtin">len</span><span class="token punctuation">(</span>self<span class="token punctuation">.</span>lengths<span class="token punctuation">)</span><span class="token punctuation">:</span>
+            <span class="token keyword">return</span> self<span class="token punctuation">.</span>l<span class="token punctuation">[</span>new_pos<span class="token punctuation">]</span>
+        <span class="token keyword">else</span><span class="token punctuation">:</span>
+            <span class="token keyword">return</span> ArrayAccessProxy<span class="token punctuation">(</span>self<span class="token punctuation">.</span>l<span class="token punctuation">,</span> new_length<span class="token punctuation">,</span> self<span class="token punctuation">.</span>lengths<span class="token punctuation">,</span> self<span class="token punctuation">.</span>curr_dim <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">,</span> new_pos<span class="token punctuation">)</span>
+
+    <span class="token keyword">def</span> <span class="token function">__setitem__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> x<span class="token punctuation">,</span> val<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        new_length <span class="token operator">=</span> self<span class="token punctuation">.</span>length <span class="token operator">//</span> self<span class="token punctuation">.</span>lengths<span class="token punctuation">[</span>self<span class="token punctuation">.</span>curr_dim<span class="token punctuation">]</span>
+        new_pos <span class="token operator">=</span> self<span class="token punctuation">.</span>curr_pos <span class="token operator">+</span> x <span class="token operator">*</span> new_length
+        <span class="token keyword">if</span> self<span class="token punctuation">.</span>curr_dim <span class="token operator">+</span> <span class="token number">1</span> <span class="token operator">==</span> <span class="token builtin">len</span><span class="token punctuation">(</span>self<span class="token punctuation">.</span>lengths<span class="token punctuation">)</span><span class="token punctuation">:</span>
+            self<span class="token punctuation">.</span>l<span class="token punctuation">[</span>new_pos<span class="token punctuation">]</span> <span class="token operator">=</span> IntegerVariable<span class="token punctuation">(</span>val<span class="token punctuation">)</span>
+        <span class="token keyword">else</span><span class="token punctuation">:</span>
+            <span class="token keyword">raise</span> TypeError<span class="token punctuation">(</span><span class="token string">'Assign to a Array'</span><span class="token punctuation">)</span>
+
+<span class="token keyword">class</span> <span class="token class-name">Array</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> lengths<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        self<span class="token punctuation">.</span>lengths <span class="token operator">=</span> lengths
+        self<span class="token punctuation">.</span>length <span class="token operator">=</span> <span class="token number">1</span>
+        <span class="token keyword">for</span> i <span class="token keyword">in</span> lengths<span class="token punctuation">:</span>
+            self<span class="token punctuation">.</span>length <span class="token operator">*=</span> i
+        self<span class="token punctuation">.</span>l <span class="token operator">=</span> <span class="token boolean">None</span>
+
+    <span class="token keyword">def</span> <span class="token function">__repr__</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">return</span> <span class="token builtin">repr</span><span class="token punctuation">(</span>self<span class="token punctuation">.</span>l<span class="token punctuation">)</span>
+
+    <span class="token keyword">def</span> <span class="token function">construct</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">if</span> <span class="token keyword">not</span> self<span class="token punctuation">.</span>l<span class="token punctuation">:</span>
+            self<span class="token punctuation">.</span>l <span class="token operator">=</span> <span class="token punctuation">[</span>IntegerVariable<span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span> <span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> self<span class="token punctuation">.</span>length<span class="token punctuation">)</span><span class="token punctuation">]</span>
+
+    <span class="token keyword">def</span> <span class="token function">__getitem__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> x<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">if</span> <span class="token keyword">not</span> self<span class="token punctuation">.</span>l<span class="token punctuation">:</span>
+            self<span class="token punctuation">.</span>construct<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+        <span class="token keyword">if</span> <span class="token builtin">isinstance</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span> IntegerVariable<span class="token punctuation">)</span><span class="token punctuation">:</span>
+            x <span class="token operator">=</span> x<span class="token punctuation">.</span>val
+        <span class="token keyword">if</span> <span class="token builtin">len</span><span class="token punctuation">(</span>self<span class="token punctuation">.</span>lengths<span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">1</span><span class="token punctuation">:</span>
+            <span class="token keyword">return</span> self<span class="token punctuation">.</span>l<span class="token punctuation">[</span>x<span class="token punctuation">]</span>
+        <span class="token keyword">else</span><span class="token punctuation">:</span>
+            new_length <span class="token operator">=</span> self<span class="token punctuation">.</span>length <span class="token operator">//</span> self<span class="token punctuation">.</span>lengths<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span>
+            new_pos <span class="token operator">=</span> x <span class="token operator">*</span> new_length
+            <span class="token keyword">return</span> ArrayAccessProxy<span class="token punctuation">(</span>self<span class="token punctuation">.</span>l<span class="token punctuation">,</span> new_length<span class="token punctuation">,</span> self<span class="token punctuation">.</span>lengths<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> new_pos<span class="token punctuation">)</span>
+
+    <span class="token keyword">def</span> <span class="token function">__setitem__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> x<span class="token punctuation">,</span> val<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">if</span> <span class="token keyword">not</span> self<span class="token punctuation">.</span>l<span class="token punctuation">:</span>
+            self<span class="token punctuation">.</span>construct<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">not</span> <span class="token builtin">isinstance</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span> IntegerVariable<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+            x <span class="token operator">=</span> IntegerVariable<span class="token punctuation">(</span>x<span class="token punctuation">)</span>
+        <span class="token keyword">if</span> <span class="token builtin">len</span><span class="token punctuation">(</span>self<span class="token punctuation">.</span>lengths<span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">1</span><span class="token punctuation">:</span>
+            self<span class="token punctuation">.</span>l<span class="token punctuation">[</span>x<span class="token punctuation">.</span>val<span class="token punctuation">]</span> <span class="token operator">=</span> val
+        <span class="token keyword">else</span><span class="token punctuation">:</span>
+            <span class="token keyword">raise</span> TypeError<span class="token punctuation">(</span><span class="token string">'Assign to a Array'</span><span class="token punctuation">)</span>
+
+<span class="token keyword">class</span> <span class="token class-name">OutputStream</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">__lshift__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> x<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">if</span> <span class="token builtin">isinstance</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span> EndLine<span class="token punctuation">)</span><span class="token punctuation">:</span>
+            <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'\n'</span><span class="token punctuation">,</span> end <span class="token operator">=</span> <span class="token string">''</span><span class="token punctuation">)</span>
+        <span class="token keyword">elif</span> <span class="token builtin">isinstance</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span> IntegerVariable<span class="token punctuation">)</span><span class="token punctuation">:</span>
+            <span class="token keyword">print</span><span class="token punctuation">(</span>x<span class="token punctuation">.</span>val<span class="token punctuation">,</span> end <span class="token operator">=</span> <span class="token string">''</span><span class="token punctuation">)</span>
+        <span class="token keyword">else</span><span class="token punctuation">:</span>
+            <span class="token keyword">print</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span> end <span class="token operator">=</span> <span class="token string">''</span><span class="token punctuation">)</span>
+        <span class="token keyword">return</span> self
+
+<span class="token keyword">class</span> <span class="token class-name">InputStream</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        self<span class="token punctuation">.</span>index <span class="token operator">=</span> <span class="token number">0</span>
+
+    <span class="token keyword">def</span> <span class="token function">__rshift__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> x<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        x<span class="token punctuation">.</span>val <span class="token operator">=</span> self<span class="token punctuation">.</span>data<span class="token punctuation">[</span>self<span class="token punctuation">.</span>index<span class="token punctuation">]</span>
+        self<span class="token punctuation">.</span>index <span class="token operator">+=</span> <span class="token number">1</span>
+        <span class="token keyword">return</span> self
+
+<span class="token keyword">class</span> <span class="token class-name">EndLine</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">pass</span>
+
+cout <span class="token operator">=</span> OutputStream<span class="token punctuation">(</span><span class="token punctuation">)</span>
+cin <span class="token operator">=</span> InputStream<span class="token punctuation">(</span><span class="token punctuation">)</span>
+endl <span class="token operator">=</span> EndLine<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token keyword">def</span> <span class="token function">variable</span><span class="token punctuation">(</span>array_lengths<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">if</span> array_lengths <span class="token operator">==</span> <span class="token boolean">None</span> <span class="token keyword">or</span> <span class="token builtin">len</span><span class="token punctuation">(</span>array_lengths<span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">:</span>
+        <span class="token keyword">return</span> IntegerVariable<span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span>
+    <span class="token keyword">else</span><span class="token punctuation">:</span>
+        <span class="token keyword">return</span> Array<span class="token punctuation">(</span>array_lengths<span class="token punctuation">)</span>
+
+<span class="token keyword">def</span> <span class="token function">get_value</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">if</span> <span class="token keyword">not</span> <span class="token builtin">isinstance</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span> IntegerVariable<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">return</span> x
+    <span class="token keyword">else</span><span class="token punctuation">:</span>
+        <span class="token keyword">return</span> x<span class="token punctuation">.</span>val
+
+<span class="token keyword">def</span> <span class="token function">init_arg</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">if</span> <span class="token builtin">isinstance</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span> IntegerVariable<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">return</span> IntegerVariable<span class="token punctuation">(</span>x<span class="token punctuation">.</span>val<span class="token punctuation">)</span>
+    <span class="token keyword">else</span><span class="token punctuation">:</span>
+        <span class="token keyword">return</span> IntegerVariable<span class="token punctuation">(</span><span class="token builtin">int</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+<span class="token keyword">def</span> <span class="token function">putchar</span><span class="token punctuation">(</span>ch<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token builtin">chr</span><span class="token punctuation">(</span>get_value<span class="token punctuation">(</span>ch<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span> end <span class="token operator">=</span> <span class="token string">''</span><span class="token punctuation">)</span>
+
+<span class="token comment"># 读取输入数据，初始化 cin 输入流</span>
+<span class="token keyword">def</span> <span class="token function">init_input_stream</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">read_integers</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">return</span> <span class="token builtin">list</span><span class="token punctuation">(</span><span class="token builtin">map</span><span class="token punctuation">(</span><span class="token builtin">int</span><span class="token punctuation">,</span> <span class="token builtin">str</span><span class="token punctuation">(</span><span class="token builtin">input</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span>split<span class="token punctuation">(</span><span class="token string">' '</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    a <span class="token operator">=</span> read_integers<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    data <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+    n <span class="token operator">=</span> a<span class="token punctuation">.</span>pop<span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span>
+    <span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> n<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">if</span> <span class="token builtin">len</span><span class="token punctuation">(</span>a<span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">:</span>
+            a <span class="token operator">=</span> read_integers<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        data<span class="token punctuation">.</span>append<span class="token punctuation">(</span>a<span class="token punctuation">.</span>pop<span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    cin<span class="token punctuation">.</span>data <span class="token operator">=</span> data
+
+<span class="token comment"># 从字符串最右边向左取出尽量多的字符，直到下一个字符会导致括号不能匹配或【下一个字符为逗号（','）且当前的括号是匹配的】</span>
+<span class="token keyword">def</span> <span class="token function">left_until_nearest_unmatched_bracket_or_comma</span><span class="token punctuation">(</span>s<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    right_bracket_count <span class="token operator">=</span> <span class="token number">0</span>
+    res <span class="token operator">=</span> <span class="token string">''</span>
+    <span class="token keyword">while</span> <span class="token builtin">len</span><span class="token punctuation">(</span>s<span class="token punctuation">)</span> <span class="token operator">&gt;</span> <span class="token number">0</span><span class="token punctuation">:</span>
+        ch <span class="token operator">=</span> s<span class="token punctuation">[</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">:</span><span class="token punctuation">]</span>
+        <span class="token keyword">if</span> ch <span class="token operator">==</span> <span class="token string">','</span><span class="token punctuation">:</span>
+            <span class="token keyword">if</span> right_bracket_count <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">:</span>
+                <span class="token keyword">break</span>
+        <span class="token keyword">elif</span> ch <span class="token keyword">in</span> <span class="token string">')]}'</span><span class="token punctuation">:</span>
+            right_bracket_count <span class="token operator">+=</span> <span class="token number">1</span>
+        <span class="token keyword">elif</span> ch <span class="token keyword">in</span> <span class="token string">'([{'</span><span class="token punctuation">:</span>
+            right_bracket_count <span class="token operator">-=</span> <span class="token number">1</span>
+            <span class="token keyword">if</span> right_bracket_count <span class="token operator">&lt;</span> <span class="token number">0</span><span class="token punctuation">:</span>
+                <span class="token keyword">break</span>
+        res <span class="token operator">=</span> ch <span class="token operator">+</span> res
+        s <span class="token operator">=</span> s<span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span>
+    <span class="token keyword">return</span> s<span class="token punctuation">,</span> res
+
+<span class="token comment"># 从字符串最左边向右取出尽量多的字符，直到下一个字符会导致括号不能匹配或【下一个字符为逗号（','）且当前的括号是匹配的】</span>
+<span class="token keyword">def</span> <span class="token function">right_until_nearest_unmatched_bracket_or_comma</span><span class="token punctuation">(</span>s<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    left_bracket_count <span class="token operator">=</span> <span class="token number">0</span>
+    res <span class="token operator">=</span> <span class="token string">''</span>
+    <span class="token keyword">while</span> <span class="token builtin">len</span><span class="token punctuation">(</span>s<span class="token punctuation">)</span> <span class="token operator">&gt;</span> <span class="token number">0</span><span class="token punctuation">:</span>
+        ch <span class="token operator">=</span> s<span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token number">1</span><span class="token punctuation">]</span>
+        <span class="token keyword">if</span> ch <span class="token operator">==</span> <span class="token string">','</span><span class="token punctuation">:</span>
+            <span class="token keyword">if</span> left_bracket_count <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">:</span>
+                <span class="token keyword">break</span>
+        <span class="token keyword">elif</span> ch <span class="token keyword">in</span> <span class="token string">'([{'</span><span class="token punctuation">:</span>
+            left_bracket_count <span class="token operator">+=</span> <span class="token number">1</span>
+        <span class="token keyword">elif</span> ch <span class="token keyword">in</span> <span class="token string">')]}'</span><span class="token punctuation">:</span>
+            left_bracket_count <span class="token operator">-=</span> <span class="token number">1</span>
+            <span class="token keyword">if</span> left_bracket_count <span class="token operator">&lt;</span> <span class="token number">0</span><span class="token punctuation">:</span>
+                <span class="token keyword">break</span>
+        res <span class="token operator">+=</span> ch
+        s <span class="token operator">=</span> s<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">:</span><span class="token punctuation">]</span>
+    <span class="token keyword">return</span> s<span class="token punctuation">,</span> res
+
+<span class="token comment"># 转化赋值运算符为函数调用</span>
+<span class="token keyword">def</span> <span class="token function">transform_expression_assignment</span><span class="token punctuation">(</span>s<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    s <span class="token operator">=</span> s<span class="token punctuation">.</span>strip<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    pos <span class="token operator">=</span> s<span class="token punctuation">.</span>find<span class="token punctuation">(</span><span class="token string">'='</span><span class="token punctuation">)</span>
+
+    <span class="token comment"># 找到的等号是不等于（!=）、等于（==）、大于等于（&gt;=）、小于等于（&lt;=）运算符的一部分</span>
+    <span class="token keyword">while</span> pos <span class="token operator">!=</span> <span class="token operator">-</span><span class="token number">1</span> <span class="token keyword">and</span> <span class="token punctuation">(</span>s<span class="token punctuation">[</span>pos <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">==</span> <span class="token string">'='</span> <span class="token keyword">or</span> s<span class="token punctuation">[</span>pos <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">]</span> <span class="token keyword">in</span> <span class="token string">'!&gt;&lt;'</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+        pos <span class="token operator">=</span> s<span class="token punctuation">.</span>find<span class="token punctuation">(</span><span class="token string">'='</span><span class="token punctuation">,</span> pos <span class="token operator">+</span> <span class="token number">2</span><span class="token punctuation">)</span>
+
+    <span class="token comment"># 找不到赋值运算符</span>
+    <span class="token keyword">if</span> pos <span class="token operator">==</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">:</span>
+        <span class="token keyword">return</span> s
+
+    left <span class="token operator">=</span> s<span class="token punctuation">[</span><span class="token punctuation">:</span>pos<span class="token punctuation">]</span><span class="token punctuation">.</span>strip<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    left<span class="token punctuation">,</span> left_exp <span class="token operator">=</span> left_until_nearest_unmatched_bracket_or_comma<span class="token punctuation">(</span>left<span class="token punctuation">)</span>
+    right <span class="token operator">=</span> s<span class="token punctuation">[</span>pos <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">:</span><span class="token punctuation">]</span><span class="token punctuation">.</span>strip<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    right<span class="token punctuation">,</span> right_exp <span class="token operator">=</span> right_until_nearest_unmatched_bracket_or_comma<span class="token punctuation">(</span>right<span class="token punctuation">)</span>
+    <span class="token keyword">return</span> <span class="token string">'%s((%s).assign_with(%s))%s'</span> <span class="token operator">%</span> <span class="token punctuation">(</span>left<span class="token punctuation">,</span> left_exp<span class="token punctuation">,</span> transform_expression_assignment<span class="token punctuation">(</span>right_exp<span class="token punctuation">)</span><span class="token punctuation">,</span> transform_expression_assignment<span class="token punctuation">(</span>right<span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+<span class="token comment"># 转化逻辑运算符为函数调用</span>
+<span class="token keyword">def</span> <span class="token function">transform_expression_logical_operators</span><span class="token punctuation">(</span>s<span class="token punctuation">,</span> op<span class="token punctuation">,</span> function_name<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    s <span class="token operator">=</span> s<span class="token punctuation">.</span>strip<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    pos <span class="token operator">=</span> s<span class="token punctuation">.</span>find<span class="token punctuation">(</span>op<span class="token punctuation">)</span>
+
+    <span class="token comment"># 找不到对应的运算符</span>
+    <span class="token keyword">if</span> pos <span class="token operator">==</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">:</span>
+        <span class="token keyword">return</span> s
+
+    left <span class="token operator">=</span> s<span class="token punctuation">[</span><span class="token punctuation">:</span>pos<span class="token punctuation">]</span><span class="token punctuation">.</span>strip<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    left<span class="token punctuation">,</span> left_exp <span class="token operator">=</span> left_until_nearest_unmatched_bracket_or_comma<span class="token punctuation">(</span>left<span class="token punctuation">)</span>
+    right <span class="token operator">=</span> s<span class="token punctuation">[</span>pos <span class="token operator">+</span> <span class="token number">2</span><span class="token punctuation">:</span><span class="token punctuation">]</span><span class="token punctuation">.</span>strip<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    right<span class="token punctuation">,</span> right_exp <span class="token operator">=</span> right_until_nearest_unmatched_bracket_or_comma<span class="token punctuation">(</span>right<span class="token punctuation">)</span>
+    <span class="token comment"># print('transform_expression_logical_operators(%s): left = "%s", right = "%s"' % (op, left, right))</span>
+    <span class="token keyword">return</span> <span class="token string">'%s(%s(%s, %s))%s'</span> <span class="token operator">%</span> <span class="token punctuation">(</span>left<span class="token punctuation">,</span> function_name<span class="token punctuation">,</span> left_exp<span class="token punctuation">,</span> transform_expression_logical_operators<span class="token punctuation">(</span>right_exp<span class="token punctuation">,</span> op<span class="token punctuation">,</span> function_name<span class="token punctuation">)</span><span class="token punctuation">,</span> transform_expression_logical_operators<span class="token punctuation">(</span>right<span class="token punctuation">,</span> op<span class="token punctuation">,</span> function_name<span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+<span class="token comment"># 转化运算符</span>
+<span class="token keyword">def</span> <span class="token function">transform_expression_operators</span><span class="token punctuation">(</span>s<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token comment"># 将 '!exp' 替换为 'logical_not ** exp'</span>
+    s <span class="token operator">=</span> s<span class="token punctuation">.</span>replace<span class="token punctuation">(</span><span class="token string">'!='</span><span class="token punctuation">,</span> <span class="token string">'
+</span><span class="token punctuation">)</span>
+    s <span class="token operator">=</span> s<span class="token punctuation">.</span>replace<span class="token punctuation">(</span><span class="token string">'!'</span><span class="token punctuation">,</span> <span class="token string">'logical_not ** '</span><span class="token punctuation">)</span>
+    s <span class="token operator">=</span> s<span class="token punctuation">.</span>replace<span class="token punctuation">(</span><span class="token string">'
+</span><span class="token punctuation">,</span> <span class="token string">'!='</span><span class="token punctuation">)</span>
+    <span class="token comment"># 将 '/' 替换为 '//'</span>
+    <span class="token comment"># 保证之前替换过的不会再次替换</span>
+    s <span class="token operator">=</span> s<span class="token punctuation">.</span>replace<span class="token punctuation">(</span><span class="token string">'//'</span><span class="token punctuation">,</span> <span class="token string">'/'</span><span class="token punctuation">)</span>
+    s <span class="token operator">=</span> s<span class="token punctuation">.</span>replace<span class="token punctuation">(</span><span class="token string">'/'</span><span class="token punctuation">,</span> <span class="token string">'//'</span><span class="token punctuation">)</span>
+    <span class="token keyword">return</span> s
+
+<span class="token comment"># 对表达式进行转化</span>
+<span class="token keyword">def</span> <span class="token function">transform_expression</span><span class="token punctuation">(</span>s<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">transform</span><span class="token punctuation">(</span>s<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        s <span class="token operator">=</span> transform_expression_operators<span class="token punctuation">(</span>s<span class="token punctuation">)</span>
+        s <span class="token operator">=</span> transform_expression_logical_operators<span class="token punctuation">(</span>s<span class="token punctuation">,</span> <span class="token string">'||'</span><span class="token punctuation">,</span> <span class="token string">'logical_or'</span><span class="token punctuation">)</span>
+        s <span class="token operator">=</span> transform_expression_logical_operators<span class="token punctuation">(</span>s<span class="token punctuation">,</span> <span class="token string">'&amp;&amp;'</span><span class="token punctuation">,</span> <span class="token string">'logical_and'</span><span class="token punctuation">)</span>
+        s <span class="token operator">=</span> transform_expression_assignment<span class="token punctuation">(</span>s<span class="token punctuation">)</span>
+        <span class="token keyword">return</span> s
+
+    last_l <span class="token operator">=</span> <span class="token builtin">len</span><span class="token punctuation">(</span>s<span class="token punctuation">)</span>
+    last_r <span class="token operator">=</span> <span class="token number">0</span>
+    <span class="token keyword">while</span> <span class="token boolean">True</span><span class="token punctuation">:</span>
+        <span class="token comment"># 从右向左找更靠右的圆括号（'('）或方括号（'['）</span>
+        l_round <span class="token operator">=</span> s<span class="token punctuation">.</span>rfind<span class="token punctuation">(</span><span class="token string">'('</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> last_l<span class="token punctuation">)</span>
+        l_box <span class="token operator">=</span> s<span class="token punctuation">.</span>rfind<span class="token punctuation">(</span><span class="token string">'['</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> last_l<span class="token punctuation">)</span>
+
+        <span class="token keyword">if</span> l_round <span class="token operator">==</span> <span class="token operator">-</span><span class="token number">1</span> <span class="token keyword">and</span> l_box <span class="token operator">==</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">:</span>
+            <span class="token keyword">break</span>
+
+        <span class="token comment"># 优先处理更靠右的</span>
+        right_bracket <span class="token operator">=</span> <span class="token string">')'</span> <span class="token keyword">if</span> l_round <span class="token operator">&gt;</span> l_box <span class="token keyword">else</span> <span class="token string">']'</span>
+        l <span class="token operator">=</span> l_round <span class="token keyword">if</span> l_round <span class="token operator">&gt;</span> l_box <span class="token keyword">else</span> l_box
+
+        left <span class="token operator">=</span> s<span class="token punctuation">[</span><span class="token punctuation">:</span>l <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">]</span>
+        right<span class="token punctuation">,</span> mid <span class="token operator">=</span> right_until_nearest_unmatched_bracket_or_comma<span class="token punctuation">(</span>s<span class="token punctuation">[</span>l <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">:</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+
+        <span class="token comment"># r = s.find(right_bracket, l + 1)</span>
+
+        <span class="token comment"># print('transform_expression(): Find expression %s' % s[l + 1:r])</span>
+
+        <span class="token comment"># s = s[:l + 1] + transform(s[l + 1:r]) + s[r:]</span>
+        s <span class="token operator">=</span> left <span class="token operator">+</span> transform<span class="token punctuation">(</span>mid<span class="token punctuation">)</span> <span class="token operator">+</span> right
+        last_l <span class="token operator">=</span> l
+
+    <span class="token keyword">return</span> transform<span class="token punctuation">(</span>s<span class="token punctuation">)</span>
+
+<span class="token comment"># 跳过开头的 3 行</span>
+<span class="token keyword">def</span> <span class="token function">skip_header</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token builtin">input</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token comment"># 读代码，即从当前标准输入读到文件结束</span>
+<span class="token keyword">def</span> <span class="token function">read_code</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    code <span class="token operator">=</span> <span class="token string">''</span>
+    <span class="token keyword">while</span> <span class="token boolean">True</span><span class="token punctuation">:</span>
+        <span class="token keyword">try</span><span class="token punctuation">:</span>
+            code <span class="token operator">+=</span> <span class="token builtin">input</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">'\n'</span>
+        <span class="token keyword">except</span> EOFError<span class="token punctuation">:</span>
+            <span class="token keyword">break</span>
+    <span class="token keyword">return</span> code
+
+<span class="token comment"># 判断一个字符（串）是否为空字符</span>
+<span class="token keyword">def</span> <span class="token function">is_empty</span><span class="token punctuation">(</span><span class="token builtin">str</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">return</span> <span class="token keyword">not</span> <span class="token builtin">str</span><span class="token punctuation">.</span>strip<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token comment"># 增加一级缩进（4 个空格）</span>
+<span class="token keyword">def</span> <span class="token function">indent</span><span class="token punctuation">(</span>code<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">return</span> <span class="token string">'\n'</span><span class="token punctuation">.</span>join<span class="token punctuation">(</span><span class="token builtin">list</span><span class="token punctuation">(</span><span class="token builtin">map</span><span class="token punctuation">(</span><span class="token keyword">lambda</span> s<span class="token punctuation">:</span> <span class="token string">'    '</span> <span class="token operator">+</span> s<span class="token punctuation">,</span> code<span class="token punctuation">.</span>split<span class="token punctuation">(</span><span class="token string">'\n'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+<span class="token comment"># 文本处理器</span>
+<span class="token keyword">class</span> <span class="token class-name">Tokenizer</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> s<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        self<span class="token punctuation">.</span>s <span class="token operator">=</span> s
+        self<span class="token punctuation">.</span>pos <span class="token operator">=</span> <span class="token number">0</span>
+
+    <span class="token comment"># 读取下一个字符，但不改变当前位置</span>
+    <span class="token keyword">def</span> <span class="token function">peek</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">if</span> self<span class="token punctuation">.</span>pos <span class="token operator">==</span> <span class="token builtin">len</span><span class="token punctuation">(</span>self<span class="token punctuation">.</span>s<span class="token punctuation">)</span><span class="token punctuation">:</span>
+            <span class="token keyword">raise</span> IndexError<span class="token punctuation">(</span><span class="token string">'peek() reached end of string'</span><span class="token punctuation">)</span>
+
+        <span class="token keyword">return</span> self<span class="token punctuation">.</span>s<span class="token punctuation">[</span>self<span class="token punctuation">.</span>pos<span class="token punctuation">]</span>
+
+    <span class="token comment"># 读取下一个字符，并将当前位置向后移动一个字符</span>
+    <span class="token keyword">def</span> <span class="token function">next</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">if</span> self<span class="token punctuation">.</span>pos <span class="token operator">==</span> <span class="token builtin">len</span><span class="token punctuation">(</span>self<span class="token punctuation">.</span>s<span class="token punctuation">)</span><span class="token punctuation">:</span>
+            <span class="token keyword">raise</span> IndexError<span class="token punctuation">(</span><span class="token string">'next() reached end of string'</span><span class="token punctuation">)</span>
+
+        ch <span class="token operator">=</span> self<span class="token punctuation">.</span>s<span class="token punctuation">[</span>self<span class="token punctuation">.</span>pos<span class="token punctuation">]</span>
+        self<span class="token punctuation">.</span>pos <span class="token operator">+=</span> <span class="token number">1</span>
+        <span class="token keyword">return</span> ch
+
+    <span class="token comment"># 将当前位置向前移动一个字符</span>
+    <span class="token keyword">def</span> <span class="token function">back</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">if</span> self<span class="token punctuation">.</span>pos <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">:</span>
+            <span class="token keyword">raise</span> IndexError<span class="token punctuation">(</span><span class="token string">'back() reached begin of string'</span><span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>pos <span class="token operator">-=</span> <span class="token number">1</span>
+
+    <span class="token comment"># 向后读取，直到读到空白字符</span>
+    <span class="token keyword">def</span> <span class="token function">next_until_empty</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        s <span class="token operator">=</span> <span class="token string">''</span>
+        <span class="token keyword">while</span> is_empty<span class="token punctuation">(</span>self<span class="token punctuation">.</span>peek<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+            self<span class="token punctuation">.</span><span class="token builtin">next</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token keyword">while</span> self<span class="token punctuation">.</span>pos <span class="token operator">&lt;</span> <span class="token builtin">len</span><span class="token punctuation">(</span>self<span class="token punctuation">.</span>s<span class="token punctuation">)</span> <span class="token keyword">and</span> <span class="token punctuation">(</span><span class="token keyword">not</span> is_empty<span class="token punctuation">(</span>self<span class="token punctuation">.</span>peek<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+            s <span class="token operator">+=</span> self<span class="token punctuation">.</span><span class="token builtin">next</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token keyword">return</span> s
+
+    <span class="token comment"># 向后读取，直到读到空白字符，不改变当前位置</span>
+    <span class="token keyword">def</span> <span class="token function">peek_until_empty</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        pos_bak <span class="token operator">=</span> self<span class="token punctuation">.</span>pos
+        res <span class="token operator">=</span> self<span class="token punctuation">.</span>next_until_empty<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>pos <span class="token operator">=</span> pos_bak
+        <span class="token keyword">return</span> res
+
+    <span class="token comment"># 向后读取，直到读到 `strings` 中的任何一个字符串停止，不改变当前位置</span>
+    <span class="token comment"># 返回一个二元组，读到的字符串（不包含结束字符串）和结束字符串</span>
+    <span class="token keyword">def</span> <span class="token function">peek_until</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> strings<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        pos_bak <span class="token operator">=</span> self<span class="token punctuation">.</span>pos
+        res <span class="token operator">=</span> self<span class="token punctuation">.</span>next_until<span class="token punctuation">(</span>strings<span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>pos <span class="token operator">=</span> pos_bak
+        <span class="token keyword">return</span> res
+
+    <span class="token comment"># 向后读取，直到读到 `strings` 中的任何一个字符串停止</span>
+    <span class="token comment"># 返回一个二元组，读到的字符串（不包含结束字符串）和结束字符串</span>
+    <span class="token keyword">def</span> <span class="token function">next_until</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> strings<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        s <span class="token operator">=</span> <span class="token string">''</span>
+        <span class="token keyword">while</span> is_empty<span class="token punctuation">(</span>self<span class="token punctuation">.</span>peek<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+            self<span class="token punctuation">.</span><span class="token builtin">next</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token keyword">while</span> <span class="token boolean">True</span><span class="token punctuation">:</span>
+            <span class="token keyword">for</span> i <span class="token keyword">in</span> strings<span class="token punctuation">:</span>
+                <span class="token keyword">if</span> s<span class="token punctuation">.</span>endswith<span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">:</span>
+                    <span class="token keyword">return</span> s<span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token builtin">len</span><span class="token punctuation">(</span>s<span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token builtin">len</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">,</span> i
+            s <span class="token operator">+=</span> self<span class="token punctuation">.</span><span class="token builtin">next</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+    <span class="token comment"># 向后读取一个括号匹配的块</span>
+    <span class="token comment"># 这里并没有保证对应匹配（即比如 ] 可以匹配 (），因为题目保证源代码合法</span>
+    <span class="token keyword">def</span> <span class="token function">next_brackets_block</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        left_count <span class="token operator">=</span> <span class="token number">0</span>
+        s <span class="token operator">=</span> <span class="token string">''</span>
+        <span class="token keyword">while</span> <span class="token boolean">True</span><span class="token punctuation">:</span>
+            ch <span class="token operator">=</span> self<span class="token punctuation">.</span><span class="token builtin">next</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+            s <span class="token operator">+=</span> ch
+            <span class="token keyword">if</span> ch <span class="token keyword">in</span> <span class="token string">'([{'</span><span class="token punctuation">:</span>
+                left_count <span class="token operator">+=</span> <span class="token number">1</span>
+            <span class="token keyword">elif</span> ch <span class="token keyword">in</span> <span class="token string">'}])'</span><span class="token punctuation">:</span>
+                left_count <span class="token operator">-=</span> <span class="token number">1</span>
+                <span class="token keyword">if</span> left_count <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">:</span>
+                    <span class="token keyword">return</span> s<span class="token punctuation">.</span>strip<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token comment"># 替换整个 Token</span>
+<span class="token keyword">def</span> <span class="token function">replace_token</span><span class="token punctuation">(</span>s<span class="token punctuation">,</span> to_replace<span class="token punctuation">,</span> replace_with<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">is_part_of_token</span><span class="token punctuation">(</span>ch<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">if</span> <span class="token builtin">ord</span><span class="token punctuation">(</span>ch<span class="token punctuation">)</span> <span class="token operator">&gt;=</span> <span class="token builtin">ord</span><span class="token punctuation">(</span><span class="token string">'A'</span><span class="token punctuation">)</span> <span class="token keyword">and</span> <span class="token builtin">ord</span><span class="token punctuation">(</span>ch<span class="token punctuation">)</span> <span class="token operator">&lt;=</span> <span class="token builtin">ord</span><span class="token punctuation">(</span><span class="token string">'Z'</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+            <span class="token keyword">return</span> <span class="token boolean">True</span>
+        <span class="token keyword">if</span> <span class="token builtin">ord</span><span class="token punctuation">(</span>ch<span class="token punctuation">)</span> <span class="token operator">&gt;=</span> <span class="token builtin">ord</span><span class="token punctuation">(</span><span class="token string">'a'</span><span class="token punctuation">)</span> <span class="token keyword">and</span> <span class="token builtin">ord</span><span class="token punctuation">(</span>ch<span class="token punctuation">)</span> <span class="token operator">&lt;=</span> <span class="token builtin">ord</span><span class="token punctuation">(</span><span class="token string">'z'</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+            <span class="token keyword">return</span> <span class="token boolean">True</span>
+        <span class="token keyword">if</span> <span class="token builtin">ord</span><span class="token punctuation">(</span>ch<span class="token punctuation">)</span> <span class="token operator">&gt;=</span> <span class="token builtin">ord</span><span class="token punctuation">(</span><span class="token string">'0'</span><span class="token punctuation">)</span> <span class="token keyword">and</span> <span class="token builtin">ord</span><span class="token punctuation">(</span>ch<span class="token punctuation">)</span> <span class="token operator">&lt;=</span> <span class="token builtin">ord</span><span class="token punctuation">(</span><span class="token string">'9'</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+            <span class="token keyword">return</span> <span class="token boolean">True</span>
+        <span class="token keyword">if</span> ch <span class="token operator">==</span> <span class="token string">'_'</span><span class="token punctuation">:</span>
+            <span class="token keyword">return</span> <span class="token boolean">True</span>
+        <span class="token keyword">return</span> <span class="token boolean">False</span>
+    last_l <span class="token operator">=</span> <span class="token builtin">len</span><span class="token punctuation">(</span>s<span class="token punctuation">)</span>
+    <span class="token keyword">while</span> <span class="token boolean">True</span><span class="token punctuation">:</span>
+        l <span class="token operator">=</span> s<span class="token punctuation">.</span>rfind<span class="token punctuation">(</span>to_replace<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> last_l<span class="token punctuation">)</span>
+        <span class="token keyword">if</span> l <span class="token operator">==</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">:</span>
+            <span class="token keyword">break</span>
+
+        last_l <span class="token operator">=</span> l
+        r <span class="token operator">=</span> l <span class="token operator">+</span> <span class="token builtin">len</span><span class="token punctuation">(</span>to_replace<span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token number">1</span>
+
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>l <span class="token operator">-</span> <span class="token number">1</span> <span class="token operator">&gt;=</span> <span class="token number">0</span> <span class="token keyword">and</span> is_part_of_token<span class="token punctuation">(</span>s<span class="token punctuation">[</span>l <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token keyword">or</span> <span class="token punctuation">(</span>r <span class="token operator">+</span> <span class="token number">1</span> <span class="token operator">&lt;</span> <span class="token builtin">len</span><span class="token punctuation">(</span>s<span class="token punctuation">)</span> <span class="token keyword">and</span> is_part_of_token<span class="token punctuation">(</span>s<span class="token punctuation">[</span>r <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+            <span class="token keyword">continue</span>
+
+        s_l <span class="token operator">=</span> s<span class="token punctuation">[</span><span class="token punctuation">:</span>l<span class="token punctuation">]</span>
+        s_r <span class="token operator">=</span> s<span class="token punctuation">[</span>r <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">:</span><span class="token punctuation">]</span>
+        s <span class="token operator">=</span> s_l <span class="token operator">+</span> replace_with <span class="token operator">+</span> s_r
+
+    <span class="token keyword">return</span> s
+
+<span class="token comment"># 应用变量名映射</span>
+<span class="token keyword">def</span> <span class="token function">apply_var_map</span><span class="token punctuation">(</span>expression<span class="token punctuation">,</span> var_map<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">for</span> x <span class="token keyword">in</span> var_map<span class="token punctuation">:</span>
+        expression <span class="token operator">=</span> replace_token<span class="token punctuation">(</span>expression<span class="token punctuation">,</span> x<span class="token punctuation">,</span> var_map<span class="token punctuation">[</span>x<span class="token punctuation">]</span><span class="token punctuation">)</span>
+    <span class="token keyword">return</span> expression
+
+<span class="token comment"># 生成表达式</span>
+<span class="token keyword">def</span> <span class="token function">generate_expression</span><span class="token punctuation">(</span>expression<span class="token punctuation">,</span> var_map<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">return</span> transform_expression<span class="token punctuation">(</span>apply_var_map<span class="token punctuation">(</span>expression<span class="token punctuation">,</span> var_map<span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+<span class="token comment"># 一些语句相关的结构体</span>
+
+global_variables <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+
+<span class="token comment"># 变量或数组变量</span>
+<span class="token keyword">class</span> <span class="token class-name">VariableDeclaration</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> name<span class="token punctuation">,</span> array_lengths<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        self<span class="token punctuation">.</span>name <span class="token operator">=</span> name
+        self<span class="token punctuation">.</span>array_lengths <span class="token operator">=</span> array_lengths
+
+    <span class="token keyword">def</span> <span class="token function">__repr__</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">return</span> <span class="token string">'&lt;VariableDeclaration name=%s array_lengths=%s&gt;'</span> <span class="token operator">%</span> <span class="token punctuation">(</span><span class="token builtin">repr</span><span class="token punctuation">(</span>self<span class="token punctuation">.</span>name<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token builtin">repr</span><span class="token punctuation">(</span>self<span class="token punctuation">.</span>array_lengths<span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+    <span class="token keyword">def</span> <span class="token function">generate</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> var_map<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token comment"># 如果 var_map 为 None，则表示这是一条全局变量定义</span>
+        name <span class="token operator">=</span> self<span class="token punctuation">.</span>name <span class="token keyword">if</span> var_map <span class="token operator">==</span> <span class="token boolean">None</span> <span class="token keyword">else</span> var_map<span class="token punctuation">[</span>self<span class="token punctuation">.</span>name<span class="token punctuation">]</span>
+        <span class="token keyword">if</span> self<span class="token punctuation">.</span>array_lengths <span class="token operator">==</span> <span class="token boolean">None</span><span class="token punctuation">:</span>
+            <span class="token comment"># 非数组变量</span>
+            <span class="token keyword">return</span> <span class="token string">'%s = variable(None)'</span> <span class="token operator">%</span> name
+        <span class="token keyword">else</span><span class="token punctuation">:</span>
+            <span class="token comment"># 数组变量</span>
+            array_lengths <span class="token operator">=</span> <span class="token string">', '</span><span class="token punctuation">.</span>join<span class="token punctuation">(</span><span class="token builtin">list</span><span class="token punctuation">(</span><span class="token builtin">map</span><span class="token punctuation">(</span><span class="token keyword">lambda</span> x<span class="token punctuation">:</span> <span class="token builtin">str</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token punctuation">,</span> self<span class="token punctuation">.</span>array_lengths<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+            <span class="token keyword">return</span> <span class="token string">'%s = variable([%s])'</span> <span class="token operator">%</span> <span class="token punctuation">(</span>name<span class="token punctuation">,</span> array_lengths<span class="token punctuation">)</span>
+
+<span class="token comment"># 表达式语句</span>
+<span class="token keyword">class</span> <span class="token class-name">ExpressionStatement</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> expression<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        self<span class="token punctuation">.</span>expression <span class="token operator">=</span> expression
+
+    <span class="token keyword">def</span> <span class="token function">__repr__</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">return</span> <span class="token string">'&lt;ExpressionStatement expression=%s&gt;'</span> <span class="token operator">%</span> <span class="token builtin">repr</span><span class="token punctuation">(</span>self<span class="token punctuation">.</span>expression<span class="token punctuation">)</span>
+
+    <span class="token keyword">def</span> <span class="token function">generate</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> var_map<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        expression <span class="token operator">=</span> generate_expression<span class="token punctuation">(</span>self<span class="token punctuation">.</span>expression<span class="token punctuation">,</span> var_map<span class="token punctuation">)</span>
+        <span class="token keyword">if</span> expression<span class="token punctuation">.</span>find<span class="token punctuation">(</span><span class="token string">'&lt;&lt;'</span><span class="token punctuation">)</span> <span class="token operator">!=</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">:</span>
+            expression <span class="token operator">=</span> <span class="token string">'(%s)'</span> <span class="token operator">%</span> expression<span class="token punctuation">.</span>replace<span class="token punctuation">(</span><span class="token string">'&lt;&lt;'</span><span class="token punctuation">,</span> <span class="token string">') &lt;&lt; ('</span><span class="token punctuation">)</span>
+        <span class="token keyword">elif</span> expression<span class="token punctuation">.</span>find<span class="token punctuation">(</span><span class="token string">'&gt;&gt;'</span><span class="token punctuation">)</span> <span class="token operator">!=</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">:</span>
+            expression <span class="token operator">=</span> <span class="token string">'(%s)'</span> <span class="token operator">%</span> expression<span class="token punctuation">.</span>replace<span class="token punctuation">(</span><span class="token string">'&gt;&gt;'</span><span class="token punctuation">,</span> <span class="token string">') &gt;&gt; ('</span><span class="token punctuation">)</span>
+        <span class="token keyword">return</span> expression
+
+    <span class="token keyword">def</span> <span class="token function">get_var_map</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">return</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+
+<span class="token comment"># 返回语句</span>
+<span class="token comment"># 将可能返回的常数值转换为 IntegerVariable</span>
+<span class="token keyword">class</span> <span class="token class-name">ReturnStatement</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> return_value<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        self<span class="token punctuation">.</span>return_value <span class="token operator">=</span> return_value
+
+    <span class="token keyword">def</span> <span class="token function">__repr__</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">return</span> <span class="token string">'&lt;ReturnStatement return_value=%s&gt;'</span> <span class="token operator">%</span> <span class="token builtin">repr</span><span class="token punctuation">(</span>self<span class="token punctuation">.</span>return_value<span class="token punctuation">)</span>
+
+    <span class="token keyword">def</span> <span class="token function">generate</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> var_map<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">if</span> self<span class="token punctuation">.</span>return_value <span class="token operator">==</span> <span class="token string">''</span><span class="token punctuation">:</span>
+            <span class="token keyword">return</span> <span class="token string">'return'</span>
+        <span class="token keyword">else</span><span class="token punctuation">:</span>
+            <span class="token keyword">return</span> <span class="token string">'return IntegerVariable(%s)'</span> <span class="token operator">%</span> generate_expression<span class="token punctuation">(</span>self<span class="token punctuation">.</span>return_value<span class="token punctuation">,</span> var_map<span class="token punctuation">)</span>
+
+    <span class="token keyword">def</span> <span class="token function">get_var_map</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">return</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+
+<span class="token comment"># if 语句</span>
+<span class="token comment"># condition 为 'if ()' 括号里面的表达式</span>
+<span class="token comment"># statement_true 为 'if ()' 后跟的语句</span>
+<span class="token comment"># statement_false 为 'else' 后跟的语句（如果没有 'else'，则为 None）</span>
+<span class="token keyword">class</span> <span class="token class-name">IfStatement</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> condition<span class="token punctuation">,</span> statement_true<span class="token punctuation">,</span> statement_false<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        self<span class="token punctuation">.</span>condition <span class="token operator">=</span> condition
+        self<span class="token punctuation">.</span>statement_true <span class="token operator">=</span> statement_true
+        self<span class="token punctuation">.</span>statement_false <span class="token operator">=</span> statement_false
+
+    <span class="token keyword">def</span> <span class="token function">__repr__</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">return</span> <span class="token string">'&lt;IfStatement condition=%s statement_true=%s statement_false=%s&gt;'</span> <span class="token operator">%</span> <span class="token punctuation">(</span><span class="token builtin">repr</span><span class="token punctuation">(</span>self<span class="token punctuation">.</span>condition<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token builtin">repr</span><span class="token punctuation">(</span>self<span class="token punctuation">.</span>statement_true<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token builtin">repr</span><span class="token punctuation">(</span>self<span class="token punctuation">.</span>statement_false<span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+    <span class="token keyword">def</span> <span class="token function">generate</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> var_map<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        condition <span class="token operator">=</span> generate_expression<span class="token punctuation">(</span>self<span class="token punctuation">.</span>condition<span class="token punctuation">,</span> var_map<span class="token punctuation">)</span>
+        statement_true <span class="token operator">=</span> indent<span class="token punctuation">(</span>self<span class="token punctuation">.</span>statement_true<span class="token punctuation">.</span>generate<span class="token punctuation">(</span>var_map<span class="token punctuation">)</span><span class="token punctuation">)</span>
+        <span class="token keyword">if</span> self<span class="token punctuation">.</span>statement_false<span class="token punctuation">:</span>
+            statement_false <span class="token operator">=</span> indent<span class="token punctuation">(</span>self<span class="token punctuation">.</span>statement_false<span class="token punctuation">.</span>generate<span class="token punctuation">(</span>var_map<span class="token punctuation">)</span><span class="token punctuation">)</span>
+            <span class="token keyword">return</span> <span class="token string">'if get_value(%s):\n%s\nelse:\n%s'</span> <span class="token operator">%</span> <span class="token punctuation">(</span>condition<span class="token punctuation">,</span> statement_true<span class="token punctuation">,</span> statement_false<span class="token punctuation">)</span>
+        <span class="token keyword">else</span><span class="token punctuation">:</span>
+            <span class="token keyword">return</span> <span class="token string">'if get_value(%s):\n%s'</span> <span class="token operator">%</span> <span class="token punctuation">(</span>condition<span class="token punctuation">,</span> statement_true<span class="token punctuation">)</span>
+
+    <span class="token keyword">def</span> <span class="token function">get_var_map</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">return</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+
+<span class="token comment"># while 语句</span>
+<span class="token comment"># condition 为 'while ()' 括号里面的表达式</span>
+<span class="token comment"># statement 为 'while ()' 后跟的语句</span>
+<span class="token keyword">class</span> <span class="token class-name">WhileStatement</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> condition<span class="token punctuation">,</span> statement<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        self<span class="token punctuation">.</span>condition <span class="token operator">=</span> condition
+        self<span class="token punctuation">.</span>statement <span class="token operator">=</span> statement
+
+    <span class="token keyword">def</span> <span class="token function">__repr__</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">return</span> <span class="token string">'&lt;WhileStatement condition=%s statement=%s&gt;'</span> <span class="token operator">%</span> <span class="token punctuation">(</span><span class="token builtin">repr</span><span class="token punctuation">(</span>self<span class="token punctuation">.</span>condition<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token builtin">repr</span><span class="token punctuation">(</span>self<span class="token punctuation">.</span>statement<span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+    <span class="token keyword">def</span> <span class="token function">generate</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> var_map<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        condition <span class="token operator">=</span> generate_expression<span class="token punctuation">(</span>self<span class="token punctuation">.</span>condition<span class="token punctuation">,</span> var_map<span class="token punctuation">)</span>
+        statement <span class="token operator">=</span> indent<span class="token punctuation">(</span>self<span class="token punctuation">.</span>statement<span class="token punctuation">.</span>generate<span class="token punctuation">(</span>var_map<span class="token punctuation">)</span><span class="token punctuation">)</span>
+        <span class="token keyword">return</span> <span class="token string">'while get_value(%s):\n%s'</span> <span class="token operator">%</span> <span class="token punctuation">(</span>condition<span class="token punctuation">,</span> statement<span class="token punctuation">)</span>
+
+    <span class="token keyword">def</span> <span class="token function">get_var_map</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">return</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+
+<span class="token comment"># for 语句</span>
+<span class="token comment"># control_statements 为 'for ()' 括号里面的三个语句，表示为一个列表</span>
+<span class="token comment"># statement 为 'for ()' 后跟的语句</span>
+<span class="token keyword">class</span> <span class="token class-name">ForStatement</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> control_statements<span class="token punctuation">,</span> statement<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">assert</span> <span class="token builtin">len</span><span class="token punctuation">(</span>control_statements<span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">3</span>
+        self<span class="token punctuation">.</span>control_statements <span class="token operator">=</span> control_statements
+        self<span class="token punctuation">.</span>statement <span class="token operator">=</span> statement
+
+    <span class="token keyword">def</span> <span class="token function">__repr__</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">return</span> <span class="token string">'&lt;ForStatement control_statements=%s statement=%s&gt;'</span> <span class="token operator">%</span> <span class="token punctuation">(</span><span class="token builtin">repr</span><span class="token punctuation">(</span>self<span class="token punctuation">.</span>control_statements<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token builtin">repr</span><span class="token punctuation">(</span>self<span class="token punctuation">.</span>statement<span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+    <span class="token keyword">def</span> <span class="token function">generate</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> var_map<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        while_condition <span class="token operator">=</span> self<span class="token punctuation">.</span>control_statements<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">.</span>expression <span class="token keyword">if</span> self<span class="token punctuation">.</span>control_statements<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token keyword">else</span> <span class="token string">'1'</span>
+        while_inner_statements <span class="token operator">=</span> <span class="token punctuation">[</span>self<span class="token punctuation">.</span>statement<span class="token punctuation">]</span> <span class="token operator">+</span> <span class="token punctuation">(</span><span class="token punctuation">[</span>self<span class="token punctuation">.</span>control_statements<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">]</span> <span class="token keyword">if</span> self<span class="token punctuation">.</span>control_statements<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span> <span class="token keyword">else</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+        while_statement <span class="token operator">=</span> WhileStatement<span class="token punctuation">(</span>while_condition<span class="token punctuation">,</span> CompoundStatement<span class="token punctuation">(</span>while_inner_statements<span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+        if_wrapper <span class="token operator">=</span> IfStatement<span class="token punctuation">(</span><span class="token string">'1'</span><span class="token punctuation">,</span> CompoundStatement<span class="token punctuation">(</span><span class="token punctuation">[</span>self<span class="token punctuation">.</span>control_statements<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">,</span> while_statement<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token boolean">None</span><span class="token punctuation">)</span>
+        <span class="token keyword">return</span> if_wrapper<span class="token punctuation">.</span>generate<span class="token punctuation">(</span>var_map<span class="token punctuation">)</span>
+
+    <span class="token keyword">def</span> <span class="token function">get_var_map</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">return</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+
+<span class="token comment"># 复合语句</span>
+<span class="token keyword">class</span> <span class="token class-name">CompoundStatement</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> statements<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        self<span class="token punctuation">.</span>statements <span class="token operator">=</span> statements
+
+    <span class="token keyword">def</span> <span class="token function">__repr__</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">return</span> <span class="token string">'&lt;CompoundStatement statements=%s&gt;'</span> <span class="token operator">%</span> <span class="token builtin">repr</span><span class="token punctuation">(</span>self<span class="token punctuation">.</span>statements<span class="token punctuation">)</span>
+
+    <span class="token keyword">def</span> <span class="token function">generate</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> var_map<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        res <span class="token operator">=</span> <span class="token string">''</span>
+        curr_var_map <span class="token operator">=</span> <span class="token builtin">dict</span><span class="token punctuation">(</span>var_map<span class="token punctuation">)</span>
+        <span class="token keyword">for</span> statement <span class="token keyword">in</span> self<span class="token punctuation">.</span>statements<span class="token punctuation">:</span>
+            curr_var_map <span class="token operator">=</span> <span class="token builtin">dict</span><span class="token punctuation">(</span>curr_var_map<span class="token punctuation">,</span> <span class="token operator">**</span>statement<span class="token punctuation">.</span>get_var_map<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+            res <span class="token operator">+=</span> statement<span class="token punctuation">.</span>generate<span class="token punctuation">(</span>curr_var_map<span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">'\n'</span>
+        <span class="token keyword">return</span> res
+
+    <span class="token keyword">def</span> <span class="token function">get_var_map</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">return</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+
+<span class="token comment"># 变量定义</span>
+variables_declaration_id <span class="token operator">=</span> <span class="token number">0</span>
+<span class="token keyword">class</span> <span class="token class-name">VariablesDeclaration</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> var_list<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">global</span> variables_declaration_id
+        variables_declaration_id <span class="token operator">+=</span> <span class="token number">1</span>
+        self<span class="token punctuation">.</span>var_list <span class="token operator">=</span> var_list
+        self<span class="token punctuation">.</span><span class="token builtin">id</span> <span class="token operator">=</span> variables_declaration_id
+
+    <span class="token keyword">def</span> <span class="token function">__repr__</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">return</span> <span class="token string">'&lt;VariablesDeclaration var_list=%s&gt;'</span> <span class="token operator">%</span> <span class="token builtin">repr</span><span class="token punctuation">(</span>self<span class="token punctuation">.</span>var_list<span class="token punctuation">)</span>
+
+    <span class="token keyword">def</span> <span class="token function">generate</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> var_map <span class="token operator">=</span> <span class="token boolean">None</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token comment"># 如果 var_map 为 None，则表示这是一条全局变量定义</span>
+        <span class="token keyword">return</span> <span class="token string">'\n'</span><span class="token punctuation">.</span>join<span class="token punctuation">(</span><span class="token builtin">list</span><span class="token punctuation">(</span><span class="token builtin">map</span><span class="token punctuation">(</span><span class="token keyword">lambda</span> var<span class="token punctuation">:</span> var<span class="token punctuation">.</span>generate<span class="token punctuation">(</span>var_map<span class="token punctuation">)</span><span class="token punctuation">,</span> self<span class="token punctuation">.</span>var_list<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+    <span class="token keyword">def</span> <span class="token function">get_var_map</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">return</span> <span class="token punctuation">{</span>variable<span class="token punctuation">.</span>name<span class="token punctuation">:</span> <span class="token string">'__local_var_%d_%s'</span> <span class="token operator">%</span> <span class="token punctuation">(</span>self<span class="token punctuation">.</span><span class="token builtin">id</span><span class="token punctuation">,</span> variable<span class="token punctuation">.</span>name<span class="token punctuation">)</span> <span class="token keyword">for</span> variable <span class="token keyword">in</span> self<span class="token punctuation">.</span>var_list<span class="token punctuation">}</span>
+
+<span class="token comment"># 函数</span>
+<span class="token keyword">class</span> <span class="token class-name">Function</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> name<span class="token punctuation">,</span> arg_list<span class="token punctuation">,</span> body<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        self<span class="token punctuation">.</span>name <span class="token operator">=</span> name
+        self<span class="token punctuation">.</span>arg_list <span class="token operator">=</span> arg_list
+        self<span class="token punctuation">.</span>body <span class="token operator">=</span> body
+
+    <span class="token keyword">def</span> <span class="token function">__repr__</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">return</span> <span class="token string">'&lt;Function name=%s arg_list=%s body=%s&gt;'</span> <span class="token operator">%</span> <span class="token punctuation">(</span><span class="token builtin">repr</span><span class="token punctuation">(</span>self<span class="token punctuation">.</span>name<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token builtin">repr</span><span class="token punctuation">(</span>self<span class="token punctuation">.</span>arg_list<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token builtin">repr</span><span class="token punctuation">(</span>self<span class="token punctuation">.</span>body<span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+    <span class="token keyword">def</span> <span class="token function">generate</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        args <span class="token operator">=</span> <span class="token string">', '</span><span class="token punctuation">.</span>join<span class="token punctuation">(</span>self<span class="token punctuation">.</span>arg_list<span class="token punctuation">)</span>
+        init_args <span class="token operator">=</span> <span class="token string">'\n'</span><span class="token punctuation">.</span>join<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token string">'%s = init_arg(%s)'</span> <span class="token operator">%</span> <span class="token punctuation">(</span>arg<span class="token punctuation">,</span> arg<span class="token punctuation">)</span> <span class="token keyword">for</span> arg <span class="token keyword">in</span> self<span class="token punctuation">.</span>arg_list<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">'\n'</span>
+        declare_global_variables <span class="token operator">=</span> <span class="token string">'\n'</span><span class="token punctuation">.</span>join<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token string">'global %s'</span> <span class="token operator">%</span> variable <span class="token keyword">for</span> variable <span class="token keyword">in</span> global_variables <span class="token keyword">if</span> variable <span class="token keyword">not</span> <span class="token keyword">in</span> self<span class="token punctuation">.</span>arg_list<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">'\n'</span>
+        body <span class="token operator">=</span> indent<span class="token punctuation">(</span>init_args <span class="token operator">+</span> declare_global_variables <span class="token operator">+</span> self<span class="token punctuation">.</span>body<span class="token punctuation">.</span>generate<span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">'\nreturn 0\n'</span><span class="token punctuation">)</span>
+        <span class="token keyword">return</span> <span class="token string">'def %s(%s):\n%s'</span> <span class="token operator">%</span> <span class="token punctuation">(</span>self<span class="token punctuation">.</span>name<span class="token punctuation">,</span> args<span class="token punctuation">,</span> body<span class="token punctuation">)</span>
+
+<span class="token comment"># 解释器</span>
+<span class="token keyword">class</span> <span class="token class-name">Parser</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> code<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        self<span class="token punctuation">.</span>tokenizer <span class="token operator">=</span> Tokenizer<span class="token punctuation">(</span>code<span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>pos <span class="token operator">=</span> <span class="token number">0</span>
+
+    <span class="token comment"># 解析参数列表</span>
+    <span class="token keyword">def</span> <span class="token function">parse_arg_list</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> s<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">not</span> s<span class="token punctuation">.</span>strip<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+            <span class="token keyword">return</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+        <span class="token comment"># 解析参数，去掉参数类型 int</span>
+        <span class="token keyword">def</span> <span class="token function">parse_arg</span><span class="token punctuation">(</span>s<span class="token punctuation">)</span><span class="token punctuation">:</span>
+            s <span class="token operator">=</span> s<span class="token punctuation">.</span>strip<span class="token punctuation">(</span><span class="token punctuation">)</span>
+            <span class="token keyword">return</span> s<span class="token punctuation">[</span>s<span class="token punctuation">.</span>find<span class="token punctuation">(</span><span class="token string">' '</span><span class="token punctuation">)</span><span class="token punctuation">:</span><span class="token punctuation">]</span><span class="token punctuation">.</span>strip<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token keyword">return</span> <span class="token builtin">list</span><span class="token punctuation">(</span><span class="token builtin">map</span><span class="token punctuation">(</span>parse_arg<span class="token punctuation">,</span> s<span class="token punctuation">.</span>split<span class="token punctuation">(</span><span class="token string">','</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+    <span class="token comment"># 解析变量列表</span>
+    <span class="token keyword">def</span> <span class="token function">parse_var_list</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> s<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">not</span> s<span class="token punctuation">.</span>strip<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+            <span class="token keyword">return</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+        <span class="token comment"># 解析数组变量</span>
+        <span class="token keyword">def</span> <span class="token function">parse_var</span><span class="token punctuation">(</span>s<span class="token punctuation">)</span><span class="token punctuation">:</span>
+            s <span class="token operator">=</span> s<span class="token punctuation">.</span>strip<span class="token punctuation">(</span><span class="token punctuation">)</span>
+            <span class="token keyword">try</span><span class="token punctuation">:</span>
+                tokenizer <span class="token operator">=</span> Tokenizer<span class="token punctuation">(</span>s<span class="token punctuation">)</span>
+                name<span class="token punctuation">,</span> ends_with <span class="token operator">=</span> tokenizer<span class="token punctuation">.</span>next_until<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token string">'['</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+                lengths <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+                <span class="token keyword">try</span><span class="token punctuation">:</span>
+                    tokenizer<span class="token punctuation">.</span>back<span class="token punctuation">(</span><span class="token punctuation">)</span>
+                    <span class="token keyword">while</span> <span class="token boolean">True</span><span class="token punctuation">:</span>
+                        <span class="token comment"># print(tokenizer.s[tokenizer.pos:])</span>
+                        length <span class="token operator">=</span> tokenizer<span class="token punctuation">.</span>next_brackets_block<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>strip<span class="token punctuation">(</span><span class="token punctuation">)</span>
+                        length <span class="token operator">=</span> <span class="token builtin">int</span><span class="token punctuation">(</span>length<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">:</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">.</span>strip<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+                        lengths<span class="token punctuation">.</span>append<span class="token punctuation">(</span>length<span class="token punctuation">)</span>
+                <span class="token keyword">except</span> IndexError<span class="token punctuation">:</span>
+                    <span class="token keyword">pass</span>
+
+                <span class="token keyword">return</span> VariableDeclaration<span class="token punctuation">(</span>name<span class="token punctuation">,</span> lengths<span class="token punctuation">)</span>
+            <span class="token keyword">except</span> IndexError<span class="token punctuation">:</span>
+                <span class="token keyword">return</span> VariableDeclaration<span class="token punctuation">(</span>s<span class="token punctuation">,</span> <span class="token boolean">None</span><span class="token punctuation">)</span>
+        <span class="token keyword">return</span> <span class="token builtin">list</span><span class="token punctuation">(</span><span class="token builtin">map</span><span class="token punctuation">(</span>parse_var<span class="token punctuation">,</span> s<span class="token punctuation">.</span>split<span class="token punctuation">(</span><span class="token string">','</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+    <span class="token comment"># 解析一个普通语句（或声明）</span>
+    <span class="token keyword">def</span> <span class="token function">parse_normal_statement</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> statement<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">if</span> statement<span class="token punctuation">.</span>startswith<span class="token punctuation">(</span><span class="token string">'int '</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+            <span class="token comment"># 变量定义</span>
+            var_list <span class="token operator">=</span> self<span class="token punctuation">.</span>parse_var_list<span class="token punctuation">(</span>statement<span class="token punctuation">[</span><span class="token number">4</span><span class="token punctuation">:</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+            <span class="token comment"># print('Variable Declaration: %s' % var_list)</span>
+            <span class="token keyword">return</span> VariablesDeclaration<span class="token punctuation">(</span>var_list<span class="token punctuation">)</span>
+        <span class="token keyword">elif</span> statement<span class="token punctuation">.</span>startswith<span class="token punctuation">(</span><span class="token string">'return '</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+            <span class="token comment"># 单独处理 return 语句，原因见 ReturnStatement 的定义</span>
+            <span class="token keyword">return</span> ReturnStatement<span class="token punctuation">(</span>statement<span class="token punctuation">[</span><span class="token number">7</span><span class="token punctuation">:</span><span class="token punctuation">]</span><span class="token punctuation">.</span>strip<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+        <span class="token keyword">else</span><span class="token punctuation">:</span>
+            <span class="token comment"># 表达式语句</span>
+            <span class="token comment"># print('Normal Statement: "%s"' % statement)</span>
+            <span class="token keyword">return</span> ExpressionStatement<span class="token punctuation">(</span>statement<span class="token punctuation">)</span>
+
+    <span class="token comment"># 解析下一个语句</span>
+    <span class="token keyword">def</span> <span class="token function">next_statement</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> tokenizer<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        t <span class="token operator">=</span> tokenizer<span class="token punctuation">.</span>peek_until_empty<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token comment"># 判断流程控制语句</span>
+        <span class="token keyword">if</span> t <span class="token operator">==</span> <span class="token string">'if'</span><span class="token punctuation">:</span>
+            <span class="token comment"># 读取圆括号中的内容（condition）</span>
+            tokenizer<span class="token punctuation">.</span>next_until<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token string">'('</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+            tokenizer<span class="token punctuation">.</span>back<span class="token punctuation">(</span><span class="token punctuation">)</span>
+            condition <span class="token operator">=</span> tokenizer<span class="token punctuation">.</span>next_brackets_block<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">:</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span>
+
+            <span class="token comment"># 读取 'if ()' 后跟的语句</span>
+            statement_true <span class="token operator">=</span> self<span class="token punctuation">.</span>next_statement<span class="token punctuation">(</span>tokenizer<span class="token punctuation">)</span>
+
+            <span class="token comment"># 读取 'else' 及其后跟的语句</span>
+            statement_false <span class="token operator">=</span> <span class="token boolean">None</span>
+            <span class="token keyword">try</span><span class="token punctuation">:</span>
+                <span class="token keyword">if</span> tokenizer<span class="token punctuation">.</span>peek_until_empty<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token string">'else'</span><span class="token punctuation">:</span>
+                    tokenizer<span class="token punctuation">.</span>next_until_empty<span class="token punctuation">(</span><span class="token punctuation">)</span>
+                    statement_false <span class="token operator">=</span> self<span class="token punctuation">.</span>next_statement<span class="token punctuation">(</span>tokenizer<span class="token punctuation">)</span>
+            <span class="token keyword">except</span> IndexError<span class="token punctuation">:</span>
+                <span class="token keyword">pass</span>
+
+            <span class="token comment"># print('If Statement: condition = "%s", statement_true = "%s", statement_false = "%s"' % (condition, statement_true, statement_false))</span>
+            <span class="token keyword">return</span> IfStatement<span class="token punctuation">(</span>condition<span class="token punctuation">,</span> statement_true<span class="token punctuation">,</span> statement_false<span class="token punctuation">)</span>
+        <span class="token keyword">elif</span> t <span class="token operator">==</span> <span class="token string">'while'</span><span class="token punctuation">:</span>
+            <span class="token comment"># 读取圆括号中的内容（condition）</span>
+            tokenizer<span class="token punctuation">.</span>next_until<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token string">'('</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+            tokenizer<span class="token punctuation">.</span>back<span class="token punctuation">(</span><span class="token punctuation">)</span>
+            condition <span class="token operator">=</span> tokenizer<span class="token punctuation">.</span>next_brackets_block<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">:</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span>
+
+            <span class="token comment"># 读取 'while ()' 后跟的语句</span>
+            statement <span class="token operator">=</span> self<span class="token punctuation">.</span>next_statement<span class="token punctuation">(</span>tokenizer<span class="token punctuation">)</span>
+
+            <span class="token comment"># print('While Statement: condition = "%s", statement = "%s"' % (condition, statement))</span>
+            <span class="token keyword">return</span> WhileStatement<span class="token punctuation">(</span>condition<span class="token punctuation">,</span> statement<span class="token punctuation">)</span>
+        <span class="token keyword">elif</span> t <span class="token operator">==</span> <span class="token string">'for'</span><span class="token punctuation">:</span>
+            <span class="token comment"># 读取圆括号中的内容（control_statements）</span>
+            tokenizer<span class="token punctuation">.</span>next_until<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token string">'('</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+            tokenizer<span class="token punctuation">.</span>back<span class="token punctuation">(</span><span class="token punctuation">)</span>
+            in_bracket <span class="token operator">=</span> tokenizer<span class="token punctuation">.</span>next_brackets_block<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">:</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span>
+            control_statements <span class="token operator">=</span> <span class="token builtin">list</span><span class="token punctuation">(</span><span class="token builtin">map</span><span class="token punctuation">(</span><span class="token keyword">lambda</span> s<span class="token punctuation">:</span> self<span class="token punctuation">.</span>parse_normal_statement<span class="token punctuation">(</span>s<span class="token punctuation">.</span>strip<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span> in_bracket<span class="token punctuation">.</span>split<span class="token punctuation">(</span><span class="token string">';'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+            <span class="token comment"># 读取 'for ()' 后跟的语句</span>
+            statement <span class="token operator">=</span> self<span class="token punctuation">.</span>next_statement<span class="token punctuation">(</span>tokenizer<span class="token punctuation">)</span>
+
+            <span class="token comment"># print('For Statement: control_statements = "%s", statement = "%s"' % (control_statements, statement))</span>
+            <span class="token keyword">return</span> ForStatement<span class="token punctuation">(</span>control_statements<span class="token punctuation">,</span> statement<span class="token punctuation">)</span>
+        <span class="token comment"># 判断复合语句</span>
+        <span class="token keyword">elif</span> t<span class="token punctuation">.</span>startswith<span class="token punctuation">(</span><span class="token string">'{'</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+            tokenizer<span class="token punctuation">.</span>next_until_empty<span class="token punctuation">(</span><span class="token punctuation">)</span>
+            <span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token builtin">len</span><span class="token punctuation">(</span>t<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+                tokenizer<span class="token punctuation">.</span>back<span class="token punctuation">(</span><span class="token punctuation">)</span>
+            s <span class="token operator">=</span> tokenizer<span class="token punctuation">.</span>next_brackets_block<span class="token punctuation">(</span><span class="token punctuation">)</span>
+            statement <span class="token operator">=</span> self<span class="token punctuation">.</span>parse_compound<span class="token punctuation">(</span>s<span class="token punctuation">)</span>
+            <span class="token comment"># print('Compound Statement: "%s", [parsed] = "%s"' % (s, statement))</span>
+
+            <span class="token keyword">return</span> statement
+        <span class="token keyword">else</span><span class="token punctuation">:</span>
+            <span class="token comment"># 表达式语句（或声明）</span>
+            <span class="token comment"># 直接读到分号 ';' 即为一条语句</span>
+            statement<span class="token punctuation">,</span> ends_with <span class="token operator">=</span> tokenizer<span class="token punctuation">.</span>next_until<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token string">';'</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+            <span class="token keyword">return</span> self<span class="token punctuation">.</span>parse_normal_statement<span class="token punctuation">(</span>statement<span class="token punctuation">)</span>
+
+    <span class="token comment"># 解析一个复合语句</span>
+    <span class="token keyword">def</span> <span class="token function">parse_compound</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> content<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token comment"># 去除最外侧花括号</span>
+        content <span class="token operator">=</span> content<span class="token punctuation">.</span>strip<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        content <span class="token operator">=</span> content<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">:</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">.</span>strip<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+        <span class="token comment"># 编译每一条语句（或声明）</span>
+        tokenizer <span class="token operator">=</span> Tokenizer<span class="token punctuation">(</span>content<span class="token punctuation">)</span>
+        statements <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+
+        <span class="token keyword">try</span><span class="token punctuation">:</span>
+            <span class="token keyword">while</span> <span class="token boolean">True</span><span class="token punctuation">:</span>
+                statements<span class="token punctuation">.</span>append<span class="token punctuation">(</span>self<span class="token punctuation">.</span>next_statement<span class="token punctuation">(</span>tokenizer<span class="token punctuation">)</span><span class="token punctuation">)</span>
+        <span class="token keyword">except</span> IndexError<span class="token punctuation">:</span>
+            <span class="token keyword">pass</span>
+
+        <span class="token keyword">return</span> CompoundStatement<span class="token punctuation">(</span>statements<span class="token punctuation">)</span>
+
+
+    <span class="token comment"># 解析顶层（全局变量与全局函数）</span>
+    <span class="token keyword">def</span> <span class="token function">parse_top_level</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">global</span> global_variables
+        l <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+        <span class="token keyword">try</span><span class="token punctuation">:</span>
+            <span class="token keyword">while</span> <span class="token boolean">True</span><span class="token punctuation">:</span>
+                <span class="token comment"># 顶层可包含变量定义与函数定义</span>
+                <span class="token comment"># 变量定义与函数定义的开头均为类型名</span>
+                t <span class="token operator">=</span> self<span class="token punctuation">.</span>tokenizer<span class="token punctuation">.</span>next_until_empty<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+                <span class="token comment"># 读取函数或变量名</span>
+                name<span class="token punctuation">,</span> ends_with <span class="token operator">=</span> self<span class="token punctuation">.</span>tokenizer<span class="token punctuation">.</span>peek_until<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token string">'('</span><span class="token punctuation">,</span> <span class="token string">','</span><span class="token punctuation">,</span> <span class="token string">';'</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+                <span class="token keyword">if</span> ends_with <span class="token operator">==</span> <span class="token string">'('</span><span class="token punctuation">:</span> <span class="token comment"># 以 '(' 结束了一个函数名</span>
+                    self<span class="token punctuation">.</span>tokenizer<span class="token punctuation">.</span>next_until<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token string">'('</span><span class="token punctuation">,</span> <span class="token string">','</span><span class="token punctuation">,</span> <span class="token string">';'</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+                    <span class="token comment"># 读到 ')'，获取参数列表</span>
+                    arg_list<span class="token punctuation">,</span> ends_with <span class="token operator">=</span> self<span class="token punctuation">.</span>tokenizer<span class="token punctuation">.</span>next_until<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token string">')'</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+                    arg_list <span class="token operator">=</span> self<span class="token punctuation">.</span>parse_arg_list<span class="token punctuation">(</span>arg_list<span class="token punctuation">)</span>
+                    body <span class="token operator">=</span> self<span class="token punctuation">.</span>tokenizer<span class="token punctuation">.</span>next_brackets_block<span class="token punctuation">(</span><span class="token punctuation">)</span>
+                    body <span class="token operator">=</span> self<span class="token punctuation">.</span>parse_compound<span class="token punctuation">(</span>body<span class="token punctuation">)</span>
+                    l<span class="token punctuation">.</span>append<span class="token punctuation">(</span>Function<span class="token punctuation">(</span>name<span class="token punctuation">,</span> arg_list<span class="token punctuation">,</span> body<span class="token punctuation">)</span><span class="token punctuation">)</span>
+                <span class="token keyword">else</span><span class="token punctuation">:</span>
+                    <span class="token comment"># 变量定义</span>
+                    statement<span class="token punctuation">,</span> ends_with <span class="token operator">=</span> self<span class="token punctuation">.</span>tokenizer<span class="token punctuation">.</span>next_until<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token string">';'</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+                    var_list <span class="token operator">=</span> self<span class="token punctuation">.</span>parse_var_list<span class="token punctuation">(</span>statement<span class="token punctuation">)</span>
+                    global_variables <span class="token operator">+=</span> <span class="token punctuation">[</span>variable<span class="token punctuation">.</span>name <span class="token keyword">for</span> variable <span class="token keyword">in</span> var_list<span class="token punctuation">]</span>
+                    l<span class="token punctuation">.</span>append<span class="token punctuation">(</span>VariablesDeclaration<span class="token punctuation">(</span>var_list<span class="token punctuation">)</span><span class="token punctuation">)</span>
+        <span class="token keyword">except</span> IndexError<span class="token punctuation">:</span>
+            <span class="token keyword">pass</span>
+
+        <span class="token keyword">return</span> l
+
+    <span class="token keyword">def</span> <span class="token function">parse</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        ast <span class="token operator">=</span> self<span class="token punctuation">.</span>parse_top_level<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token keyword">return</span> ast
+
+<span class="token comment"># 生成 Python 代码</span>
+<span class="token keyword">def</span> <span class="token function">generate_pycode</span><span class="token punctuation">(</span>ast<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    pycode <span class="token operator">=</span> <span class="token string">''</span>
+    <span class="token keyword">for</span> node <span class="token keyword">in</span> ast<span class="token punctuation">:</span>
+        pycode <span class="token operator">+=</span> node<span class="token punctuation">.</span>generate<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">'\n'</span>
+    <span class="token keyword">return</span> pycode
+
+<span class="token keyword">import</span> sys
+<span class="token comment"># sys.stdin = open('program10.in', 'r')</span>
+sys<span class="token punctuation">.</span>setrecursionlimit<span class="token punctuation">(</span><span class="token number">1000000</span><span class="token punctuation">)</span>
+
+<span class="token comment"># 读入</span>
+init_input_stream<span class="token punctuation">(</span><span class="token punctuation">)</span>
+skip_header<span class="token punctuation">(</span><span class="token punctuation">)</span>
+code <span class="token operator">=</span> read_code<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token comment"># 编译</span>
+parser <span class="token operator">=</span> Parser<span class="token punctuation">(</span>code<span class="token punctuation">)</span>
+ast <span class="token operator">=</span> parser<span class="token punctuation">.</span>parse<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token comment"># print(ast)</span>
+
+<span class="token comment"># 生成代码</span>
+pycode <span class="token operator">=</span> generate_pycode<span class="token punctuation">(</span>ast<span class="token punctuation">)</span>
+
+<span class="token comment"># print('\n\n\n\n\n')</span>
+<span class="token comment"># print(pycode)</span>
+
+<span class="token keyword">try</span><span class="token punctuation">:</span>
+    <span class="token keyword">exec</span><span class="token punctuation">(</span>pycode<span class="token punctuation">)</span>
+    main<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token keyword">except</span> Exception <span class="token keyword">as</span> e<span class="token punctuation">:</span>
+    <span class="token comment"># print(e)</span>
+    <span class="token keyword">raise</span> e
+
+<span class="token comment"># print(transform_expression('putchar(c = a * b[7], 233, k * 5 + 0)'))</span>
+</code></pre></div>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tag/uoj/" rel="tag"># UOJ</a>
+          
+            <a href="/tag/python/" rel="tag"># Python</a>
+          
+            <a href="/tag/编译原理/" rel="tag"># 编译原理</a>
+          
+            <a href="/tag/集训队互测/" rel="tag"># 集训队互测</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/network-flow-with-bounds/" rel="next" title="上下界网络流学习笔记">
+                <i class="fa fa-chevron-left"></i> 上下界网络流学习笔记
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/bzoj-3376/" rel="prev" title="「BZOJ 3376」Cube Stacking - 带权并查集">
+                「BZOJ 3376」Cube Stacking - 带权并查集 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+        <img class="site-author-image" itemprop="image" src="https://cdn.menci.xyz/menci-oi-blog/images/avatar.png" alt="Menci">
+        <p class="site-author-name" itemprop="name">Menci</p>
+         
+            <p class="site-description motion-element" itemprop="description"></p>
+        
+      </div>
+      <nav class="site-state motion-element">
+
+        
+          <div class="site-state-item site-state-posts">
+            <a href="/archives/">
+              <span class="site-state-item-count">355</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+        
+
+        
+          
+          
+          <div class="site-state-item site-state-categories">
+            <a href="/categories/index.html">
+              <span class="site-state-item-count">3</span>
+              <span class="site-state-item-name">分类</span>
+            </a>
+          </div>
+        
+
+        
+          
+          
+          <div class="site-state-item site-state-tags">
+            <a href="/tags/index.html">
+              <span class="site-state-item-count">225</span>
+              <span class="site-state-item-name">标签</span>
+            </a>
+          </div>
+        
+
+      </nav>
+
+      
+
+      <div class="links-of-author motion-element">
+        
+          
+            <span class="links-of-author-item">
+              <a href="https://github.com/Menci/" target="_blank" title="GitHub">
+                
+                  <i class="fa fa-fw fa-github"></i>
+                
+                  
+                    GitHub
+                  
+              </a>
+            </span>
+          
+            <span class="links-of-author-item">
+              <a href="http://wpa.qq.com/msgrd?V=3&amp;Uin=207988066" target="_blank" title="QQ">
+                
+                  <i class="fa fa-fw fa-qq"></i>
+                
+                  
+                    QQ
+                  
+              </a>
+            </span>
+          
+            <span class="links-of-author-item">
+              <a href="/atom.xml" target="_blank" title="RSS">
+                
+                  <i class="fa fa-fw fa-globe"></i>
+                
+                  
+                    RSS
+                  
+              </a>
+            </span>
+          
+            <span class="links-of-author-item">
+              <a href="mailto:huanghaorui301@gmail.com" target="_blank" title="E-Mail">
+                
+                  <i class="fa fa-fw fa-envelope"></i>
+                
+                  
+                    E-Mail
+                  
+              </a>
+            </span>
+          
+        
+      </div>
+
+      
+      
+
+      
+      
+
+      
+
+
+      
+      
+        <div class="post-toc" style="margin-top: 20px; ">
+
+          
+            
+          
+
+          
+            <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#链接"><span class="nav-number">1.</span> <span class="nav-text">链接</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#题解"><span class="nav-number">2.</span> <span class="nav-text">题解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码"><span class="nav-number">3.</span> <span class="nav-text">代码</span></a></li></ol></div>
+          
+
+        </div>
+      
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  ©  2015 — 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Menci</span>
+
+  
+</div>
+
+自豪地运行于 <a class="theme-link" href="https://azure.microsoft.com">Azure</a> 云平台
+
+  <span class="post-meta-divider">|</span>
+
+由 <a class="theme-link" href="https://console.upyun.com/register/?invite=SkrBWaCvN">Upyun</a> 提供 CDN 服务
+
+<br>
+
+
+  <div class="powered-by">由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+  <span class="post-meta-divider">|</span>
+
+  <div class="theme-info">主题 — <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.2</div>
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="https://lf26-cdn-tos.bytecdntp.com/cdn/expire-1-y/jquery/2.1.3/jquery.min.js"></script>
+
+  
+  <script type="text/javascript" src="https://lf26-cdn-tos.bytecdntp.com/cdn/expire-1-y/fastclick/1.0.6/fastclick.min.js"></script>
+
+  
+  <script type="text/javascript" src="https://lf26-cdn-tos.bytecdntp.com/cdn/expire-1-y/jquery_lazyload/1.9.7/jquery.lazyload.min.js"></script>
+
+  
+  <script type="text/javascript" src="https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-y/velocity/2.0.6/velocity.min.js"></script>
+
+  
+  <script type="text/javascript" src="https://lf6-cdn-tos.bytecdntp.com/cdn/expire-1-y/velocity/2.0.6/velocity.ui.min.js"></script>
+
+  
+  <script type="text/javascript" src="https://lf6-cdn-tos.bytecdntp.com/cdn/expire-1-y/fancybox/2.1.5/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="https://cdn.menci.xyz/menci-oi-blog/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="https://cdn.menci.xyz/menci-oi-blog/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="https://cdn.menci.xyz/menci-oi-blog/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="https://cdn.menci.xyz/menci-oi-blog/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="https://cdn.menci.xyz/menci-oi-blog/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="https://cdn.menci.xyz/menci-oi-blog/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="https://cdn.menci.xyz/menci-oi-blog/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+    
+
+    
+      <script type="text/javascript">
+        function MenciRemoveIndexDotHtml(url) {
+          if (url.substr(-10, 10) == 'index.html') return url.substr(0, url.length - 10);
+          else return url;
+        }
+
+        var disqus_config = function () {
+          this.page.url = MenciRemoveIndexDotHtml('https://oi.men.ci/uoj-98/');
+        };
+
+        var d = document, s = d.createElement('script');
+        s.src = 'https://menci.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+<script>"serviceWorker"in navigator&&window.addEventListener("load",(function(){navigator.serviceWorker.register("/sw.js?t=https%3A%2F%2Fcdn-static.menci.xyz%2Fmenci-oi-blog%2F")}));</script></body></html>

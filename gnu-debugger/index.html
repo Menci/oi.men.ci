@@ -1,0 +1,1470 @@
+<!DOCTYPE html><html class="theme-next pisces" lang="zh-Hans"><head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#febe85">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+  <meta name="google-site-verification" content="RXH_SaLcBbigHYdpVhhuYsBL1W0FZF1ud97hFesPAeo">
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="https://lf26-cdn-tos.bytecdntp.com/cdn/expire-1-y/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//cdn.menci.xyz/fonts/css?family=Lato:300,300italic,400,400italic,700,700italic&amp;subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="https://lf6-cdn-tos.bytecdntp.com/cdn/expire-1-y/font-awesome/4.6.2/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+<link href="https://cdn.menci.xyz/menci-oi-blog/css/main.css?v=5.1.2" rel="stylesheet" type="text/css">
+<link href="https://cdn.menci.xyz/menci-oi-blog/css/tomorrow.css" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="C++,GDB,调试,">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="//cdn.menci.xyz/menci-oi-blog/images/avatar.png?v=5.1.2">
+
+
+
+
+
+
+<meta name="description" content="GDB（GNU Debugger）是 GNU 计划中的标准调试器，可以在 UNIX、Linux 和 Windows 下运行，支持多种语言（如 C、C++、Pascal 等）程序的调试。">
+<meta name="keywords" content="C++,GDB,调试">
+<meta property="og:type" content="article">
+<meta property="og:title" content="GDB 入门教程">
+<meta property="og:url" content="https://oi.men.ci/gnu-debugger/index.html">
+<meta property="og:site_name" content="Menci's OI Blog">
+<meta property="og:description" content="GDB（GNU Debugger）是 GNU 计划中的标准调试器，可以在 UNIX、Linux 和 Windows 下运行，支持多种语言（如 C、C++、Pascal 等）程序的调试。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2022-01-30T20:50:03.482Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="GDB 入门教程">
+<meta name="twitter:description" content="GDB（GNU Debugger）是 GNU 计划中的标准调试器，可以在 UNIX、Linux 和 Windows 下运行，支持多种语言（如 C、C++、Pascal 等）程序的调试。">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.2',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: false,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+<script type="text/javascript" src="https://lf26-cdn-tos.bytecdntp.com/cdn/expire-2-y/aplayer/1.10.1/APlayer.min.js"></script>
+<link rel="stylesheet" href="https://lf9-cdn-tos.bytecdntp.com/cdn/expire-2-y/aplayer/1.10.1/APlayer.min.css">
+
+
+
+  <link rel="canonical" href="https://oi.men.ci/gnu-debugger/">
+
+
+
+
+
+  <title>GDB 入门教程 | Menci's OI Blog</title>
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-75865916-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Menci's OI Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">幻梦终醒，不悔华年</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about-me/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-友链">
+          <a href="/friends/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-users"></i> <br>
+            
+            友链
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://oi.men.ci/gnu-debugger/">
+
+    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Menci">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://cdn.menci.xyz/menci-oi-blog/images/avatar.png">
+    </span>
+
+    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Menci's OI Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">GDB 入门教程</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-02-05T10:58:07+00:00">
+                2016-02-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/oi/" itemprop="url" rel="index">
+                    <span itemprop="name">OI</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>GDB（GNU Debugger）是 GNU 计划中的标准调试器，可以在 UNIX、Linux 和 Windows 下运行，支持多种语言（如 C、C++、Pascal 等）程序的调试。</p>
+<a id="more"></a>
+<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3>
+<h4 id="Linux"><a href="#Linux" class="headerlink" title="Linux"></a>Linux</h4>
+<p>在 Ubuntu 及其衍生版本下，使用 <code>apt</code> 安装 GDB。</p>
+<div class="highlight"><pre><code>sudo apt-get install gdb
+</code></pre></div>
+<p>另外，NOI Linux 也中有预装的 GDB。</p>
+<p>在 RHEL/Fedora/Archlinux 下，使用其各自的包管理器来安装 GDB。</p>
+<div class="highlight"><pre><code><span class="token function">sudo</span> yum <span class="token function">install</span> gdb  <span class="token comment"># RHEL</span>
+<span class="token function">sudo</span> dnf <span class="token function">install</span> gdb  <span class="token comment"># Fedora</span>
+<span class="token function">sudo</span> pacman -S gdb    <span class="token comment"># Archlinux</span>
+</code></pre></div>
+<h4 id="Windows"><a href="#Windows" class="headerlink" title="Windows"></a>Windows</h4>
+<p>在 Windows 下，可选择 Cygwin/MSYS2 环境，也需使用其各自的包管理器来安装 GDB，但通常使用更加轻量的 MinGW 工具集。</p>
+<p>一般地，Dev-C++ 安装时会配带 MinGW，我们可以在其 <code>bin</code> 目录下找到 <code>gdb.exe</code>，为了方便，我们通常将 <code>bin</code> 目录的路径添加进 <code>PATH</code> 环境变量中，这样我们就可以直接在 <code>cmd</code> 中执行 <code>gdb</code> 命令。</p>
+<h3 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h3>
+<p>在控制台中输入 <code>gdb</code> 命令（Windows 系统有时需要手动配置环境变量），启动 GDB：</p>
+<div class="highlight"><pre><code>gdb
+</code></pre></div>
+<p>在 GDB 中，用 <code>file</code> 命令指定需要被调试的程序：</p>
+<div class="highlight"><pre><code><span class="token punctuation">(</span>gdb<span class="token punctuation">)</span> <span class="token function">file</span> <span class="token builtin class-name">test</span>
+</code></pre></div>
+<p>或者，也可以直接在启动 GDB 的时候指定需要被调试的程序：</p>
+<div class="highlight"><pre><code>gdb <span class="token builtin class-name">test</span>
+</code></pre></div>
+<p>其中 <code>test</code> 为被调试的程序的可执行文件名。</p>
+<p>需要注意的是，被 GDB 调试的程序，<strong>在编译时需要加上 <code>-g</code> 选项，表示在生成的可执行文件中包含调试信息</strong>。</p>
+<div class="highlight"><pre><code>g++ test.cpp -o <span class="token builtin class-name">test</span> -g
+fpc test.cpp -g
+</code></pre></div>
+<p>GDB 启动时的提示大概是酱紫的：</p>
+<div class="highlight"><pre><code>Menci@Menci-Laptop:~$ gdb
+GNU gdb <span class="token punctuation">(</span>Ubuntu <span class="token number">7.10</span>-1ubuntu2<span class="token punctuation">)</span> <span class="token number">7.10</span>
+Copyright <span class="token punctuation">(</span>C<span class="token punctuation">)</span> <span class="token number">2015</span> Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version <span class="token number">3</span> or later <span class="token operator">&lt;</span>http://gnu.org/licenses/gpl.html<span class="token operator">&gt;</span>
+This is <span class="token function">free</span> software: you are <span class="token function">free</span> to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.  Type <span class="token string">"show copying"</span>
+and <span class="token string">"show warranty"</span> <span class="token keyword">for</span> details.
+This GDB was configured as <span class="token string">"x86_64-linux-gnu"</span><span class="token builtin class-name">.</span>
+Type <span class="token string">"show configuration"</span> <span class="token keyword">for</span> configuration details.
+For bug reporting instructions, please see:
+<span class="token operator">&lt;</span>http://www.gnu.org/software/gdb/bugs/<span class="token operator">&gt;</span>.
+Find the GDB manual and other documentation resources online at:
+<span class="token operator">&lt;</span>http://www.gnu.org/software/gdb/documentation/<span class="token operator">&gt;</span>.
+For help, <span class="token builtin class-name">type</span> <span class="token string">"help"</span><span class="token builtin class-name">.</span>
+Type <span class="token string">"apropos word"</span> to search <span class="token keyword">for</span> commands related to <span class="token string">"word"</span><span class="token builtin class-name">.</span>
+<span class="token punctuation">(</span>gdb<span class="token punctuation">)</span>
+</code></pre></div>
+<h3 id="运行"><a href="#运行" class="headerlink" title="运行"></a>运行</h3>
+<p>使用 <code>run</code>（简写为 <code>r</code>）命令运行被调试的程序。</p>
+<div class="highlight"><pre><code><span class="token punctuation">(</span>gdb<span class="token punctuation">)</span> run
+</code></pre></div>
+<p>之后可以像直接运行程序一样输入数据并获得输出，程序正常退出时，会得到类似于以下的提示：</p>
+<div class="highlight"><pre><code><span class="token header"><span class="token punctuation">[</span><span class="token section-name selector">Inferior 1 (process 52800) exited with code 1</span><span class="token punctuation">]</span></span>
+</code></pre></div>
+<p>如果程序出现运行时错误（Runtime Error，RE），则会有一下提示，此时程序中断（以访问无效内存为例）：</p>
+<div class="highlight"><pre><code>Program received signal SIGSEGV, Segmentation fault.
+0x0000000000400598 <span class="token keyword">in</span> main <span class="token punctuation">(</span><span class="token punctuation">)</span> at test.cpp:6
+<span class="token number">6</span>        aby<span class="token punctuation">[</span><span class="token number">8999999999990</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+</code></pre></div>
+<p>其中 <code>SIGSEGV</code> 表示程序中断的信号，后面跟着解释文本“Segmentation fault”，即“段错误”。中间一行是程序中断所在函数及其调用参数，下面一行是程序中断所在行的代码，开头 <code>6</code> 为行号。</p>
+<p>出现这种情况时，我们可以使用各种调试命令对其进行调♂试。</p>
+<h3 id="退出"><a href="#退出" class="headerlink" title="退出"></a>退出</h3>
+<p>使用 <code>quit</code>（简写为 <code>q</code>）命令退出。</p>
+<p>如果程序正常运行结束，则 <code>q</code> 命令会成功退出 GDB，否则我们将会收到类似如下的提示：</p>
+<div class="highlight"><pre><code><span class="token punctuation">(</span>gdb<span class="token punctuation">)</span> q
+A debugging session is active.
+
+    Inferior <span class="token number">1</span> <span class="token punctuation">[</span>process <span class="token number">52800</span><span class="token punctuation">]</span> will be killed.
+
+Quit anyway? <span class="token punctuation">(</span>y or n<span class="token punctuation">)</span>
+</code></pre></div>
+<p>这时候输入 <code>y</code> 后回车，可以强制杀死被调试的进行并退出 GDB。</p>
+<h3 id="断点"><a href="#断点" class="headerlink" title="断点"></a>断点</h3>
+<p>使用 <code>break</code>（简写为 <code>b</code>）命令设置断点，后跟一个行号或者函数名，之后程序会在执行到该行时中断。</p>
+<div class="highlight"><pre><code><span class="token punctuation">(</span>gdb<span class="token punctuation">)</span> b <span class="token number">9</span>
+Breakpoint <span class="token number">1</span> at 0x4004fa: <span class="token function">file</span> test.cpp, line <span class="token number">9</span>.
+</code></pre></div>
+<div class="highlight"><pre><code><span class="token punctuation">(</span>gdb<span class="token punctuation">)</span> b main
+Breakpoint <span class="token number">1</span> at 0x4004fa: <span class="token function">file</span> test.cpp, line <span class="token number">9</span>.
+</code></pre></div>
+<p><code>break</code> 命令也可以在断点位置后跟一个条件，仅当该条件为真时程序中断。</p>
+<div class="highlight"><pre><code><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;cstdio&gt;</span></span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">int</span> a<span class="token punctuation">;</span>
+    <span class="token function">scanf</span><span class="token punctuation">(</span><span class="token string">"%d"</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span>a<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%dn"</span><span class="token punctuation">,</span> a<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></div>
+<div class="highlight"><pre><code><span class="token punctuation">(</span>gdb<span class="token punctuation">)</span> b <span class="token number">6</span> <span class="token keyword">if</span> a <span class="token operator">==</span> <span class="token number">528</span>
+</code></pre></div>
+<p>使用 <code>r</code> 运行程序，当你输入 <code>528</code> 时，程序中断，否则程序继续运行。</p>
+<p>Pascal 在设置条件断点时会有所不同，如这里的 <code>==</code> 需要改为 <code>=</code>。</p>
+<h3 id="控制"><a href="#控制" class="headerlink" title="控制"></a>控制</h3>
+<p>使用 <code>continue</code>（简写为 <code>c</code>）命令使中断的程序继续运行。</p>
+<p>注意，这里“中断的程序”指的是<strong>通过断点中断</strong>的程序，而不是<strong>运行时错误</strong>而中断的，如果我们强制让一个运行时错误的程序继续运行 …… 你猜它会怎样 ……</p>
+<p>使用 <code>step</code>（简写为 <code>s</code>）命令使中断的程序执行一行，如果该行有函数调用，程序将跟踪进入函数，在函数体的第一行中断。</p>
+<div class="highlight"><pre><code><span class="token keyword">int</span> <span class="token function">foo</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token number">2333</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token function">foo</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></div>
+<div class="highlight"><pre><code><span class="token punctuation">(</span>gdb<span class="token punctuation">)</span> b <span class="token number">6</span>
+Breakpoint <span class="token number">1</span> at 0x40058f: <span class="token function">file</span> test.cpp, line <span class="token number">6</span>.
+<span class="token punctuation">(</span>gdb<span class="token punctuation">)</span> r
+Starting program: /home/Menci/test 
+
+Breakpoint <span class="token number">1</span>, main <span class="token punctuation">(</span><span class="token punctuation">)</span> at test.cpp:6
+<span class="token number">6</span>        foo<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">(</span>gdb<span class="token punctuation">)</span> s
+foo <span class="token punctuation">(</span><span class="token punctuation">)</span> at test.cpp:2
+<span class="token number">2</span>        <span class="token builtin class-name">return</span> <span class="token number">2333</span><span class="token punctuation">;</span>
+</code></pre></div>
+<p>或者，你想让我用 Pascal 来演示一下的话，是酱紫的：</p>
+<div class="highlight"><pre><code><span class="token keyword">Program</span> Test<span class="token punctuation">;</span>
+<span class="token keyword">Function</span> Foo<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span> Longint<span class="token punctuation">;</span>
+<span class="token keyword">Begin</span>
+        <span class="token keyword">Exit</span><span class="token punctuation">(</span><span class="token number">2333</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">End</span><span class="token punctuation">;</span>
+<span class="token keyword">Begin</span>
+        Foo<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">End</span><span class="token punctuation">.</span>
+</code></pre></div>
+<div class="highlight"><pre><code><span class="token punctuation">(</span>gdb<span class="token punctuation">)</span> b <span class="token number">7</span>
+Breakpoint <span class="token number">1</span> at 0x4001c1: <span class="token function">file</span> test.pas, line <span class="token number">7</span>.
+<span class="token punctuation">(</span>gdb<span class="token punctuation">)</span> r
+Starting program: /home/Menci/test 
+
+Breakpoint <span class="token number">1</span>, main <span class="token punctuation">(</span><span class="token punctuation">)</span> at test.pas:7
+<span class="token number">7</span>        Foo<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">(</span>gdb<span class="token punctuation">)</span> s
+FOO <span class="token punctuation">(</span><span class="token punctuation">)</span> at test.pas:4
+<span class="token number">4</span>        Exit<span class="token punctuation">(</span><span class="token number">2333</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></div>
+<p>使用 <code>next</code>（简写为 <code>n</code>）命令使中断的程序执行一行，如果该行有函数调用，程序将<strong>不</strong>跟踪进入函数，直接在下一行中断。</p>
+<p>源程序不变，执行效果如下：</p>
+<div class="highlight"><pre><code><span class="token punctuation">(</span>gdb<span class="token punctuation">)</span> b <span class="token number">6</span>
+Breakpoint <span class="token number">1</span> at 0x40058f: <span class="token function">file</span> test.cpp, line <span class="token number">6</span>.
+<span class="token punctuation">(</span>gdb<span class="token punctuation">)</span> r
+Starting program: /home/Menci/test 
+
+Breakpoint <span class="token number">1</span>, main <span class="token punctuation">(</span><span class="token punctuation">)</span> at test.cpp:6
+<span class="token number">6</span>        foo<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">(</span>gdb<span class="token punctuation">)</span> n
+<span class="token number">7</span>        <span class="token builtin class-name">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+</code></pre></div>
+<div class="highlight"><pre><code><span class="token punctuation">(</span>gdb<span class="token punctuation">)</span> b <span class="token number">7</span>
+Breakpoint <span class="token number">1</span> at 0x4001c1: <span class="token function">file</span> test.pas, line <span class="token number">7</span>.
+<span class="token punctuation">(</span>gdb<span class="token punctuation">)</span> r
+Starting program: /home/Menci/test 
+
+Breakpoint <span class="token number">1</span>, main <span class="token punctuation">(</span><span class="token punctuation">)</span> at test.pas:7
+<span class="token number">7</span>        Foo<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">(</span>gdb<span class="token punctuation">)</span> n
+<span class="token number">8</span>    End.
+</code></pre></div>
+<h3 id="监视"><a href="#监视" class="headerlink" title="监视"></a>监视</h3>
+<p>在 GDB 中，可以对表达式的值进行监视。</p>
+<p>使用 <code>print</code>（简写为 <code>p</code>）命令输出一个表达式的值，这里的表达式可以只是一个变量，也可以是包含了多个函数调用的复杂表达式。</p>
+<p>来看这个经典的 A + B 问题：</p>
+<div class="highlight"><pre><code><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;cstdio&gt;</span></span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">int</span> a<span class="token punctuation">,</span> b<span class="token punctuation">;</span>
+    <span class="token function">scanf</span><span class="token punctuation">(</span><span class="token string">"%d %d"</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span>a<span class="token punctuation">,</span> <span class="token operator">&amp;</span>b<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%dn"</span><span class="token punctuation">,</span> a <span class="token operator">+</span> b<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></div>
+<div class="highlight"><pre><code><span class="token punctuation">(</span>gdb<span class="token punctuation">)</span> b <span class="token number">6</span>
+Breakpoint <span class="token number">1</span> at 0x400642: <span class="token function">file</span> test.cpp, line <span class="token number">6</span>.
+<span class="token punctuation">(</span>gdb<span class="token punctuation">)</span> r
+Starting program: /home/Menci/test 
+<span class="token number">233</span> <span class="token number">2333</span>
+
+Breakpoint <span class="token number">1</span>, main <span class="token punctuation">(</span><span class="token punctuation">)</span> at test.cpp:6
+<span class="token number">6</span>        printf<span class="token punctuation">(</span><span class="token string">"%dn"</span>, a + b<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">(</span>gdb<span class="token punctuation">)</span> p a
+<span class="token variable">$1</span> <span class="token operator">=</span> <span class="token number">233</span>
+<span class="token punctuation">(</span>gdb<span class="token punctuation">)</span> p b
+<span class="token variable">$2</span> <span class="token operator">=</span> <span class="token number">2333</span>
+</code></pre></div>
+<p>使用 <code>display</code>（简写为 <code>disp</code>）命令持续监视某个表达式的值。</p>
+<div class="highlight"><pre><code><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;cstdio&gt;</span></span>
+
+<span class="token keyword">int</span> <span class="token function">doSomething</span><span class="token punctuation">(</span><span class="token keyword">int</span> x<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> x <span class="token operator">*</span> <span class="token number">10</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">int</span> n <span class="token operator">=</span> <span class="token number">10</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> n<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"i = %dn"</span><span class="token punctuation">,</span> i<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></div>
+<div class="highlight"><pre><code><span class="token punctuation">(</span>gdb<span class="token punctuation">)</span> b <span class="token number">10</span>
+Breakpoint <span class="token number">1</span> at 0x400603: <span class="token function">file</span> test.cpp, line <span class="token number">10</span>.
+<span class="token punctuation">(</span>gdb<span class="token punctuation">)</span> r
+Starting program: /home/Menci/test 
+
+Breakpoint <span class="token number">1</span>, main <span class="token punctuation">(</span><span class="token punctuation">)</span> at test.cpp:10
+<span class="token number">10</span>            printf<span class="token punctuation">(</span><span class="token string">"i = %dn"</span>, i<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">(</span>gdb<span class="token punctuation">)</span> disp doSomething<span class="token punctuation">(</span>i<span class="token punctuation">)</span>
+<span class="token number">1</span>: doSomething<span class="token punctuation">(</span>i<span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token number">0</span>
+<span class="token punctuation">(</span>gdb<span class="token punctuation">)</span> n
+i <span class="token operator">=</span> <span class="token number">0</span>
+<span class="token number">9</span>        <span class="token keyword">for</span> <span class="token punctuation">(</span>int i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> n<span class="token punctuation">;</span> i++<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<span class="token number">1</span>: doSomething<span class="token punctuation">(</span>i<span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token number">0</span>
+<span class="token punctuation">(</span>gdb<span class="token punctuation">)</span> n
+
+Breakpoint <span class="token number">1</span>, main <span class="token punctuation">(</span><span class="token punctuation">)</span> at test.cpp:10
+<span class="token number">10</span>            printf<span class="token punctuation">(</span><span class="token string">"i = %dn"</span>, i<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token number">1</span>: doSomething<span class="token punctuation">(</span>i<span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token number">10</span>
+<span class="token punctuation">(</span>gdb<span class="token punctuation">)</span> n
+i <span class="token operator">=</span> <span class="token number">1</span>
+<span class="token number">9</span>        <span class="token keyword">for</span> <span class="token punctuation">(</span>int i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> n<span class="token punctuation">;</span> i++<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<span class="token number">1</span>: doSomething<span class="token punctuation">(</span>i<span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token number">10</span>
+<span class="token punctuation">(</span>gdb<span class="token punctuation">)</span> n
+
+Breakpoint <span class="token number">1</span>, main <span class="token punctuation">(</span><span class="token punctuation">)</span> at test.cpp:10
+<span class="token number">10</span>            printf<span class="token punctuation">(</span><span class="token string">"i = %dn"</span>, i<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token number">1</span>: doSomething<span class="token punctuation">(</span>i<span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token number">20</span>
+<span class="token punctuation">(</span>gdb<span class="token punctuation">)</span> n
+i <span class="token operator">=</span> <span class="token number">2</span>
+</code></pre></div>
+<p>在 GDB 7.0 之后的版本，可以直接使用 <code>p</code> 命令输出 STL 容器的内容。</p>
+<h3 id="栈"><a href="#栈" class="headerlink" title="栈"></a>栈</h3>
+<p>在函数调用时，系统栈会储存函数的调用信息，使用 <code>backtrace</code>（简写为 <code>bt</code>）命令查看调用栈。</p>
+<p>为了方便演示，我们写一个使系统栈溢出的函数来演示。</p>
+<div class="highlight"><pre><code><span class="token keyword">int</span> <span class="token function">fac</span><span class="token punctuation">(</span><span class="token keyword">int</span> x<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>x <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token keyword">return</span> <span class="token number">1</span><span class="token punctuation">;</span>
+    <span class="token keyword">else</span> <span class="token keyword">return</span> x <span class="token operator">*</span> <span class="token function">fac</span><span class="token punctuation">(</span>x <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">int</span> x <span class="token operator">=</span> <span class="token function">fac</span><span class="token punctuation">(</span><span class="token number">1000000000</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></div>
+<div class="highlight"><pre><code><span class="token punctuation">(</span>gdb<span class="token punctuation">)</span> r
+Starting program: /home/Menci/test 
+
+Program received signal SIGSEGV, Segmentation fault.
+0x00000000004005a5 <span class="token keyword">in</span> fac <span class="token punctuation">(</span>x<span class="token operator">=</span><span class="token number">999737953</span><span class="token punctuation">)</span> at test.cpp:3
+<span class="token number">3</span>        <span class="token keyword">else</span> <span class="token builtin class-name">return</span> x * fac<span class="token punctuation">(</span>x - <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">(</span>gdb<span class="token punctuation">)</span> bt
+<span class="token comment">#0  0x00000000004005a5 in fac (x=999737953) at test.cpp:3</span>
+<span class="token comment">#1  0x00000000004005aa in fac (x=999737954) at test.cpp:3</span>
+<span class="token comment">#2  0x00000000004005aa in fac (x=999737955) at test.cpp:3</span>
+<span class="token comment">#3  0x00000000004005aa in fac (x=999737956) at test.cpp:3</span>
+<span class="token comment">#4  0x00000000004005aa in fac (x=999737957) at test.cpp:3</span>
+<span class="token comment">#5  0x00000000004005aa in fac (x=999737958) at test.cpp:3</span>
+</code></pre></div>
+<p>（以上省略 272043 行）</p>
+<p><code>bt</code> 命令可以看到函数的调用信息，同时调用参数、调用位置（行号）也会被显示。</p>
+<p>使用 <code>frame</code> 命令切换正在调试的函数上下文。</p>
+<div class="highlight"><pre><code><span class="token keyword">int</span> <span class="token function">a</span><span class="token punctuation">(</span><span class="token keyword">int</span> x<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> x <span class="token operator">-</span> <span class="token number">4</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">int</span> <span class="token function">b</span><span class="token punctuation">(</span><span class="token keyword">int</span> x<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token function">a</span><span class="token punctuation">(</span>x <span class="token operator">*</span> <span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">int</span> <span class="token function">c</span><span class="token punctuation">(</span><span class="token keyword">int</span> x<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token function">b</span><span class="token punctuation">(</span>x <span class="token operator">+</span> <span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">int</span> <span class="token function">d</span><span class="token punctuation">(</span><span class="token keyword">int</span> x<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token function">c</span><span class="token punctuation">(</span>x <span class="token operator">/</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">int</span> x <span class="token operator">=</span> <span class="token function">d</span><span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></div>
+<div class="highlight"><pre><code><span class="token punctuation">(</span>gdb<span class="token punctuation">)</span> b <span class="token number">2</span>
+Breakpoint <span class="token number">1</span> at 0x400577: <span class="token function">file</span> test.cpp, line <span class="token number">2</span>.
+<span class="token punctuation">(</span>gdb<span class="token punctuation">)</span> r
+Starting program: /home/Menci/test 
+
+Breakpoint <span class="token number">1</span>, a <span class="token punctuation">(</span>x<span class="token operator">=</span><span class="token number">36</span><span class="token punctuation">)</span> at test.cpp:2
+<span class="token number">2</span>        <span class="token builtin class-name">return</span> x - <span class="token number">4</span><span class="token punctuation">;</span>
+<span class="token punctuation">(</span>gdb<span class="token punctuation">)</span> bt
+<span class="token comment">#0  a (x=36) at test.cpp:2</span>
+<span class="token comment">#1  0x00000000004005a7 in b (x=12) at test.cpp:6</span>
+<span class="token comment">#2  0x00000000004005c9 in c (x=2) at test.cpp:10</span>
+<span class="token comment">#3  0x00000000004005f5 in d (x=4) at test.cpp:14</span>
+<span class="token comment">#4  0x0000000000400619 in main () at test.cpp:18</span>
+<span class="token punctuation">(</span>gdb<span class="token punctuation">)</span> frame <span class="token number">3</span>
+<span class="token comment">#3  0x00000000004005f5 in d (x=4) at test.cpp:14</span>
+<span class="token number">14</span>        <span class="token builtin class-name">return</span> c<span class="token punctuation">(</span>x / <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">(</span>gdb<span class="token punctuation">)</span> p x
+<span class="token variable">$1</span> <span class="token operator">=</span> <span class="token number">4</span>
+</code></pre></div>
+<p>从例子中我们看到，<code>frame 3</code> 命令使当前上下文切换到了 <code>d(x)</code> 函数中，此时 <code>p x</code> 输出的值为 <code>4</code>，与我们调用时所传递的值相同。</p>
+<p><code>frame</code> 命令在调试在 STL 中崩溃的程序时有很大作用，我们需要切换到自己的函数的上下文中，而不是对 STL 进行调试。</p>
+<h3 id="查看代码"><a href="#查看代码" class="headerlink" title="查看代码"></a>查看代码</h3>
+<p>使用 <code>list</code>（简写为 <code>l</code>）命令查看部分代码，后跟一个行号，表示查看从该行开始若干行的代码。</p>
+<div class="highlight"><pre><code><span class="token punctuation">(</span>gdb<span class="token punctuation">)</span> l <span class="token number">1</span>
+<span class="token number">1</span>    int a<span class="token punctuation">(</span>int x<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<span class="token number">2</span>        <span class="token builtin class-name">return</span> x - <span class="token number">4</span><span class="token punctuation">;</span>
+<span class="token number">3</span>    <span class="token punctuation">}</span>
+<span class="token number">4</span>    
+<span class="token number">5</span>    int b<span class="token punctuation">(</span>int x<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<span class="token number">6</span>        <span class="token builtin class-name">return</span> a<span class="token punctuation">(</span>x * <span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token number">7</span>    <span class="token punctuation">}</span>
+<span class="token number">8</span>    
+<span class="token number">9</span>    int c<span class="token punctuation">(</span>int x<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<span class="token number">10</span>        <span class="token builtin class-name">return</span> b<span class="token punctuation">(</span>x + <span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></div>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tag/c/" rel="tag"># C++</a>
+          
+            <a href="/tag/gdb/" rel="tag"># GDB</a>
+          
+            <a href="/tag/调试/" rel="tag"># 调试</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/dinic-notes/" rel="next" title="Dinic 学习笔记">
+                <i class="fa fa-chevron-left"></i> Dinic 学习笔记
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/codevs-1563/" rel="prev" title="「CodeVS 1563」奶牛的交通 - 网络流">
+                「CodeVS 1563」奶牛的交通 - 网络流 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+        <img class="site-author-image" itemprop="image" src="https://cdn.menci.xyz/menci-oi-blog/images/avatar.png" alt="Menci">
+        <p class="site-author-name" itemprop="name">Menci</p>
+         
+            <p class="site-description motion-element" itemprop="description"></p>
+        
+      </div>
+      <nav class="site-state motion-element">
+
+        
+          <div class="site-state-item site-state-posts">
+            <a href="/archives/">
+              <span class="site-state-item-count">355</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+        
+
+        
+          
+          
+          <div class="site-state-item site-state-categories">
+            <a href="/categories/index.html">
+              <span class="site-state-item-count">3</span>
+              <span class="site-state-item-name">分类</span>
+            </a>
+          </div>
+        
+
+        
+          
+          
+          <div class="site-state-item site-state-tags">
+            <a href="/tags/index.html">
+              <span class="site-state-item-count">225</span>
+              <span class="site-state-item-name">标签</span>
+            </a>
+          </div>
+        
+
+      </nav>
+
+      
+
+      <div class="links-of-author motion-element">
+        
+          
+            <span class="links-of-author-item">
+              <a href="https://github.com/Menci/" target="_blank" title="GitHub">
+                
+                  <i class="fa fa-fw fa-github"></i>
+                
+                  
+                    GitHub
+                  
+              </a>
+            </span>
+          
+            <span class="links-of-author-item">
+              <a href="http://wpa.qq.com/msgrd?V=3&amp;Uin=207988066" target="_blank" title="QQ">
+                
+                  <i class="fa fa-fw fa-qq"></i>
+                
+                  
+                    QQ
+                  
+              </a>
+            </span>
+          
+            <span class="links-of-author-item">
+              <a href="/atom.xml" target="_blank" title="RSS">
+                
+                  <i class="fa fa-fw fa-globe"></i>
+                
+                  
+                    RSS
+                  
+              </a>
+            </span>
+          
+            <span class="links-of-author-item">
+              <a href="mailto:huanghaorui301@gmail.com" target="_blank" title="E-Mail">
+                
+                  <i class="fa fa-fw fa-envelope"></i>
+                
+                  
+                    E-Mail
+                  
+              </a>
+            </span>
+          
+        
+      </div>
+
+      
+      
+
+      
+      
+
+      
+
+
+      
+      
+        <div class="post-toc" style="margin-top: 20px; ">
+
+          
+            
+          
+
+          
+            <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装"><span class="nav-number">1.</span> <span class="nav-text">安装</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Linux"><span class="nav-number">1.1.</span> <span class="nav-text">Linux</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Windows"><span class="nav-number">1.2.</span> <span class="nav-text">Windows</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#启动"><span class="nav-number">2.</span> <span class="nav-text">启动</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#运行"><span class="nav-number">3.</span> <span class="nav-text">运行</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#退出"><span class="nav-number">4.</span> <span class="nav-text">退出</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#断点"><span class="nav-number">5.</span> <span class="nav-text">断点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#控制"><span class="nav-number">6.</span> <span class="nav-text">控制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#监视"><span class="nav-number">7.</span> <span class="nav-text">监视</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#栈"><span class="nav-number">8.</span> <span class="nav-text">栈</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查看代码"><span class="nav-number">9.</span> <span class="nav-text">查看代码</span></a></li></ol></div>
+          
+
+        </div>
+      
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  ©  2015 — 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Menci</span>
+
+  
+</div>
+
+自豪地运行于 <a class="theme-link" href="https://azure.microsoft.com">Azure</a> 云平台
+
+  <span class="post-meta-divider">|</span>
+
+由 <a class="theme-link" href="https://console.upyun.com/register/?invite=SkrBWaCvN">Upyun</a> 提供 CDN 服务
+
+<br>
+
+
+  <div class="powered-by">由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+  <span class="post-meta-divider">|</span>
+
+  <div class="theme-info">主题 — <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.2</div>
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="https://lf26-cdn-tos.bytecdntp.com/cdn/expire-1-y/jquery/2.1.3/jquery.min.js"></script>
+
+  
+  <script type="text/javascript" src="https://lf26-cdn-tos.bytecdntp.com/cdn/expire-1-y/fastclick/1.0.6/fastclick.min.js"></script>
+
+  
+  <script type="text/javascript" src="https://lf26-cdn-tos.bytecdntp.com/cdn/expire-1-y/jquery_lazyload/1.9.7/jquery.lazyload.min.js"></script>
+
+  
+  <script type="text/javascript" src="https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-y/velocity/2.0.6/velocity.min.js"></script>
+
+  
+  <script type="text/javascript" src="https://lf6-cdn-tos.bytecdntp.com/cdn/expire-1-y/velocity/2.0.6/velocity.ui.min.js"></script>
+
+  
+  <script type="text/javascript" src="https://lf6-cdn-tos.bytecdntp.com/cdn/expire-1-y/fancybox/2.1.5/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="https://cdn.menci.xyz/menci-oi-blog/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="https://cdn.menci.xyz/menci-oi-blog/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="https://cdn.menci.xyz/menci-oi-blog/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="https://cdn.menci.xyz/menci-oi-blog/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="https://cdn.menci.xyz/menci-oi-blog/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="https://cdn.menci.xyz/menci-oi-blog/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="https://cdn.menci.xyz/menci-oi-blog/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+    
+
+    
+      <script type="text/javascript">
+        function MenciRemoveIndexDotHtml(url) {
+          if (url.substr(-10, 10) == 'index.html') return url.substr(0, url.length - 10);
+          else return url;
+        }
+
+        var disqus_config = function () {
+          this.page.url = MenciRemoveIndexDotHtml('https://oi.men.ci/gnu-debugger/');
+        };
+
+        var d = document, s = d.createElement('script');
+        s.src = 'https://menci.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+<script>"serviceWorker"in navigator&&window.addEventListener("load",(function(){navigator.serviceWorker.register("/sw.js?t=https%3A%2F%2Fcdn-static.menci.xyz%2Fmenci-oi-blog%2F")}));</script></body></html>
