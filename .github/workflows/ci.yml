@@ -33,11 +33,14 @@ jobs:
         touch public/404.html
         git config --global user.name $(git show -s --format='%an' HEAD)
         git config --global user.email $(git show -s --format='%ae' HEAD)
-        sed -i "s#ssh://git@github.com#https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com#" _config.yml
+        eval `ssh-agent -s`
+        echo "$SSH_KEY" | tr -d '\r' | ssh-add -
         node_modules/.bin/hexo d
 
         cd .deploy_git
         echo "::set-output commit-hash=$(git rev-parse HEAD)"
+      env:
+        SSH_KEY: ${{ secrets.DEPLOY_KEY_TARGET }}
     - name: Wait for Cloudflare Pages Deployment
       if: ${{ github.event_name == 'push' }}
       uses: Menci/cf-pages-await@main

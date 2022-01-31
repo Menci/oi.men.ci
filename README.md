@@ -22,7 +22,9 @@ Hexo 主题为 [NeXT](https://github.com/theme-next/hexo-theme-next)，在 commi
 旧的博客源代码仓库的备份，最后一次更新为 2017 年 4 月 5 日，且不会继续更新。仅供对于博客源代码的历史记录的查阅。同样包含 `node_modules` 目录，但不保证能在较新版本的操作系统与 Node.js 环境下运行。
 
 
-### [`website`](https://github.com/Menci/oi.men.ci/tree/website)
+### [`MenciStaticSites/oi-blog`](https://github.com/MenciStaticSites/oi-blog)
+
+> 已从 branch 迁移到外部仓库。
 
 项目生成的静态网站文件，与 https://oi.men.ci 的服务器保持同步。
 

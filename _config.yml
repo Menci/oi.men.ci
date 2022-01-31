@@ -70,8 +70,8 @@ disqus_shortname: menci
 ## Docs: http://hexo.io/docs/deployment.html
 deploy:
   - type: git
-    repo: ssh://git@github.com/Menci/oi.men.ci.git
-    branch: website
+    repo: ssh://git@github.com/MenciStaticSites/oi-blog.git
+    branch: main
 
 syzoj_renderer:
   options:
