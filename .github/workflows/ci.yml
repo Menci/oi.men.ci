@@ -4,9 +4,6 @@ on:
 - push
 - pull_request
 
-env:
-  CI: true
-
 jobs:
   build_deploy:
     name: Build & Deploy
@@ -63,7 +60,7 @@ jobs:
           headers: |
             filename => (
               {
-                "Cache-Control": `public, max-age=${filename.endsWith(".html") ? 60 : 604800}`
+                "Cache-Control": `public, max-age=${[".html", ".xml"].some(ext => filename.endsWith(ext)) ? 60 : 604800}`
               }
             )
           delay-html-file-upload: true
@@ -75,3 +72,7 @@ jobs:
         action: upload
         app_location: /public
         skip_app_build: true
+    - name: Submit Sitemap
+      uses: atymic/sitemap-ping-action@master
+      with:
+        sitemap-url: https://oi.men.ci/sitemap.xml
