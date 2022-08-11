@@ -47,23 +47,12 @@ jobs:
         accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
         project: menci-oi-blog
         commitHash: ${{ steps.commit-push.outputs.commit-hash }}
-    - name: Deploy to Aliyun OSS
-      if: ${{ github.event_name == 'push' }}
-      uses: Menci/upload-to-oss@main
+    - name: Deploy to Static CDN
+      uses: AyaInfra/StaticCDNDeploy@main
       with:
-          access-key-id: ${{ secrets.ALIYUN_ACCESS_KEY_ID }}
-          access-key-secret: ${{ secrets.ALIYUN_ACCESS_KEY_SECRET }}
-          bucket: ${{ secrets.ALIYUN_OSS_BUCKET }}
-          endpoint: ${{ secrets.ALIYUN_OSS_ENDPOINT }}
-          local-path: public
-          remote-path: menci-oi-blog
-          headers: |
-            filename => (
-              {
-                "Cache-Control": `public, max-age=${[".html", ".xml"].some(ext => filename.endsWith(ext)) ? 60 : 604800}`
-              }
-            )
-          delay-html-file-upload: true
+        deploy-credentials: ${{ secrets.STATIC_CDN_CREDENTIALS }}
+        local-path: public
+        remote-path: menci-oi-blog
     - name: Deploy to Azure
       if: ${{ github.event_name == 'push' }}
       uses: Azure/static-web-apps-deploy@v1
