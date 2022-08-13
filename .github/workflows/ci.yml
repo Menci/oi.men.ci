@@ -24,7 +24,6 @@ jobs:
         www-root: public
         target-base-url: https://cdn-static.menci.xyz/menci-oi-blog/
     - name: Push to GitHub
-      id: commit-push
       if: ${{ github.event_name == 'push' }}
       run: |
         touch public/404.html
@@ -35,19 +34,19 @@ jobs:
         node_modules/.bin/hexo d
 
         cd .deploy_git
-        echo "::set-output commit-hash=$(git rev-parse HEAD)"
       env:
         SSH_KEY: ${{ secrets.DEPLOY_KEY_TARGET }}
-    - name: Wait for Cloudflare Pages Deployment
+    - name: Deploy to Cloudflare Pages
       if: ${{ github.event_name == 'push' }}
-      uses: Menci/cf-pages-await@main
+      uses: Menci/pages-action@main
       with:
-        accountEmail: ${{ secrets.CLOUDFLARE_ACCOUNT_EMAIL }}
-        apiKey: ${{ secrets.CLOUDFLARE_API_KEY }}
+        apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
         accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-        project: menci-oi-blog
-        commitHash: ${{ steps.commit-push.outputs.commit-hash }}
+        projectName: menci-oi-blog
+        directory: public
+        branch: main
     - name: Deploy to Static CDN
+      if: ${{ github.event_name == 'push' }}
       uses: AyaInfra/StaticCDNDeploy@main
       with:
         deploy-credentials: ${{ secrets.STATIC_CDN_CREDENTIALS }}
