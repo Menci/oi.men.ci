@@ -7,7 +7,7 @@ date: '2017-08-30 18:50:00'
 
 <div style="width: 100%; text-align: center; "><div id="aplayer1" class="aplayer" style="width: 100%; max-width: 550px; text-align: left; display: inline-block; background: #fff; "></div></div>
 
-<script>new APlayer({ element: document.getElementById('aplayer1'), narrow: false, autoplay: false, showlrc: 3, preload: 'metadata', mutex: true, theme: '#615754', music: { title: 'Artificial Emotions', author: '心华', url: 'https://cdn.menci.xyz/menci-oi-blog/music/ae/ae.ogg', pic: 'https://cdn.menci.xyz/menci-oi-blog/music/ae/ae.jpg', lrc: 'https://cdn.menci.xyz/menci-oi-blog/music/ae/ae.lrc' } });</script>
+<script>new APlayer({ element: document.getElementById('aplayer1'), narrow: false, autoplay: false, showlrc: 3, preload: 'metadata', mutex: true, theme: '#615754', music: { title: 'Artificial Emotions', author: '心华', url: 'https://static.cdn.menci.xyz/menci-oi-blog/music/ae/ae.ogg', pic: 'https://static.cdn.menci.xyz/menci-oi-blog/music/ae/ae.jpg', lrc: 'https://static.cdn.menci.xyz/menci-oi-blog/music/ae/ae.lrc' } });</script>
 
 “终于 …… 要离开了吗 ……”
 

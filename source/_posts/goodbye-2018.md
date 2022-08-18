@@ -9,7 +9,7 @@ date: '2019-01-01 02:15:00'
 
 <style>.post .post-content .aplayer { margin-top: 20px; }</style>
 
-<script>var ap = new APlayer({ element: document.getElementById('aplayer'), narrow: false, autoplay: false, preload: 'metadata', showlrc: 3, mutex: true, theme: '#615754', music: { title: '風の唄', author: '京都幻想剧团 + 凋叶棕', url: 'https://cdn.menci.xyz/menci-oi-blog/music/fzg/fzg.ogg', pic: 'https://cdn.menci.xyz/menci-oi-blog/music/fzg/fzg.jpg', lrc: 'https://cdn.menci.xyz/menci-oi-blog/music/fzg/fzg.lrc' } });</script>
+<script>var ap = new APlayer({ element: document.getElementById('aplayer'), narrow: false, autoplay: false, preload: 'metadata', showlrc: 3, mutex: true, theme: '#615754', music: { title: '風の唄', author: '京都幻想剧团 + 凋叶棕', url: 'https://static.cdn.menci.xyz/menci-oi-blog/music/fzg/fzg.ogg', pic: 'https://static.cdn.menci.xyz/menci-oi-blog/music/fzg/fzg.jpg', lrc: 'https://static.cdn.menci.xyz/menci-oi-blog/music/fzg/fzg.lrc' } });</script>
 
 不知从何时开始，对元旦这种重要节日的概念，开始变得越来越浅 —— 从童年时的日思夜想，到如今，已经不再有什么期待，而只是当做一个平常的周末了。除了多放一天假之外，也便没有多么特殊了。但这总归是一年的结束，新一年的开始，这一年的回忆，大多数都在前半年高三的生活中，那时候便想，自己的故事一定要写给大家看，而现在看来，那些回忆也不过只有寥寥数言，但终究还是要在淡忘之前将他们记录下来，作为人生的一个阶段留下的记号罢。于是，便有了这些文字。
 

@@ -7,7 +7,7 @@ date: '2021-04-30 15:57:00'
 
 <style>.post .post-content .aplayer { margin-top: 20px; }</style>
 
-<script>var ap = new APlayer({ element: document.getElementById('aplayer'), narrow: false, autoplay: false, preload: 'metadata', showlrc: 3, mutex: true, theme: '#615754', music: { title: '寻遍星空', author: '晴海 / 公兔 / 洛天依', url: 'https://cdn.menci.xyz/menci-oi-blog/music/xbxk/xbxk.ogg', pic: 'https://cdn.menci.xyz/menci-oi-blog/music/xbxk/xbxk.png', lrc: 'https://cdn.menci.xyz/menci-oi-blog/music/xbxk/xbxk.lrc' } });</script>
+<script>var ap = new APlayer({ element: document.getElementById('aplayer'), narrow: false, autoplay: false, preload: 'metadata', showlrc: 3, mutex: true, theme: '#615754', music: { title: '寻遍星空', author: '晴海 / 公兔 / 洛天依', url: 'https://static.cdn.menci.xyz/menci-oi-blog/music/xbxk/xbxk.ogg', pic: 'https://static.cdn.menci.xyz/menci-oi-blog/music/xbxk/xbxk.png', lrc: 'https://static.cdn.menci.xyz/menci-oi-blog/music/xbxk/xbxk.lrc' } });</script>
 
 Menci（读作 /ˈmenˌsɪ/，中文音译**萌次**/**门磁**），OIer & 软件开发者。
 

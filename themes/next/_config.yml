@@ -1,6 +1,6 @@
 
 # Put your favicon.ico into `hexo-site/source/` directory.
-favicon: //cdn.menci.xyz/menci-oi-blog/images/avatar.png
+favicon: //static.cdn.menci.xyz/menci-oi-blog/images/avatar.png
 
 # Set default keywords (Use a comma to separate)
 keywords: "Hexo, NexT"
@@ -131,7 +131,7 @@ social_icons:
 # Sidebar Avatar
 # in theme directory(source/images): /images/avatar.jpg
 # in site  directory(source/uploads): /uploads/avatar.jpg
-avatar: https://cdn.menci.xyz/menci-oi-blog/images/avatar.png
+avatar: https://static.cdn.menci.xyz/menci-oi-blog/images/avatar.png
 
 # Table Of Contents in the Sidebar
 toc:
@@ -270,7 +270,7 @@ font:
   enable: true
 
   # Uri of fonts host. E.g. //fonts.googleapis.com (Default)
-  host: //cdn.menci.xyz/fonts
+  host: //static.cdn.menci.xyz/fonts
 
   # Global font settings used on <body> element.
   global:

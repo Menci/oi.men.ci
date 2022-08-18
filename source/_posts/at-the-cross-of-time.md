@@ -9,7 +9,7 @@ date: '2016-08-31 02:42:00'
 
 <style>.post .post-content .aplayer { margin-top: 20px; }</style>
 
-<script>var ap = new APlayer({ element: document.getElementById('aplayer'), narrow: false, autoplay: false, preload: 'metadata', showlrc: 3, mutex: true, theme: '#615754', music: { title: '夢追人', author: 'KOKIA', url: 'https://cdn.menci.xyz/menci-oi-blog/music/mzr/mzr.ogg', pic: 'https://cdn.menci.xyz/menci-oi-blog/music/mzr/mzr.jpg', lrc: 'https://cdn.menci.xyz/menci-oi-blog/music/mzr/mzr.lrc' } });</script>
+<script>var ap = new APlayer({ element: document.getElementById('aplayer'), narrow: false, autoplay: false, preload: 'metadata', showlrc: 3, mutex: true, theme: '#615754', music: { title: '夢追人', author: 'KOKIA', url: 'https://static.cdn.menci.xyz/menci-oi-blog/music/mzr/mzr.ogg', pic: 'https://static.cdn.menci.xyz/menci-oi-blog/music/mzr/mzr.jpg', lrc: 'https://static.cdn.menci.xyz/menci-oi-blog/music/mzr/mzr.lrc' } });</script>
 
 高一结束了，作为 OIer 的生活过去一半了，NOI 也是一个多月之前的事了，在这期间一直想着，想要写些什么。一拖再拖，终于拖到了开学前的最后一夜。
 

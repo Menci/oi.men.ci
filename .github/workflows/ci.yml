@@ -22,7 +22,7 @@ jobs:
       uses: Menci/service-worker-redirect-origin@main
       with:
         www-root: public
-        target-base-url: https://cdn-static.menci.xyz/menci-oi-blog/
+        target-base-url: https://cdn.menci.xyz/menci-oi-blog/
     - name: Push to GitHub
       if: ${{ github.event_name == 'push' }}
       run: |

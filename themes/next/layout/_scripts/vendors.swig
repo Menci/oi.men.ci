@@ -21,22 +21,22 @@
 {% endif %}
 
 {% if theme.three_waves %}
-  {% set js_vendors.three  = 'https://cdn.menci.xyz/menci-oi-blog/lib/three/three.min.js' %}
-  {% set js_vendors.three_waves  = 'https://cdn.menci.xyz/menci-oi-blog/lib/three/three-waves.min.js' %}
+  {% set js_vendors.three  = 'https://static.cdn.menci.xyz/menci-oi-blog/lib/three/three.min.js' %}
+  {% set js_vendors.three_waves  = 'https://static.cdn.menci.xyz/menci-oi-blog/lib/three/three-waves.min.js' %}
 {% endif %}
 
 {% if theme.canvas_lines %}
-  {% set js_vendors.three  = 'https://cdn.menci.xyz/menci-oi-blog/lib/three/three.min.js' %}
-  {% set js_vendors.canvas_lines  = 'https://cdn.menci.xyz/menci-oi-blog/lib/three/canvas_lines.min.js' %}
+  {% set js_vendors.three  = 'https://static.cdn.menci.xyz/menci-oi-blog/lib/three/three.min.js' %}
+  {% set js_vendors.canvas_lines  = 'https://static.cdn.menci.xyz/menci-oi-blog/lib/three/canvas_lines.min.js' %}
 {% endif %}
 
 {% if theme.canvas_sphere %}
-  {% set js_vendors.three  = 'https://cdn.menci.xyz/menci-oi-blog/lib/three/three.min.js' %}
-  {% set js_vendors.canvas_sphere  = 'https://cdn.menci.xyz/menci-oi-blog/lib/three/canvas_sphere.min.js' %}
+  {% set js_vendors.three  = 'https://static.cdn.menci.xyz/menci-oi-blog/lib/three/three.min.js' %}
+  {% set js_vendors.canvas_sphere  = 'https://static.cdn.menci.xyz/menci-oi-blog/lib/three/canvas_sphere.min.js' %}
 {% endif %}
 
 {% if theme.canvas_ribbon and theme.scheme === 'Pisces'%}
-  {% set js_vendors.canvas_ribbon  = 'https://cdn.menci.xyz/menci-oi-blog/lib/canvas-ribbon/canvas-ribbon.js' %}
+  {% set js_vendors.canvas_ribbon  = 'https://static.cdn.menci.xyz/menci-oi-blog/lib/canvas-ribbon/canvas-ribbon.js' %}
 {% endif %}
 
 {% for name, internal in js_vendors %}

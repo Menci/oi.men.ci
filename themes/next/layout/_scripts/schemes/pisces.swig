@@ -6,5 +6,5 @@
 %}
 
 {% for script in scripts %}
-  <script type="text/javascript" src="https://cdn.menci.xyz/menci-oi-blog/js/{{ script }}?v={{ theme.version }}"></script>
+  <script type="text/javascript" src="https://static.cdn.menci.xyz/menci-oi-blog/js/{{ script }}?v={{ theme.version }}"></script>
 {% endfor %}
