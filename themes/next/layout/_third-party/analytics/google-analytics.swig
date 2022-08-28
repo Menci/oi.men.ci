@@ -8,4 +8,4 @@
   ga('send', 'pageview');
 </script>
 {% endif %}
-<script defer data-domain="oi.men.ci" src="https://stat.u.sb/js/script.outbound-links.js"></script>
+<script async data-domain="oi.men.ci" src="https://stat.u.sb/js/script.outbound-links.js"></script>
